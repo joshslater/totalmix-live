@@ -1,0 +1,295 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		034440AF15B7C34000A0B440 /* ChannelTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 034440AE15B7C34000A0B440 /* ChannelTableCell.xib */; };
+		034440B615B7C5C900A0B440 /* ChannelTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 034440B515B7C5C900A0B440 /* ChannelTableCell.m */; };
+		03C4853015B68EA300E26B7E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03C4852F15B68EA300E26B7E /* UIKit.framework */; };
+		03C4853215B68EA300E26B7E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03C4853115B68EA300E26B7E /* Foundation.framework */; };
+		03C4853415B68EA300E26B7E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03C4853315B68EA300E26B7E /* CoreGraphics.framework */; };
+		03C4853A15B68EA300E26B7E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 03C4853815B68EA300E26B7E /* InfoPlist.strings */; };
+		03C4853C15B68EA300E26B7E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C4853B15B68EA300E26B7E /* main.m */; };
+		03C4854015B68EA300E26B7E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C4853F15B68EA300E26B7E /* AppDelegate.m */; };
+		03C4854315B68EA300E26B7E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C4854215B68EA300E26B7E /* ViewController.m */; };
+		03C4854615B68EA300E26B7E /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03C4854415B68EA300E26B7E /* ViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		034440AE15B7C34000A0B440 /* ChannelTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChannelTableCell.xib; sourceTree = "<group>"; };
+		034440B415B7C5C900A0B440 /* ChannelTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChannelTableCell.h; path = ../ChannelTableCell.h; sourceTree = "<group>"; };
+		034440B515B7C5C900A0B440 /* ChannelTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChannelTableCell.m; path = ../ChannelTableCell.m; sourceTree = "<group>"; };
+		03C4852B15B68EA300E26B7E /* ReaperLive Remote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ReaperLive Remote.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		03C4852F15B68EA300E26B7E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		03C4853115B68EA300E26B7E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		03C4853315B68EA300E26B7E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		03C4853715B68EA300E26B7E /* ReaperLive Remote-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ReaperLive Remote-Info.plist"; sourceTree = "<group>"; };
+		03C4853915B68EA300E26B7E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		03C4853B15B68EA300E26B7E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		03C4853D15B68EA300E26B7E /* ReaperLive Remote-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ReaperLive Remote-Prefix.pch"; sourceTree = "<group>"; };
+		03C4853E15B68EA300E26B7E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		03C4853F15B68EA300E26B7E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		03C4854115B68EA300E26B7E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		03C4854215B68EA300E26B7E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		03C4854515B68EA300E26B7E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		03C4852815B68EA300E26B7E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03C4853015B68EA300E26B7E /* UIKit.framework in Frameworks */,
+				03C4853215B68EA300E26B7E /* Foundation.framework in Frameworks */,
+				03C4853415B68EA300E26B7E /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		03C4852015B68EA300E26B7E = {
+			isa = PBXGroup;
+			children = (
+				03C4853515B68EA300E26B7E /* ReaperLive Remote */,
+				03C4852E15B68EA300E26B7E /* Frameworks */,
+				03C4852C15B68EA300E26B7E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		03C4852C15B68EA300E26B7E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				03C4852B15B68EA300E26B7E /* ReaperLive Remote.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		03C4852E15B68EA300E26B7E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				03C4852F15B68EA300E26B7E /* UIKit.framework */,
+				03C4853115B68EA300E26B7E /* Foundation.framework */,
+				03C4853315B68EA300E26B7E /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		03C4853515B68EA300E26B7E /* ReaperLive Remote */ = {
+			isa = PBXGroup;
+			children = (
+				03C4853E15B68EA300E26B7E /* AppDelegate.h */,
+				03C4853F15B68EA300E26B7E /* AppDelegate.m */,
+				03C4854115B68EA300E26B7E /* ViewController.h */,
+				03C4854215B68EA300E26B7E /* ViewController.m */,
+				03C4854415B68EA300E26B7E /* ViewController.xib */,
+				034440B415B7C5C900A0B440 /* ChannelTableCell.h */,
+				034440B515B7C5C900A0B440 /* ChannelTableCell.m */,
+				034440AE15B7C34000A0B440 /* ChannelTableCell.xib */,
+				03C4853615B68EA300E26B7E /* Supporting Files */,
+			);
+			path = "ReaperLive Remote";
+			sourceTree = "<group>";
+		};
+		03C4853615B68EA300E26B7E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				03C4853715B68EA300E26B7E /* ReaperLive Remote-Info.plist */,
+				03C4853815B68EA300E26B7E /* InfoPlist.strings */,
+				03C4853B15B68EA300E26B7E /* main.m */,
+				03C4853D15B68EA300E26B7E /* ReaperLive Remote-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		03C4852A15B68EA300E26B7E /* ReaperLive Remote */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 03C4854915B68EA300E26B7E /* Build configuration list for PBXNativeTarget "ReaperLive Remote" */;
+			buildPhases = (
+				03C4852715B68EA300E26B7E /* Sources */,
+				03C4852815B68EA300E26B7E /* Frameworks */,
+				03C4852915B68EA300E26B7E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ReaperLive Remote";
+			productName = "ReaperLive Remote";
+			productReference = 03C4852B15B68EA300E26B7E /* ReaperLive Remote.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		03C4852215B68EA300E26B7E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = Self;
+			};
+			buildConfigurationList = 03C4852515B68EA300E26B7E /* Build configuration list for PBXProject "ReaperLive Remote" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 03C4852015B68EA300E26B7E;
+			productRefGroup = 03C4852C15B68EA300E26B7E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				03C4852A15B68EA300E26B7E /* ReaperLive Remote */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		03C4852915B68EA300E26B7E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03C4853A15B68EA300E26B7E /* InfoPlist.strings in Resources */,
+				03C4854615B68EA300E26B7E /* ViewController.xib in Resources */,
+				034440AF15B7C34000A0B440 /* ChannelTableCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		03C4852715B68EA300E26B7E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03C4853C15B68EA300E26B7E /* main.m in Sources */,
+				03C4854015B68EA300E26B7E /* AppDelegate.m in Sources */,
+				03C4854315B68EA300E26B7E /* ViewController.m in Sources */,
+				034440B615B7C5C900A0B440 /* ChannelTableCell.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		03C4853815B68EA300E26B7E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				03C4853915B68EA300E26B7E /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		03C4854415B68EA300E26B7E /* ViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				03C4854515B68EA300E26B7E /* en */,
+			);
+			name = ViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		03C4854715B68EA300E26B7E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		03C4854815B68EA300E26B7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		03C4854A15B68EA300E26B7E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ReaperLive Remote/ReaperLive Remote-Prefix.pch";
+				INFOPLIST_FILE = "ReaperLive Remote/ReaperLive Remote-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		03C4854B15B68EA300E26B7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ReaperLive Remote/ReaperLive Remote-Prefix.pch";
+				INFOPLIST_FILE = "ReaperLive Remote/ReaperLive Remote-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		03C4852515B68EA300E26B7E /* Build configuration list for PBXProject "ReaperLive Remote" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				03C4854715B68EA300E26B7E /* Debug */,
+				03C4854815B68EA300E26B7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		03C4854915B68EA300E26B7E /* Build configuration list for PBXNativeTarget "ReaperLive Remote" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				03C4854A15B68EA300E26B7E /* Debug */,
+				03C4854B15B68EA300E26B7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 03C4852215B68EA300E26B7E /* Project object */;
+}
