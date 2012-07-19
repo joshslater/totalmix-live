@@ -61,23 +61,14 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ChannelTableCell *cell = (ChannelTableCell *)[tableView dequeueReusableCellWithIdentifier:@"ChannelTableCell"];
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SimpleTableIdentifier"];
     
     if (cell == nil)
     {
-//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
-//                                        reuseIdentifier:@"SimpleTableIdentifier"];
-//        
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ChannelTableCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
-        
-//        cell = [[ChannelTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ChannelTableCell"];
     }
     
-//    cell.contentView.backgroundColor = [UIColor clearColor];
-//    cell.backgroundColor = [UIColor blackColor];
-    
-    //cell.channelLabel.text = [channelsArray objectAtIndex:indexPath.row];
+    cell.channelLabel.text = [channelsArray objectAtIndex:indexPath.row];
     return cell;
 }
 
