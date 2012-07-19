@@ -10,7 +10,10 @@
 
 @interface ViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
-@property IBOutlet UITableView *channelsTableView;
-@property NSMutableArray *channelsArray;
+@property (nonatomic, retain) IBOutlet UITableView *channelsTableView;
+@property (nonatomic, retain) NSMutableArray *channelsArray;
+
+
+- (IBAction)eqButtonPressed:(id)sender;
 
 @end

@@ -27,8 +27,6 @@
     
     self.channelsArray = array;
     
-
-    
     self.channelsTableView.rowHeight = 85.0;
 //    self.channelsTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;  
     self.channelsTableView.separatorColor = [UIColor blackColor];
@@ -50,7 +48,7 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return YES;
+    return UIInterfaceOrientationIsLandscape(interfaceOrientation);
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -69,19 +67,33 @@
     }
     
     cell.channelLabel.text = [channelsArray objectAtIndex:indexPath.row];
+    
+    //tag each button with the row
+    cell.gateButton.tag = indexPath.row;
+    cell.compButton.tag = indexPath.row;
+    cell.eqButton.tag = indexPath.row;  
+    
+    //assign button pushed events to each button
+    [cell.eqButton addTarget:self
+                   action:@selector(eqButtonPressed:)
+                   forControlEvents:UIControlEventTouchUpInside];
+    
+    //assign button pushed events to each button
+    [cell.compButton addTarget:self
+                     action:@selector(compButtonPressed:)
+                     forControlEvents:UIControlEventTouchUpInside];
+    
+    //assign button pushed events to each button
+    [cell.gateButton addTarget:self
+                     action:@selector(gateButtonPressed:)
+                     forControlEvents:UIControlEventTouchUpInside];
+
+    
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *message = [NSString stringWithFormat:@"You selected %@",[channelsArray objectAtIndex:indexPath.row]];
-    
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert"
-                                                    message: message delegate:self 
-                                                    cancelButtonTitle:@"Close"
-                                                    otherButtonTitles:nil];
-    
-    [alert show];
 }
 
 //- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -93,8 +105,32 @@
 {
     CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI/2);
     cell.transform = transform;
-    cell.backgroundColor = [UIColor blackColor];
+//    cell.backgroundColor = [UIColor blackColor];
 }
+
+
+- (IBAction)eqButtonPressed:(id)sender
+{
+    NSIndexPath *indexPath = [self.channelsTableView indexPathForCell:(UITableViewCell *)[[sender superview] superview]];
+    
+    NSLog(@"EQ Button Pushed for Channel %d",indexPath.row);
+}
+
+- (IBAction)gateButtonPressed:(id)sender
+{
+    NSIndexPath *indexPath = [self.channelsTableView indexPathForCell:(UITableViewCell *)[[sender superview] superview]];
+    
+    NSLog(@"Gate Button Pushed for Channel %d",indexPath.row);
+}
+
+- (IBAction)compButtonPressed:(id)sender
+{
+    NSIndexPath *indexPath = [self.channelsTableView indexPathForCell:(UITableViewCell *)[[sender superview] superview]];
+    
+    NSLog(@"Comp Button Pushed for Channel %d",indexPath.row);
+}
+
+
 
 
 @end

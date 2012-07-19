@@ -21,8 +21,8 @@
 
 /* Begin PBXFileReference section */
 		034440AE15B7C34000A0B440 /* ChannelTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChannelTableCell.xib; sourceTree = "<group>"; };
-		034440B415B7C5C900A0B440 /* ChannelTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChannelTableCell.h; path = ../ChannelTableCell.h; sourceTree = "<group>"; };
-		034440B515B7C5C900A0B440 /* ChannelTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChannelTableCell.m; path = ../ChannelTableCell.m; sourceTree = "<group>"; };
+		034440B415B7C5C900A0B440 /* ChannelTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelTableCell.h; sourceTree = "<group>"; };
+		034440B515B7C5C900A0B440 /* ChannelTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelTableCell.m; sourceTree = "<group>"; };
 		03C4852B15B68EA300E26B7E /* ReaperLive Remote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ReaperLive Remote.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		03C4852F15B68EA300E26B7E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		03C4853115B68EA300E26B7E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
