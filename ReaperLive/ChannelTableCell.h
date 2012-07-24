@@ -14,5 +14,6 @@
 @property (nonatomic, retain) IBOutlet UIButton *gateButton;
 @property (nonatomic, retain) IBOutlet UIButton *compButton;
 @property (nonatomic, retain) IBOutlet UIButton *eqButton;
+@property (nonatomic, retain) IBOutlet UISlider *volumeSlider;
 
 @end

@@ -11,6 +11,7 @@
 @implementation Channel
 
 @synthesize channelNumber;
+@synthesize volume;
 
 - (id)initWithChannelNumber:(int)channel
 {

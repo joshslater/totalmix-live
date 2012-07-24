@@ -11,6 +11,7 @@
 @interface Channel : NSObject
 
 @property int channelNumber;
+@property float volume;
 
 - (id)initWithChannelNumber:(int)channelNumber;
 

@@ -19,6 +19,7 @@
 @synthesize channels;
 @synthesize channelsTableView;
 @synthesize channelTableCell;
+@synthesize detailedChannelViewController;
 
 - (void)viewDidLoad
 {
@@ -42,9 +43,9 @@
 //    //////////////////////////////////
 //    // create detailed channel view //
 //    //////////////////////////////////
-//    self.detailedChannelView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 400)];
-//    self.detailedChannelView.backgroundColor = [UIColor blackColor];
-//    [self.view addSubview:detailedChannelView];  
+//    self.detailedChannelViewController = [[DetailedChannelViewController alloc] init];
+//    self.detailedChannelViewController.view.backgroundColor = [UIColor greenColor];
+//    [self.view addSubview:detailedChannelViewController.view];  
     
 }
 
@@ -73,15 +74,37 @@
         [[NSBundle mainBundle] loadNibNamed:@"ChannelTableCell" owner:self options:nil];
         cell = [self channelTableCell];
         [self setChannelTableCell:nil];
+        
+        
+        // add fader slider
+        UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(0, 0, 200, 85)];
+        [slider addTarget:self action:@selector(channelSliderAction:) forControlEvents:UIControlEventValueChanged];
+        
+        slider.value = 0;
+        
+        
+        // rotate the slider
+        slider.transform = CGAffineTransformMakeRotation(-M_PI_2);
+        [cell.contentView addSubview:slider];
+        
+        slider.bounds = CGRectMake(0, 0, 200, 85);
+        slider.center = CGPointMake(42.5, 600);
+        
+        cell.volumeSlider = slider;
+        
     }
+
+
+    // set the slider to 0
+    cell.volumeSlider.value = [[self.channels objectAtIndex:indexPath.row] volume];
+
     
     // rotate the cell
     cell.transform = CGAffineTransformMakeRotation(M_PI/2);
 
-    
+
+    // populate channel label
     cell.channelLabel.text = [NSString stringWithFormat:@"%d",indexPath.row];
-    
-//    [cell.eqButton addTarget:self action:@selector(eqButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     return cell;
 }
@@ -110,6 +133,16 @@
     NSIndexPath *indexPath = [self.channelsTableView indexPathForCell:(UITableViewCell *)[[sender superview] superview]];
     
     NSLog(@"Comp Button Pushed for Channel %d",indexPath.row);
+}
+
+- (void)channelSliderAction:(UISlider *)sender
+{
+    // set the volume of the channel
+    NSIndexPath *indexPath = [self.channelsTableView indexPathForCell:(UITableViewCell *)[[sender superview] superview]];
+    
+    Channel *channel = [self.channels objectAtIndex:indexPath.row];
+    
+    channel.volume = [sender value];
 }
 
 

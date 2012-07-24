@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		035C46ED15BE6AE000C43574 /* ChannelsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 035C46EC15BE6AE000C43574 /* ChannelsViewController.xib */; };
+		035C470B15BE7AD500C43574 /* DetailedChannelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 035C470915BE7AD500C43574 /* DetailedChannelViewController.m */; };
+		035C470C15BE7AD500C43574 /* DetailedChannelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 035C470A15BE7AD500C43574 /* DetailedChannelViewController.xib */; };
 		03ADD57115BCFC0900EBDC71 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03ADD57015BCFC0900EBDC71 /* UIKit.framework */; };
 		03ADD57315BCFC0900EBDC71 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03ADD57215BCFC0900EBDC71 /* Foundation.framework */; };
 		03ADD57515BCFC0900EBDC71 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03ADD57415BCFC0900EBDC71 /* CoreGraphics.framework */; };
@@ -22,6 +24,9 @@
 
 /* Begin PBXFileReference section */
 		035C46EC15BE6AE000C43574 /* ChannelsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChannelsViewController.xib; sourceTree = "<group>"; };
+		035C470815BE7AD500C43574 /* DetailedChannelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailedChannelViewController.h; sourceTree = "<group>"; };
+		035C470915BE7AD500C43574 /* DetailedChannelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailedChannelViewController.m; sourceTree = "<group>"; };
+		035C470A15BE7AD500C43574 /* DetailedChannelViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailedChannelViewController.xib; sourceTree = "<group>"; };
 		03ADD56C15BCFC0900EBDC71 /* ReaperLive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReaperLive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03ADD57015BCFC0900EBDC71 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		03ADD57215BCFC0900EBDC71 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -95,6 +100,9 @@
 				03ADD59415BD0CD100EBDC71 /* ChannelTableCell.xib */,
 				03ADD59715BD107F00EBDC71 /* Channel.h */,
 				03ADD59815BD107F00EBDC71 /* Channel.m */,
+				035C470815BE7AD500C43574 /* DetailedChannelViewController.h */,
+				035C470915BE7AD500C43574 /* DetailedChannelViewController.m */,
+				035C470A15BE7AD500C43574 /* DetailedChannelViewController.xib */,
 				03ADD57715BCFC0900EBDC71 /* Supporting Files */,
 			);
 			path = ReaperLive;
@@ -165,6 +173,7 @@
 				03ADD57B15BCFC0900EBDC71 /* InfoPlist.strings in Resources */,
 				03ADD59515BD0FFE00EBDC71 /* ChannelTableCell.xib in Resources */,
 				035C46ED15BE6AE000C43574 /* ChannelsViewController.xib in Resources */,
+				035C470C15BE7AD500C43574 /* DetailedChannelViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,6 +189,7 @@
 				03ADD58415BCFC0900EBDC71 /* ChannelsViewController.m in Sources */,
 				03ADD59615BD102D00EBDC71 /* ChannelTableCell.m in Sources */,
 				03ADD59915BD107F00EBDC71 /* Channel.m in Sources */,
+				035C470B15BE7AD500C43574 /* DetailedChannelViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

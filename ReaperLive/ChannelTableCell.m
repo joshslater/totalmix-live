@@ -14,6 +14,8 @@
 @synthesize eqButton;
 @synthesize gateButton;
 @synthesize compButton;
+@synthesize volumeSlider;
+
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
