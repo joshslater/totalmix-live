@@ -1,0 +1,293 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		035C46ED15BE6AE000C43574 /* ChannelsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 035C46EC15BE6AE000C43574 /* ChannelsViewController.xib */; };
+		03ADD57115BCFC0900EBDC71 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03ADD57015BCFC0900EBDC71 /* UIKit.framework */; };
+		03ADD57315BCFC0900EBDC71 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03ADD57215BCFC0900EBDC71 /* Foundation.framework */; };
+		03ADD57515BCFC0900EBDC71 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03ADD57415BCFC0900EBDC71 /* CoreGraphics.framework */; };
+		03ADD57B15BCFC0900EBDC71 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 03ADD57915BCFC0900EBDC71 /* InfoPlist.strings */; };
+		03ADD57D15BCFC0900EBDC71 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 03ADD57C15BCFC0900EBDC71 /* main.m */; };
+		03ADD58115BCFC0900EBDC71 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 03ADD58015BCFC0900EBDC71 /* AppDelegate.m */; };
+		03ADD58415BCFC0900EBDC71 /* ChannelsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03ADD58315BCFC0900EBDC71 /* ChannelsViewController.m */; };
+		03ADD59515BD0FFE00EBDC71 /* ChannelTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03ADD59415BD0CD100EBDC71 /* ChannelTableCell.xib */; };
+		03ADD59615BD102D00EBDC71 /* ChannelTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03ADD59315BD0CD100EBDC71 /* ChannelTableCell.m */; };
+		03ADD59915BD107F00EBDC71 /* Channel.m in Sources */ = {isa = PBXBuildFile; fileRef = 03ADD59815BD107F00EBDC71 /* Channel.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		035C46EC15BE6AE000C43574 /* ChannelsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChannelsViewController.xib; sourceTree = "<group>"; };
+		03ADD56C15BCFC0900EBDC71 /* ReaperLive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReaperLive.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		03ADD57015BCFC0900EBDC71 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		03ADD57215BCFC0900EBDC71 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		03ADD57415BCFC0900EBDC71 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		03ADD57815BCFC0900EBDC71 /* ReaperLive-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ReaperLive-Info.plist"; sourceTree = "<group>"; };
+		03ADD57A15BCFC0900EBDC71 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		03ADD57C15BCFC0900EBDC71 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		03ADD57E15BCFC0900EBDC71 /* ReaperLive-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ReaperLive-Prefix.pch"; sourceTree = "<group>"; };
+		03ADD57F15BCFC0900EBDC71 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		03ADD58015BCFC0900EBDC71 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		03ADD58215BCFC0900EBDC71 /* ChannelsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChannelsViewController.h; sourceTree = "<group>"; };
+		03ADD58315BCFC0900EBDC71 /* ChannelsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChannelsViewController.m; sourceTree = "<group>"; };
+		03ADD59215BD0CD100EBDC71 /* ChannelTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChannelTableCell.h; sourceTree = "<group>"; };
+		03ADD59315BD0CD100EBDC71 /* ChannelTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChannelTableCell.m; sourceTree = "<group>"; };
+		03ADD59415BD0CD100EBDC71 /* ChannelTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChannelTableCell.xib; sourceTree = "<group>"; };
+		03ADD59715BD107F00EBDC71 /* Channel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Channel.h; sourceTree = "<group>"; };
+		03ADD59815BD107F00EBDC71 /* Channel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Channel.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		03ADD56915BCFC0900EBDC71 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03ADD57115BCFC0900EBDC71 /* UIKit.framework in Frameworks */,
+				03ADD57315BCFC0900EBDC71 /* Foundation.framework in Frameworks */,
+				03ADD57515BCFC0900EBDC71 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		03ADD56115BCFC0900EBDC71 = {
+			isa = PBXGroup;
+			children = (
+				03ADD57615BCFC0900EBDC71 /* ReaperLive */,
+				03ADD56F15BCFC0900EBDC71 /* Frameworks */,
+				03ADD56D15BCFC0900EBDC71 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		03ADD56D15BCFC0900EBDC71 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				03ADD56C15BCFC0900EBDC71 /* ReaperLive.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		03ADD56F15BCFC0900EBDC71 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				03ADD57015BCFC0900EBDC71 /* UIKit.framework */,
+				03ADD57215BCFC0900EBDC71 /* Foundation.framework */,
+				03ADD57415BCFC0900EBDC71 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		03ADD57615BCFC0900EBDC71 /* ReaperLive */ = {
+			isa = PBXGroup;
+			children = (
+				03ADD57F15BCFC0900EBDC71 /* AppDelegate.h */,
+				03ADD58015BCFC0900EBDC71 /* AppDelegate.m */,
+				03ADD58215BCFC0900EBDC71 /* ChannelsViewController.h */,
+				03ADD58315BCFC0900EBDC71 /* ChannelsViewController.m */,
+				035C46EC15BE6AE000C43574 /* ChannelsViewController.xib */,
+				03ADD59215BD0CD100EBDC71 /* ChannelTableCell.h */,
+				03ADD59315BD0CD100EBDC71 /* ChannelTableCell.m */,
+				03ADD59415BD0CD100EBDC71 /* ChannelTableCell.xib */,
+				03ADD59715BD107F00EBDC71 /* Channel.h */,
+				03ADD59815BD107F00EBDC71 /* Channel.m */,
+				03ADD57715BCFC0900EBDC71 /* Supporting Files */,
+			);
+			path = ReaperLive;
+			sourceTree = "<group>";
+		};
+		03ADD57715BCFC0900EBDC71 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				03ADD57815BCFC0900EBDC71 /* ReaperLive-Info.plist */,
+				03ADD57915BCFC0900EBDC71 /* InfoPlist.strings */,
+				03ADD57C15BCFC0900EBDC71 /* main.m */,
+				03ADD57E15BCFC0900EBDC71 /* ReaperLive-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		03ADD56B15BCFC0900EBDC71 /* ReaperLive */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 03ADD58A15BCFC0900EBDC71 /* Build configuration list for PBXNativeTarget "ReaperLive" */;
+			buildPhases = (
+				03ADD56815BCFC0900EBDC71 /* Sources */,
+				03ADD56915BCFC0900EBDC71 /* Frameworks */,
+				03ADD56A15BCFC0900EBDC71 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ReaperLive;
+			productName = ReaperLive;
+			productReference = 03ADD56C15BCFC0900EBDC71 /* ReaperLive.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		03ADD56315BCFC0900EBDC71 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = Self;
+			};
+			buildConfigurationList = 03ADD56615BCFC0900EBDC71 /* Build configuration list for PBXProject "ReaperLive" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 03ADD56115BCFC0900EBDC71;
+			productRefGroup = 03ADD56D15BCFC0900EBDC71 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				03ADD56B15BCFC0900EBDC71 /* ReaperLive */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		03ADD56A15BCFC0900EBDC71 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03ADD57B15BCFC0900EBDC71 /* InfoPlist.strings in Resources */,
+				03ADD59515BD0FFE00EBDC71 /* ChannelTableCell.xib in Resources */,
+				035C46ED15BE6AE000C43574 /* ChannelsViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		03ADD56815BCFC0900EBDC71 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03ADD57D15BCFC0900EBDC71 /* main.m in Sources */,
+				03ADD58115BCFC0900EBDC71 /* AppDelegate.m in Sources */,
+				03ADD58415BCFC0900EBDC71 /* ChannelsViewController.m in Sources */,
+				03ADD59615BD102D00EBDC71 /* ChannelTableCell.m in Sources */,
+				03ADD59915BD107F00EBDC71 /* Channel.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		03ADD57915BCFC0900EBDC71 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				03ADD57A15BCFC0900EBDC71 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		03ADD58815BCFC0900EBDC71 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		03ADD58915BCFC0900EBDC71 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		03ADD58B15BCFC0900EBDC71 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ReaperLive/ReaperLive-Prefix.pch";
+				INFOPLIST_FILE = "ReaperLive/ReaperLive-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		03ADD58C15BCFC0900EBDC71 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ReaperLive/ReaperLive-Prefix.pch";
+				INFOPLIST_FILE = "ReaperLive/ReaperLive-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		03ADD56615BCFC0900EBDC71 /* Build configuration list for PBXProject "ReaperLive" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				03ADD58815BCFC0900EBDC71 /* Debug */,
+				03ADD58915BCFC0900EBDC71 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		03ADD58A15BCFC0900EBDC71 /* Build configuration list for PBXNativeTarget "ReaperLive" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				03ADD58B15BCFC0900EBDC71 /* Debug */,
+				03ADD58C15BCFC0900EBDC71 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 03ADD56315BCFC0900EBDC71 /* Project object */;
+}
