@@ -21,18 +21,21 @@
 @synthesize channelTableCell;
 @synthesize detailedChannelViewController;
 
-- (id)init
-{
-    self = [super init];
-    
-    // creat UITabBarItem
-    self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Channels" image:nil tag:0];
-        
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{    
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // creat UITabBarItem
+        self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Channels" image:nil tag:0];
+    }
+     
     return self;
 }
 
 - (void)viewDidLoad
 {
+    NSLog(@"In viewDidLoad\n");
+    
     [super viewDidLoad];
     
     self.channels = [[NSMutableArray alloc]	initWithCapacity:100];
@@ -41,14 +44,15 @@
     {
         [self.channels addObject: [[Channel alloc] initWithChannelNumber:i]];
     }
-    
+
     // Rotates the view.
     self.channelsTableView.transform = CGAffineTransformMakeRotation(-M_PI/2);  
-        
-    // Repositions and resizes the view.   
-    CGRect contentRect = CGRectMake(0, 0, 768, 1024);  
-    self.channelsTableView.frame = contentRect;   
+      
+    // Repositions and resizes the view.
     
+    // for some reason the frame's x/y max values are scaled backward -- add the conversion
+    // factors to account for it. Not sure why don't have to subtract 49 (tab bar height)
+    self.channelsTableView.frame = CGRectMake(0,44,1024 * 768/1024, 768 * 1024/768 - 20 - 44);
     
 //    //////////////////////////////////
 //    // create detailed channel view //
@@ -97,8 +101,8 @@
         slider.transform = CGAffineTransformMakeRotation(-M_PI_2);
         [cell.contentView addSubview:slider];
         
-        slider.bounds = CGRectMake(0, 0, 200, 85);
-        slider.center = CGPointMake(42.5, 550);
+        slider.bounds = CGRectMake(0, 0, 300, 85);
+        slider.center = CGPointMake(42.5, 450);
         
         cell.volumeSlider = slider;
         

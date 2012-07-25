@@ -13,21 +13,21 @@
 @implementation AppDelegate
 
 @synthesize window = _window;
-@synthesize rootViewController = _rootViewController;
-@synthesize channelsViewController;
+@synthesize tabBarController = _tabBarController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
-    self.rootViewController = [[UITabBarController alloc] init];
-    self.channelsViewController = [[ChannelsViewController alloc] init];
     
-    // assign view controllers to tab bar controller
-    self.rootViewController.viewControllers = [NSArray arrayWithObjects:channelsViewController, nil];
+    ChannelsViewController *channelsViewController = [[ChannelsViewController alloc] initWithNibName:@"ChannelsViewController" bundle:nil];
     
-    self.window.rootViewController = self.rootViewController;
+    
+    self.tabBarController = [[UITabBarController alloc] init];
+    self.tabBarController.viewControllers = [NSArray arrayWithObjects:channelsViewController, nil];
+    
+    self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -58,5 +58,20 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+/*
+ // Optional UITabBarControllerDelegate method.
+ - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
+ {
+ }
+ */
+
+/*
+ // Optional UITabBarControllerDelegate method.
+ - (void)tabBarController:(UITabBarController *)tabBarController didEndCustomizingViewControllers:(NSArray *)viewControllers changed:(BOOL)changed
+ {
+ }
+ */
+
 
 @end
