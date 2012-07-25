@@ -13,6 +13,7 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) UIViewController *rootViewController;
+@property (strong, nonatomic) UITabBarController *rootViewController;
+@property (strong, nonatomic) UIViewController *channelsViewController;
 
 @end

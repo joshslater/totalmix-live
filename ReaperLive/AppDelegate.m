@@ -14,12 +14,19 @@
 
 @synthesize window = _window;
 @synthesize rootViewController = _rootViewController;
+@synthesize channelsViewController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    self.rootViewController = [[ChannelsViewController alloc] init];
+    
+    self.rootViewController = [[UITabBarController alloc] init];
+    self.channelsViewController = [[ChannelsViewController alloc] init];
+    
+    // assign view controllers to tab bar controller
+    self.rootViewController.viewControllers = [NSArray arrayWithObjects:channelsViewController, nil];
+    
     self.window.rootViewController = self.rootViewController;
     [self.window makeKeyAndVisible];
     return YES;

@@ -21,6 +21,16 @@
 @synthesize channelTableCell;
 @synthesize detailedChannelViewController;
 
+- (id)init
+{
+    self = [super init];
+    
+    // creat UITabBarItem
+    self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Channels" image:nil tag:0];
+        
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -88,7 +98,7 @@
         [cell.contentView addSubview:slider];
         
         slider.bounds = CGRectMake(0, 0, 200, 85);
-        slider.center = CGPointMake(42.5, 600);
+        slider.center = CGPointMake(42.5, 550);
         
         cell.volumeSlider = slider;
         
