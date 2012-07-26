@@ -9,14 +9,14 @@
 #import <UIKit/UIKit.h>
 
 #import "ChannelTableCell.h"
-#import "DetailedChannelViewController.h"
 
 @interface ChannelsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) NSMutableArray *channels;
 @property (strong, nonatomic) IBOutlet UITableView *channelsTableView;
 @property (strong, nonatomic) IBOutlet ChannelTableCell *channelTableCell;
-@property (strong, nonatomic) IBOutlet DetailedChannelViewController *detailedChannelViewController;
+@property (strong, nonatomic) IBOutlet UIToolbar *channelsToolbar;
+@property (strong, nonatomic) IBOutlet UIScrollView *detailedChannelScrollView;
 
 // button pushes
 - (IBAction)eqButtonPressed:(id)sender;

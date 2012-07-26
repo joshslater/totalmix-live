@@ -9,6 +9,13 @@
 #import "ChannelsViewController.h"
 #import "Channel.h"
 #import "ChannelTableCell.h"
+#import "CompView.h"
+#import "EQView.h"
+#import "GateView.h"
+
+#define CHANNELS_WIDTH 1024
+#define DETAILED_CHANNEL_VIEW_HEIGHT 300
+#define CHANNELS_HEIGHT 768
 
 @interface ChannelsViewController ()
 
@@ -19,7 +26,8 @@
 @synthesize channels;
 @synthesize channelsTableView;
 @synthesize channelTableCell;
-@synthesize detailedChannelViewController;
+@synthesize detailedChannelScrollView;
+@synthesize channelsToolbar;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {    
@@ -34,7 +42,7 @@
 
 - (void)viewDidLoad
 {
-    NSLog(@"In viewDidLoad\n");
+    NSLog(@"In viewDidLoad, instance %x\n", (unsigned int)self);
     
     [super viewDidLoad];
     
@@ -52,15 +60,42 @@
     
     // for some reason the frame's x/y max values are scaled backward -- add the conversion
     // factors to account for it. Not sure why don't have to subtract 49 (tab bar height)
-    self.channelsTableView.frame = CGRectMake(0,44,1024 * 768/1024, 768 * 1024/768 - 20 - 44);
+    self.channelsTableView.frame = CGRectMake(0,
+                                              channelsToolbar.frame.size.height,
+                                              CHANNELS_WIDTH * CHANNELS_HEIGHT/CHANNELS_WIDTH, 
+                                              CHANNELS_HEIGHT * CHANNELS_WIDTH/CHANNELS_HEIGHT - [[UIApplication sharedApplication] statusBarFrame].size.height - channelsToolbar.frame.size.height);
     
-//    //////////////////////////////////
-//    // create detailed channel view //
-//    //////////////////////////////////
-//    self.detailedChannelViewController = [[DetailedChannelViewController alloc] init];
-//    self.detailedChannelViewController.view.backgroundColor = [UIColor greenColor];
-//    [self.view addSubview:detailedChannelViewController.view];  
+    //////////////////////////////////
+    // create detailed channel view //
+    //////////////////////////////////
+    self.detailedChannelScrollView = [[UIScrollView alloc] 
+                                      initWithFrame:CGRectMake(0, 
+                                                               channelsToolbar.frame.size.height, 
+                                                               CHANNELS_WIDTH, 
+                                                               DETAILED_CHANNEL_VIEW_HEIGHT)
+                                      ];
     
+    // add the 3 channel views
+    GateView *gateView = [[GateView alloc] initWithFrame:CGRectMake(0, 0, CHANNELS_WIDTH, DETAILED_CHANNEL_VIEW_HEIGHT)];
+    [self.detailedChannelScrollView addSubview:gateView];
+    
+    CompView *compView = [[CompView alloc] initWithFrame:CGRectMake(CHANNELS_WIDTH, 0, CHANNELS_WIDTH, DETAILED_CHANNEL_VIEW_HEIGHT)];
+    [self.detailedChannelScrollView addSubview:compView];
+    
+    EQView *eqView = [[EQView alloc] initWithFrame:CGRectMake(2*CHANNELS_WIDTH, 0, CHANNELS_WIDTH, DETAILED_CHANNEL_VIEW_HEIGHT)];
+    [self.detailedChannelScrollView addSubview:eqView];    
+    
+    // set the content size to be 3 x 1024
+    detailedChannelScrollView.contentSize = CGSizeMake(3*CHANNELS_WIDTH, DETAILED_CHANNEL_VIEW_HEIGHT);
+    
+    // enable paging
+    detailedChannelScrollView.pagingEnabled = YES;
+    
+    // turn off scroll bar
+    detailedChannelScrollView.showsHorizontalScrollIndicator = NO;
+    
+    // set background color to white
+    detailedChannelScrollView.backgroundColor = [UIColor blackColor];
 }
 
 - (void)viewDidUnload
@@ -133,6 +168,9 @@
     NSIndexPath *indexPath = [self.channelsTableView indexPathForCell:(UITableViewCell *)[[sender superview] superview]];
     
     NSLog(@"EQ Button Pushed for Channel %d",indexPath.row);
+    
+    // display the detailed channel view
+    [self.view addSubview:detailedChannelScrollView];  
 }
 
 - (IBAction)gateButtonPressed:(id)sender
@@ -140,6 +178,9 @@
     NSIndexPath *indexPath = [self.channelsTableView indexPathForCell:(UITableViewCell *)[[sender superview] superview]];
     
     NSLog(@"Gate Button Pushed for Channel %d",indexPath.row);
+
+    // display the detailed channel view
+    [self.view addSubview:detailedChannelScrollView];  
 }
 
 - (IBAction)compButtonPressed:(id)sender
@@ -147,6 +188,9 @@
     NSIndexPath *indexPath = [self.channelsTableView indexPathForCell:(UITableViewCell *)[[sender superview] superview]];
     
     NSLog(@"Comp Button Pushed for Channel %d",indexPath.row);
+
+    // display the detailed channel view
+    [self.view addSubview:detailedChannelScrollView];  
 }
 
 - (void)channelSliderAction:(UISlider *)sender

@@ -296,24 +296,6 @@
 					</object>
 					<int key="connectionID">35</int>
 				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">eqButtonPressed:</string>
-						<reference key="source" ref="61481082"/>
-						<reference key="destination" ref="841351856"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">40</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">eqButtonPressed:</string>
-						<reference key="source" ref="656627540"/>
-						<reference key="destination" ref="841351856"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">42</int>
-				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -442,11 +424,16 @@
 					<string key="className">ChannelsViewController</string>
 					<string key="superclassName">UIViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="closeDetailedChannelView:">id</string>
 						<string key="compButtonPressed:">id</string>
 						<string key="eqButtonPressed:">id</string>
 						<string key="gateButtonPressed:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="closeDetailedChannelView:">
+							<string key="name">closeDetailedChannelView:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 						<object class="IBActionInfo" key="compButtonPressed:">
 							<string key="name">compButtonPressed:</string>
 							<string key="candidateClassName">id</string>
@@ -463,7 +450,8 @@
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="channelTableCell">ChannelTableCell</string>
 						<string key="channelsTableView">UITableView</string>
-						<string key="detailedChannelViewController">DetailedChannelViewController</string>
+						<string key="channelsToolbar">UIToolbar</string>
+						<string key="detailedChannelScrollView">UIScrollView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="channelTableCell">
@@ -474,22 +462,18 @@
 							<string key="name">channelsTableView</string>
 							<string key="candidateClassName">UITableView</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="detailedChannelViewController">
-							<string key="name">detailedChannelViewController</string>
-							<string key="candidateClassName">DetailedChannelViewController</string>
+						<object class="IBToOneOutletInfo" key="channelsToolbar">
+							<string key="name">channelsToolbar</string>
+							<string key="candidateClassName">UIToolbar</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="detailedChannelScrollView">
+							<string key="name">detailedChannelScrollView</string>
+							<string key="candidateClassName">UIScrollView</string>
 						</object>
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/ChannelsViewController.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">DetailedChannelViewController</string>
-					<string key="superclassName">UIViewController</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/DetailedChannelViewController.h</string>
 					</object>
 				</object>
 			</array>

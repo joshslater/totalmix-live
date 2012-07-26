@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		035C46ED15BE6AE000C43574 /* ChannelsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 035C46EC15BE6AE000C43574 /* ChannelsViewController.xib */; };
-		035C470B15BE7AD500C43574 /* DetailedChannelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 035C470915BE7AD500C43574 /* DetailedChannelViewController.m */; };
-		035C470C15BE7AD500C43574 /* DetailedChannelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 035C470A15BE7AD500C43574 /* DetailedChannelViewController.xib */; };
 		03ADD57115BCFC0900EBDC71 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03ADD57015BCFC0900EBDC71 /* UIKit.framework */; };
 		03ADD57315BCFC0900EBDC71 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03ADD57215BCFC0900EBDC71 /* Foundation.framework */; };
 		03ADD57515BCFC0900EBDC71 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03ADD57415BCFC0900EBDC71 /* CoreGraphics.framework */; };
@@ -20,13 +18,17 @@
 		03ADD59515BD0FFE00EBDC71 /* ChannelTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03ADD59415BD0CD100EBDC71 /* ChannelTableCell.xib */; };
 		03ADD59615BD102D00EBDC71 /* ChannelTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03ADD59315BD0CD100EBDC71 /* ChannelTableCell.m */; };
 		03ADD59915BD107F00EBDC71 /* Channel.m in Sources */ = {isa = PBXBuildFile; fileRef = 03ADD59815BD107F00EBDC71 /* Channel.m */; };
+		03F2326C15C0E0D1009B0390 /* CompView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F2326B15C0E0D1009B0390 /* CompView.m */; };
+		03F2326E15C0E0E3009B0390 /* CompView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03F2326D15C0E0E3009B0390 /* CompView.xib */; };
+		03F2327415C0E4CC009B0390 /* EQView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F2327315C0E4CB009B0390 /* EQView.m */; };
+		03F2327715C0E4DB009B0390 /* GateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F2327615C0E4DA009B0390 /* GateView.m */; };
+		03F2327915C0E4E9009B0390 /* EQView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03F2327815C0E4E9009B0390 /* EQView.xib */; };
+		03F2327B15C0E4FB009B0390 /* GateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03F2327A15C0E4FB009B0390 /* GateView.xib */; };
+		03F2327D15C0ECB4009B0390 /* delete_control.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 03F2327C15C0ECB4009B0390 /* delete_control.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		035C46EC15BE6AE000C43574 /* ChannelsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChannelsViewController.xib; sourceTree = "<group>"; };
-		035C470815BE7AD500C43574 /* DetailedChannelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailedChannelViewController.h; sourceTree = "<group>"; };
-		035C470915BE7AD500C43574 /* DetailedChannelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailedChannelViewController.m; sourceTree = "<group>"; };
-		035C470A15BE7AD500C43574 /* DetailedChannelViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailedChannelViewController.xib; sourceTree = "<group>"; };
 		03ADD56C15BCFC0900EBDC71 /* ReaperLive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReaperLive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03ADD57015BCFC0900EBDC71 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		03ADD57215BCFC0900EBDC71 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -44,6 +46,16 @@
 		03ADD59415BD0CD100EBDC71 /* ChannelTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChannelTableCell.xib; sourceTree = "<group>"; };
 		03ADD59715BD107F00EBDC71 /* Channel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Channel.h; sourceTree = "<group>"; };
 		03ADD59815BD107F00EBDC71 /* Channel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Channel.m; sourceTree = "<group>"; };
+		03F2326A15C0E0D1009B0390 /* CompView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompView.h; sourceTree = "<group>"; };
+		03F2326B15C0E0D1009B0390 /* CompView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompView.m; sourceTree = "<group>"; };
+		03F2326D15C0E0E3009B0390 /* CompView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompView.xib; sourceTree = "<group>"; };
+		03F2327215C0E4CB009B0390 /* EQView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQView.h; sourceTree = "<group>"; };
+		03F2327315C0E4CB009B0390 /* EQView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EQView.m; sourceTree = "<group>"; };
+		03F2327515C0E4DA009B0390 /* GateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GateView.h; sourceTree = "<group>"; };
+		03F2327615C0E4DA009B0390 /* GateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GateView.m; sourceTree = "<group>"; };
+		03F2327815C0E4E9009B0390 /* EQView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EQView.xib; sourceTree = "<group>"; };
+		03F2327A15C0E4FB009B0390 /* GateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GateView.xib; sourceTree = "<group>"; };
+		03F2327C15C0ECB4009B0390 /* delete_control.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = delete_control.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,9 +112,15 @@
 				03ADD59415BD0CD100EBDC71 /* ChannelTableCell.xib */,
 				03ADD59715BD107F00EBDC71 /* Channel.h */,
 				03ADD59815BD107F00EBDC71 /* Channel.m */,
-				035C470815BE7AD500C43574 /* DetailedChannelViewController.h */,
-				035C470915BE7AD500C43574 /* DetailedChannelViewController.m */,
-				035C470A15BE7AD500C43574 /* DetailedChannelViewController.xib */,
+				03F2326A15C0E0D1009B0390 /* CompView.h */,
+				03F2326B15C0E0D1009B0390 /* CompView.m */,
+				03F2326D15C0E0E3009B0390 /* CompView.xib */,
+				03F2327215C0E4CB009B0390 /* EQView.h */,
+				03F2327315C0E4CB009B0390 /* EQView.m */,
+				03F2327815C0E4E9009B0390 /* EQView.xib */,
+				03F2327515C0E4DA009B0390 /* GateView.h */,
+				03F2327615C0E4DA009B0390 /* GateView.m */,
+				03F2327A15C0E4FB009B0390 /* GateView.xib */,
 				03ADD57715BCFC0900EBDC71 /* Supporting Files */,
 			);
 			path = ReaperLive;
@@ -111,6 +129,7 @@
 		03ADD57715BCFC0900EBDC71 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				03F2327C15C0ECB4009B0390 /* delete_control.jpg */,
 				03ADD57815BCFC0900EBDC71 /* ReaperLive-Info.plist */,
 				03ADD57915BCFC0900EBDC71 /* InfoPlist.strings */,
 				03ADD57C15BCFC0900EBDC71 /* main.m */,
@@ -173,7 +192,10 @@
 				03ADD57B15BCFC0900EBDC71 /* InfoPlist.strings in Resources */,
 				03ADD59515BD0FFE00EBDC71 /* ChannelTableCell.xib in Resources */,
 				035C46ED15BE6AE000C43574 /* ChannelsViewController.xib in Resources */,
-				035C470C15BE7AD500C43574 /* DetailedChannelViewController.xib in Resources */,
+				03F2326E15C0E0E3009B0390 /* CompView.xib in Resources */,
+				03F2327915C0E4E9009B0390 /* EQView.xib in Resources */,
+				03F2327B15C0E4FB009B0390 /* GateView.xib in Resources */,
+				03F2327D15C0ECB4009B0390 /* delete_control.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,7 +211,9 @@
 				03ADD58415BCFC0900EBDC71 /* ChannelsViewController.m in Sources */,
 				03ADD59615BD102D00EBDC71 /* ChannelTableCell.m in Sources */,
 				03ADD59915BD107F00EBDC71 /* Channel.m in Sources */,
-				035C470B15BE7AD500C43574 /* DetailedChannelViewController.m in Sources */,
+				03F2326C15C0E0D1009B0390 /* CompView.m in Sources */,
+				03F2327415C0E4CC009B0390 /* EQView.m in Sources */,
+				03F2327715C0E4DB009B0390 /* GateView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
