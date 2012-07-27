@@ -22,12 +22,6 @@
     return self;
 }
 
-- (IBAction)closeDetailedChannelView:(id)sender
-{
-    // have to remove the scrollView, which is the gateView's superview
-    [self.superview removeFromSuperview];
-}
-
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

@@ -28,6 +28,7 @@
 @synthesize channelTableCell;
 @synthesize detailedChannelScrollView;
 @synthesize channelsToolbar;
+@synthesize closeDetailedChannelViewButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {    
@@ -83,7 +84,7 @@
     [self.detailedChannelScrollView addSubview:compView];
     
     EQView *eqView = [[EQView alloc] initWithFrame:CGRectMake(2*CHANNELS_WIDTH, 0, CHANNELS_WIDTH, DETAILED_CHANNEL_VIEW_HEIGHT)];
-    [self.detailedChannelScrollView addSubview:eqView];    
+    [self.detailedChannelScrollView addSubview:eqView];
     
     // set the content size to be 3 x 1024
     detailedChannelScrollView.contentSize = CGSizeMake(3*CHANNELS_WIDTH, DETAILED_CHANNEL_VIEW_HEIGHT);
@@ -96,6 +97,15 @@
     
     // set background color to white
     detailedChannelScrollView.backgroundColor = [UIColor blackColor];
+        
+    // create the detailed channel close button, but don't add to subview yet
+    closeDetailedChannelViewButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    closeDetailedChannelViewButton.backgroundColor = [UIColor clearColor];
+    closeDetailedChannelViewButton.frame = CGRectMake(900, 100, 44, 44);
+    [closeDetailedChannelViewButton setImage:[UIImage imageNamed:@"delete_control.jpg"] forState:UIControlStateNormal];
+    [closeDetailedChannelViewButton addTarget:self action:@selector(closeDetailedChannelView:) forControlEvents:UIControlEventTouchDown];
+       
+    
 }
 
 - (void)viewDidUnload
@@ -163,24 +173,20 @@
     return 85.0;
 }
 
-- (IBAction)eqButtonPressed:(id)sender
-{
-    NSIndexPath *indexPath = [self.channelsTableView indexPathForCell:(UITableViewCell *)[[sender superview] superview]];
-    
-    NSLog(@"EQ Button Pushed for Channel %d",indexPath.row);
-    
-    // display the detailed channel view
-    [self.view addSubview:detailedChannelScrollView];  
-}
-
 - (IBAction)gateButtonPressed:(id)sender
 {
     NSIndexPath *indexPath = [self.channelsTableView indexPathForCell:(UITableViewCell *)[[sender superview] superview]];
     
     NSLog(@"Gate Button Pushed for Channel %d",indexPath.row);
 
+    // set content offset to be 0
+    detailedChannelScrollView.contentOffset = CGPointMake(0,0);
+    
     // display the detailed channel view
     [self.view addSubview:detailedChannelScrollView];  
+    
+    // display the close button
+    [self.view addSubview:closeDetailedChannelViewButton];
 }
 
 - (IBAction)compButtonPressed:(id)sender
@@ -188,9 +194,31 @@
     NSIndexPath *indexPath = [self.channelsTableView indexPathForCell:(UITableViewCell *)[[sender superview] superview]];
     
     NSLog(@"Comp Button Pushed for Channel %d",indexPath.row);
-
+    
+    // set content offset to be CHANNELS_WIDTH
+    detailedChannelScrollView.contentOffset = CGPointMake(CHANNELS_WIDTH,0);    
+    
     // display the detailed channel view
     [self.view addSubview:detailedChannelScrollView];  
+    
+    // display the close button
+    [self.view addSubview:closeDetailedChannelViewButton];
+}
+
+- (IBAction)eqButtonPressed:(id)sender
+{
+    NSIndexPath *indexPath = [self.channelsTableView indexPathForCell:(UITableViewCell *)[[sender superview] superview]];
+    
+    NSLog(@"EQ Button Pushed for Channel %d",indexPath.row);
+    
+    // set content offset to be 2*CHANNELS_WIDTH
+    detailedChannelScrollView.contentOffset = CGPointMake(2*CHANNELS_WIDTH, 0);
+    
+    // display the detailed channel view
+    [self.view addSubview:detailedChannelScrollView];
+    
+    // display the close button
+    [self.view addSubview:closeDetailedChannelViewButton];
 }
 
 - (void)channelSliderAction:(UISlider *)sender
@@ -201,6 +229,16 @@
     Channel *channel = [self.channels objectAtIndex:indexPath.row];
     
     channel.volume = [sender value];
+}
+
+- (void)closeDetailedChannelView:(id)sender
+{
+    NSLog(@"Removing scrollview from ChannelsViewController.m");
+    
+    // remove scrollview
+    [detailedChannelScrollView removeFromSuperview];
+    [closeDetailedChannelViewButton removeFromSuperview];
+    
 }
 
 

@@ -102,40 +102,72 @@
 		03ADD57615BCFC0900EBDC71 /* ReaperLive */ = {
 			isa = PBXGroup;
 			children = (
-				03ADD57F15BCFC0900EBDC71 /* AppDelegate.h */,
-				03ADD58015BCFC0900EBDC71 /* AppDelegate.m */,
-				03ADD58215BCFC0900EBDC71 /* ChannelsViewController.h */,
-				03ADD58315BCFC0900EBDC71 /* ChannelsViewController.m */,
-				035C46EC15BE6AE000C43574 /* ChannelsViewController.xib */,
-				03ADD59215BD0CD100EBDC71 /* ChannelTableCell.h */,
-				03ADD59315BD0CD100EBDC71 /* ChannelTableCell.m */,
-				03ADD59415BD0CD100EBDC71 /* ChannelTableCell.xib */,
-				03ADD59715BD107F00EBDC71 /* Channel.h */,
-				03ADD59815BD107F00EBDC71 /* Channel.m */,
-				03F2326A15C0E0D1009B0390 /* CompView.h */,
-				03F2326B15C0E0D1009B0390 /* CompView.m */,
-				03F2326D15C0E0E3009B0390 /* CompView.xib */,
-				03F2327215C0E4CB009B0390 /* EQView.h */,
-				03F2327315C0E4CB009B0390 /* EQView.m */,
-				03F2327815C0E4E9009B0390 /* EQView.xib */,
-				03F2327515C0E4DA009B0390 /* GateView.h */,
-				03F2327615C0E4DA009B0390 /* GateView.m */,
-				03F2327A15C0E4FB009B0390 /* GateView.xib */,
-				03ADD57715BCFC0900EBDC71 /* Supporting Files */,
+				03F2328515C267E9009B0390 /* Images */,
+				03F2328415C267C4009B0390 /* Other Sources */,
+				03F2328215C26768009B0390 /* Classes */,
+				03ADD57715BCFC0900EBDC71 /* Resources */,
 			);
 			path = ReaperLive;
 			sourceTree = "<group>";
 		};
-		03ADD57715BCFC0900EBDC71 /* Supporting Files */ = {
+		03ADD57715BCFC0900EBDC71 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				03F2327C15C0ECB4009B0390 /* delete_control.jpg */,
+				03F2327815C0E4E9009B0390 /* EQView.xib */,
+				035C46EC15BE6AE000C43574 /* ChannelsViewController.xib */,
+				03ADD59415BD0CD100EBDC71 /* ChannelTableCell.xib */,
+				03F2326D15C0E0E3009B0390 /* CompView.xib */,
+				03F2327A15C0E4FB009B0390 /* GateView.xib */,
 				03ADD57815BCFC0900EBDC71 /* ReaperLive-Info.plist */,
 				03ADD57915BCFC0900EBDC71 /* InfoPlist.strings */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		03F2328215C26768009B0390 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				03ADD57F15BCFC0900EBDC71 /* AppDelegate.h */,
+				03ADD58015BCFC0900EBDC71 /* AppDelegate.m */,
+				03F2328615C2681D009B0390 /* Detailed Channel */,
+				03ADD58215BCFC0900EBDC71 /* ChannelsViewController.h */,
+				03ADD58315BCFC0900EBDC71 /* ChannelsViewController.m */,
+				03ADD59215BD0CD100EBDC71 /* ChannelTableCell.h */,
+				03ADD59315BD0CD100EBDC71 /* ChannelTableCell.m */,
+				03ADD59715BD107F00EBDC71 /* Channel.h */,
+				03ADD59815BD107F00EBDC71 /* Channel.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		03F2328415C267C4009B0390 /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
 				03ADD57C15BCFC0900EBDC71 /* main.m */,
 				03ADD57E15BCFC0900EBDC71 /* ReaperLive-Prefix.pch */,
 			);
-			name = "Supporting Files";
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		03F2328515C267E9009B0390 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				03F2327C15C0ECB4009B0390 /* delete_control.jpg */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		03F2328615C2681D009B0390 /* Detailed Channel */ = {
+			isa = PBXGroup;
+			children = (
+				03F2326A15C0E0D1009B0390 /* CompView.h */,
+				03F2326B15C0E0D1009B0390 /* CompView.m */,
+				03F2327215C0E4CB009B0390 /* EQView.h */,
+				03F2327315C0E4CB009B0390 /* EQView.m */,
+				03F2327515C0E4DA009B0390 /* GateView.h */,
+				03F2327615C0E4DA009B0390 /* GateView.m */,
+			);
+			name = "Detailed Channel";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

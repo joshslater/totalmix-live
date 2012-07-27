@@ -12,7 +12,4 @@
 
 @property (strong, nonatomic) IBOutlet UIView *view;
 
-- (IBAction)closeDetailedChannelView:(id)sender;
-
-
 @end

@@ -10,8 +10,6 @@
 
 @interface GateView : UIView
 
-- (IBAction)closeDetailedChannelView:(id)sender;
-
 @property (strong, nonatomic) IBOutlet UIView *view;
 
 @end

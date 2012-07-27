@@ -17,12 +17,15 @@
 @property (strong, nonatomic) IBOutlet ChannelTableCell *channelTableCell;
 @property (strong, nonatomic) IBOutlet UIToolbar *channelsToolbar;
 @property (strong, nonatomic) IBOutlet UIScrollView *detailedChannelScrollView;
+@property (strong, nonatomic) UIButton *closeDetailedChannelViewButton;
+
 
 // button pushes
 - (IBAction)eqButtonPressed:(id)sender;
 - (IBAction)gateButtonPressed:(id)sender;
 - (IBAction)compButtonPressed:(id)sender;
 - (void)channelSliderAction:(UISlider *)sender;
+- (void)closeDetailedChannelView:(id)sender;
 
 
 
