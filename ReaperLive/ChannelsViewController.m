@@ -101,7 +101,7 @@
     // create the detailed channel close button, but don't add to subview yet
     closeDetailedChannelViewButton = [UIButton buttonWithType:UIButtonTypeCustom];
     closeDetailedChannelViewButton.backgroundColor = [UIColor clearColor];
-    closeDetailedChannelViewButton.frame = CGRectMake(900, 100, 44, 44);
+    closeDetailedChannelViewButton.frame = CGRectMake(950, 50, 44, 44);
     [closeDetailedChannelViewButton setImage:[UIImage imageNamed:@"delete_control.jpg"] forState:UIControlStateNormal];
     [closeDetailedChannelViewButton addTarget:self action:@selector(closeDetailedChannelView:) forControlEvents:UIControlEventTouchDown];
        
