@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 #import "ChannelTableCell.h"
+#import "DetailedChannelViewController.h"
+
+#define CHANNELS_WIDTH 1024
 
 @interface ChannelsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
@@ -16,8 +19,7 @@
 @property (strong, nonatomic) IBOutlet UITableView *channelsTableView;
 @property (strong, nonatomic) IBOutlet ChannelTableCell *channelTableCell;
 @property (strong, nonatomic) IBOutlet UIToolbar *channelsToolbar;
-@property (strong, nonatomic) IBOutlet UIScrollView *detailedChannelScrollView;
-@property (strong, nonatomic) UIButton *closeDetailedChannelViewButton;
+@property (strong, nonatomic) DetailedChannelViewController *detailedChannelViewController;
 
 
 // button pushes
@@ -25,7 +27,6 @@
 - (IBAction)gateButtonPressed:(id)sender;
 - (IBAction)compButtonPressed:(id)sender;
 - (void)channelSliderAction:(UISlider *)sender;
-- (void)closeDetailedChannelView:(id)sender;
 
 
 

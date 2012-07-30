@@ -9,12 +9,7 @@
 #import "ChannelsViewController.h"
 #import "Channel.h"
 #import "ChannelTableCell.h"
-#import "CompView.h"
-#import "EQView.h"
-#import "GateView.h"
 
-#define CHANNELS_WIDTH 1024
-#define DETAILED_CHANNEL_VIEW_HEIGHT 300
 #define CHANNELS_HEIGHT 768
 
 @interface ChannelsViewController ()
@@ -26,9 +21,8 @@
 @synthesize channels;
 @synthesize channelsTableView;
 @synthesize channelTableCell;
-@synthesize detailedChannelScrollView;
 @synthesize channelsToolbar;
-@synthesize closeDetailedChannelViewButton;
+@synthesize detailedChannelViewController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {    
@@ -66,45 +60,10 @@
                                               CHANNELS_WIDTH * CHANNELS_HEIGHT/CHANNELS_WIDTH, 
                                               CHANNELS_HEIGHT * CHANNELS_WIDTH/CHANNELS_HEIGHT - [[UIApplication sharedApplication] statusBarFrame].size.height - channelsToolbar.frame.size.height);
     
-    //////////////////////////////////
-    // create detailed channel view //
-    //////////////////////////////////
-    self.detailedChannelScrollView = [[UIScrollView alloc] 
-                                      initWithFrame:CGRectMake(0, 
-                                                               channelsToolbar.frame.size.height, 
-                                                               CHANNELS_WIDTH, 
-                                                               DETAILED_CHANNEL_VIEW_HEIGHT)
-                                      ];
-    
-    // add the 3 channel views
-    GateView *gateView = [[GateView alloc] initWithFrame:CGRectMake(0, 0, CHANNELS_WIDTH, DETAILED_CHANNEL_VIEW_HEIGHT)];
-    [self.detailedChannelScrollView addSubview:gateView];
-    
-    CompView *compView = [[CompView alloc] initWithFrame:CGRectMake(CHANNELS_WIDTH, 0, CHANNELS_WIDTH, DETAILED_CHANNEL_VIEW_HEIGHT)];
-    [self.detailedChannelScrollView addSubview:compView];
-    
-    EQView *eqView = [[EQView alloc] initWithFrame:CGRectMake(2*CHANNELS_WIDTH, 0, CHANNELS_WIDTH, DETAILED_CHANNEL_VIEW_HEIGHT)];
-    [self.detailedChannelScrollView addSubview:eqView];
-    
-    // set the content size to be 3 x 1024
-    detailedChannelScrollView.contentSize = CGSizeMake(3*CHANNELS_WIDTH, DETAILED_CHANNEL_VIEW_HEIGHT);
-    
-    // enable paging
-    detailedChannelScrollView.pagingEnabled = YES;
-    
-    // turn off scroll bar
-    detailedChannelScrollView.showsHorizontalScrollIndicator = NO;
-    
-    // set background color to white
-    detailedChannelScrollView.backgroundColor = [UIColor blackColor];
-        
-    // create the detailed channel close button, but don't add to subview yet
-    closeDetailedChannelViewButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    closeDetailedChannelViewButton.backgroundColor = [UIColor clearColor];
-    closeDetailedChannelViewButton.frame = CGRectMake(950, 50, 44, 44);
-    [closeDetailedChannelViewButton setImage:[UIImage imageNamed:@"delete_control.jpg"] forState:UIControlStateNormal];
-    [closeDetailedChannelViewButton addTarget:self action:@selector(closeDetailedChannelView:) forControlEvents:UIControlEventTouchDown];
-       
+    /////////////////////////////////////////////
+    // create detailed channel view controller //
+    /////////////////////////////////////////////
+    self.detailedChannelViewController = [[DetailedChannelViewController alloc] init];       
     
 }
 
@@ -179,14 +138,8 @@
     
     NSLog(@"Gate Button Pushed for Channel %d",indexPath.row);
 
-    // set content offset to be 0
-    detailedChannelScrollView.contentOffset = CGPointMake(0,0);
+    [self displayDetailedChannelViewControllerWithOffset:CGPointMake(0, 0)];
     
-    // display the detailed channel view
-    [self.view addSubview:detailedChannelScrollView];  
-    
-    // display the close button
-    [self.view addSubview:closeDetailedChannelViewButton];
 }
 
 - (IBAction)compButtonPressed:(id)sender
@@ -195,14 +148,7 @@
     
     NSLog(@"Comp Button Pushed for Channel %d",indexPath.row);
     
-    // set content offset to be CHANNELS_WIDTH
-    detailedChannelScrollView.contentOffset = CGPointMake(CHANNELS_WIDTH,0);    
-    
-    // display the detailed channel view
-    [self.view addSubview:detailedChannelScrollView];  
-    
-    // display the close button
-    [self.view addSubview:closeDetailedChannelViewButton];
+    [self displayDetailedChannelViewControllerWithOffset:CGPointMake(CHANNELS_WIDTH, 0)];
 }
 
 - (IBAction)eqButtonPressed:(id)sender
@@ -211,14 +157,7 @@
     
     NSLog(@"EQ Button Pushed for Channel %d",indexPath.row);
     
-    // set content offset to be 2*CHANNELS_WIDTH
-    detailedChannelScrollView.contentOffset = CGPointMake(2*CHANNELS_WIDTH, 0);
-    
-    // display the detailed channel view
-    [self.view addSubview:detailedChannelScrollView];
-    
-    // display the close button
-    [self.view addSubview:closeDetailedChannelViewButton];
+    [self displayDetailedChannelViewControllerWithOffset:CGPointMake(2*CHANNELS_WIDTH, 0)];
 }
 
 - (void)channelSliderAction:(UISlider *)sender
@@ -231,15 +170,21 @@
     channel.volume = [sender value];
 }
 
-- (void)closeDetailedChannelView:(id)sender
-{
-    NSLog(@"Removing scrollview from ChannelsViewController.m");
+- (void)displayDetailedChannelViewControllerWithOffset:(CGPoint)offset
+{    
+    [self addChildViewController:detailedChannelViewController];
+    [self.view addSubview:detailedChannelViewController.view];
     
-    // remove scrollview
-    [detailedChannelScrollView removeFromSuperview];
-    [closeDetailedChannelViewButton removeFromSuperview];
+    // set content offset to be CHANNELS_WIDTH
+    self.detailedChannelViewController.detailedChannelScrollView.contentOffset = offset;
     
+    // make sure the close button's alpha is 1
+    self.detailedChannelViewController.closeDetailedChannelViewButton.alpha = 1.0;
+    
+    NSLog(@"scrollview offset = %0.0f",self.detailedChannelViewController.detailedChannelScrollView.contentOffset.x);
 }
+
+
 
 
 @end
