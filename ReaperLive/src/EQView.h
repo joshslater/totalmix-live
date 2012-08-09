@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class MHRotaryKnob;
+
 @interface EQView : UIView
 
 @property (strong, nonatomic) IBOutlet UIView *view;
+@property (strong, nonatomic) IBOutletCollection(MHRotaryKnob) NSArray *gainKnobs;
+@property (strong, nonatomic) IBOutletCollection(MHRotaryKnob) NSArray *freqKnobs;
+@property (strong, nonatomic) IBOutletCollection(MHRotaryKnob) NSArray *qKnobs;
 
 @end

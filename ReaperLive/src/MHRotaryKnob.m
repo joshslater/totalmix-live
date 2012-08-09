@@ -103,6 +103,8 @@ const float MIN_DISTANCE_SQUARED = 16.0f;
 
 	if (animated)
 	{
+        /*
+        
 		// We cannot simply use UIView's animations because they will take the
 		// shortest path, but we always want to go the long way around. So we
 		// set up a keyframe animation with three keyframes: the old angle, the
@@ -131,6 +133,8 @@ const float MIN_DISTANCE_SQUARED = 16.0f;
 			nil];
 
 		[knobImageView.layer addAnimation:animation forKey:nil];
+         
+         */
 	}
 
 	knobImageView.transform = CGAffineTransformMakeRotation(newAngle * M_PI/180.0f);
@@ -173,13 +177,6 @@ const float MIN_DISTANCE_SQUARED = 16.0f;
 
 - (void)dealloc
 {
-	[foregroundImageView release];
-	[knobImageView release];
-	[backgroundImageView release];
-	[knobImageNormal release];
-	[knobImageHighlighted release];
-	[knobImageDisabled release];
-	[super dealloc];
 }
 
 - (UIImage*)backgroundImage
@@ -227,8 +224,7 @@ const float MIN_DISTANCE_SQUARED = 16.0f;
 	{
 		if (image != knobImageNormal)
 		{
-			[knobImageNormal release];
-			knobImageNormal = [image retain];
+			knobImageNormal = image;
 
 			if (self.state == UIControlStateNormal)
 			{
@@ -242,8 +238,7 @@ const float MIN_DISTANCE_SQUARED = 16.0f;
 	{
 		if (image != knobImageHighlighted)
 		{
-			[knobImageHighlighted release];
-			knobImageHighlighted = [image retain];
+			knobImageHighlighted = image;
 
 			if (self.state & UIControlStateHighlighted)
 				knobImageView.image = image;
@@ -254,8 +249,7 @@ const float MIN_DISTANCE_SQUARED = 16.0f;
 	{
 		if (image != knobImageDisabled)
 		{
-			[knobImageDisabled release];
-			knobImageDisabled = [image retain];
+			knobImageDisabled = image;
 
 			if (self.state & UIControlStateDisabled)
 				knobImageView.image = image;

@@ -44,6 +44,14 @@
 		03C1495815D37599008DCE9C /* GateBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03C1494C15D37599008DCE9C /* GateBtn@2x.png */; };
 		03C1495915D37599008DCE9C /* ChannelBkg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03C1494D15D37599008DCE9C /* ChannelBkg@2x.png */; };
 		03C867F615C6617F001ECCAD /* VolumeSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C867F515C6617E001ECCAD /* VolumeSlider.m */; };
+		03C945C615D38AC800A96504 /* Knob Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 03C945C215D38AC800A96504 /* Knob Background.png */; };
+		03C945C715D38AC800A96504 /* Knob Disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 03C945C315D38AC800A96504 /* Knob Disabled.png */; };
+		03C945C815D38AC800A96504 /* Knob Highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 03C945C415D38AC800A96504 /* Knob Highlighted.png */; };
+		03C945C915D38AC800A96504 /* Knob.png in Resources */ = {isa = PBXBuildFile; fileRef = 03C945C515D38AC800A96504 /* Knob.png */; };
+		03C945CE15D38AD000A96504 /* Knob Background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03C945CA15D38AD000A96504 /* Knob Background@2x.png */; };
+		03C945CF15D38AD000A96504 /* Knob Disabled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03C945CB15D38AD000A96504 /* Knob Disabled@2x.png */; };
+		03C945D015D38AD000A96504 /* Knob Highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03C945CC15D38AD000A96504 /* Knob Highlighted@2x.png */; };
+		03C945D115D38AD000A96504 /* Knob@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03C945CD15D38AD000A96504 /* Knob@2x.png */; };
 		03F2326C15C0E0D1009B0390 /* CompView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F2326B15C0E0D1009B0390 /* CompView.m */; };
 		03F2326E15C0E0E3009B0390 /* CompView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03F2326D15C0E0E3009B0390 /* CompView.xib */; };
 		03F2327415C0E4CC009B0390 /* EQView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F2327315C0E4CB009B0390 /* EQView.m */; };
@@ -102,6 +110,14 @@
 		03C1494D15D37599008DCE9C /* ChannelBkg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ChannelBkg@2x.png"; sourceTree = "<group>"; };
 		03C867F415C6617E001ECCAD /* VolumeSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolumeSlider.h; sourceTree = "<group>"; };
 		03C867F515C6617E001ECCAD /* VolumeSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolumeSlider.m; sourceTree = "<group>"; };
+		03C945C215D38AC800A96504 /* Knob Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Knob Background.png"; sourceTree = "<group>"; };
+		03C945C315D38AC800A96504 /* Knob Disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Knob Disabled.png"; sourceTree = "<group>"; };
+		03C945C415D38AC800A96504 /* Knob Highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Knob Highlighted.png"; sourceTree = "<group>"; };
+		03C945C515D38AC800A96504 /* Knob.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Knob.png; sourceTree = "<group>"; };
+		03C945CA15D38AD000A96504 /* Knob Background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Knob Background@2x.png"; sourceTree = "<group>"; };
+		03C945CB15D38AD000A96504 /* Knob Disabled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Knob Disabled@2x.png"; sourceTree = "<group>"; };
+		03C945CC15D38AD000A96504 /* Knob Highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Knob Highlighted@2x.png"; sourceTree = "<group>"; };
+		03C945CD15D38AD000A96504 /* Knob@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Knob@2x.png"; sourceTree = "<group>"; };
 		03F2326A15C0E0D1009B0390 /* CompView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompView.h; sourceTree = "<group>"; };
 		03F2326B15C0E0D1009B0390 /* CompView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompView.m; sourceTree = "<group>"; };
 		03F2326D15C0E0E3009B0390 /* CompView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompView.xib; sourceTree = "<group>"; };
@@ -135,6 +151,10 @@
 		0309E6E215D2405C004FDD58 /* @1x */ = {
 			isa = PBXGroup;
 			children = (
+				03C945C215D38AC800A96504 /* Knob Background.png */,
+				03C945C315D38AC800A96504 /* Knob Disabled.png */,
+				03C945C415D38AC800A96504 /* Knob Highlighted.png */,
+				03C945C515D38AC800A96504 /* Knob.png */,
 				03F2327C15C0ECB4009B0390 /* delete_control.jpg */,
 				0309E74515D260FB004FDD58 /* VolumeSlider.png */,
 				0309E71515D24525004FDD58 /* ChannelBkg.png */,
@@ -156,6 +176,10 @@
 		0309E6E415D24066004FDD58 /* @2x */ = {
 			isa = PBXGroup;
 			children = (
+				03C945CA15D38AD000A96504 /* Knob Background@2x.png */,
+				03C945CB15D38AD000A96504 /* Knob Disabled@2x.png */,
+				03C945CC15D38AD000A96504 /* Knob Highlighted@2x.png */,
+				03C945CD15D38AD000A96504 /* Knob@2x.png */,
 				03C1494215D37599008DCE9C /* DetailedComp@2x.png */,
 				03C1494315D37599008DCE9C /* DetailedGate@2x.png */,
 				03C1494415D37599008DCE9C /* FaderCap@2x.png */,
@@ -404,6 +428,14 @@
 				03C1495715D37599008DCE9C /* EQBtn@2x.png in Resources */,
 				03C1495815D37599008DCE9C /* GateBtn@2x.png in Resources */,
 				03C1495915D37599008DCE9C /* ChannelBkg@2x.png in Resources */,
+				03C945C615D38AC800A96504 /* Knob Background.png in Resources */,
+				03C945C715D38AC800A96504 /* Knob Disabled.png in Resources */,
+				03C945C815D38AC800A96504 /* Knob Highlighted.png in Resources */,
+				03C945C915D38AC800A96504 /* Knob.png in Resources */,
+				03C945CE15D38AD000A96504 /* Knob Background@2x.png in Resources */,
+				03C945CF15D38AD000A96504 /* Knob Disabled@2x.png in Resources */,
+				03C945D015D38AD000A96504 /* Knob Highlighted@2x.png in Resources */,
+				03C945D115D38AD000A96504 /* Knob@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
