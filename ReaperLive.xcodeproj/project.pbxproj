@@ -7,6 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0309E72115D24525004FDD58 /* ChannelBkg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E71515D24525004FDD58 /* ChannelBkg.png */; };
+		0309E72215D24525004FDD58 /* CompBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E71615D24525004FDD58 /* CompBtn.png */; };
+		0309E72315D24525004FDD58 /* DetailedComp.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E71715D24525004FDD58 /* DetailedComp.png */; };
+		0309E72415D24525004FDD58 /* DetailedEQ.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E71815D24525004FDD58 /* DetailedEQ.png */; };
+		0309E72515D24525004FDD58 /* DetailedGate.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E71915D24525004FDD58 /* DetailedGate.png */; };
+		0309E72615D24525004FDD58 /* EQBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E71A15D24525004FDD58 /* EQBtn.png */; };
+		0309E72715D24525004FDD58 /* FaderCap.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E71B15D24525004FDD58 /* FaderCap.png */; };
+		0309E72815D24525004FDD58 /* GateBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E71C15D24525004FDD58 /* GateBtn.png */; };
+		0309E72915D24525004FDD58 /* Meter.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E71D15D24525004FDD58 /* Meter.png */; };
+		0309E72A15D24525004FDD58 /* MuteBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E71E15D24525004FDD58 /* MuteBtn.png */; };
+		0309E72B15D24525004FDD58 /* SoloBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E71F15D24525004FDD58 /* SoloBtn.png */; };
+		0309E73915D24534004FDD58 /* DetailedComp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E72D15D24534004FDD58 /* DetailedComp@2x.png */; };
+		0309E73A15D24534004FDD58 /* DetailedGate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E72E15D24534004FDD58 /* DetailedGate@2x.png */; };
+		0309E73B15D24534004FDD58 /* FaderCap@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E72F15D24534004FDD58 /* FaderCap@2x.png */; };
+		0309E73C15D24534004FDD58 /* Meter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E73015D24534004FDD58 /* Meter@2x.png */; };
+		0309E73D15D24534004FDD58 /* VolumeSlider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E73115D24534004FDD58 /* VolumeSlider@2x.png */; };
+		0309E73E15D24534004FDD58 /* CompBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E73215D24534004FDD58 /* CompBtn@2x.png */; };
+		0309E73F15D24534004FDD58 /* DetailedEQ@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E73315D24534004FDD58 /* DetailedEQ@2x.png */; };
+		0309E74015D24534004FDD58 /* EQBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E73415D24534004FDD58 /* EQBtn@2x.png */; };
+		0309E74115D24534004FDD58 /* MuteBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E73515D24534004FDD58 /* MuteBtn@2x.png */; };
+		0309E74215D24534004FDD58 /* SoloBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E73615D24534004FDD58 /* SoloBtn@2x.png */; };
+		0309E74315D24534004FDD58 /* ChannelBkg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E73715D24534004FDD58 /* ChannelBkg@2x.png */; };
+		0309E74415D24534004FDD58 /* GateBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E73815D24534004FDD58 /* GateBtn@2x.png */; };
+		0309E74615D260FB004FDD58 /* VolumeSlider.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E74515D260FB004FDD58 /* VolumeSlider.png */; };
+		0345FB5215D3660F009130E2 /* VerticalSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 0345FB5115D3660F009130E2 /* VerticalSlider.m */; };
 		035C46ED15BE6AE000C43574 /* ChannelsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 035C46EC15BE6AE000C43574 /* ChannelsViewController.xib */; };
 		03ADD57115BCFC0900EBDC71 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03ADD57015BCFC0900EBDC71 /* UIKit.framework */; };
 		03ADD57315BCFC0900EBDC71 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03ADD57215BCFC0900EBDC71 /* Foundation.framework */; };
@@ -18,6 +43,7 @@
 		03ADD59515BD0FFE00EBDC71 /* ChannelTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03ADD59415BD0CD100EBDC71 /* ChannelTableCell.xib */; };
 		03ADD59615BD102D00EBDC71 /* ChannelTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03ADD59315BD0CD100EBDC71 /* ChannelTableCell.m */; };
 		03ADD59915BD107F00EBDC71 /* Channel.m in Sources */ = {isa = PBXBuildFile; fileRef = 03ADD59815BD107F00EBDC71 /* Channel.m */; };
+		03C867F615C6617F001ECCAD /* VolumeSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C867F515C6617E001ECCAD /* VolumeSlider.m */; };
 		03F2326C15C0E0D1009B0390 /* CompView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F2326B15C0E0D1009B0390 /* CompView.m */; };
 		03F2326E15C0E0E3009B0390 /* CompView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03F2326D15C0E0E3009B0390 /* CompView.xib */; };
 		03F2327415C0E4CC009B0390 /* EQView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F2327315C0E4CB009B0390 /* EQView.m */; };
@@ -29,6 +55,32 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0309E71515D24525004FDD58 /* ChannelBkg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ChannelBkg.png; sourceTree = "<group>"; };
+		0309E71615D24525004FDD58 /* CompBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CompBtn.png; sourceTree = "<group>"; };
+		0309E71715D24525004FDD58 /* DetailedComp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DetailedComp.png; sourceTree = "<group>"; };
+		0309E71815D24525004FDD58 /* DetailedEQ.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DetailedEQ.png; sourceTree = "<group>"; };
+		0309E71915D24525004FDD58 /* DetailedGate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DetailedGate.png; sourceTree = "<group>"; };
+		0309E71A15D24525004FDD58 /* EQBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EQBtn.png; sourceTree = "<group>"; };
+		0309E71B15D24525004FDD58 /* FaderCap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FaderCap.png; sourceTree = "<group>"; };
+		0309E71C15D24525004FDD58 /* GateBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GateBtn.png; sourceTree = "<group>"; };
+		0309E71D15D24525004FDD58 /* Meter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Meter.png; sourceTree = "<group>"; };
+		0309E71E15D24525004FDD58 /* MuteBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MuteBtn.png; sourceTree = "<group>"; };
+		0309E71F15D24525004FDD58 /* SoloBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SoloBtn.png; sourceTree = "<group>"; };
+		0309E72D15D24534004FDD58 /* DetailedComp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DetailedComp@2x.png"; sourceTree = "<group>"; };
+		0309E72E15D24534004FDD58 /* DetailedGate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DetailedGate@2x.png"; sourceTree = "<group>"; };
+		0309E72F15D24534004FDD58 /* FaderCap@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FaderCap@2x.png"; sourceTree = "<group>"; };
+		0309E73015D24534004FDD58 /* Meter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Meter@2x.png"; sourceTree = "<group>"; };
+		0309E73115D24534004FDD58 /* VolumeSlider@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "VolumeSlider@2x.png"; sourceTree = "<group>"; };
+		0309E73215D24534004FDD58 /* CompBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CompBtn@2x.png"; sourceTree = "<group>"; };
+		0309E73315D24534004FDD58 /* DetailedEQ@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DetailedEQ@2x.png"; sourceTree = "<group>"; };
+		0309E73415D24534004FDD58 /* EQBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EQBtn@2x.png"; sourceTree = "<group>"; };
+		0309E73515D24534004FDD58 /* MuteBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MuteBtn@2x.png"; sourceTree = "<group>"; };
+		0309E73615D24534004FDD58 /* SoloBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SoloBtn@2x.png"; sourceTree = "<group>"; };
+		0309E73715D24534004FDD58 /* ChannelBkg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ChannelBkg@2x.png"; sourceTree = "<group>"; };
+		0309E73815D24534004FDD58 /* GateBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GateBtn@2x.png"; sourceTree = "<group>"; };
+		0309E74515D260FB004FDD58 /* VolumeSlider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VolumeSlider.png; sourceTree = "<group>"; };
+		0345FB5015D3660F009130E2 /* VerticalSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerticalSlider.h; sourceTree = "<group>"; };
+		0345FB5115D3660F009130E2 /* VerticalSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerticalSlider.m; sourceTree = "<group>"; };
 		035C46EC15BE6AE000C43574 /* ChannelsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChannelsViewController.xib; sourceTree = "<group>"; };
 		03ADD56C15BCFC0900EBDC71 /* ReaperLive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReaperLive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03ADD57015BCFC0900EBDC71 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -47,6 +99,8 @@
 		03ADD59415BD0CD100EBDC71 /* ChannelTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChannelTableCell.xib; sourceTree = "<group>"; };
 		03ADD59715BD107F00EBDC71 /* Channel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Channel.h; sourceTree = "<group>"; };
 		03ADD59815BD107F00EBDC71 /* Channel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Channel.m; sourceTree = "<group>"; };
+		03C867F415C6617E001ECCAD /* VolumeSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolumeSlider.h; sourceTree = "<group>"; };
+		03C867F515C6617E001ECCAD /* VolumeSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolumeSlider.m; sourceTree = "<group>"; };
 		03F2326A15C0E0D1009B0390 /* CompView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompView.h; sourceTree = "<group>"; };
 		03F2326B15C0E0D1009B0390 /* CompView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompView.m; sourceTree = "<group>"; };
 		03F2326D15C0E0E3009B0390 /* CompView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompView.xib; sourceTree = "<group>"; };
@@ -57,7 +111,7 @@
 		03F2327815C0E4E9009B0390 /* EQView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EQView.xib; sourceTree = "<group>"; };
 		03F2327A15C0E4FB009B0390 /* GateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GateView.xib; sourceTree = "<group>"; };
 		03F2327C15C0ECB4009B0390 /* delete_control.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = delete_control.jpg; sourceTree = "<group>"; };
-		03F292F615C63E3A007D1440 /* DetailedChannelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = DetailedChannelViewController.h; sourceTree = "<group>"; };
+		03F292F615C63E3A007D1440 /* DetailedChannelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailedChannelViewController.h; sourceTree = "<group>"; };
 		03F292F715C63E3A007D1440 /* DetailedChannelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailedChannelViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -75,6 +129,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0309E6E215D2405C004FDD58 /* @1x */ = {
+			isa = PBXGroup;
+			children = (
+				0309E74515D260FB004FDD58 /* VolumeSlider.png */,
+				0309E71515D24525004FDD58 /* ChannelBkg.png */,
+				0309E71615D24525004FDD58 /* CompBtn.png */,
+				0309E71715D24525004FDD58 /* DetailedComp.png */,
+				0309E71815D24525004FDD58 /* DetailedEQ.png */,
+				0309E71915D24525004FDD58 /* DetailedGate.png */,
+				0309E71A15D24525004FDD58 /* EQBtn.png */,
+				0309E71B15D24525004FDD58 /* FaderCap.png */,
+				0309E71C15D24525004FDD58 /* GateBtn.png */,
+				0309E71D15D24525004FDD58 /* Meter.png */,
+				0309E71E15D24525004FDD58 /* MuteBtn.png */,
+				0309E71F15D24525004FDD58 /* SoloBtn.png */,
+			);
+			name = "@1x";
+			sourceTree = "<group>";
+		};
+		0309E6E415D24066004FDD58 /* @2x */ = {
+			isa = PBXGroup;
+			children = (
+				0309E72D15D24534004FDD58 /* DetailedComp@2x.png */,
+				0309E72E15D24534004FDD58 /* DetailedGate@2x.png */,
+				0309E72F15D24534004FDD58 /* FaderCap@2x.png */,
+				0309E73015D24534004FDD58 /* Meter@2x.png */,
+				0309E73115D24534004FDD58 /* VolumeSlider@2x.png */,
+				0309E73215D24534004FDD58 /* CompBtn@2x.png */,
+				0309E73315D24534004FDD58 /* DetailedEQ@2x.png */,
+				0309E73415D24534004FDD58 /* EQBtn@2x.png */,
+				0309E73515D24534004FDD58 /* MuteBtn@2x.png */,
+				0309E73615D24534004FDD58 /* SoloBtn@2x.png */,
+				0309E73715D24534004FDD58 /* ChannelBkg@2x.png */,
+				0309E73815D24534004FDD58 /* GateBtn@2x.png */,
+			);
+			name = "@2x";
+			sourceTree = "<group>";
+		};
 		03ADD56115BCFC0900EBDC71 = {
 			isa = PBXGroup;
 			children = (
@@ -126,7 +218,6 @@
 			children = (
 				03F2328915C2690E009B0390 /* AppDelegate */,
 				03F2328815C268FB009B0390 /* Controllers */,
-				03F2328A15C2691D009B0390 /* Helpers */,
 				03F2328B15C26921009B0390 /* Models */,
 				03F2328615C2681D009B0390 /* Detailed Channel */,
 			);
@@ -147,6 +238,8 @@
 		03F2328515C267E9009B0390 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				0309E6E215D2405C004FDD58 /* @1x */,
+				0309E6E415D24066004FDD58 /* @2x */,
 				03F2327C15C0ECB4009B0390 /* delete_control.jpg */,
 			);
 			name = Images;
@@ -168,11 +261,11 @@
 		03F2328715C268D8009B0390 /* NIBs */ = {
 			isa = PBXGroup;
 			children = (
-				03F2327815C0E4E9009B0390 /* EQView.xib */,
 				035C46EC15BE6AE000C43574 /* ChannelsViewController.xib */,
 				03ADD59415BD0CD100EBDC71 /* ChannelTableCell.xib */,
-				03F2326D15C0E0E3009B0390 /* CompView.xib */,
 				03F2327A15C0E4FB009B0390 /* GateView.xib */,
+				03F2326D15C0E0E3009B0390 /* CompView.xib */,
+				03F2327815C0E4E9009B0390 /* EQView.xib */,
 			);
 			name = NIBs;
 			sourceTree = "<group>";
@@ -184,6 +277,7 @@
 				03ADD58315BCFC0900EBDC71 /* ChannelsViewController.m */,
 				03F292F615C63E3A007D1440 /* DetailedChannelViewController.h */,
 				03F292F715C63E3A007D1440 /* DetailedChannelViewController.m */,
+				03F2328A15C2691D009B0390 /* Helpers */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -202,6 +296,10 @@
 			children = (
 				03ADD59215BD0CD100EBDC71 /* ChannelTableCell.h */,
 				03ADD59315BD0CD100EBDC71 /* ChannelTableCell.m */,
+				0345FB5015D3660F009130E2 /* VerticalSlider.h */,
+				0345FB5115D3660F009130E2 /* VerticalSlider.m */,
+				03C867F415C6617E001ECCAD /* VolumeSlider.h */,
+				03C867F515C6617E001ECCAD /* VolumeSlider.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -273,6 +371,30 @@
 				03F2327915C0E4E9009B0390 /* EQView.xib in Resources */,
 				03F2327B15C0E4FB009B0390 /* GateView.xib in Resources */,
 				03F2327D15C0ECB4009B0390 /* delete_control.jpg in Resources */,
+				0309E72115D24525004FDD58 /* ChannelBkg.png in Resources */,
+				0309E72215D24525004FDD58 /* CompBtn.png in Resources */,
+				0309E72315D24525004FDD58 /* DetailedComp.png in Resources */,
+				0309E72415D24525004FDD58 /* DetailedEQ.png in Resources */,
+				0309E72515D24525004FDD58 /* DetailedGate.png in Resources */,
+				0309E72615D24525004FDD58 /* EQBtn.png in Resources */,
+				0309E72715D24525004FDD58 /* FaderCap.png in Resources */,
+				0309E72815D24525004FDD58 /* GateBtn.png in Resources */,
+				0309E72915D24525004FDD58 /* Meter.png in Resources */,
+				0309E72A15D24525004FDD58 /* MuteBtn.png in Resources */,
+				0309E72B15D24525004FDD58 /* SoloBtn.png in Resources */,
+				0309E73915D24534004FDD58 /* DetailedComp@2x.png in Resources */,
+				0309E73A15D24534004FDD58 /* DetailedGate@2x.png in Resources */,
+				0309E73B15D24534004FDD58 /* FaderCap@2x.png in Resources */,
+				0309E73C15D24534004FDD58 /* Meter@2x.png in Resources */,
+				0309E73D15D24534004FDD58 /* VolumeSlider@2x.png in Resources */,
+				0309E73E15D24534004FDD58 /* CompBtn@2x.png in Resources */,
+				0309E73F15D24534004FDD58 /* DetailedEQ@2x.png in Resources */,
+				0309E74015D24534004FDD58 /* EQBtn@2x.png in Resources */,
+				0309E74115D24534004FDD58 /* MuteBtn@2x.png in Resources */,
+				0309E74215D24534004FDD58 /* SoloBtn@2x.png in Resources */,
+				0309E74315D24534004FDD58 /* ChannelBkg@2x.png in Resources */,
+				0309E74415D24534004FDD58 /* GateBtn@2x.png in Resources */,
+				0309E74615D260FB004FDD58 /* VolumeSlider.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +414,8 @@
 				03F2327415C0E4CC009B0390 /* EQView.m in Sources */,
 				03F2327715C0E4DB009B0390 /* GateView.m in Sources */,
 				03F292F815C63E3A007D1440 /* DetailedChannelViewController.m in Sources */,
+				03C867F615C6617F001ECCAD /* VolumeSlider.m in Sources */,
+				0345FB5215D3660F009130E2 /* VerticalSlider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

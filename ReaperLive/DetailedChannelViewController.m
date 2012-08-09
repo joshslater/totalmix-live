@@ -57,7 +57,7 @@
     detailedChannelScrollView.showsHorizontalScrollIndicator = NO;
     
     // set background color to white
-    detailedChannelScrollView.backgroundColor = [UIColor blackColor];
+    detailedChannelScrollView.backgroundColor = [UIColor clearColor];
     
     // set the delagate to self
     detailedChannelScrollView.delegate = self;

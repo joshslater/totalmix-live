@@ -9,6 +9,8 @@
 #import "ChannelsViewController.h"
 #import "Channel.h"
 #import "ChannelTableCell.h"
+#import "VolumeSlider.h"
+#import "VerticalSlider.h"
 
 #define CHANNELS_HEIGHT 768
 
@@ -93,23 +95,46 @@
         cell = [self channelTableCell];
         [self setChannelTableCell:nil];
         
+
+        /**************************/
+        /********* FADER  *********/
+        /**************************/
+        VolumeSlider *fader = [[VolumeSlider alloc] initWithFrame:CGRectMake(0, 0, 265, 30)];
+        [fader setRotatedThumbImage:[UIImage imageNamed:@"FaderCap.png"]];
+        [fader setRotatedMinTrackImage:[UIImage imageNamed:@"VolumeSlider.png"]];
+        [fader setRotatedMaxTrackImage:[UIImage imageNamed:@"VolumeSlider.png"]];
         
-        // add fader slider
-        UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(0, 0, 200, 85)];
-        [slider addTarget:self action:@selector(channelSliderAction:) forControlEvents:UIControlEventValueChanged];
+        [fader addTarget:self action:@selector(channelSliderAction:) forControlEvents:UIControlEventValueChanged];
         
-        slider.value = 0;
-        
+        fader.value = 0;
         
         // rotate the slider
-        slider.transform = CGAffineTransformMakeRotation(-M_PI_2);
-        [cell.contentView addSubview:slider];
+        fader.transform = CGAffineTransformMakeRotation(-M_PI_2);
+        [cell.contentView addSubview:fader];
         
-        slider.bounds = CGRectMake(0, 0, 300, 85);
-        slider.center = CGPointMake(42.5, 450);
+        fader.bounds = CGRectMake(0, 0, 265, 30);
+        fader.center = CGPointMake(70, 515);
         
-        cell.volumeSlider = slider;
+        cell.volumeSlider = fader;
         
+        
+        /**************************/
+        /********** METER *********/
+        /**************************/
+        VerticalSlider *meter = [[VerticalSlider alloc] initWithFrame:CGRectMake(0, 0, 225, 30)];
+        
+        // set the minimum track image
+        [meter setThumbImage:[[UIImage alloc] init] forState:UIControlStateNormal];
+        [meter setRotatedMinTrackImage:[UIImage imageNamed:@"Meter.png"]];
+        [meter setRotatedMaxTrackImage:[UIImage imageNamed:@"Meter.png"]];
+        
+        // rotate meter
+        meter.transform = CGAffineTransformMakeRotation(-M_PI_2);
+        [cell.contentView addSubview:meter];
+        
+        meter.bounds = CGRectMake(0, 0, 225, 30);
+        meter.center = CGPointMake(30, 515);
+         
     }
 
 
@@ -168,6 +193,10 @@
     Channel *channel = [self.channels objectAtIndex:indexPath.row];
     
     channel.volume = [sender value];
+    
+#if 0    
+    NSLog(@"Set Channel %d Volume to %0.3f",indexPath.row,[sender value]);
+#endif
 }
 
 - (void)displayDetailedChannelViewControllerWithOffset:(CGPoint)offset
