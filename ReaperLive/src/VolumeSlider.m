@@ -14,7 +14,7 @@
 {
     [super beginTrackingWithTouch:touch withEvent:event];
  
-#if 1
+#if 0
     // debug
     CGPoint touchLocation = [touch locationInView:self];
     

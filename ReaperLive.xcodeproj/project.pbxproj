@@ -18,18 +18,6 @@
 		0309E72915D24525004FDD58 /* Meter.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E71D15D24525004FDD58 /* Meter.png */; };
 		0309E72A15D24525004FDD58 /* MuteBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E71E15D24525004FDD58 /* MuteBtn.png */; };
 		0309E72B15D24525004FDD58 /* SoloBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E71F15D24525004FDD58 /* SoloBtn.png */; };
-		0309E73915D24534004FDD58 /* DetailedComp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E72D15D24534004FDD58 /* DetailedComp@2x.png */; };
-		0309E73A15D24534004FDD58 /* DetailedGate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E72E15D24534004FDD58 /* DetailedGate@2x.png */; };
-		0309E73B15D24534004FDD58 /* FaderCap@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E72F15D24534004FDD58 /* FaderCap@2x.png */; };
-		0309E73C15D24534004FDD58 /* Meter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E73015D24534004FDD58 /* Meter@2x.png */; };
-		0309E73D15D24534004FDD58 /* VolumeSlider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E73115D24534004FDD58 /* VolumeSlider@2x.png */; };
-		0309E73E15D24534004FDD58 /* CompBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E73215D24534004FDD58 /* CompBtn@2x.png */; };
-		0309E73F15D24534004FDD58 /* DetailedEQ@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E73315D24534004FDD58 /* DetailedEQ@2x.png */; };
-		0309E74015D24534004FDD58 /* EQBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E73415D24534004FDD58 /* EQBtn@2x.png */; };
-		0309E74115D24534004FDD58 /* MuteBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E73515D24534004FDD58 /* MuteBtn@2x.png */; };
-		0309E74215D24534004FDD58 /* SoloBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E73615D24534004FDD58 /* SoloBtn@2x.png */; };
-		0309E74315D24534004FDD58 /* ChannelBkg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E73715D24534004FDD58 /* ChannelBkg@2x.png */; };
-		0309E74415D24534004FDD58 /* GateBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E73815D24534004FDD58 /* GateBtn@2x.png */; };
 		0309E74615D260FB004FDD58 /* VolumeSlider.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E74515D260FB004FDD58 /* VolumeSlider.png */; };
 		0345FB5215D3660F009130E2 /* VerticalSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 0345FB5115D3660F009130E2 /* VerticalSlider.m */; };
 		035C46ED15BE6AE000C43574 /* ChannelsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 035C46EC15BE6AE000C43574 /* ChannelsViewController.xib */; };
@@ -43,6 +31,18 @@
 		03ADD59515BD0FFE00EBDC71 /* ChannelTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03ADD59415BD0CD100EBDC71 /* ChannelTableCell.xib */; };
 		03ADD59615BD102D00EBDC71 /* ChannelTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03ADD59315BD0CD100EBDC71 /* ChannelTableCell.m */; };
 		03ADD59915BD107F00EBDC71 /* Channel.m in Sources */ = {isa = PBXBuildFile; fileRef = 03ADD59815BD107F00EBDC71 /* Channel.m */; };
+		03C1494E15D37599008DCE9C /* DetailedComp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03C1494215D37599008DCE9C /* DetailedComp@2x.png */; };
+		03C1494F15D37599008DCE9C /* DetailedGate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03C1494315D37599008DCE9C /* DetailedGate@2x.png */; };
+		03C1495015D37599008DCE9C /* FaderCap@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03C1494415D37599008DCE9C /* FaderCap@2x.png */; };
+		03C1495115D37599008DCE9C /* Meter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03C1494515D37599008DCE9C /* Meter@2x.png */; };
+		03C1495215D37599008DCE9C /* VolumeSlider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03C1494615D37599008DCE9C /* VolumeSlider@2x.png */; };
+		03C1495315D37599008DCE9C /* MuteBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03C1494715D37599008DCE9C /* MuteBtn@2x.png */; };
+		03C1495415D37599008DCE9C /* SoloBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03C1494815D37599008DCE9C /* SoloBtn@2x.png */; };
+		03C1495515D37599008DCE9C /* CompBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03C1494915D37599008DCE9C /* CompBtn@2x.png */; };
+		03C1495615D37599008DCE9C /* DetailedEQ@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03C1494A15D37599008DCE9C /* DetailedEQ@2x.png */; };
+		03C1495715D37599008DCE9C /* EQBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03C1494B15D37599008DCE9C /* EQBtn@2x.png */; };
+		03C1495815D37599008DCE9C /* GateBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03C1494C15D37599008DCE9C /* GateBtn@2x.png */; };
+		03C1495915D37599008DCE9C /* ChannelBkg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03C1494D15D37599008DCE9C /* ChannelBkg@2x.png */; };
 		03C867F615C6617F001ECCAD /* VolumeSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C867F515C6617E001ECCAD /* VolumeSlider.m */; };
 		03F2326C15C0E0D1009B0390 /* CompView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F2326B15C0E0D1009B0390 /* CompView.m */; };
 		03F2326E15C0E0E3009B0390 /* CompView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03F2326D15C0E0E3009B0390 /* CompView.xib */; };
@@ -52,6 +52,7 @@
 		03F2327B15C0E4FB009B0390 /* GateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03F2327A15C0E4FB009B0390 /* GateView.xib */; };
 		03F2327D15C0ECB4009B0390 /* delete_control.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 03F2327C15C0ECB4009B0390 /* delete_control.jpg */; };
 		03F292F815C63E3A007D1440 /* DetailedChannelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F292F715C63E3A007D1440 /* DetailedChannelViewController.m */; };
+		03F3CD7015D38552006AD784 /* MHRotaryKnob.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F3CD6F15D38552006AD784 /* MHRotaryKnob.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,18 +67,6 @@
 		0309E71D15D24525004FDD58 /* Meter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Meter.png; sourceTree = "<group>"; };
 		0309E71E15D24525004FDD58 /* MuteBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MuteBtn.png; sourceTree = "<group>"; };
 		0309E71F15D24525004FDD58 /* SoloBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SoloBtn.png; sourceTree = "<group>"; };
-		0309E72D15D24534004FDD58 /* DetailedComp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DetailedComp@2x.png"; sourceTree = "<group>"; };
-		0309E72E15D24534004FDD58 /* DetailedGate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DetailedGate@2x.png"; sourceTree = "<group>"; };
-		0309E72F15D24534004FDD58 /* FaderCap@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FaderCap@2x.png"; sourceTree = "<group>"; };
-		0309E73015D24534004FDD58 /* Meter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Meter@2x.png"; sourceTree = "<group>"; };
-		0309E73115D24534004FDD58 /* VolumeSlider@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "VolumeSlider@2x.png"; sourceTree = "<group>"; };
-		0309E73215D24534004FDD58 /* CompBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CompBtn@2x.png"; sourceTree = "<group>"; };
-		0309E73315D24534004FDD58 /* DetailedEQ@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DetailedEQ@2x.png"; sourceTree = "<group>"; };
-		0309E73415D24534004FDD58 /* EQBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EQBtn@2x.png"; sourceTree = "<group>"; };
-		0309E73515D24534004FDD58 /* MuteBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MuteBtn@2x.png"; sourceTree = "<group>"; };
-		0309E73615D24534004FDD58 /* SoloBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SoloBtn@2x.png"; sourceTree = "<group>"; };
-		0309E73715D24534004FDD58 /* ChannelBkg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ChannelBkg@2x.png"; sourceTree = "<group>"; };
-		0309E73815D24534004FDD58 /* GateBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GateBtn@2x.png"; sourceTree = "<group>"; };
 		0309E74515D260FB004FDD58 /* VolumeSlider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VolumeSlider.png; sourceTree = "<group>"; };
 		0345FB5015D3660F009130E2 /* VerticalSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerticalSlider.h; sourceTree = "<group>"; };
 		0345FB5115D3660F009130E2 /* VerticalSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerticalSlider.m; sourceTree = "<group>"; };
@@ -99,6 +88,18 @@
 		03ADD59415BD0CD100EBDC71 /* ChannelTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChannelTableCell.xib; sourceTree = "<group>"; };
 		03ADD59715BD107F00EBDC71 /* Channel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Channel.h; sourceTree = "<group>"; };
 		03ADD59815BD107F00EBDC71 /* Channel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Channel.m; sourceTree = "<group>"; };
+		03C1494215D37599008DCE9C /* DetailedComp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DetailedComp@2x.png"; sourceTree = "<group>"; };
+		03C1494315D37599008DCE9C /* DetailedGate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DetailedGate@2x.png"; sourceTree = "<group>"; };
+		03C1494415D37599008DCE9C /* FaderCap@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FaderCap@2x.png"; sourceTree = "<group>"; };
+		03C1494515D37599008DCE9C /* Meter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Meter@2x.png"; sourceTree = "<group>"; };
+		03C1494615D37599008DCE9C /* VolumeSlider@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "VolumeSlider@2x.png"; sourceTree = "<group>"; };
+		03C1494715D37599008DCE9C /* MuteBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MuteBtn@2x.png"; sourceTree = "<group>"; };
+		03C1494815D37599008DCE9C /* SoloBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SoloBtn@2x.png"; sourceTree = "<group>"; };
+		03C1494915D37599008DCE9C /* CompBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CompBtn@2x.png"; sourceTree = "<group>"; };
+		03C1494A15D37599008DCE9C /* DetailedEQ@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DetailedEQ@2x.png"; sourceTree = "<group>"; };
+		03C1494B15D37599008DCE9C /* EQBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EQBtn@2x.png"; sourceTree = "<group>"; };
+		03C1494C15D37599008DCE9C /* GateBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GateBtn@2x.png"; sourceTree = "<group>"; };
+		03C1494D15D37599008DCE9C /* ChannelBkg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ChannelBkg@2x.png"; sourceTree = "<group>"; };
 		03C867F415C6617E001ECCAD /* VolumeSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolumeSlider.h; sourceTree = "<group>"; };
 		03C867F515C6617E001ECCAD /* VolumeSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolumeSlider.m; sourceTree = "<group>"; };
 		03F2326A15C0E0D1009B0390 /* CompView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompView.h; sourceTree = "<group>"; };
@@ -113,6 +114,8 @@
 		03F2327C15C0ECB4009B0390 /* delete_control.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = delete_control.jpg; sourceTree = "<group>"; };
 		03F292F615C63E3A007D1440 /* DetailedChannelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailedChannelViewController.h; sourceTree = "<group>"; };
 		03F292F715C63E3A007D1440 /* DetailedChannelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailedChannelViewController.m; sourceTree = "<group>"; };
+		03F3CD6E15D38552006AD784 /* MHRotaryKnob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHRotaryKnob.h; sourceTree = "<group>"; };
+		03F3CD6F15D38552006AD784 /* MHRotaryKnob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHRotaryKnob.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +135,7 @@
 		0309E6E215D2405C004FDD58 /* @1x */ = {
 			isa = PBXGroup;
 			children = (
+				03F2327C15C0ECB4009B0390 /* delete_control.jpg */,
 				0309E74515D260FB004FDD58 /* VolumeSlider.png */,
 				0309E71515D24525004FDD58 /* ChannelBkg.png */,
 				0309E71615D24525004FDD58 /* CompBtn.png */,
@@ -146,25 +150,27 @@
 				0309E71F15D24525004FDD58 /* SoloBtn.png */,
 			);
 			name = "@1x";
+			path = resources/images/1x;
 			sourceTree = "<group>";
 		};
 		0309E6E415D24066004FDD58 /* @2x */ = {
 			isa = PBXGroup;
 			children = (
-				0309E72D15D24534004FDD58 /* DetailedComp@2x.png */,
-				0309E72E15D24534004FDD58 /* DetailedGate@2x.png */,
-				0309E72F15D24534004FDD58 /* FaderCap@2x.png */,
-				0309E73015D24534004FDD58 /* Meter@2x.png */,
-				0309E73115D24534004FDD58 /* VolumeSlider@2x.png */,
-				0309E73215D24534004FDD58 /* CompBtn@2x.png */,
-				0309E73315D24534004FDD58 /* DetailedEQ@2x.png */,
-				0309E73415D24534004FDD58 /* EQBtn@2x.png */,
-				0309E73515D24534004FDD58 /* MuteBtn@2x.png */,
-				0309E73615D24534004FDD58 /* SoloBtn@2x.png */,
-				0309E73715D24534004FDD58 /* ChannelBkg@2x.png */,
-				0309E73815D24534004FDD58 /* GateBtn@2x.png */,
+				03C1494215D37599008DCE9C /* DetailedComp@2x.png */,
+				03C1494315D37599008DCE9C /* DetailedGate@2x.png */,
+				03C1494415D37599008DCE9C /* FaderCap@2x.png */,
+				03C1494515D37599008DCE9C /* Meter@2x.png */,
+				03C1494615D37599008DCE9C /* VolumeSlider@2x.png */,
+				03C1494715D37599008DCE9C /* MuteBtn@2x.png */,
+				03C1494815D37599008DCE9C /* SoloBtn@2x.png */,
+				03C1494915D37599008DCE9C /* CompBtn@2x.png */,
+				03C1494A15D37599008DCE9C /* DetailedEQ@2x.png */,
+				03C1494B15D37599008DCE9C /* EQBtn@2x.png */,
+				03C1494C15D37599008DCE9C /* GateBtn@2x.png */,
+				03C1494D15D37599008DCE9C /* ChannelBkg@2x.png */,
 			);
 			name = "@2x";
+			path = resources/images/2x;
 			sourceTree = "<group>";
 		};
 		03ADD56115BCFC0900EBDC71 = {
@@ -222,6 +228,7 @@
 				03F2328615C2681D009B0390 /* Detailed Channel */,
 			);
 			name = Classes;
+			path = src;
 			sourceTree = "<group>";
 		};
 		03F2328415C267C4009B0390 /* Other Sources */ = {
@@ -240,7 +247,6 @@
 			children = (
 				0309E6E215D2405C004FDD58 /* @1x */,
 				0309E6E415D24066004FDD58 /* @2x */,
-				03F2327C15C0ECB4009B0390 /* delete_control.jpg */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -268,6 +274,7 @@
 				03F2327815C0E4E9009B0390 /* EQView.xib */,
 			);
 			name = NIBs;
+			path = resources/nibs;
 			sourceTree = "<group>";
 		};
 		03F2328815C268FB009B0390 /* Controllers */ = {
@@ -300,6 +307,8 @@
 				0345FB5115D3660F009130E2 /* VerticalSlider.m */,
 				03C867F415C6617E001ECCAD /* VolumeSlider.h */,
 				03C867F515C6617E001ECCAD /* VolumeSlider.m */,
+				03F3CD6E15D38552006AD784 /* MHRotaryKnob.h */,
+				03F3CD6F15D38552006AD784 /* MHRotaryKnob.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -382,19 +391,19 @@
 				0309E72915D24525004FDD58 /* Meter.png in Resources */,
 				0309E72A15D24525004FDD58 /* MuteBtn.png in Resources */,
 				0309E72B15D24525004FDD58 /* SoloBtn.png in Resources */,
-				0309E73915D24534004FDD58 /* DetailedComp@2x.png in Resources */,
-				0309E73A15D24534004FDD58 /* DetailedGate@2x.png in Resources */,
-				0309E73B15D24534004FDD58 /* FaderCap@2x.png in Resources */,
-				0309E73C15D24534004FDD58 /* Meter@2x.png in Resources */,
-				0309E73D15D24534004FDD58 /* VolumeSlider@2x.png in Resources */,
-				0309E73E15D24534004FDD58 /* CompBtn@2x.png in Resources */,
-				0309E73F15D24534004FDD58 /* DetailedEQ@2x.png in Resources */,
-				0309E74015D24534004FDD58 /* EQBtn@2x.png in Resources */,
-				0309E74115D24534004FDD58 /* MuteBtn@2x.png in Resources */,
-				0309E74215D24534004FDD58 /* SoloBtn@2x.png in Resources */,
-				0309E74315D24534004FDD58 /* ChannelBkg@2x.png in Resources */,
-				0309E74415D24534004FDD58 /* GateBtn@2x.png in Resources */,
 				0309E74615D260FB004FDD58 /* VolumeSlider.png in Resources */,
+				03C1494E15D37599008DCE9C /* DetailedComp@2x.png in Resources */,
+				03C1494F15D37599008DCE9C /* DetailedGate@2x.png in Resources */,
+				03C1495015D37599008DCE9C /* FaderCap@2x.png in Resources */,
+				03C1495115D37599008DCE9C /* Meter@2x.png in Resources */,
+				03C1495215D37599008DCE9C /* VolumeSlider@2x.png in Resources */,
+				03C1495315D37599008DCE9C /* MuteBtn@2x.png in Resources */,
+				03C1495415D37599008DCE9C /* SoloBtn@2x.png in Resources */,
+				03C1495515D37599008DCE9C /* CompBtn@2x.png in Resources */,
+				03C1495615D37599008DCE9C /* DetailedEQ@2x.png in Resources */,
+				03C1495715D37599008DCE9C /* EQBtn@2x.png in Resources */,
+				03C1495815D37599008DCE9C /* GateBtn@2x.png in Resources */,
+				03C1495915D37599008DCE9C /* ChannelBkg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,6 +425,7 @@
 				03F292F815C63E3A007D1440 /* DetailedChannelViewController.m in Sources */,
 				03C867F615C6617F001ECCAD /* VolumeSlider.m in Sources */,
 				0345FB5215D3660F009130E2 /* VerticalSlider.m in Sources */,
+				03F3CD7015D38552006AD784 /* MHRotaryKnob.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
