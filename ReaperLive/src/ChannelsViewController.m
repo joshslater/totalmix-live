@@ -95,6 +95,9 @@
         cell = [self channelTableCell];
         [self setChannelTableCell:nil];
         
+        // give the channel label rounded corners
+        cell.channelLabel.layer.cornerRadius = 6;
+        //cell.channelLabel.backgroundColor = [UIColor whiteColor];
 
         /**************************/
         /********* FADER  *********/
