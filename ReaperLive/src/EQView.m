@@ -33,9 +33,7 @@
             [gainKnob setKnobImage:[UIImage imageNamed:@"Knob Disabled.png"] forState:UIControlStateDisabled];
             gainKnob.interactionStyle = MHRotaryKnobInteractionStyleSliderVertical;
             gainKnob.knobImageCenter = CGPointMake(40.0f, 40.0f);
-            
-            gainKnob.value = counter*M_PI/50;
-            
+           
             counter++;
         }    
         
@@ -47,8 +45,7 @@
             [freqKnob setKnobImage:[UIImage imageNamed:@"Knob Disabled.png"] forState:UIControlStateDisabled];
             freqKnob.interactionStyle = MHRotaryKnobInteractionStyleSliderVertical;
             freqKnob.knobImageCenter = CGPointMake(40.0f, 40.0f);
-            
-            freqKnob.value = counter*M_PI/50;
+
             
             counter++;
         }     
@@ -62,20 +59,16 @@
             qKnob.interactionStyle = MHRotaryKnobInteractionStyleSliderVertical;
             qKnob.knobImageCenter = CGPointMake(40.0f, 40.0f);
             
-            qKnob.value = counter*M_PI/50;
-            
             counter++;
         }
 
-        
-
-        
-
-                
         [self addSubview:self.view];
     }
     return self;
 }
+
+
+
 
 /*
 // Only override drawRect: if you perform custom drawing.

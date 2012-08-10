@@ -11,6 +11,7 @@
 #import "CompView.h"
 #import "EQView.h"
 #import "GateView.h"
+#import "MHRotaryKnob.h"
 
 #define DETAILED_CHANNEL_VIEW_HEIGHT 300
 
@@ -38,13 +39,36 @@
                                       ];
     
     // add the 3 channel views
-    GateView *gateView = [[GateView alloc] initWithFrame:CGRectMake(0, 0, CHANNELS_WIDTH, DETAILED_CHANNEL_VIEW_HEIGHT)];
+    gateView = [[GateView alloc] initWithFrame:CGRectMake(0, 0, CHANNELS_WIDTH, DETAILED_CHANNEL_VIEW_HEIGHT)];
     [self.detailedChannelScrollView addSubview:gateView];
     
-    CompView *compView = [[CompView alloc] initWithFrame:CGRectMake(CHANNELS_WIDTH, 0, CHANNELS_WIDTH, DETAILED_CHANNEL_VIEW_HEIGHT)];
+    compView = [[CompView alloc] initWithFrame:CGRectMake(CHANNELS_WIDTH, 0, CHANNELS_WIDTH, DETAILED_CHANNEL_VIEW_HEIGHT)];
     [self.detailedChannelScrollView addSubview:compView];
     
-    EQView *eqView = [[EQView alloc] initWithFrame:CGRectMake(2*CHANNELS_WIDTH, 0, CHANNELS_WIDTH, DETAILED_CHANNEL_VIEW_HEIGHT)];
+    
+    /******* EQ VIEW *******/
+    
+    eqView = [[EQView alloc] initWithFrame:CGRectMake(2*CHANNELS_WIDTH, 0, CHANNELS_WIDTH, DETAILED_CHANNEL_VIEW_HEIGHT)];
+    
+    // add targets for each of the knob IBOutletCollections
+    for (MHRotaryKnob *gainKnob in eqView.gainKnobs)
+    {
+        [gainKnob addTarget:self action:@selector(gainKnobDidChange:) forControlEvents:UIControlEventValueChanged];
+    }
+    
+    // add targets for each of the knob IBOutletCollections
+    for (MHRotaryKnob *freqKnob in eqView.freqKnobs)
+    {
+        [freqKnob addTarget:self action:@selector(freqKnobDidChange:) forControlEvents:UIControlEventValueChanged];
+    }
+    
+    // add targets for each of the knob IBOutletCollections
+    for (MHRotaryKnob *qKnob in eqView.qKnobs)
+    {
+        [qKnob addTarget:self action:@selector(qKnobDidChange:) forControlEvents:UIControlEventValueChanged];
+    }
+    
+    
     [self.detailedChannelScrollView addSubview:eqView];
     
     // set the content size to be 3 x 1024
@@ -132,6 +156,29 @@
     [UIView animateWithDuration:0.5
                      animations:^{closeDetailedChannelViewButton.alpha = 1.0;}
                      completion:nil];    
+}
+
+- (void)gainKnobDidChange:(MHRotaryKnob *)sender
+{
+    int idx = [eqView.gainKnobs indexOfObject:sender];
+    
+    NSLog(@"idx %d -- gain value = %0.3f",idx, sender.value);
+}
+
+- (void)freqKnobDidChange:(MHRotaryKnob *)sender
+{
+    int idx = [eqView.freqKnobs indexOfObject:sender];
+    
+    NSLog(@"idx %d -- freq value = %0.3f",idx, sender.value);
+}
+
+- (void)qKnobDidChange:(MHRotaryKnob *)sender
+{
+    int idx = [eqView.qKnobs indexOfObject:sender];
+    
+    NSLog(@"idx %d -- q value = %0.3f",idx,sender.value);
+    
+    
 }
 
 @end

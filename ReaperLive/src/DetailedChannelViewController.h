@@ -8,7 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@class EQView;
+@class CompView;
+@class GateView;
+
 @interface DetailedChannelViewController : UIViewController <UIScrollViewDelegate>
+{
+    EQView *eqView;
+    CompView *compView;
+    GateView *gateView;
+}
 
 @property (strong, nonatomic) IBOutlet UIScrollView *detailedChannelScrollView;
 @property (strong, nonatomic) UIButton *closeDetailedChannelViewButton;
