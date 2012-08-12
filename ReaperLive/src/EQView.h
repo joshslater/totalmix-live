@@ -17,4 +17,8 @@
 @property (strong, nonatomic) IBOutletCollection(MHRotaryKnob) NSArray *freqKnobs;
 @property (strong, nonatomic) IBOutletCollection(MHRotaryKnob) NSArray *qKnobs;
 
+@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *gainLabels;
+@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *freqLabels;
+@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *qLabels;
+
 @end

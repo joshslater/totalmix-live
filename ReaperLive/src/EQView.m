@@ -16,6 +16,10 @@
 @synthesize freqKnobs;
 @synthesize qKnobs;
 
+@synthesize gainLabels;
+@synthesize freqLabels;
+@synthesize qLabels;
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -27,24 +31,24 @@
         
         for (MHRotaryKnob *gainKnob in self.gainKnobs)
         {
-            gainKnob.backgroundImage = [UIImage imageNamed:@"Knob Background.png"];
-            [gainKnob setKnobImage:[UIImage imageNamed:@"Knob.png"] forState:UIControlStateNormal];
-            [gainKnob setKnobImage:[UIImage imageNamed:@"Knob Highlighted.png"] forState:UIControlStateHighlighted];
-            [gainKnob setKnobImage:[UIImage imageNamed:@"Knob Disabled.png"] forState:UIControlStateDisabled];
+            gainKnob.backgroundImage = [UIImage imageNamed:@"Knob-Rim.png"];
+            [gainKnob setKnobImage:[UIImage imageNamed:@"Knob-Base.png"] forState:UIControlStateNormal];
+            [gainKnob setKnobImage:[UIImage imageNamed:@"Knob-Base.png"] forState:UIControlStateHighlighted];
+            [gainKnob setKnobImage:[UIImage imageNamed:@"Knob-Base.png"] forState:UIControlStateDisabled];
             gainKnob.interactionStyle = MHRotaryKnobInteractionStyleSliderVertical;
-            gainKnob.knobImageCenter = CGPointMake(40.0f, 40.0f);
+            gainKnob.knobImageCenter = CGPointMake(25.0f, 25.0f);
            
             counter++;
         }    
         
         for (MHRotaryKnob *freqKnob in self.freqKnobs)
         {
-            freqKnob.backgroundImage = [UIImage imageNamed:@"Knob Background.png"];
-            [freqKnob setKnobImage:[UIImage imageNamed:@"Knob.png"] forState:UIControlStateNormal];
-            [freqKnob setKnobImage:[UIImage imageNamed:@"Knob Highlighted.png"] forState:UIControlStateHighlighted];
-            [freqKnob setKnobImage:[UIImage imageNamed:@"Knob Disabled.png"] forState:UIControlStateDisabled];
+            freqKnob.backgroundImage = [UIImage imageNamed:@"Knob-Rim.png"];
+            [freqKnob setKnobImage:[UIImage imageNamed:@"Knob-Base.png"] forState:UIControlStateNormal];
+            [freqKnob setKnobImage:[UIImage imageNamed:@"Knob-Base.png"] forState:UIControlStateHighlighted];
+            [freqKnob setKnobImage:[UIImage imageNamed:@"Knob-Base.png"] forState:UIControlStateDisabled];
             freqKnob.interactionStyle = MHRotaryKnobInteractionStyleSliderVertical;
-            freqKnob.knobImageCenter = CGPointMake(40.0f, 40.0f);
+            freqKnob.knobImageCenter = CGPointMake(25.0f, 25.0f);
 
             
             counter++;
@@ -52,12 +56,12 @@
         
         for (MHRotaryKnob *qKnob in self.qKnobs)
         {
-            qKnob.backgroundImage = [UIImage imageNamed:@"Knob Background.png"];
-            [qKnob setKnobImage:[UIImage imageNamed:@"Knob.png"] forState:UIControlStateNormal];
-            [qKnob setKnobImage:[UIImage imageNamed:@"Knob Highlighted.png"] forState:UIControlStateHighlighted];
-            [qKnob setKnobImage:[UIImage imageNamed:@"Knob Disabled.png"] forState:UIControlStateDisabled];
+            qKnob.backgroundImage = [UIImage imageNamed:@"Knob-Rim.png"];
+            [qKnob setKnobImage:[UIImage imageNamed:@"Knob-Base.png"] forState:UIControlStateNormal];
+            [qKnob setKnobImage:[UIImage imageNamed:@"Knob-Base.png"] forState:UIControlStateHighlighted];
+            [qKnob setKnobImage:[UIImage imageNamed:@"Knob-Base.png"] forState:UIControlStateDisabled];
             qKnob.interactionStyle = MHRotaryKnobInteractionStyleSliderVertical;
-            qKnob.knobImageCenter = CGPointMake(40.0f, 40.0f);
+            qKnob.knobImageCenter = CGPointMake(25.0f, 25.0f);
             
             counter++;
         }

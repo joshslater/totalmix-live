@@ -54,18 +54,30 @@
     for (MHRotaryKnob *gainKnob in eqView.gainKnobs)
     {
         [gainKnob addTarget:self action:@selector(gainKnobDidChange:) forControlEvents:UIControlEventValueChanged];
+        gainKnob.minimumValue = -15.0;
+        gainKnob.maximumValue =  15.0;
+        gainKnob.value = 0;
+        [self gainKnobDidChange:gainKnob];
     }
     
     // add targets for each of the knob IBOutletCollections
     for (MHRotaryKnob *freqKnob in eqView.freqKnobs)
     {
         [freqKnob addTarget:self action:@selector(freqKnobDidChange:) forControlEvents:UIControlEventValueChanged];
+        freqKnob.minimumValue = 20.0;
+        freqKnob.maximumValue = 22000.0;
+        freqKnob.value = 1000;
+        [self freqKnobDidChange:freqKnob];
     }
     
     // add targets for each of the knob IBOutletCollections
     for (MHRotaryKnob *qKnob in eqView.qKnobs)
     {
         [qKnob addTarget:self action:@selector(qKnobDidChange:) forControlEvents:UIControlEventValueChanged];
+        qKnob.minimumValue = 0.1;
+        qKnob.maximumValue = 3.0;
+        qKnob.value = 0.707;
+        [self qKnobDidChange:qKnob];
     }
     
     
@@ -161,24 +173,28 @@
 - (void)gainKnobDidChange:(MHRotaryKnob *)sender
 {
     int idx = [eqView.gainKnobs indexOfObject:sender];
-    
-    NSLog(@"idx %d -- gain value = %0.3f",idx, sender.value);
+    UILabel *gainLabel = [eqView.gainLabels objectAtIndex:idx];
+    MHRotaryKnob *gainKnob = [eqView.gainKnobs objectAtIndex:idx];
+        
+    gainLabel.text = [NSString stringWithFormat:@"%0.0f",gainKnob.value];
 }
 
 - (void)freqKnobDidChange:(MHRotaryKnob *)sender
 {
     int idx = [eqView.freqKnobs indexOfObject:sender];
+    UILabel *freqLabel = [eqView.freqLabels objectAtIndex:idx];
+    MHRotaryKnob *freqKnob = [eqView.freqKnobs objectAtIndex:idx];
     
-    NSLog(@"idx %d -- freq value = %0.3f",idx, sender.value);
+    freqLabel.text = [NSString stringWithFormat:@"%0.0f",freqKnob.value];
 }
 
 - (void)qKnobDidChange:(MHRotaryKnob *)sender
 {
     int idx = [eqView.qKnobs indexOfObject:sender];
+    UILabel *qLabel = [eqView.qLabels objectAtIndex:idx];
+    MHRotaryKnob *qKnob = [eqView.qKnobs objectAtIndex:idx];
     
-    NSLog(@"idx %d -- q value = %0.3f",idx,sender.value);
-    
-    
+    qLabel.text = [NSString stringWithFormat:@"%0.3f",qKnob.value];
 }
 
 @end
