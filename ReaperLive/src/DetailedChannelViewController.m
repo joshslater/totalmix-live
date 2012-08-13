@@ -8,8 +8,8 @@
 
 #import "ChannelsViewController.h"
 #import "DetailedChannelViewController.h"
+#import "EqViewController.h"
 #import "CompView.h"
-#import "EQView.h"
 #import "GateView.h"
 #import "MHRotaryKnob.h"
 
@@ -23,6 +23,8 @@
 
 @synthesize detailedChannelScrollView;
 @synthesize closeDetailedChannelViewButton;
+
+@synthesize eqViewController;
 
 - (void)loadView
 {
@@ -48,40 +50,12 @@
     
     /******* EQ VIEW *******/
     
-    eqView = [[EQView alloc] initWithFrame:CGRectMake(2*CHANNELS_WIDTH, 0, CHANNELS_WIDTH, DETAILED_CHANNEL_VIEW_HEIGHT)];
-    
-    // add targets for each of the knob IBOutletCollections
-    for (MHRotaryKnob *gainKnob in eqView.gainKnobs)
-    {
-        [gainKnob addTarget:self action:@selector(gainKnobDidChange:) forControlEvents:UIControlEventValueChanged];
-        gainKnob.minimumValue = -15.0;
-        gainKnob.maximumValue =  15.0;
-        gainKnob.value = 0;
-        [self gainKnobDidChange:gainKnob];
-    }
-    
-    // add targets for each of the knob IBOutletCollections
-    for (MHRotaryKnob *freqKnob in eqView.freqKnobs)
-    {
-        [freqKnob addTarget:self action:@selector(freqKnobDidChange:) forControlEvents:UIControlEventValueChanged];
-        freqKnob.minimumValue = 20.0;
-        freqKnob.maximumValue = 22000.0;
-        freqKnob.value = 1000;
-        [self freqKnobDidChange:freqKnob];
-    }
-    
-    // add targets for each of the knob IBOutletCollections
-    for (MHRotaryKnob *qKnob in eqView.qKnobs)
-    {
-        [qKnob addTarget:self action:@selector(qKnobDidChange:) forControlEvents:UIControlEventValueChanged];
-        qKnob.minimumValue = 0.1;
-        qKnob.maximumValue = 3.0;
-        qKnob.value = 0.707;
-        [self qKnobDidChange:qKnob];
-    }
-    
-    
-    [self.detailedChannelScrollView addSubview:eqView];
+    ///////////////////////////////
+    // create eq view controller //
+    ///////////////////////////////
+    self.eqViewController = [[EqViewController alloc] init];
+    [self addChildViewController:self.eqViewController];
+    [self.detailedChannelScrollView addSubview:eqViewController.view];
     
     // set the content size to be 3 x 1024
     detailedChannelScrollView.contentSize = CGSizeMake(3*CHANNELS_WIDTH, DETAILED_CHANNEL_VIEW_HEIGHT);
@@ -168,33 +142,6 @@
     [UIView animateWithDuration:0.5
                      animations:^{closeDetailedChannelViewButton.alpha = 1.0;}
                      completion:nil];    
-}
-
-- (void)gainKnobDidChange:(MHRotaryKnob *)sender
-{
-    int idx = [eqView.gainKnobs indexOfObject:sender];
-    UILabel *gainLabel = [eqView.gainLabels objectAtIndex:idx];
-    MHRotaryKnob *gainKnob = [eqView.gainKnobs objectAtIndex:idx];
-        
-    gainLabel.text = [NSString stringWithFormat:@"%0.0f",gainKnob.value];
-}
-
-- (void)freqKnobDidChange:(MHRotaryKnob *)sender
-{
-    int idx = [eqView.freqKnobs indexOfObject:sender];
-    UILabel *freqLabel = [eqView.freqLabels objectAtIndex:idx];
-    MHRotaryKnob *freqKnob = [eqView.freqKnobs objectAtIndex:idx];
-    
-    freqLabel.text = [NSString stringWithFormat:@"%0.0f",freqKnob.value];
-}
-
-- (void)qKnobDidChange:(MHRotaryKnob *)sender
-{
-    int idx = [eqView.qKnobs indexOfObject:sender];
-    UILabel *qLabel = [eqView.qLabels objectAtIndex:idx];
-    MHRotaryKnob *qKnob = [eqView.qKnobs objectAtIndex:idx];
-    
-    qLabel.text = [NSString stringWithFormat:@"%0.3f",qKnob.value];
 }
 
 @end

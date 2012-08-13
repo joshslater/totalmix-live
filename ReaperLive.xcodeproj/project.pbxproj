@@ -25,6 +25,10 @@
 		03712C4A15D82E3F00EC9665 /* Knob@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03712C4815D82E3F00EC9665 /* Knob@2x.png */; };
 		03712C4E15D82E4D00EC9665 /* Knob-Selector.png in Resources */ = {isa = PBXBuildFile; fileRef = 03712C4C15D82E4D00EC9665 /* Knob-Selector.png */; };
 		03712C4F15D82E4D00EC9665 /* Knob.png in Resources */ = {isa = PBXBuildFile; fileRef = 03712C4D15D82E4D00EC9665 /* Knob.png */; };
+		03712C5515D84C4F00EC9665 /* EQ-Point.png in Resources */ = {isa = PBXBuildFile; fileRef = 03712C5415D84C4F00EC9665 /* EQ-Point.png */; };
+		03712C5815D882F600EC9665 /* EqCurveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03712C5715D882F600EC9665 /* EqCurveView.m */; };
+		03712C5B15D8ADC400EC9665 /* EqPointsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03712C5A15D8ADC300EC9665 /* EqPointsView.m */; };
+		03712C6215D8B62900EC9665 /* EqViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03712C6115D8B62900EC9665 /* EqViewController.m */; };
 		03ADD57115BCFC0900EBDC71 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03ADD57015BCFC0900EBDC71 /* UIKit.framework */; };
 		03ADD57315BCFC0900EBDC71 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03ADD57215BCFC0900EBDC71 /* Foundation.framework */; };
 		03ADD57515BCFC0900EBDC71 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03ADD57415BCFC0900EBDC71 /* CoreGraphics.framework */; };
@@ -50,7 +54,6 @@
 		03C867F615C6617F001ECCAD /* VolumeSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C867F515C6617E001ECCAD /* VolumeSlider.m */; };
 		03F2326C15C0E0D1009B0390 /* CompView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F2326B15C0E0D1009B0390 /* CompView.m */; };
 		03F2326E15C0E0E3009B0390 /* CompView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03F2326D15C0E0E3009B0390 /* CompView.xib */; };
-		03F2327415C0E4CC009B0390 /* EQView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F2327315C0E4CB009B0390 /* EQView.m */; };
 		03F2327715C0E4DB009B0390 /* GateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F2327615C0E4DA009B0390 /* GateView.m */; };
 		03F2327915C0E4E9009B0390 /* EQView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03F2327815C0E4E9009B0390 /* EQView.xib */; };
 		03F2327B15C0E4FB009B0390 /* GateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03F2327A15C0E4FB009B0390 /* GateView.xib */; };
@@ -79,6 +82,13 @@
 		03712C4815D82E3F00EC9665 /* Knob@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Knob@2x.png"; sourceTree = "<group>"; };
 		03712C4C15D82E4D00EC9665 /* Knob-Selector.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Knob-Selector.png"; sourceTree = "<group>"; };
 		03712C4D15D82E4D00EC9665 /* Knob.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Knob.png; sourceTree = "<group>"; };
+		03712C5415D84C4F00EC9665 /* EQ-Point.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EQ-Point.png"; sourceTree = "<group>"; };
+		03712C5615D882F600EC9665 /* EqCurveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EqCurveView.h; sourceTree = "<group>"; };
+		03712C5715D882F600EC9665 /* EqCurveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EqCurveView.m; sourceTree = "<group>"; };
+		03712C5915D8ADC300EC9665 /* EqPointsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EqPointsView.h; sourceTree = "<group>"; };
+		03712C5A15D8ADC300EC9665 /* EqPointsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EqPointsView.m; sourceTree = "<group>"; };
+		03712C6015D8B62900EC9665 /* EqViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EqViewController.h; sourceTree = "<group>"; };
+		03712C6115D8B62900EC9665 /* EqViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EqViewController.m; sourceTree = "<group>"; };
 		03ADD56C15BCFC0900EBDC71 /* ReaperLive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReaperLive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03ADD57015BCFC0900EBDC71 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		03ADD57215BCFC0900EBDC71 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -113,8 +123,6 @@
 		03F2326A15C0E0D1009B0390 /* CompView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompView.h; sourceTree = "<group>"; };
 		03F2326B15C0E0D1009B0390 /* CompView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompView.m; sourceTree = "<group>"; };
 		03F2326D15C0E0E3009B0390 /* CompView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompView.xib; sourceTree = "<group>"; };
-		03F2327215C0E4CB009B0390 /* EQView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQView.h; sourceTree = "<group>"; };
-		03F2327315C0E4CB009B0390 /* EQView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EQView.m; sourceTree = "<group>"; };
 		03F2327515C0E4DA009B0390 /* GateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GateView.h; sourceTree = "<group>"; };
 		03F2327615C0E4DA009B0390 /* GateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GateView.m; sourceTree = "<group>"; };
 		03F2327815C0E4E9009B0390 /* EQView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EQView.xib; sourceTree = "<group>"; };
@@ -143,6 +151,7 @@
 		0309E6E215D2405C004FDD58 /* @1x */ = {
 			isa = PBXGroup;
 			children = (
+				03712C5415D84C4F00EC9665 /* EQ-Point.png */,
 				03712C4C15D82E4D00EC9665 /* Knob-Selector.png */,
 				03712C4D15D82E4D00EC9665 /* Knob.png */,
 				03F2327C15C0ECB4009B0390 /* delete_control.jpg */,
@@ -268,10 +277,12 @@
 			children = (
 				03F2326A15C0E0D1009B0390 /* CompView.h */,
 				03F2326B15C0E0D1009B0390 /* CompView.m */,
-				03F2327215C0E4CB009B0390 /* EQView.h */,
-				03F2327315C0E4CB009B0390 /* EQView.m */,
 				03F2327515C0E4DA009B0390 /* GateView.h */,
 				03F2327615C0E4DA009B0390 /* GateView.m */,
+				03712C5615D882F600EC9665 /* EqCurveView.h */,
+				03712C5715D882F600EC9665 /* EqCurveView.m */,
+				03712C5915D8ADC300EC9665 /* EqPointsView.h */,
+				03712C5A15D8ADC300EC9665 /* EqPointsView.m */,
 			);
 			name = "Detailed Channel";
 			sourceTree = "<group>";
@@ -296,6 +307,8 @@
 				03ADD58315BCFC0900EBDC71 /* ChannelsViewController.m */,
 				03F292F615C63E3A007D1440 /* DetailedChannelViewController.h */,
 				03F292F715C63E3A007D1440 /* DetailedChannelViewController.m */,
+				03712C6015D8B62900EC9665 /* EqViewController.h */,
+				03712C6115D8B62900EC9665 /* EqViewController.m */,
 				03F2328A15C2691D009B0390 /* Helpers */,
 			);
 			name = Controllers;
@@ -420,6 +433,7 @@
 				03712C4A15D82E3F00EC9665 /* Knob@2x.png in Resources */,
 				03712C4E15D82E4D00EC9665 /* Knob-Selector.png in Resources */,
 				03712C4F15D82E4D00EC9665 /* Knob.png in Resources */,
+				03712C5515D84C4F00EC9665 /* EQ-Point.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,12 +450,14 @@
 				03ADD59615BD102D00EBDC71 /* ChannelTableCell.m in Sources */,
 				03ADD59915BD107F00EBDC71 /* Channel.m in Sources */,
 				03F2326C15C0E0D1009B0390 /* CompView.m in Sources */,
-				03F2327415C0E4CC009B0390 /* EQView.m in Sources */,
 				03F2327715C0E4DB009B0390 /* GateView.m in Sources */,
 				03F292F815C63E3A007D1440 /* DetailedChannelViewController.m in Sources */,
 				03C867F615C6617F001ECCAD /* VolumeSlider.m in Sources */,
 				0345FB5215D3660F009130E2 /* VerticalSlider.m in Sources */,
 				03F3CD7015D38552006AD784 /* MHRotaryKnob.m in Sources */,
+				03712C5815D882F600EC9665 /* EqCurveView.m in Sources */,
+				03712C5B15D8ADC400EC9665 /* EqPointsView.m in Sources */,
+				03712C6215D8B62900EC9665 /* EqViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
