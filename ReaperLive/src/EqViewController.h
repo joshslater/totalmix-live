@@ -30,7 +30,6 @@
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *qLabels;
 
 
-
 @property (strong, nonatomic) NSMutableArray *gainPoints;
 @property (strong, nonatomic) NSMutableArray *freqPoints;
 

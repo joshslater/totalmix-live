@@ -6,13 +6,13 @@
 //  Copyright (c) 2012 Self. All rights reserved.
 //
 
+#import "Contants.h"
 #import "ChannelsViewController.h"
 #import "Channel.h"
 #import "ChannelTableCell.h"
 #import "VolumeSlider.h"
 #import "VerticalSlider.h"
 
-#define CHANNELS_HEIGHT 768
 
 @interface ChannelsViewController ()
 

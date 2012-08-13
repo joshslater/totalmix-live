@@ -12,8 +12,6 @@
 #import "ChannelTableCell.h"
 #import "DetailedChannelViewController.h"
 
-#define CHANNELS_WIDTH 1024
-
 @interface ChannelsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) NSMutableArray *channels;

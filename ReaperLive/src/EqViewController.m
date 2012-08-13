@@ -6,14 +6,13 @@
 //  Copyright (c) 2012 Self. All rights reserved.
 //
 
+#import "Contants.h"
 #import "EqViewController.h"
 #import "ChannelsViewController.h"
 #import "DetailedChannelViewController.h"
 #import "MHRotaryKnob.h"
 #import "EqPointsView.h"
 #import "EqCurveView.h"
-
-#define DETAILED_CHANNEL_VIEW_HEIGHT 300
 
 @interface EqViewController ()
 
@@ -127,6 +126,12 @@
         
     [self.view addSubview:eqCurveView];
     [self.view addSubview:eqPointsView];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+	// Do any additional setup after loading the view.
     
     
     // add targets for each of the knob IBOutletCollections
@@ -158,12 +163,6 @@
         qKnob.value = 0.707;
         [self qKnobDidChange:qKnob];
     }
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
 }
 
 - (void)viewDidUnload

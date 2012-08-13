@@ -106,6 +106,7 @@
 		03ADD59415BD0CD100EBDC71 /* ChannelTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChannelTableCell.xib; sourceTree = "<group>"; };
 		03ADD59715BD107F00EBDC71 /* Channel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Channel.h; sourceTree = "<group>"; };
 		03ADD59815BD107F00EBDC71 /* Channel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Channel.m; sourceTree = "<group>"; };
+		03BDCAA115D8DBCC0060456B /* Contants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Contants.h; path = src/Contants.h; sourceTree = "<group>"; };
 		03C1494215D37599008DCE9C /* DetailedComp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DetailedComp@2x.png"; sourceTree = "<group>"; };
 		03C1494315D37599008DCE9C /* DetailedGate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DetailedGate@2x.png"; sourceTree = "<group>"; };
 		03C1494415D37599008DCE9C /* FaderCap@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FaderCap@2x.png"; sourceTree = "<group>"; };
@@ -259,6 +260,7 @@
 				03ADD57915BCFC0900EBDC71 /* InfoPlist.strings */,
 				03ADD57C15BCFC0900EBDC71 /* main.m */,
 				03ADD57E15BCFC0900EBDC71 /* ReaperLive-Prefix.pch */,
+				03BDCAA115D8DBCC0060456B /* Contants.h */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";

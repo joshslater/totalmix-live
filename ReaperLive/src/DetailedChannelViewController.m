@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 Self. All rights reserved.
 //
 
+#import "Contants.h"
 #import "ChannelsViewController.h"
 #import "DetailedChannelViewController.h"
 #import "EqViewController.h"
@@ -13,7 +14,6 @@
 #import "GateView.h"
 #import "MHRotaryKnob.h"
 
-#define DETAILED_CHANNEL_VIEW_HEIGHT 300
 
 @interface DetailedChannelViewController ()
 
