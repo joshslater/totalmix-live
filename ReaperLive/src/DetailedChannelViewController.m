@@ -14,7 +14,6 @@
 #import "GateView.h"
 #import "MHRotaryKnob.h"
 
-
 @interface DetailedChannelViewController ()
 
 @end
