@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 Self. All rights reserved.
 //
 
+#import "Contants.h"
 #import "EqPointsView.h"
 
 @implementation EqPointsView
@@ -30,19 +31,16 @@
         {
             UIImageView *eqPoint =[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"EQ-Point.png"]];
             
+#if 0            
             NSLog(@"%x",(unsigned int)eqPoint);
-            eqPoint.frame = CGRectMake(200 + 100*i, 150, 15, 15);
+#endif
             
             [eqPointImages addObject:eqPoint]; 
             [self addSubview:eqPoint];
             
             UIImageView *test = [eqPointImages objectAtIndex:i];
             NSLog(@"%x",(unsigned int)test);
-        }
-        
-        
-        
-        
+        }        
     }
     return self;
 }
@@ -57,8 +55,13 @@
         
         // move the EQ point
         CGRect frame = eqPoint.frame;
-        frame.origin.y = 152 + [[gainPoints objectAtIndex:i] floatValue] * -5.1;
-        frame.origin.x = 88 + 163*(log10f([[freqPoints objectAtIndex:i] floatValue]) - log10f(20));
+        frame.origin.y = (DET_EQ_MAX_GAIN - DET_EQ_MIN_GAIN) * DET_EQ_PIXELS_PER_DB / 2 + [[gainPoints objectAtIndex:i] floatValue] * -DET_EQ_PIXELS_PER_DB;
+        frame.origin.x = DET_EQ_PIXELS_PER_DECADE * (log10f([[freqPoints objectAtIndex:i] floatValue]) - log10f(DET_EQ_MIN_FREQ));
+
+        // subtract half the height/width
+        frame.origin.x -= frame.size.width/2;
+        frame.origin.y -= frame.size.width/2;
+        
         eqPoint.frame = frame; 
     }
 

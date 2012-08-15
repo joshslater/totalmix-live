@@ -59,11 +59,11 @@
     self.view.frame = CGRectMake(2*CHANNELS_WIDTH, 0, CHANNELS_WIDTH, DETAILED_CHANNEL_VIEW_HEIGHT);
         
     // create the EQ points view
-    eqPointsView = [[EqPointsView alloc] initWithFrame:CGRectMake(0, 0, 650, 500)];
+    eqPointsView = [[EqPointsView alloc] initWithFrame:CGRectMake(88, 48, 450, 200)];
     eqPointsView.opaque = NO;
     
     // create the EQ curve view
-    eqCurveView = [[EqCurveView alloc] initWithFrame:CGRectMake(0, 0, 650, 500)];
+    eqCurveView = [[EqCurveView alloc] initWithFrame:CGRectMake(88, 48, 450, 200)];
     eqCurveView.opaque = NO;
     
     // initialize self's points arrays
@@ -138,8 +138,8 @@
     for (MHRotaryKnob *gainKnob in gainKnobs)
     {
         [gainKnob addTarget:self action:@selector(gainKnobDidChange:) forControlEvents:UIControlEventValueChanged];
-        gainKnob.minimumValue = -20.0;
-        gainKnob.maximumValue =  20.0;
+        gainKnob.minimumValue = DET_EQ_MIN_GAIN;
+        gainKnob.maximumValue = DET_EQ_MAX_GAIN;
         gainKnob.value = 0;
         [self gainKnobDidChange:gainKnob];
     }
@@ -148,8 +148,8 @@
     for (MHRotaryKnob *freqKnob in freqKnobs)
     {
         [freqKnob addTarget:self action:@selector(freqKnobDidChange:) forControlEvents:UIControlEventValueChanged];
-        freqKnob.minimumValue = 20.0;
-        freqKnob.maximumValue = 22000.0;
+        freqKnob.minimumValue = DET_EQ_MIN_FREQ;
+        freqKnob.maximumValue = DET_EQ_MAX_FREQ;
         freqKnob.value = 1000;
         [self freqKnobDidChange:freqKnob];
     }
@@ -208,7 +208,7 @@
 {
     int idx = [gainKnobs indexOfObject:sender];
     
-#if 1
+#if 0
     NSLog(@"idx = %d",idx);
 #endif
     

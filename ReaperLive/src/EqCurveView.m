@@ -7,6 +7,7 @@
 //
 
 #import "EqCurveView.h"
+#import "Contants.h"
 
 @implementation EqCurveView
 
@@ -39,7 +40,7 @@
     // convert the frequency points into log scale and add line to path
     for (int i = 0; i < 4; i++)
     {
-        float logFreq = log10f([[freqPoints objectAtIndex:i] floatValue]) - log10f(20);
+        float logFreq = log10f([[freqPoints objectAtIndex:i] floatValue]) - log10f(DET_EQ_MIN_FREQ);
         
         if(i == 0)
         {
@@ -47,7 +48,7 @@
         }
         
         // Draw the lines
-        [eqPath addLineToPoint:CGPointMake(163 * logFreq, [[gainPoints objectAtIndex:i] floatValue] * -5.1)];
+        [eqPath addLineToPoint:CGPointMake(DET_EQ_PIXELS_PER_DECADE * logFreq, [[gainPoints objectAtIndex:i] floatValue] * -DET_EQ_PIXELS_PER_DB)];
     }
     
     // Set the render colors
@@ -62,7 +63,7 @@
     
     // Adjust the view's origin temporarily. The oval is
     // now drawn relative to the new origin point.
-    CGContextTranslateCTM(aRef, 88, 152);
+    CGContextTranslateCTM(aRef, 0, (DET_EQ_MAX_GAIN - DET_EQ_MIN_GAIN) * DET_EQ_PIXELS_PER_DB / 2);
     
     // Adjust the drawing options as needed.
     eqPath.lineWidth = 5;
