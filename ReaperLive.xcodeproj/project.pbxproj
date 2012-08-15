@@ -39,6 +39,7 @@
 		03ADD59515BD0FFE00EBDC71 /* ChannelTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03ADD59415BD0CD100EBDC71 /* ChannelTableCell.xib */; };
 		03ADD59615BD102D00EBDC71 /* ChannelTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03ADD59315BD0CD100EBDC71 /* ChannelTableCell.m */; };
 		03ADD59915BD107F00EBDC71 /* Channel.m in Sources */ = {isa = PBXBuildFile; fileRef = 03ADD59815BD107F00EBDC71 /* Channel.m */; };
+		03B2006A15DB822700FC8C3C /* EQ-Point@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03B2006915DB822700FC8C3C /* EQ-Point@2x.png */; };
 		03C1494E15D37599008DCE9C /* DetailedComp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03C1494215D37599008DCE9C /* DetailedComp@2x.png */; };
 		03C1494F15D37599008DCE9C /* DetailedGate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03C1494315D37599008DCE9C /* DetailedGate@2x.png */; };
 		03C1495015D37599008DCE9C /* FaderCap@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03C1494415D37599008DCE9C /* FaderCap@2x.png */; };
@@ -106,6 +107,7 @@
 		03ADD59415BD0CD100EBDC71 /* ChannelTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChannelTableCell.xib; sourceTree = "<group>"; };
 		03ADD59715BD107F00EBDC71 /* Channel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Channel.h; sourceTree = "<group>"; };
 		03ADD59815BD107F00EBDC71 /* Channel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Channel.m; sourceTree = "<group>"; };
+		03B2006915DB822700FC8C3C /* EQ-Point@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EQ-Point@2x.png"; sourceTree = "<group>"; };
 		03BDCAA115D8DBCC0060456B /* Contants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Contants.h; path = src/Contants.h; sourceTree = "<group>"; };
 		03C1494215D37599008DCE9C /* DetailedComp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DetailedComp@2x.png"; sourceTree = "<group>"; };
 		03C1494315D37599008DCE9C /* DetailedGate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DetailedGate@2x.png"; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 		0309E6E415D24066004FDD58 /* @2x */ = {
 			isa = PBXGroup;
 			children = (
+				03B2006915DB822700FC8C3C /* EQ-Point@2x.png */,
 				03712C4715D82E3F00EC9665 /* Knob-Selector@2x.png */,
 				03712C4815D82E3F00EC9665 /* Knob@2x.png */,
 				03C1494215D37599008DCE9C /* DetailedComp@2x.png */,
@@ -436,6 +439,7 @@
 				03712C4E15D82E4D00EC9665 /* Knob-Selector.png in Resources */,
 				03712C4F15D82E4D00EC9665 /* Knob.png in Resources */,
 				03712C5515D84C4F00EC9665 /* EQ-Point.png in Resources */,
+				03B2006A15DB822700FC8C3C /* EQ-Point@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -30,11 +30,11 @@
     NSLog(@"In DetailedChannelViewController -(void)loadView");
     
     // create an empty view
-    self.view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 300)];
+    self.view = [[UIView alloc] initWithFrame:CGRectMake(0, 44, CHANNELS_WIDTH, DETAILED_CHANNEL_VIEW_HEIGHT)];
         
     self.detailedChannelScrollView = [[UIScrollView alloc] 
                                       initWithFrame:CGRectMake(0, 
-                                                               44, 
+                                                               0, 
                                                                CHANNELS_WIDTH, 
                                                                DETAILED_CHANNEL_VIEW_HEIGHT)
                                       ];
@@ -77,7 +77,7 @@
     // create the detailed channel close button, but don't add to subview yet
     closeDetailedChannelViewButton = [UIButton buttonWithType:UIButtonTypeCustom];
     closeDetailedChannelViewButton.backgroundColor = [UIColor clearColor];
-    closeDetailedChannelViewButton.frame = CGRectMake(950, 50, 44, 44);
+    closeDetailedChannelViewButton.frame = CGRectMake(950, 0, 44, 44);
     [closeDetailedChannelViewButton setImage:[UIImage imageNamed:@"delete_control.jpg"] forState:UIControlStateNormal];
     [closeDetailedChannelViewButton addTarget:self action:@selector(closeDetailedChannelView:) forControlEvents:UIControlEventTouchDown];    
     
