@@ -89,10 +89,10 @@
     
     for (MHRotaryKnob *gainKnob in self.gainKnobs)
     {
-        gainKnob.backgroundImage = [UIImage imageNamed:@"Knob-Rim.png"];
-        [gainKnob setKnobImage:[UIImage imageNamed:@"Knob-Base.png"] forState:UIControlStateNormal];
-        [gainKnob setKnobImage:[UIImage imageNamed:@"Knob-Base.png"] forState:UIControlStateHighlighted];
-        [gainKnob setKnobImage:[UIImage imageNamed:@"Knob-Base.png"] forState:UIControlStateDisabled];
+        gainKnob.backgroundImage = [UIImage imageNamed:@"Knob.png"];
+        [gainKnob setKnobImage:[UIImage imageNamed:@"Knob-Selector.png"] forState:UIControlStateNormal];
+        [gainKnob setKnobImage:[UIImage imageNamed:@"Knob-Selector.png"] forState:UIControlStateHighlighted];
+        [gainKnob setKnobImage:[UIImage imageNamed:@"Knob-Selector.png"] forState:UIControlStateDisabled];
         gainKnob.interactionStyle = MHRotaryKnobInteractionStyleSliderVertical;
         gainKnob.knobImageCenter = CGPointMake(25.0f, 25.0f);
         
@@ -101,10 +101,10 @@
     
     for (MHRotaryKnob *freqKnob in self.freqKnobs)
     {
-        freqKnob.backgroundImage = [UIImage imageNamed:@"Knob-Rim.png"];
-        [freqKnob setKnobImage:[UIImage imageNamed:@"Knob-Base.png"] forState:UIControlStateNormal];
-        [freqKnob setKnobImage:[UIImage imageNamed:@"Knob-Base.png"] forState:UIControlStateHighlighted];
-        [freqKnob setKnobImage:[UIImage imageNamed:@"Knob-Base.png"] forState:UIControlStateDisabled];
+        freqKnob.backgroundImage = [UIImage imageNamed:@"Knob.png"];
+        [freqKnob setKnobImage:[UIImage imageNamed:@"Knob-Selector.png"] forState:UIControlStateNormal];
+        [freqKnob setKnobImage:[UIImage imageNamed:@"Knob-Selector.png"] forState:UIControlStateHighlighted];
+        [freqKnob setKnobImage:[UIImage imageNamed:@"Knob-Selector.png"] forState:UIControlStateDisabled];
         freqKnob.interactionStyle = MHRotaryKnobInteractionStyleSliderVertical;
         freqKnob.knobImageCenter = CGPointMake(25.0f, 25.0f);
         
@@ -114,10 +114,10 @@
     
     for (MHRotaryKnob *qKnob in self.qKnobs)
     {
-        qKnob.backgroundImage = [UIImage imageNamed:@"Knob-Rim.png"];
-        [qKnob setKnobImage:[UIImage imageNamed:@"Knob-Base.png"] forState:UIControlStateNormal];
-        [qKnob setKnobImage:[UIImage imageNamed:@"Knob-Base.png"] forState:UIControlStateHighlighted];
-        [qKnob setKnobImage:[UIImage imageNamed:@"Knob-Base.png"] forState:UIControlStateDisabled];
+        qKnob.backgroundImage = [UIImage imageNamed:@"Knob.png"];
+        [qKnob setKnobImage:[UIImage imageNamed:@"Knob-Selector.png"] forState:UIControlStateNormal];
+        [qKnob setKnobImage:[UIImage imageNamed:@"Knob-Selector.png"] forState:UIControlStateHighlighted];
+        [qKnob setKnobImage:[UIImage imageNamed:@"Knob-Selector.png"] forState:UIControlStateDisabled];
         qKnob.interactionStyle = MHRotaryKnobInteractionStyleSliderVertical;
         qKnob.knobImageCenter = CGPointMake(25.0f, 25.0f);
         
@@ -163,6 +163,34 @@
         qKnob.value = 0.707;
         [self qKnobDidChange:qKnob];
     }
+    
+    
+    // Order the knobs based on their x position
+    self.gainKnobs = [self.gainKnobs sortedArrayUsingComparator:
+                      ^NSComparisonResult(id gainKnob1, id gainKnob2) 
+                      {
+                          if ([gainKnob1 frame].origin.x < [gainKnob2 frame].origin.x) return NSOrderedAscending;
+                          else if ([gainKnob1 frame].origin.x > [gainKnob2 frame].origin.x) return NSOrderedDescending;
+                          else return NSOrderedSame;
+                      }];
+    
+    self.freqKnobs = [self.freqKnobs sortedArrayUsingComparator:
+                      ^NSComparisonResult(id freqKnob1, id freqKnob2) 
+                      {
+                          if ([freqKnob1 frame].origin.x < [freqKnob2 frame].origin.x) return NSOrderedAscending;
+                          else if ([freqKnob1 frame].origin.x > [freqKnob2 frame].origin.x) return NSOrderedDescending;
+                          else return NSOrderedSame;
+                      }];
+    
+    self.qKnobs = [self.qKnobs sortedArrayUsingComparator:
+                      ^NSComparisonResult(id qKnob1, id qKnob2) 
+                      {
+                          if ([qKnob1 frame].origin.x < [qKnob2 frame].origin.x) return NSOrderedAscending;
+                          else if ([qKnob1 frame].origin.x > [qKnob2 frame].origin.x) return NSOrderedDescending;
+                          else return NSOrderedSame;
+                      }];
+    
+    
 }
 
 - (void)viewDidUnload
@@ -179,6 +207,11 @@
 - (void)gainKnobDidChange:(MHRotaryKnob *)sender
 {
     int idx = [gainKnobs indexOfObject:sender];
+    
+#if 1
+    NSLog(@"idx = %d",idx);
+#endif
+    
     UILabel *gainLabel = [gainLabels objectAtIndex:idx];
     MHRotaryKnob *gainKnob = [gainKnobs objectAtIndex:idx];
     
