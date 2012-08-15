@@ -108,7 +108,6 @@
         freqKnob.interactionStyle = MHRotaryKnobInteractionStyleSliderVertical;
         freqKnob.knobImageCenter = CGPointMake(25.0f, 25.0f);
         
-        
         counter++;
     }     
     
@@ -148,9 +147,9 @@
     for (MHRotaryKnob *freqKnob in freqKnobs)
     {
         [freqKnob addTarget:self action:@selector(freqKnobDidChange:) forControlEvents:UIControlEventValueChanged];
-        freqKnob.minimumValue = DET_EQ_MIN_FREQ;
-        freqKnob.maximumValue = DET_EQ_MAX_FREQ;
-        freqKnob.value = 1000;
+        freqKnob.minimumValue = log10f(DET_EQ_MIN_FREQ);
+        freqKnob.maximumValue = log10f(DET_EQ_MAX_FREQ);
+        freqKnob.value = log10f(1000);
         [self freqKnobDidChange:freqKnob];
     }
     
@@ -232,10 +231,10 @@
     MHRotaryKnob *freqKnob = [freqKnobs objectAtIndex:idx];
     
     // update the label
-    freqLabel.text = [NSString stringWithFormat:@"%0.0f",freqKnob.value];
+    freqLabel.text = [NSString stringWithFormat:@"%0.0f",pow(10,freqKnob.value)];
     
     // draw the new EQ curve
-    NSNumber *freqPoint = [NSNumber numberWithFloat:freqKnob.value];
+    NSNumber *freqPoint = [NSNumber numberWithFloat:pow(10,freqKnob.value)];
     [freqPoints replaceObjectAtIndex:idx withObject:freqPoint];
     
     [self updateEqCurve];
@@ -253,10 +252,6 @@
 
 - (void)updateEqCurve
 {
-    // curve
-    eqCurveView.gainPoints = gainPoints;
-    eqCurveView.freqPoints = freqPoints;
-    
     [eqCurveView setNeedsDisplay];
     
     // points
