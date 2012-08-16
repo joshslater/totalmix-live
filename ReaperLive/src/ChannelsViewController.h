@@ -20,13 +20,13 @@
 @property (strong, nonatomic) IBOutlet UIToolbar *channelsToolbar;
 @property (strong, nonatomic) DetailedChannelViewController *detailedChannelViewController;
 
+@property (nonatomic) NSInteger selectedChannel;
+
 
 // button pushes
 - (IBAction)eqButtonPressed:(id)sender;
 - (IBAction)gateButtonPressed:(id)sender;
 - (IBAction)compButtonPressed:(id)sender;
 - (void)channelSliderAction:(UISlider *)sender;
-
-
 
 @end

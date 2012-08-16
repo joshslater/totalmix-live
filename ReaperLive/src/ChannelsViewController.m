@@ -26,6 +26,8 @@
 @synthesize channelsToolbar;
 @synthesize detailedChannelViewController;
 
+@synthesize selectedChannel;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {    
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -65,7 +67,10 @@
     /////////////////////////////////////////////
     // create detailed channel view controller //
     /////////////////////////////////////////////
-    self.detailedChannelViewController = [[DetailedChannelViewController alloc] init];       
+    self.detailedChannelViewController = [[DetailedChannelViewController alloc] init];  
+    
+    // set the initial channel selection to -1 (no channel selected)
+    selectedChannel = -1;
     
 }
 
@@ -164,7 +169,11 @@
 {
     NSIndexPath *indexPath = [self.channelsTableView indexPathForCell:(UITableViewCell *)[[sender superview] superview]];
     
+    self.selectedChannel = indexPath.row;
+    
+#if 0    
     NSLog(@"Gate Button Pushed for Channel %d",indexPath.row);
+#endif
 
     [self displayDetailedChannelViewControllerWithOffset:CGPointMake(0, 0)];
     
@@ -173,8 +182,12 @@
 - (IBAction)compButtonPressed:(id)sender
 {
     NSIndexPath *indexPath = [self.channelsTableView indexPathForCell:(UITableViewCell *)[[sender superview] superview]];
+
+    self.selectedChannel = indexPath.row;    
     
+#if 0
     NSLog(@"Comp Button Pushed for Channel %d",indexPath.row);
+#endif
     
     [self displayDetailedChannelViewControllerWithOffset:CGPointMake(CHANNELS_WIDTH, 0)];
 }
@@ -183,7 +196,11 @@
 {
     NSIndexPath *indexPath = [self.channelsTableView indexPathForCell:(UITableViewCell *)[[sender superview] superview]];
     
+    self.selectedChannel = indexPath.row;    
+    
+#if 0
     NSLog(@"EQ Button Pushed for Channel %d",indexPath.row);
+#endif
     
     [self displayDetailedChannelViewControllerWithOffset:CGPointMake(2*CHANNELS_WIDTH, 0)];
 }
@@ -214,6 +231,25 @@
     self.detailedChannelViewController.closeDetailedChannelViewButton.alpha = 1.0;
     
     NSLog(@"scrollview offset = %0.0f",self.detailedChannelViewController.detailedChannelScrollView.contentOffset.x);
+}
+     
+// override setter for selected channel
+- (void)setSelectedChannel:(NSInteger)aSelectedChannel
+{
+    // set previously selected channel to grey
+    ChannelTableCell *cell = (ChannelTableCell *)[self.channelsTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:selectedChannel inSection:0]];
+    
+    cell.channelLabel.backgroundColor = [UIColor lightGrayColor];
+    
+    selectedChannel = aSelectedChannel;
+    
+    if(selectedChannel != -1)
+    {
+        // change the label background of the selected channel
+        cell = (ChannelTableCell *)[self.channelsTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:selectedChannel inSection:0]];
+        
+        cell.channelLabel.backgroundColor = [UIColor blackColor];
+    }
 }
 
 

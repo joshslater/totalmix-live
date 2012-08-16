@@ -116,8 +116,10 @@
 - (void)closeDetailedChannelView:(id)sender
 {
     NSLog(@"Removing scrollview from ChannelsViewController.m");
-        
-    // remove this view controller/view from suer
+    
+    ((ChannelsViewController *)[self parentViewController]).selectedChannel = -1;
+    
+    // remove this view controller/view from super
     [self removeFromParentViewController];
     [self.view removeFromSuperview];
     
