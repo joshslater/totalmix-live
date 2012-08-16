@@ -14,6 +14,9 @@
 @class MHRotaryKnob;
 
 @interface EqViewController : UIViewController
+{
+    int selectedBand;
+}
 
 @property (nonatomic, strong) EQView *eqView;
 
@@ -21,16 +24,18 @@
 @property (strong, nonatomic) EqPointsView *eqPointsView;
 
 
-@property (strong, nonatomic) IBOutletCollection(MHRotaryKnob) NSArray *gainKnobs;
-@property (strong, nonatomic) IBOutletCollection(MHRotaryKnob) NSArray *freqKnobs;
-@property (strong, nonatomic) IBOutletCollection(MHRotaryKnob) NSArray *qKnobs;
+@property (strong, nonatomic) IBOutlet MHRotaryKnob *gainKnob;
+@property (strong, nonatomic) IBOutlet MHRotaryKnob *freqKnob;
+@property (strong, nonatomic) IBOutlet MHRotaryKnob *qKnob;
 
-@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *gainLabels;
-@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *freqLabels;
-@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *qLabels;
+@property (strong, nonatomic) IBOutlet UILabel *gainLabel;
+@property (strong, nonatomic) IBOutlet UILabel *freqLabel;
+@property (strong, nonatomic) IBOutlet UILabel *qLabel;
 
+@property (strong, nonatomic) IBOutlet UISegmentedControl *bandSelector;
 
 @property (strong, nonatomic) NSMutableArray *gainPoints;
 @property (strong, nonatomic) NSMutableArray *freqPoints;
+@property (strong, nonatomic) NSMutableArray *qPoints;
 
 @end
