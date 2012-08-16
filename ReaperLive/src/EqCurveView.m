@@ -28,7 +28,9 @@
 
 - (void)drawRect:(CGRect)rect
 {
+#if 0    
     NSLog(@"In EqCurveView --> drawRect");
+#endif
     
     UIBezierPath* eqPath = [UIBezierPath bezierPath];
     
@@ -42,14 +44,19 @@
     {
         float logFreq = log10f([[freqPoints objectAtIndex:i] floatValue]) - log10f(DET_EQ_MIN_FREQ);
         
+#if 0        
         if(i == 0)
         {
             NSLog(@"logFreq = %0.3f",logFreq);
         }
+#endif
         
         // Draw the lines
         [eqPath addLineToPoint:CGPointMake(DET_EQ_PIXELS_PER_DECADE * logFreq, [[gainPoints objectAtIndex:i] floatValue] * -DET_EQ_PIXELS_PER_DB)];
     }
+    
+    // set the end point
+    [eqPath addLineToPoint:CGPointMake(DET_EQ_PIXELS_PER_DECADE*(log10f(DET_EQ_MAX_FREQ/DET_EQ_MIN_FREQ)),0.0)];
     
     // Set the render colors
     [[UIColor blackColor] setStroke];
