@@ -12,6 +12,7 @@
 @class CompView;
 @class GateView;
 @class EqViewController;
+@class Channel;
 
 @interface DetailedChannelViewController : UIViewController <UIScrollViewDelegate>
 {
@@ -24,6 +25,8 @@
 @property (strong, nonatomic) UIButton *closeDetailedChannelViewButton;
 
 @property (strong, nonatomic) EqViewController *eqViewController;
+
+@property (strong, nonatomic) Channel *channel;
 
 - (void)closeDetailedChannelView:(id)sender;
 

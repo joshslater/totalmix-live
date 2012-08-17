@@ -12,6 +12,7 @@
 @class EqPointsView;
 @class EqCurveView;
 @class MHRotaryKnob;
+@class Channel;
 
 @interface EqViewController : UIViewController
 {
@@ -34,8 +35,7 @@
 
 @property (strong, nonatomic) IBOutlet UISegmentedControl *bandSelector;
 
-@property (strong, nonatomic) NSMutableArray *gainPoints;
-@property (strong, nonatomic) NSMutableArray *freqPoints;
-@property (strong, nonatomic) NSMutableArray *qPoints;
+@property (strong, nonatomic) Channel *channel;
+
 
 @end

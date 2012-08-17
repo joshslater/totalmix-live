@@ -6,12 +6,13 @@
 //  Copyright (c) 2012 Self. All rights reserved.
 //
 
-#import "Contants.h"
+#import "Constants.h"
 #import "ChannelsViewController.h"
 #import "Channel.h"
 #import "ChannelTableCell.h"
 #import "VolumeSlider.h"
 #import "VerticalSlider.h"
+#import "EqViewController.h"
 
 
 @interface ChannelsViewController ()
@@ -41,7 +42,9 @@
 
 - (void)viewDidLoad
 {
-    NSLog(@"In viewDidLoad, instance %x\n", (unsigned int)self);
+#if 0
+    NSLog(@"In EqViewController viewDidLoad, instance %x\n", (unsigned int)self);
+#endif
     
     [super viewDidLoad];
     
@@ -51,6 +54,10 @@
     {
         [self.channels addObject: [[Channel alloc] initWithChannelNumber:i]];
     }
+    
+#if 0
+    NSLog(@"channel(0), freqPoint(0) = %0.0f",[[[[channels objectAtIndex:0] freqPoints] objectAtIndex:0] floatValue]);
+#endif
 
     // Rotates the view.
     self.channelsTableView.transform = CGAffineTransformMakeRotation(-M_PI/2);  
@@ -68,6 +75,11 @@
     // create detailed channel view controller //
     /////////////////////////////////////////////
     self.detailedChannelViewController = [[DetailedChannelViewController alloc] init];  
+    
+    /*
+    // set the selected channel for the displayed view controller
+    detailedChannelViewController.selectedChannel = self.selectedChannel;
+    */
     
     // set the initial channel selection to -1 (no channel selected)
     selectedChannel = -1;
@@ -221,6 +233,23 @@
 
 - (void)displayDetailedChannelViewControllerWithOffset:(CGPoint)offset
 {    
+#if 0
+    NSLog(@"ChannelsViewController: selectedChannel = %d",self.selectedChannel);
+    NSLog(@"ChannelsViewController: freqPoint(0) = %0.0f",[[[[self.channels objectAtIndex:selectedChannel] freqPoints] objectAtIndex:0] floatValue]);
+#endif
+    
+/*    
+    // set the gain, freq, and q points of the detailed view controller to the selected channels'
+    detailedChannelViewController.gainPoints = [[self.channels objectAtIndex:selectedChannel] gainPoints];
+    detailedChannelViewController.freqPoints = [[self.channels objectAtIndex:selectedChannel] freqPoints];
+    detailedChannelViewController.qPoints = [[self.channels objectAtIndex:selectedChannel] qPoints];
+*/
+#if 1
+    NSLog(@"setting detailedViewController.channel to %x",(unsigned int)[self.channels objectAtIndex:selectedChannel]);
+#endif
+    
+    detailedChannelViewController.channel = [self.channels objectAtIndex:selectedChannel];
+    
     [self addChildViewController:detailedChannelViewController];
     [self.view addSubview:detailedChannelViewController.view];
     
@@ -230,7 +259,9 @@
     // make sure the close button's alpha is 1
     self.detailedChannelViewController.closeDetailedChannelViewButton.alpha = 1.0;
     
+#if 0
     NSLog(@"scrollview offset = %0.0f",self.detailedChannelViewController.detailedChannelScrollView.contentOffset.x);
+#endif
 }
      
 // override setter for selected channel
@@ -250,6 +281,15 @@
         
         cell.channelLabel.backgroundColor = [UIColor blackColor];
     }
+}
+
+- (void)updateSelectedChannelEqButton
+{
+    
+#if 0
+    NSLog(@"In updateSelectedChannelEqButton, channel %d",self.selectedChannel);
+#endif
+    
 }
 
 

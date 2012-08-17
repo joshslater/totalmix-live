@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Self. All rights reserved.
 //
 
-#import "Contants.h"
+#import "Constants.h"
 #import "ChannelsViewController.h"
 #import "DetailedChannelViewController.h"
 #import "EqViewController.h"
@@ -25,9 +25,13 @@
 
 @synthesize eqViewController;
 
+@synthesize channel;
+ 
 - (void)loadView
 {
+#if 0
     NSLog(@"In DetailedChannelViewController -(void)loadView");
+#endif
     
     // create an empty view
     self.view = [[UIView alloc] initWithFrame:CGRectMake(0, 44, CHANNELS_WIDTH, DETAILED_CHANNEL_VIEW_HEIGHT)];
@@ -52,7 +56,14 @@
     ///////////////////////////////
     // create eq view controller //
     ///////////////////////////////
+#if 1
+    NSLog(@"initing eqViewController");
+#endif
+    
     self.eqViewController = [[EqViewController alloc] init];
+
+    eqViewController.channel = self.channel;
+    
     [self addChildViewController:self.eqViewController];
     [self.detailedChannelScrollView addSubview:eqViewController.view];
     
@@ -99,7 +110,21 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+#if 0
     NSLog(@"In DetailedChannelViewController -(void)viewDidLoad");
+#endif
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    // need to update the channel reference every time the view will appear
+    eqViewController.channel = self.channel;
+    
+#if 1
+    NSLog(@"detailedChannelViewController channel = %x",(unsigned int)self.channel);
+#endif   
+    
+    
 }
 
 - (void)viewDidUnload
@@ -115,7 +140,9 @@
 
 - (void)closeDetailedChannelView:(id)sender
 {
+#if 0
     NSLog(@"Removing scrollview from ChannelsViewController.m");
+#endif
     
     ((ChannelsViewController *)[self parentViewController]).selectedChannel = -1;
     

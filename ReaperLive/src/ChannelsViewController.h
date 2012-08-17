@@ -28,5 +28,6 @@
 - (IBAction)gateButtonPressed:(id)sender;
 - (IBAction)compButtonPressed:(id)sender;
 - (void)channelSliderAction:(UISlider *)sender;
+- (void)updateSelectedChannelEqButton;
 
 @end

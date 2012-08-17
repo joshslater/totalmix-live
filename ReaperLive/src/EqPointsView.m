@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Self. All rights reserved.
 //
 
-#import "Contants.h"
+#import "Constants.h"
 #import "EqPointsView.h"
 
 @implementation EqPointsView
@@ -20,10 +20,6 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        gainPoints = [[NSMutableArray alloc] init];
-        freqPoints = [[NSMutableArray alloc] init];
-        
-        
         // add the EQ point markers    
         eqPointImages = [[NSMutableArray alloc] init];
         
@@ -37,9 +33,10 @@
             
             [eqPointImages addObject:eqPoint]; 
             [self addSubview:eqPoint];
-            
-            UIImageView *test = [eqPointImages objectAtIndex:i];
-            NSLog(@"%x",(unsigned int)test);
+
+#if 0
+            NSLog(@"%x",(unsigned int)[eqPointImages objectAtIndex:i]);
+#endif
         }        
     }
     return self;
@@ -55,8 +52,8 @@
         
         // move the EQ point
         CGRect frame = eqPoint.frame;
-        frame.origin.y = (DET_EQ_MAX_GAIN - DET_EQ_MIN_GAIN) * DET_EQ_PIXELS_PER_DB / 2 + [[gainPoints objectAtIndex:i] floatValue] * -DET_EQ_PIXELS_PER_DB;
-        frame.origin.x = DET_EQ_PIXELS_PER_DECADE * (log10f([[freqPoints objectAtIndex:i] floatValue]) - log10f(DET_EQ_MIN_FREQ));
+        frame.origin.y = (DET_EQ_MAX_GAIN - DET_EQ_MIN_GAIN) * DET_EQ_POINTS_PER_DB / 2 + [[gainPoints objectAtIndex:i] floatValue] * -DET_EQ_POINTS_PER_DB;
+        frame.origin.x = DET_EQ_POINTS_PER_DECADE * (log10f([[freqPoints objectAtIndex:i] floatValue]) - log10f(DET_EQ_MIN_FREQ));
 
         // subtract half the height/width
         frame.origin.x -= frame.size.width/2;

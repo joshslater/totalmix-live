@@ -1,18 +1,19 @@
 //
-//  EqCurveView.m
+//  EqButton.m
 //  ReaperLive
 //
-//  Created by Josh Slater on 8/12/12.
+//  Created by Josh Slater on 8/17/12.
 //  Copyright (c) 2012 Self. All rights reserved.
 //
 
-#import "EqCurveView.h"
+#import "EqButton.h"
 #import "Constants.h"
 
-@implementation EqCurveView
+@implementation EqButton
 
-@synthesize freqPoints;
 @synthesize gainPoints;
+@synthesize freqPoints;
+@synthesize qPoints;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -24,6 +25,8 @@
 }
 
 
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
 #if 0    

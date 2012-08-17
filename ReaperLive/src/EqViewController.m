@@ -6,13 +6,14 @@
 //  Copyright (c) 2012 Self. All rights reserved.
 //
 
-#import "Contants.h"
+#import "Constants.h"
 #import "EqViewController.h"
 #import "ChannelsViewController.h"
 #import "DetailedChannelViewController.h"
 #import "MHRotaryKnob.h"
 #import "EqPointsView.h"
 #import "EqCurveView.h"
+#import "Channel.h"
 
 @interface EqViewController ()
 
@@ -20,9 +21,7 @@
 
 @implementation EqViewController
 
-
 @synthesize eqView;
-
 
 @synthesize eqCurveView;
 @synthesize eqPointsView;
@@ -37,9 +36,7 @@
 
 @synthesize bandSelector;
 
-@synthesize gainPoints;
-@synthesize freqPoints;
-@synthesize qPoints;
+@synthesize channel;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -56,7 +53,9 @@
 {
     [super loadView];
     
+#if 1
     NSLog(@"in eqViewController loadView");
+#endif
         
     [[NSBundle mainBundle] loadNibNamed:@"EQView" owner:self options:nil];       
     self.view.frame = CGRectMake(2*CHANNELS_WIDTH, 0, CHANNELS_WIDTH, DETAILED_CHANNEL_VIEW_HEIGHT);
@@ -68,25 +67,6 @@
     // create the EQ curve view
     eqCurveView = [[EqCurveView alloc] initWithFrame:CGRectMake(88, 48, 450, 200)];
     eqCurveView.opaque = NO;
-    
-    // initialize self's points arrays
-    gainPoints = [[NSMutableArray alloc] initWithObjects:   [NSNumber numberWithFloat:0.0],
-                                                            [NSNumber numberWithFloat:0.0],
-                                                            [NSNumber numberWithFloat:0.0],
-                                                            [NSNumber numberWithFloat:0.0], 
-                                                            nil];
-
-    freqPoints = [[NSMutableArray alloc] initWithObjects:   [NSNumber numberWithFloat:30.0],
-                                                            [NSNumber numberWithFloat:200.0],
-                                                            [NSNumber numberWithFloat:1500.0],
-                                                            [NSNumber numberWithFloat:5000.0], 
-                                                            nil];
-    
-    qPoints = [[NSMutableArray alloc] initWithObjects:  [NSNumber numberWithFloat:0.707],
-                                                        [NSNumber numberWithFloat:0.707],
-                                                        [NSNumber numberWithFloat:0.707],
-                                                        [NSNumber numberWithFloat:0.707], 
-                                                        nil];
     
     /*
     // initialize a 4-element array with all zeros
@@ -100,12 +80,12 @@
     */
     
     // set eqCurveView's points to self's points
-    eqCurveView.gainPoints = gainPoints;
-    eqCurveView.freqPoints = freqPoints;    
+    eqCurveView.gainPoints = self.channel.gainPoints;
+    eqCurveView.freqPoints = self.channel.freqPoints;    
     
     // set eqPointView's points to self's points
-    eqPointsView.gainPoints = gainPoints;
-    eqPointsView.freqPoints = freqPoints;
+    eqPointsView.gainPoints = self.channel.gainPoints;
+    eqPointsView.freqPoints = self.channel.freqPoints;
     
     gainKnob.backgroundImage = [UIImage imageNamed:@"Knob.png"];
     [gainKnob setKnobImage:[UIImage imageNamed:@"Knob-Selector.png"] forState:UIControlStateNormal];
@@ -134,8 +114,16 @@
 
 - (void)viewDidLoad
 {
+#if 0
+    NSLog(@"in eqViewController viewDidLoad");
+#endif    
+    
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+#if 0
+    NSLog(@"EqViewController: gainPoint(0) = %0.0f",[[self.channel.gainPoints objectAtIndex:0] floatValue]);
+#endif    
     
     [gainKnob addTarget:self action:@selector(gainKnobDidChange:) forControlEvents:UIControlEventValueChanged];
     gainKnob.minimumValue = DET_EQ_MIN_GAIN;
@@ -164,6 +152,31 @@
     [self updateEqCurve];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+#if 1
+    NSLog(@"in EqViewController viewWillAppear");
+    NSLog(@"eqViewController channel = %x",(unsigned int)self.channel);
+    NSLog(@"EqViewController: gainPoint(0) = %0.0f",[[self.channel.gainPoints objectAtIndex:0] floatValue]);
+#endif
+    
+    // need to update the points references every time it will appear
+    // set eqCurveView's points to self's points
+    eqCurveView.gainPoints = self.channel.gainPoints;
+    eqCurveView.freqPoints = self.channel.freqPoints;    
+    
+    // set eqPointView's points to self's points
+    eqPointsView.gainPoints = self.channel.gainPoints;
+    eqPointsView.freqPoints = self.channel.freqPoints;
+    
+    // update the eq curve
+    [self updateEqCurve];
+    
+    // this will initialize all the text fields
+    [self bandSelectorDidChange:bandSelector];
+
+}
+
 - (void)viewDidUnload
 {
     [super viewDidUnload];
@@ -188,13 +201,16 @@
     
     // draw the new EQ curve
     NSNumber *gainPoint = [NSNumber numberWithFloat:sender.value];
-    [gainPoints replaceObjectAtIndex:idx withObject:gainPoint];
+    [self.channel.gainPoints replaceObjectAtIndex:idx withObject:gainPoint];
     
-#if 0
-    NSLog(@"gainKnobDidChange: gainPoint @ %d = %0.3f",idx,[[gainPoints objectAtIndex:idx] floatValue]);
+#if 1
+    NSLog(@"gainKnobDidChange: gainPoint @ %d = %0.3f",idx,[[self.channel.gainPoints objectAtIndex:idx] floatValue]);
 #endif
     
     [self updateEqCurve];
+    
+    // notify ChannelsViewController that it needs to update the 
+    [(ChannelsViewController *)self.parentViewController.parentViewController updateSelectedChannelEqButton];
 }
 
 - (void)freqKnobDidChange:(MHRotaryKnob *)sender
@@ -206,7 +222,7 @@
     
     // draw the new EQ curve
     NSNumber *freqPoint = [NSNumber numberWithFloat:pow(10,sender.value)];
-    [freqPoints replaceObjectAtIndex:idx withObject:freqPoint];
+    [self.channel.freqPoints replaceObjectAtIndex:idx withObject:freqPoint];
     
 #if 0
     NSLog(@"freqKnobDidChange: freqPoint @ %d = %0.3f",idx,[freqPoint floatValue]);
@@ -223,7 +239,7 @@
     qLabel.text = [NSString stringWithFormat:@"%0.3f",sender.value];
     
     NSNumber *qPoint = [NSNumber numberWithFloat:sender.value];
-    [qPoints replaceObjectAtIndex:idx withObject:qPoint];
+    [self.channel.qPoints replaceObjectAtIndex:idx withObject:qPoint];
     
 #if 0
     //NSLog(@"qKnobDidChange: qPoint @ %d = %0.3f",idx,[[qPoints objectAtIndex:idx] floatValue]);
@@ -248,14 +264,14 @@
 #endif
     
     // set each rotary knob with the appropraite value
-    gainKnob.value = [[gainPoints objectAtIndex:idx] floatValue];
-    freqKnob.value = log10f([[freqPoints objectAtIndex:idx] floatValue]);
-    qKnob.value = [[qPoints objectAtIndex:idx] floatValue];
+    gainKnob.value = [[self.channel.gainPoints objectAtIndex:idx] floatValue];
+    freqKnob.value = log10f([[self.channel.freqPoints objectAtIndex:idx] floatValue]);
+    qKnob.value = [[self.channel.qPoints objectAtIndex:idx] floatValue];
     
     // set each label
-    gainLabel.text = [NSString stringWithFormat:@"%0.0f",[[gainPoints objectAtIndex:idx] floatValue]];
-    freqLabel.text = [NSString stringWithFormat:@"%0.0f",[[freqPoints objectAtIndex:idx] floatValue]];
-    qLabel.text = [NSString stringWithFormat:@"%0.3f",[[qPoints objectAtIndex:idx] floatValue]];
+    gainLabel.text = [NSString stringWithFormat:@"%0.0f",[[self.channel.gainPoints objectAtIndex:idx] floatValue]];
+    freqLabel.text = [NSString stringWithFormat:@"%0.0f",[[self.channel.freqPoints objectAtIndex:idx] floatValue]];
+    qLabel.text = [NSString stringWithFormat:@"%0.3f",[[self.channel.qPoints objectAtIndex:idx] floatValue]];
 }
 
 - (void)updateEqCurve

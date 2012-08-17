@@ -13,6 +13,10 @@
 @property int channelNumber;
 @property float volume;
 
+@property (strong, nonatomic) NSMutableArray *gainPoints;
+@property (strong, nonatomic) NSMutableArray *freqPoints;
+@property (strong, nonatomic) NSMutableArray *qPoints; 
+
 - (id)initWithChannelNumber:(int)channelNumber;
 
 @end

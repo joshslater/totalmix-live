@@ -53,6 +53,7 @@
 		03C1495815D37599008DCE9C /* GateBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03C1494C15D37599008DCE9C /* GateBtn@2x.png */; };
 		03C1495915D37599008DCE9C /* ChannelBkg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03C1494D15D37599008DCE9C /* ChannelBkg@2x.png */; };
 		03C867F615C6617F001ECCAD /* VolumeSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C867F515C6617E001ECCAD /* VolumeSlider.m */; };
+		03D1EA5915DEE7E800F8C804 /* EqButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 03D1EA5815DEE7E800F8C804 /* EqButton.m */; };
 		03F2326C15C0E0D1009B0390 /* CompView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F2326B15C0E0D1009B0390 /* CompView.m */; };
 		03F2326E15C0E0E3009B0390 /* CompView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03F2326D15C0E0E3009B0390 /* CompView.xib */; };
 		03F2327715C0E4DB009B0390 /* GateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F2327615C0E4DA009B0390 /* GateView.m */; };
@@ -108,7 +109,7 @@
 		03ADD59715BD107F00EBDC71 /* Channel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Channel.h; sourceTree = "<group>"; };
 		03ADD59815BD107F00EBDC71 /* Channel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Channel.m; sourceTree = "<group>"; };
 		03B2006915DB822700FC8C3C /* EQ-Point@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EQ-Point@2x.png"; sourceTree = "<group>"; };
-		03BDCAA115D8DBCC0060456B /* Contants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Contants.h; path = src/Contants.h; sourceTree = "<group>"; };
+		03BDCAA115D8DBCC0060456B /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; name = Constants.h; path = src/Constants.h; sourceTree = "<group>"; };
 		03C1494215D37599008DCE9C /* DetailedComp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DetailedComp@2x.png"; sourceTree = "<group>"; };
 		03C1494315D37599008DCE9C /* DetailedGate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DetailedGate@2x.png"; sourceTree = "<group>"; };
 		03C1494415D37599008DCE9C /* FaderCap@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FaderCap@2x.png"; sourceTree = "<group>"; };
@@ -123,6 +124,8 @@
 		03C1494D15D37599008DCE9C /* ChannelBkg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ChannelBkg@2x.png"; sourceTree = "<group>"; };
 		03C867F415C6617E001ECCAD /* VolumeSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolumeSlider.h; sourceTree = "<group>"; };
 		03C867F515C6617E001ECCAD /* VolumeSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolumeSlider.m; sourceTree = "<group>"; };
+		03D1EA5715DEE7E800F8C804 /* EqButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EqButton.h; sourceTree = "<group>"; };
+		03D1EA5815DEE7E800F8C804 /* EqButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EqButton.m; sourceTree = "<group>"; };
 		03F2326A15C0E0D1009B0390 /* CompView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompView.h; sourceTree = "<group>"; };
 		03F2326B15C0E0D1009B0390 /* CompView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompView.m; sourceTree = "<group>"; };
 		03F2326D15C0E0E3009B0390 /* CompView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompView.xib; sourceTree = "<group>"; };
@@ -244,6 +247,15 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		03D1EA5515DEE7B000F8C804 /* Channels */ = {
+			isa = PBXGroup;
+			children = (
+				03D1EA5715DEE7E800F8C804 /* EqButton.h */,
+				03D1EA5815DEE7E800F8C804 /* EqButton.m */,
+			);
+			name = Channels;
+			sourceTree = "<group>";
+		};
 		03F2328215C26768009B0390 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -251,6 +263,7 @@
 				03F2328815C268FB009B0390 /* Controllers */,
 				03F2328B15C26921009B0390 /* Models */,
 				03F2328615C2681D009B0390 /* Detailed Channel */,
+				03D1EA5515DEE7B000F8C804 /* Channels */,
 			);
 			name = Classes;
 			path = src;
@@ -263,7 +276,7 @@
 				03ADD57915BCFC0900EBDC71 /* InfoPlist.strings */,
 				03ADD57C15BCFC0900EBDC71 /* main.m */,
 				03ADD57E15BCFC0900EBDC71 /* ReaperLive-Prefix.pch */,
-				03BDCAA115D8DBCC0060456B /* Contants.h */,
+				03BDCAA115D8DBCC0060456B /* Constants.h */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -464,6 +477,7 @@
 				03712C5815D882F600EC9665 /* EqCurveView.m in Sources */,
 				03712C5B15D8ADC400EC9665 /* EqPointsView.m in Sources */,
 				03712C6215D8B62900EC9665 /* EqViewController.m in Sources */,
+				03D1EA5915DEE7E800F8C804 /* EqButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
