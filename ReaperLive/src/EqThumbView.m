@@ -36,7 +36,7 @@
 - (void)drawRect:(CGRect)rect
 {
     // Drawing code
-#if 1    
+#if 0
     NSLog(@"EqThumbView:: drawRect, gainPoint(0): %0.0f",[[gainPoints objectAtIndex:0] floatValue]);
 #endif
     
@@ -46,7 +46,7 @@
     // Set the starting point of the shape.
     [eqPath moveToPoint:CGPointMake(0.0, 0.0)];
     
-/*    
+    
     // convert the frequency points into log scale and add line to path
     for (int i = 0; i < 4; i++)
     {
@@ -60,21 +60,17 @@
 #endif
         
         // Draw the lines
-        [eqPath addLineToPoint:CGPointMake(DET_EQ_POINTS_PER_DECADE * logFreq, [[gainPoints objectAtIndex:i] floatValue] * -DET_EQ_POINTS_PER_DB)];
+        [eqPath addLineToPoint:CGPointMake(EQ_BTN_POINTS_PER_DECADE * logFreq, [[gainPoints objectAtIndex:i] floatValue] * -EQ_BTN_POINTS_PER_DB)];
     }
- */
- 
-/*    
+    
     // set the end point
-    [eqPath addLineToPoint:CGPointMake(DET_EQ_POINTS_PER_DECADE*(log10f(DET_EQ_MAX_FREQ/DET_EQ_MIN_FREQ)),0.0)];
- */
-    [eqPath addLineToPoint:CGPointMake(10.0 * [[gainPoints objectAtIndex:0] floatValue], 10.0 * [[gainPoints objectAtIndex:0] floatValue])];
+    [eqPath addLineToPoint:CGPointMake(EQ_BTN_POINTS_PER_DECADE*(log10f(DET_EQ_MAX_FREQ/DET_EQ_MIN_FREQ)),0.0)];
     
     // Set the render colors
     [[UIColor blackColor] setStroke];
     //[[UIColor redColor] setFill];
     
-    //CGContextRef aRef = UIGraphicsGetCurrentContext();
+    CGContextRef aRef = UIGraphicsGetCurrentContext();
     
     // If you have content to draw after the shape,
     // save the current state before changing the transform
@@ -82,14 +78,14 @@
     
     // Adjust the view's origin temporarily. The oval is
     // now drawn relative to the new origin point.
-    //CGContextTranslateCTM(aRef, 0, (DET_EQ_MAX_GAIN - DET_EQ_MIN_GAIN) * DET_EQ_POINTS_PER_DB / 2);
+    CGContextTranslateCTM(aRef, 0, (DET_EQ_MAX_GAIN - DET_EQ_MIN_GAIN) * EQ_BTN_POINTS_PER_DB / 2);
     
     // Adjust the drawing options as needed.
-    eqPath.lineWidth = 5;
+    eqPath.lineWidth = 2;
     
     // Fill the path before stroking it so that the fill
     // color does not obscure the stroked line.
-    [eqPath fill];
+    //[eqPath fill];
     [eqPath stroke];
     
     // Restore the graphics state before drawing any other content.

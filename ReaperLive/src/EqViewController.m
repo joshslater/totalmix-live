@@ -54,7 +54,7 @@
 {
     [super loadView];
     
-#if 1
+#if 0
     NSLog(@"in eqViewController loadView");
 #endif
         
@@ -155,7 +155,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-#if 1
+#if 0
     NSLog(@"in EqViewController viewWillAppear");
     NSLog(@"eqViewController channel = %x",(unsigned int)self.channel);
     NSLog(@"EqViewController: gainPoint(0) = %0.0f",[[self.channel.gainPoints objectAtIndex:0] floatValue]);
@@ -204,7 +204,7 @@
     NSNumber *gainPoint = [NSNumber numberWithFloat:sender.value];
     [self.channel.gainPoints replaceObjectAtIndex:idx withObject:gainPoint];
     
-#if 1
+#if 0
     NSLog(@"gainKnobDidChange: gainPoint @ %d = %0.3f",idx,[[self.channel.gainPoints objectAtIndex:idx] floatValue]);
 #endif
     

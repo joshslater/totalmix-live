@@ -161,7 +161,7 @@
         /******** EQ BUTTON *****/
         /************************/
         // add eqThumbView on top of eq button
-        cell.eqThumbView = [[EqThumbView alloc] initWithFrame:CGRectMake(0, 0, 85, 85)];
+        cell.eqThumbView = [[EqThumbView alloc] initWithFrame:CGRectMake(0, 0, 83, 83)];
         
         // add the subview
         [cell.eqButton addSubview:cell.eqThumbView];
@@ -180,7 +180,7 @@
     cell.channelLabel.text = [NSString stringWithFormat:@"%d",indexPath.row];
     
     // make sure the eqThumbView is plotted correctly
-#if 1
+#if 0
     NSLog(@"cellForRowAtIndexPath -- indexPath.row = %d",indexPath.row);
 #endif
 
@@ -266,7 +266,7 @@
     detailedChannelViewController.freqPoints = [[self.channels objectAtIndex:selectedChannel] freqPoints];
     detailedChannelViewController.qPoints = [[self.channels objectAtIndex:selectedChannel] qPoints];
 */
-#if 1
+#if 0
     NSLog(@"setting detailedViewController.channel to %x",(unsigned int)[self.channels objectAtIndex:selectedChannel]);
 #endif
     
@@ -308,7 +308,7 @@
 
 - (void)updateSelectedChannelEqButton:(NSInteger)channelNumber
 {
-#if 1
+#if 0
     NSLog(@"In updateSelectedChannelEqButton, channel %d, gainPoints(0) = %0.0f",channelNumber,[[[[self.channels objectAtIndex:channelNumber] gainPoints] objectAtIndex:0] floatValue]);
 #endif
     

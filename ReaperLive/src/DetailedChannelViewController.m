@@ -57,7 +57,7 @@
     ///////////////////////////////
     // create eq view controller //
     ///////////////////////////////
-#if 1
+#if 0
     NSLog(@"initing eqViewController");
 #endif
     
@@ -123,7 +123,7 @@
     eqViewController.channel = self.channel;
     eqViewController.selectedChannel = self.selectedChannel;
     
-#if 1
+#if 0
     NSLog(@"detailedChannelViewController channel = %x",(unsigned int)self.channel);
 #endif   
     
