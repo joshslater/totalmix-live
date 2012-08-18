@@ -1,15 +1,15 @@
 //
-//  EqButton.m
+//  EqThumbView.m
 //  ReaperLive
 //
 //  Created by Josh Slater on 8/17/12.
 //  Copyright (c) 2012 Self. All rights reserved.
 //
 
-#import "EqButton.h"
+#import "EqThumbView.h"
 #import "Constants.h"
 
-@implementation EqButton
+@implementation EqThumbView
 
 @synthesize gainPoints;
 @synthesize freqPoints;
@@ -20,6 +20,12 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        
+        // make it transparent
+        [self setOpaque:NO];
+        
+        // turn off user interaction
+        self.userInteractionEnabled = NO;
     }
     return self;
 }
@@ -29,8 +35,9 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
-#if 0    
-    NSLog(@"In EqCurveView --> drawRect");
+    // Drawing code
+#if 1    
+    NSLog(@"EqThumbView:: drawRect, gainPoint(0): %0.0f",[[gainPoints objectAtIndex:0] floatValue]);
 #endif
     
     UIBezierPath* eqPath = [UIBezierPath bezierPath];
@@ -39,7 +46,7 @@
     // Set the starting point of the shape.
     [eqPath moveToPoint:CGPointMake(0.0, 0.0)];
     
-    
+/*    
     // convert the frequency points into log scale and add line to path
     for (int i = 0; i < 4; i++)
     {
@@ -55,15 +62,19 @@
         // Draw the lines
         [eqPath addLineToPoint:CGPointMake(DET_EQ_POINTS_PER_DECADE * logFreq, [[gainPoints objectAtIndex:i] floatValue] * -DET_EQ_POINTS_PER_DB)];
     }
-    
+ */
+ 
+/*    
     // set the end point
     [eqPath addLineToPoint:CGPointMake(DET_EQ_POINTS_PER_DECADE*(log10f(DET_EQ_MAX_FREQ/DET_EQ_MIN_FREQ)),0.0)];
+ */
+    [eqPath addLineToPoint:CGPointMake(10.0 * [[gainPoints objectAtIndex:0] floatValue], 10.0 * [[gainPoints objectAtIndex:0] floatValue])];
     
     // Set the render colors
     [[UIColor blackColor] setStroke];
-    [[UIColor redColor] setFill];
+    //[[UIColor redColor] setFill];
     
-    CGContextRef aRef = UIGraphicsGetCurrentContext();
+    //CGContextRef aRef = UIGraphicsGetCurrentContext();
     
     // If you have content to draw after the shape,
     // save the current state before changing the transform
@@ -71,7 +82,7 @@
     
     // Adjust the view's origin temporarily. The oval is
     // now drawn relative to the new origin point.
-    CGContextTranslateCTM(aRef, 0, (DET_EQ_MAX_GAIN - DET_EQ_MIN_GAIN) * DET_EQ_POINTS_PER_DB / 2);
+    //CGContextTranslateCTM(aRef, 0, (DET_EQ_MAX_GAIN - DET_EQ_MIN_GAIN) * DET_EQ_POINTS_PER_DB / 2);
     
     // Adjust the drawing options as needed.
     eqPath.lineWidth = 5;

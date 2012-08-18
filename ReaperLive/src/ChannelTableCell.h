@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class EqThumbView;
+
 @interface ChannelTableCell : UITableViewCell
 
 @property (nonatomic, retain) IBOutlet UILabel *channelLabel;
@@ -15,5 +17,6 @@
 @property (nonatomic, retain) IBOutlet UIButton *compButton;
 @property (nonatomic, retain) IBOutlet UIButton *eqButton;
 @property (nonatomic, retain) IBOutlet UISlider *volumeSlider;
+@property (nonatomic, retain) EqThumbView *eqThumbView;
 
 @end

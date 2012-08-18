@@ -26,6 +26,7 @@
 
 @property (strong, nonatomic) EqViewController *eqViewController;
 
+@property (nonatomic) NSInteger selectedChannel;
 @property (strong, nonatomic) Channel *channel;
 
 - (void)closeDetailedChannelView:(id)sender;

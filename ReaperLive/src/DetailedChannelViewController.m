@@ -26,6 +26,7 @@
 @synthesize eqViewController;
 
 @synthesize channel;
+@synthesize selectedChannel;
  
 - (void)loadView
 {
@@ -63,6 +64,7 @@
     self.eqViewController = [[EqViewController alloc] init];
 
     eqViewController.channel = self.channel;
+    eqViewController.selectedChannel = self.selectedChannel;
     
     [self addChildViewController:self.eqViewController];
     [self.detailedChannelScrollView addSubview:eqViewController.view];
@@ -119,6 +121,7 @@
 {
     // need to update the channel reference every time the view will appear
     eqViewController.channel = self.channel;
+    eqViewController.selectedChannel = self.selectedChannel;
     
 #if 1
     NSLog(@"detailedChannelViewController channel = %x",(unsigned int)self.channel);

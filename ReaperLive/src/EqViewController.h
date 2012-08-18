@@ -36,6 +36,8 @@
 @property (strong, nonatomic) IBOutlet UISegmentedControl *bandSelector;
 
 @property (strong, nonatomic) Channel *channel;
+@property (nonatomic) NSInteger selectedChannel;
+
 
 
 @end

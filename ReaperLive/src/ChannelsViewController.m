@@ -13,6 +13,7 @@
 #import "VolumeSlider.h"
 #import "VerticalSlider.h"
 #import "EqViewController.h"
+#import "EqThumbView.h"
 
 
 @interface ChannelsViewController ()
@@ -154,7 +155,16 @@
         
         meter.bounds = CGRectMake(0, 0, 225, 30);
         meter.center = CGPointMake(30, 515);
-         
+        
+        
+        /************************/
+        /******** EQ BUTTON *****/
+        /************************/
+        // add eqThumbView on top of eq button
+        cell.eqThumbView = [[EqThumbView alloc] initWithFrame:CGRectMake(0, 0, 85, 85)];
+        
+        // add the subview
+        [cell.eqButton addSubview:cell.eqThumbView];
     }
 
 
@@ -168,6 +178,18 @@
 
     // populate channel label
     cell.channelLabel.text = [NSString stringWithFormat:@"%d",indexPath.row];
+    
+    // make sure the eqThumbView is plotted correctly
+#if 1
+    NSLog(@"cellForRowAtIndexPath -- indexPath.row = %d",indexPath.row);
+#endif
+
+    // update the cell with the correct channel's points. note cannot do this through the 'updateSelectedChannelEqButton' method because that method pulls the cell from this very function, but it hasn't been updated yet. must do it manually here.
+    cell.eqThumbView.gainPoints = [[self.channels objectAtIndex:indexPath.row] gainPoints];
+    cell.eqThumbView.freqPoints = [[self.channels objectAtIndex:indexPath.row] freqPoints];
+    cell.eqThumbView.qPoints = [[self.channels objectAtIndex:indexPath.row] qPoints];
+
+    [cell.eqThumbView setNeedsDisplay];
     
     return cell;
 }
@@ -249,6 +271,7 @@
 #endif
     
     detailedChannelViewController.channel = [self.channels objectAtIndex:selectedChannel];
+    detailedChannelViewController.selectedChannel = self.selectedChannel;
     
     [self addChildViewController:detailedChannelViewController];
     [self.view addSubview:detailedChannelViewController.view];
@@ -283,12 +306,20 @@
     }
 }
 
-- (void)updateSelectedChannelEqButton
+- (void)updateSelectedChannelEqButton:(NSInteger)channelNumber
 {
-    
-#if 0
-    NSLog(@"In updateSelectedChannelEqButton, channel %d",self.selectedChannel);
+#if 1
+    NSLog(@"In updateSelectedChannelEqButton, channel %d, gainPoints(0) = %0.0f",channelNumber,[[[[self.channels objectAtIndex:channelNumber] gainPoints] objectAtIndex:0] floatValue]);
 #endif
+    
+    ChannelTableCell *cell = (ChannelTableCell *)[self.channelsTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:channelNumber inSection:0]];
+    
+    cell.eqThumbView.gainPoints = [[self.channels objectAtIndex:channelNumber] gainPoints];
+    cell.eqThumbView.freqPoints = [[self.channels objectAtIndex:channelNumber] freqPoints];
+    cell.eqThumbView.qPoints = [[self.channels objectAtIndex:channelNumber] qPoints];
+    
+    [cell.eqThumbView setNeedsDisplay];
+    
     
 }
 

@@ -37,6 +37,7 @@
 @synthesize bandSelector;
 
 @synthesize channel;
+@synthesize selectedChannel;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -210,7 +211,7 @@
     [self updateEqCurve];
     
     // notify ChannelsViewController that it needs to update the 
-    [(ChannelsViewController *)self.parentViewController.parentViewController updateSelectedChannelEqButton];
+    [(ChannelsViewController *)self.parentViewController.parentViewController updateSelectedChannelEqButton:selectedChannel];
 }
 
 - (void)freqKnobDidChange:(MHRotaryKnob *)sender
