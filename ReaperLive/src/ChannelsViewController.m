@@ -14,7 +14,7 @@
 #import "VerticalSlider.h"
 #import "EqViewController.h"
 #import "EqThumbView.h"
-
+#import "EqCurve.h"
 
 @interface ChannelsViewController ()
 
@@ -185,9 +185,9 @@
 #endif
 
     // update the cell with the correct channel's points. note cannot do this through the 'updateSelectedChannelEqButton' method because that method pulls the cell from this very function, but it hasn't been updated yet. must do it manually here.
-    cell.eqThumbView.gainPoints = [[self.channels objectAtIndex:indexPath.row] gainPoints];
-    cell.eqThumbView.freqPoints = [[self.channels objectAtIndex:indexPath.row] freqPoints];
-    cell.eqThumbView.qPoints = [[self.channels objectAtIndex:indexPath.row] qPoints];
+    cell.eqThumbView.nPoints = [[[self.channels objectAtIndex:indexPath.row] eqCurve] nPoints];
+    cell.eqThumbView.eqFreqPoints = [[[self.channels objectAtIndex:indexPath.row] eqCurve] eqFreqPoints];
+    cell.eqThumbView.eqCurve = [[[self.channels objectAtIndex:indexPath.row] eqCurve] eqCurve];
 
     [cell.eqThumbView setNeedsDisplay];
     
@@ -314,9 +314,9 @@
     
     ChannelTableCell *cell = (ChannelTableCell *)[self.channelsTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:channelNumber inSection:0]];
     
-    cell.eqThumbView.gainPoints = [[self.channels objectAtIndex:channelNumber] gainPoints];
-    cell.eqThumbView.freqPoints = [[self.channels objectAtIndex:channelNumber] freqPoints];
-    cell.eqThumbView.qPoints = [[self.channels objectAtIndex:channelNumber] qPoints];
+    cell.eqThumbView.nPoints = [[[self.channels objectAtIndex:channelNumber] eqCurve] nPoints];
+    cell.eqThumbView.eqFreqPoints = [[[self.channels objectAtIndex:channelNumber] eqCurve] eqFreqPoints];
+    cell.eqThumbView.eqCurve = [[[self.channels objectAtIndex:channelNumber] eqCurve] eqCurve];
     
     [cell.eqThumbView setNeedsDisplay];
     

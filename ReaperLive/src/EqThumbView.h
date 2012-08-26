@@ -10,8 +10,8 @@
 
 @interface EqThumbView : UIView
 
-@property (strong, nonatomic) NSMutableArray *gainPoints;
-@property (strong, nonatomic) NSMutableArray *freqPoints;
-@property (strong, nonatomic) NSMutableArray *qPoints;
+@property (strong, nonatomic) NSNumber *nPoints;
+@property (strong, nonatomic) NSMutableArray *eqFreqPoints;
+@property (strong, nonatomic) NSMutableArray *eqCurve;
 
 @end
