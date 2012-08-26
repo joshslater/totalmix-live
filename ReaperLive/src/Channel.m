@@ -7,6 +7,7 @@
 //
 
 #import "Channel.h"
+#import "EqCurve.h"
 
 @implementation Channel
 
@@ -16,6 +17,8 @@
 @synthesize gainPoints;
 @synthesize freqPoints;
 @synthesize qPoints;
+
+@synthesize eqCurve;
 
 - (id)initWithChannelNumber:(int)channel
 {
@@ -43,6 +46,11 @@
                    [NSNumber numberWithFloat:0.707],
                    [NSNumber numberWithFloat:0.707], 
                    nil];
+        
+        eqCurve = [[EqCurve alloc] init];        
+        eqCurve.freqPoints = freqPoints;
+        eqCurve.gainPoints = gainPoints;
+        eqCurve.qPoints = qPoints;
         
     }
     

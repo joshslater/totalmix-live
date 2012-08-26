@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class EqCurve;
+
 @interface Channel : NSObject
 
 @property int channelNumber;
@@ -16,6 +18,8 @@
 @property (strong, nonatomic) NSMutableArray *gainPoints;
 @property (strong, nonatomic) NSMutableArray *freqPoints;
 @property (strong, nonatomic) NSMutableArray *qPoints; 
+
+@property (strong, nonatomic) EqCurve *eqCurve;
 
 - (id)initWithChannelNumber:(int)channelNumber;
 

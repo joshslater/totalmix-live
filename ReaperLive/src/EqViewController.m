@@ -14,6 +14,7 @@
 #import "EqPointsView.h"
 #import "EqCurveView.h"
 #import "Channel.h"
+#import "EqCurve.h"
 
 @interface EqViewController ()
 
@@ -80,9 +81,13 @@
     }
     */
     
+#if 0
+    NSLog(@"setting eqCurveView's eqCurve reference");
+#endif
+    
     // set eqCurveView's points to self's points
-    eqCurveView.gainPoints = self.channel.gainPoints;
-    eqCurveView.freqPoints = self.channel.freqPoints;    
+    eqCurveView.eqCurve = self.channel.eqCurve.eqCurve;
+    eqCurveView.eqFreqPoints = self.channel.eqCurve.eqFreqPoints;    
     
     // set eqPointView's points to self's points
     eqPointsView.gainPoints = self.channel.gainPoints;
@@ -163,8 +168,8 @@
     
     // need to update the points references every time it will appear
     // set eqCurveView's points to self's points
-    eqCurveView.gainPoints = self.channel.gainPoints;
-    eqCurveView.freqPoints = self.channel.freqPoints;    
+    eqCurveView.eqCurve = self.channel.eqCurve.eqCurve;
+    eqCurveView.eqFreqPoints = self.channel.eqCurve.eqFreqPoints;    
     
     // set eqPointView's points to self's points
     eqPointsView.gainPoints = self.channel.gainPoints;
@@ -208,9 +213,20 @@
     NSLog(@"gainKnobDidChange: gainPoint @ %d = %0.3f",idx,[[self.channel.gainPoints objectAtIndex:idx] floatValue]);
 #endif
     
+    
+#if 0
+    NSLog(@"self.channel.eqCurve.eqCurve(20) = %0.3f",[[self.channel.eqCurve.eqCurve objectAtIndex:20] doubleValue]);
+#endif
+    
+    // FIXME: Why do I have to reset these references?
+    eqCurveView.eqCurve = self.channel.eqCurve.eqCurve;
+    eqCurveView.eqFreqPoints = self.channel.eqCurve.eqFreqPoints;
+    eqCurveView.nPoints = self.channel.eqCurve.nPoints;
+    
+    [self.channel.eqCurve calculateEqCurve];
     [self updateEqCurve];
     
-    // notify ChannelsViewController that it needs to update the 
+    // notify ChannelsViewController that it needs to update the button
     [(ChannelsViewController *)self.parentViewController.parentViewController updateSelectedChannelEqButton:selectedChannel];
 }
 
@@ -228,8 +244,17 @@
 #if 0
     NSLog(@"freqKnobDidChange: freqPoint @ %d = %0.3f",idx,[freqPoint floatValue]);
 #endif
+
+    // FIXME: Why do I have to reset these references?
+    eqCurveView.eqCurve = self.channel.eqCurve.eqCurve;
+    eqCurveView.eqFreqPoints = self.channel.eqCurve.eqFreqPoints;
+    eqCurveView.nPoints = self.channel.eqCurve.nPoints;
     
+    [self.channel.eqCurve calculateEqCurve];
     [self updateEqCurve];
+    
+    // notify ChannelsViewController that it needs to update the button
+    [(ChannelsViewController *)self.parentViewController.parentViewController updateSelectedChannelEqButton:selectedChannel];
 }
 
 - (void)qKnobDidChange:(MHRotaryKnob *)sender
@@ -247,7 +272,18 @@
     NSLog(@"qKnobDidChange: qPoint @ %d = %0.3f",idx,sender.value);
 #endif    
     
-    //[self updateEqCurve];
+    // FIXME: Why do I have to reset these references?
+    eqCurveView.eqCurve = self.channel.eqCurve.eqCurve;
+    eqCurveView.eqFreqPoints = self.channel.eqCurve.eqFreqPoints;
+    eqCurveView.nPoints = self.channel.eqCurve.nPoints;
+    
+    // this calculate's the eqCurve for the channel
+    [self.channel.eqCurve calculateEqCurve];
+    // this plots the new eqCurve
+    [self updateEqCurve];
+    
+    // notify ChannelsViewController that it needs to update the button
+    [(ChannelsViewController *)self.parentViewController.parentViewController updateSelectedChannelEqButton:selectedChannel];
 }
 
 - (void)bandSelectorDidChange:(UISegmentedControl *)sender
@@ -273,6 +309,9 @@
     gainLabel.text = [NSString stringWithFormat:@"%0.0f",[[self.channel.gainPoints objectAtIndex:idx] floatValue]];
     freqLabel.text = [NSString stringWithFormat:@"%0.0f",[[self.channel.freqPoints objectAtIndex:idx] floatValue]];
     qLabel.text = [NSString stringWithFormat:@"%0.3f",[[self.channel.qPoints objectAtIndex:idx] floatValue]];
+    
+    // set the selected band for the current channel
+    channel.eqCurve.selectedBand = [NSNumber numberWithInt:idx];
 }
 
 - (void)updateEqCurve

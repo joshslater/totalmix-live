@@ -8,11 +8,14 @@
 
 #import "EqCurveView.h"
 #import "Constants.h"
+#import "Complex.h"
 
 @implementation EqCurveView
 
-@synthesize freqPoints;
-@synthesize gainPoints;
+@synthesize nPoints;
+
+@synthesize eqFreqPoints;
+@synthesize eqCurve;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -26,21 +29,21 @@
 
 - (void)drawRect:(CGRect)rect
 {
-#if 0    
+#if 0
     NSLog(@"In EqCurveView --> drawRect");
+    NSLog(@"eqCurve(20) = %0.3f",[[eqCurve objectAtIndex:20] doubleValue]);
 #endif
     
     UIBezierPath* eqPath = [UIBezierPath bezierPath];
     
-    
     // Set the starting point of the shape.
     [eqPath moveToPoint:CGPointMake(0.0, 0.0)];
     
-    
     // convert the frequency points into log scale and add line to path
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i <= [nPoints intValue]; i++)
     {
-        float logFreq = log10f([[freqPoints objectAtIndex:i] floatValue]) - log10f(DET_EQ_MIN_FREQ);
+        float logFreq = log10f([[eqFreqPoints objectAtIndex:i] doubleValue]) - log10f(DET_EQ_MIN_FREQ);
+        double eqVal = [[eqCurve objectAtIndex:i] doubleValue];
         
 #if 0        
         if(i == 0)
@@ -50,7 +53,7 @@
 #endif
         
         // Draw the lines
-        [eqPath addLineToPoint:CGPointMake(DET_EQ_POINTS_PER_DECADE * logFreq, [[gainPoints objectAtIndex:i] floatValue] * -DET_EQ_POINTS_PER_DB)];
+        [eqPath addLineToPoint:CGPointMake(DET_EQ_POINTS_PER_DECADE * logFreq, eqVal * -DET_EQ_POINTS_PER_DB)];
     }
     
     // set the end point

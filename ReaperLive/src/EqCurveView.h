@@ -10,7 +10,9 @@
 
 @interface EqCurveView : UIView
 
-@property (nonatomic, strong) NSMutableArray *gainPoints;
-@property (nonatomic, strong) NSMutableArray *freqPoints;
+@property (nonatomic, strong) NSNumber *nPoints;
+
+@property (nonatomic, strong) NSMutableArray *eqFreqPoints;
+@property (nonatomic, strong) NSMutableArray *eqCurve;
 
 @end
