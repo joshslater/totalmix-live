@@ -61,7 +61,7 @@
     
     // Set the render colors
     [[UIColor blackColor] setStroke];
-    [[UIColor redColor] setFill];
+    [[UIColor colorWithRed:100.0/255.0 green:100.0/255.0 blue:100.0/255.0 alpha:0.5] setFill];
     
     CGContextRef aRef = UIGraphicsGetCurrentContext();
     
@@ -74,7 +74,7 @@
     CGContextTranslateCTM(aRef, 0, (DET_EQ_MAX_GAIN - DET_EQ_MIN_GAIN) * DET_EQ_POINTS_PER_DB / 2);
     
     // Adjust the drawing options as needed.
-    eqPath.lineWidth = 5;
+    eqPath.lineWidth = 3;
     
     // Fill the path before stroking it so that the fill
     // color does not obscure the stroked line.

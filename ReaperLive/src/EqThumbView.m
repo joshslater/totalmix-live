@@ -66,7 +66,7 @@
     
     // Set the render colors
     [[UIColor blackColor] setStroke];
-    [[UIColor redColor] setFill];
+    [[UIColor colorWithRed:100.0/255.0 green:100.0/255.0 blue:100.0/255.0 alpha:0.75] setFill];
     
     CGContextRef aRef = UIGraphicsGetCurrentContext();
     
@@ -76,14 +76,15 @@
     
     // Adjust the view's origin temporarily. The oval is
     // now drawn relative to the new origin point.
-    CGContextTranslateCTM(aRef, 0, (DET_EQ_MAX_GAIN - DET_EQ_MIN_GAIN) * EQ_BTN_POINTS_PER_DB / 2);
+    //CGContextTranslateCTM(aRef, 0, (DET_EQ_MAX_GAIN - DET_EQ_MIN_GAIN) * EQ_BTN_POINTS_PER_DB / 2);
+    CGContextTranslateCTM(aRef, 0, 41.5);
     
     // Adjust the drawing options as needed.
     eqPath.lineWidth = 1;
     
     // Fill the path before stroking it so that the fill
     // color does not obscure the stroked line.
-    //[eqPath fill];
+    [eqPath fill];
     [eqPath stroke];
     
     // Restore the graphics state before drawing any other content.

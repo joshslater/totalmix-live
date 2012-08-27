@@ -86,7 +86,7 @@
 
 -(void)calculateEqCurve
 {
-#if 1
+#if 0
     NSLog(@"in calculateEqCurve, selectedBand = %d",[selectedBand integerValue]);
 #endif
     

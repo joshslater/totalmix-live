@@ -11,5 +11,5 @@
 #define DET_EQ_MAX_GAIN 20.0
 
 // EQ Button scale factors
-#define EQ_BTN_POINTS_PER_DB 2.075
+#define EQ_BTN_POINTS_PER_DB 1.0
 #define EQ_BTN_POINTS_PER_DECADE 27.6667
