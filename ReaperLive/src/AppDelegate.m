@@ -8,7 +8,11 @@
 
 #import "AppDelegate.h"
 
+#import <VVOSC/VVOSC.h>
+
 #import "ChannelsViewController.h"
+#import "AuxViewController.h"
+#import "SettingsViewController.h"
 
 @implementation AppDelegate
 
@@ -20,15 +24,57 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
-    
+    // main channels mixer
     ChannelsViewController *channelsViewController = [[ChannelsViewController alloc] initWithNibName:@"ChannelsViewController" bundle:nil];
     
+    // aux mixer
+    AuxViewController *auxViewController = [[AuxViewController alloc] initWithNibName:@"AuxViewController" bundle:nil];
+    
+    // settings
+    //SettingsViewController *settingsViewController = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:nil];
+    SettingsViewController *settingsViewController = [[SettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
     
     self.tabBarController = [[UITabBarController alloc] init];
-    self.tabBarController.viewControllers = [NSArray arrayWithObjects:channelsViewController, nil];
+    self.tabBarController.viewControllers = [NSArray arrayWithObjects:channelsViewController, auxViewController, settingsViewController, nil];
     
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
+    
+    
+    
+//    /**************************/
+//    /******** OSC STUFF *******/
+//    /**************************/
+//    // create an OSCManager- set myself up as its delegate
+//    OSCManager *manager = [[OSCManager alloc] init];
+//    [manager setDelegate:self];
+//    
+//    // create an input port for receiving OSC data
+//    [manager createNewInputForPort:1234];
+//    
+//    // create an output so i can send OSC data to myself
+//    OSCOutPort *outPort = [manager createNewOutputToAddress:@"127.0.0.1" atPort:1234];
+//    
+//    // make an OSC message
+//    OSCMessage *newMsg = [OSCMessage createWithAddress:@"/Address/Path/1"];
+//    
+//    // add a bunch arguments to the message
+//    [newMsg addInt:12];
+//    [newMsg addFloat:12.34];
+//    [newMsg addColor:[UIColor colorWithRed:0.0 green:1.0 blue:0.0 alpha:1.0]];
+//    [newMsg addBOOL:YES];
+//    [newMsg addString:@"Hello World!"];
+//    
+//    // send the OSC message
+//    [outPort sendThisMessage:newMsg];
+    
+    
+    
+    
+    
+    
+    
+    
     return YES;
 }
 

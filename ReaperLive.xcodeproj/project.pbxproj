@@ -23,6 +23,9 @@
 		0345FB5215D3660F009130E2 /* VerticalSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 0345FB5115D3660F009130E2 /* VerticalSlider.m */; };
 		0348F52215E9A58300992A0D /* Complex.m in Sources */ = {isa = PBXBuildFile; fileRef = 0348F52115E9A58200992A0D /* Complex.m */; };
 		035C46ED15BE6AE000C43574 /* ChannelsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 035C46EC15BE6AE000C43574 /* ChannelsViewController.xib */; };
+		036181DB15EB2214001FB621 /* AuxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 036181D915EB2214001FB621 /* AuxViewController.m */; };
+		036181E515EB2DA3001FB621 /* AuxViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 036181E415EB2DA3001FB621 /* AuxViewController.xib */; };
+		0361820415EB4235001FB621 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0361820215EB4235001FB621 /* SettingsViewController.m */; };
 		03712C4915D82E3F00EC9665 /* Knob-Selector@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03712C4715D82E3F00EC9665 /* Knob-Selector@2x.png */; };
 		03712C4A15D82E3F00EC9665 /* Knob@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03712C4815D82E3F00EC9665 /* Knob@2x.png */; };
 		03712C4E15D82E4D00EC9665 /* Knob-Selector.png in Resources */ = {isa = PBXBuildFile; fileRef = 03712C4C15D82E4D00EC9665 /* Knob-Selector.png */; };
@@ -86,6 +89,11 @@
 		0348F52015E9A58200992A0D /* Complex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Complex.h; sourceTree = "<group>"; };
 		0348F52115E9A58200992A0D /* Complex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Complex.m; sourceTree = "<group>"; };
 		035C46EC15BE6AE000C43574 /* ChannelsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChannelsViewController.xib; sourceTree = "<group>"; };
+		036181D815EB2214001FB621 /* AuxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuxViewController.h; sourceTree = "<group>"; };
+		036181D915EB2214001FB621 /* AuxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuxViewController.m; sourceTree = "<group>"; };
+		036181E415EB2DA3001FB621 /* AuxViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuxViewController.xib; sourceTree = "<group>"; };
+		0361820115EB4235001FB621 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		0361820215EB4235001FB621 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		03712C4715D82E3F00EC9665 /* Knob-Selector@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Knob-Selector@2x.png"; sourceTree = "<group>"; };
 		03712C4815D82E3F00EC9665 /* Knob@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Knob@2x.png"; sourceTree = "<group>"; };
 		03712C4C15D82E4D00EC9665 /* Knob-Selector.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Knob-Selector.png"; sourceTree = "<group>"; };
@@ -315,6 +323,7 @@
 			isa = PBXGroup;
 			children = (
 				035C46EC15BE6AE000C43574 /* ChannelsViewController.xib */,
+				036181E415EB2DA3001FB621 /* AuxViewController.xib */,
 				03ADD59415BD0CD100EBDC71 /* ChannelTableCell.xib */,
 				03F2327A15C0E4FB009B0390 /* GateView.xib */,
 				03F2326D15C0E0E3009B0390 /* CompView.xib */,
@@ -327,10 +336,14 @@
 		03F2328815C268FB009B0390 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				036181D815EB2214001FB621 /* AuxViewController.h */,
+				036181D915EB2214001FB621 /* AuxViewController.m */,
 				03ADD58215BCFC0900EBDC71 /* ChannelsViewController.h */,
 				03ADD58315BCFC0900EBDC71 /* ChannelsViewController.m */,
 				03F292F615C63E3A007D1440 /* DetailedChannelViewController.h */,
 				03F292F715C63E3A007D1440 /* DetailedChannelViewController.m */,
+				0361820115EB4235001FB621 /* SettingsViewController.h */,
+				0361820215EB4235001FB621 /* SettingsViewController.m */,
 				03712C6015D8B62900EC9665 /* EqViewController.h */,
 				03712C6115D8B62900EC9665 /* EqViewController.m */,
 				03F2328A15C2691D009B0390 /* Helpers */,
@@ -463,6 +476,7 @@
 				03712C4F15D82E4D00EC9665 /* Knob.png in Resources */,
 				03712C5515D84C4F00EC9665 /* EQ-Point.png in Resources */,
 				03B2006A15DB822700FC8C3C /* EQ-Point@2x.png in Resources */,
+				036181E515EB2DA3001FB621 /* AuxViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,6 +504,8 @@
 				0385B0DF15DF66DB00EBE2F8 /* EqThumbView.m in Sources */,
 				03306F4815E17F9E0094DF14 /* EqCurve.m in Sources */,
 				0348F52215E9A58300992A0D /* Complex.m in Sources */,
+				036181DB15EB2214001FB621 /* AuxViewController.m in Sources */,
+				0361820415EB4235001FB621 /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -557,10 +573,16 @@
 		03ADD58B15BCFC0900EBDC71 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ADDITIONAL_SDKS = "$HOME/Library/SDKs/VVOSC/$(PLATFORM_NAME).sdk $HOME/Library/SDKs/VVBasics/$(PLATFORM_NAME).sdk";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ReaperLive/ReaperLive-Prefix.pch";
 				INFOPLIST_FILE = "ReaperLive/ReaperLive-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lVVOSC",
+					"-lVVBasics",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -570,10 +592,16 @@
 		03ADD58C15BCFC0900EBDC71 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ADDITIONAL_SDKS = "$HOME/Library/SDKs/VVOSC/$(PLATFORM_NAME).sdk $HOME/Library/SDKs/VVBasics/$(PLATFORM_NAME).sdk";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ReaperLive/ReaperLive-Prefix.pch";
 				INFOPLIST_FILE = "ReaperLive/ReaperLive-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lVVOSC",
+					"-lVVBasics",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
