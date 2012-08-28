@@ -19,13 +19,16 @@
 		0309E72A15D24525004FDD58 /* MuteBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E71E15D24525004FDD58 /* MuteBtn.png */; };
 		0309E72B15D24525004FDD58 /* SoloBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E71F15D24525004FDD58 /* SoloBtn.png */; };
 		0309E74615D260FB004FDD58 /* VolumeSlider.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E74515D260FB004FDD58 /* VolumeSlider.png */; };
+		032504B915EC8B2B008B0E19 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 032504B815EC8B2B008B0E19 /* MapKit.framework */; };
+		032504BB15EC8B37008B0E19 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 032504BA15EC8B37008B0E19 /* CoreLocation.framework */; };
+		032504C115EC8C46008B0E19 /* libQuickDialog.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 032504B515EC89D2008B0E19 /* libQuickDialog.a */; };
+		032504C715EC998A008B0E19 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 032504C615EC998A008B0E19 /* SettingsViewController.m */; };
 		03306F4815E17F9E0094DF14 /* Eq.m in Sources */ = {isa = PBXBuildFile; fileRef = 03306F4715E17F9E0094DF14 /* Eq.m */; };
 		0345FB5215D3660F009130E2 /* VerticalSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 0345FB5115D3660F009130E2 /* VerticalSlider.m */; };
 		0348F52215E9A58300992A0D /* Complex.m in Sources */ = {isa = PBXBuildFile; fileRef = 0348F52115E9A58200992A0D /* Complex.m */; };
 		035C46ED15BE6AE000C43574 /* ChannelsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 035C46EC15BE6AE000C43574 /* ChannelsViewController.xib */; };
 		036181DB15EB2214001FB621 /* AuxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 036181D915EB2214001FB621 /* AuxViewController.m */; };
 		036181E515EB2DA3001FB621 /* AuxViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 036181E415EB2DA3001FB621 /* AuxViewController.xib */; };
-		0361820415EB4235001FB621 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0361820215EB4235001FB621 /* SettingsViewController.m */; };
 		03712C4915D82E3F00EC9665 /* Knob-Selector@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03712C4715D82E3F00EC9665 /* Knob-Selector@2x.png */; };
 		03712C4A15D82E3F00EC9665 /* Knob@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03712C4815D82E3F00EC9665 /* Knob@2x.png */; };
 		03712C4E15D82E4D00EC9665 /* Knob-Selector.png in Resources */ = {isa = PBXBuildFile; fileRef = 03712C4C15D82E4D00EC9665 /* Knob-Selector.png */; };
@@ -69,6 +72,23 @@
 		03F3CD7015D38552006AD784 /* MHRotaryKnob.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F3CD6F15D38552006AD784 /* MHRotaryKnob.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		032504B215EC89D2008B0E19 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 032504A915EC89D1008B0E19 /* QuickDialog.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D80B0E3313E052DF00FA85CA;
+			remoteInfo = QuickDialogExample;
+		};
+		032504B415EC89D2008B0E19 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 032504A915EC89D1008B0E19 /* QuickDialog.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2C542393145ADEBD0026A152;
+			remoteInfo = QuickDialog;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		0309E71515D24525004FDD58 /* ChannelBkg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ChannelBkg.png; sourceTree = "<group>"; };
 		0309E71615D24525004FDD58 /* CompBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CompBtn.png; sourceTree = "<group>"; };
@@ -82,7 +102,12 @@
 		0309E71E15D24525004FDD58 /* MuteBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MuteBtn.png; sourceTree = "<group>"; };
 		0309E71F15D24525004FDD58 /* SoloBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SoloBtn.png; sourceTree = "<group>"; };
 		0309E74515D260FB004FDD58 /* VolumeSlider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VolumeSlider.png; sourceTree = "<group>"; };
-		03306F4615E17F9E0094DF14 /* Eq.h */ = {isa = PBXFileReference; fileEncoding = 4; path = Eq.h; sourceTree = "<group>"; };
+		032504A915EC89D1008B0E19 /* QuickDialog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = QuickDialog.xcodeproj; path = QuickDialog/QuickDialog.xcodeproj; sourceTree = "<group>"; };
+		032504B815EC8B2B008B0E19 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		032504BA15EC8B37008B0E19 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		032504C515EC9989008B0E19 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		032504C615EC998A008B0E19 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		03306F4615E17F9E0094DF14 /* Eq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Eq.h; sourceTree = "<group>"; };
 		03306F4715E17F9E0094DF14 /* Eq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Eq.m; sourceTree = "<group>"; };
 		0345FB5015D3660F009130E2 /* VerticalSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerticalSlider.h; sourceTree = "<group>"; };
 		0345FB5115D3660F009130E2 /* VerticalSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerticalSlider.m; sourceTree = "<group>"; };
@@ -92,8 +117,6 @@
 		036181D815EB2214001FB621 /* AuxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuxViewController.h; sourceTree = "<group>"; };
 		036181D915EB2214001FB621 /* AuxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuxViewController.m; sourceTree = "<group>"; };
 		036181E415EB2DA3001FB621 /* AuxViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuxViewController.xib; sourceTree = "<group>"; };
-		0361820115EB4235001FB621 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
-		0361820215EB4235001FB621 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		03712C4715D82E3F00EC9665 /* Knob-Selector@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Knob-Selector@2x.png"; sourceTree = "<group>"; };
 		03712C4815D82E3F00EC9665 /* Knob@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Knob@2x.png"; sourceTree = "<group>"; };
 		03712C4C15D82E4D00EC9665 /* Knob-Selector.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Knob-Selector.png"; sourceTree = "<group>"; };
@@ -159,6 +182,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				032504C115EC8C46008B0E19 /* libQuickDialog.a in Frameworks */,
+				032504BB15EC8B37008B0E19 /* CoreLocation.framework in Frameworks */,
+				032504B915EC8B2B008B0E19 /* MapKit.framework in Frameworks */,
 				03ADD57115BCFC0900EBDC71 /* UIKit.framework in Frameworks */,
 				03ADD57315BCFC0900EBDC71 /* Foundation.framework in Frameworks */,
 				03ADD57515BCFC0900EBDC71 /* CoreGraphics.framework in Frameworks */,
@@ -215,6 +241,15 @@
 			path = resources/images/2x;
 			sourceTree = "<group>";
 		};
+		032504AA15EC89D1008B0E19 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				032504B315EC89D2008B0E19 /* QuickDialogExample.app */,
+				032504B515EC89D2008B0E19 /* libQuickDialog.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		0361820615EC720C001FB621 /* Tab Bar View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,8 +257,8 @@
 				03ADD58315BCFC0900EBDC71 /* ChannelsViewController.m */,
 				036181D815EB2214001FB621 /* AuxViewController.h */,
 				036181D915EB2214001FB621 /* AuxViewController.m */,
-				0361820115EB4235001FB621 /* SettingsViewController.h */,
-				0361820215EB4235001FB621 /* SettingsViewController.m */,
+				032504C515EC9989008B0E19 /* SettingsViewController.h */,
+				032504C615EC998A008B0E19 /* SettingsViewController.m */,
 			);
 			name = "Tab Bar View Controllers";
 			sourceTree = "<group>";
@@ -251,6 +286,8 @@
 		03ADD56115BCFC0900EBDC71 = {
 			isa = PBXGroup;
 			children = (
+				032504BA15EC8B37008B0E19 /* CoreLocation.framework */,
+				032504B815EC8B2B008B0E19 /* MapKit.framework */,
 				03ADD57615BCFC0900EBDC71 /* ReaperLive */,
 				03ADD56F15BCFC0900EBDC71 /* Frameworks */,
 				03ADD56D15BCFC0900EBDC71 /* Products */,
@@ -268,6 +305,7 @@
 		03ADD56F15BCFC0900EBDC71 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				032504A915EC89D1008B0E19 /* QuickDialog.xcodeproj */,
 				03ADD57015BCFC0900EBDC71 /* UIKit.framework */,
 				03ADD57215BCFC0900EBDC71 /* Foundation.framework */,
 				03ADD57415BCFC0900EBDC71 /* CoreGraphics.framework */,
@@ -451,12 +489,35 @@
 			mainGroup = 03ADD56115BCFC0900EBDC71;
 			productRefGroup = 03ADD56D15BCFC0900EBDC71 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 032504AA15EC89D1008B0E19 /* Products */;
+					ProjectRef = 032504A915EC89D1008B0E19 /* QuickDialog.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				03ADD56B15BCFC0900EBDC71 /* ReaperLive */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		032504B315EC89D2008B0E19 /* QuickDialogExample.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = QuickDialogExample.app;
+			remoteRef = 032504B215EC89D2008B0E19 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		032504B515EC89D2008B0E19 /* libQuickDialog.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libQuickDialog.a;
+			remoteRef = 032504B415EC89D2008B0E19 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		03ADD56A15BCFC0900EBDC71 /* Resources */ = {
@@ -529,7 +590,7 @@
 				03306F4815E17F9E0094DF14 /* Eq.m in Sources */,
 				0348F52215E9A58300992A0D /* Complex.m in Sources */,
 				036181DB15EB2214001FB621 /* AuxViewController.m in Sources */,
-				0361820415EB4235001FB621 /* SettingsViewController.m in Sources */,
+				032504C715EC998A008B0E19 /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -598,6 +659,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ADDITIONAL_SDKS = "$HOME/Library/SDKs/VVOSC/$(PLATFORM_NAME).sdk $HOME/Library/SDKs/VVBasics/$(PLATFORM_NAME).sdk";
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ReaperLive/ReaperLive-Prefix.pch";
@@ -609,6 +671,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/QuickDialog\"/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -617,6 +680,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ADDITIONAL_SDKS = "$HOME/Library/SDKs/VVOSC/$(PLATFORM_NAME).sdk $HOME/Library/SDKs/VVBasics/$(PLATFORM_NAME).sdk";
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ReaperLive/ReaperLive-Prefix.pch";
@@ -628,6 +692,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/QuickDialog\"/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

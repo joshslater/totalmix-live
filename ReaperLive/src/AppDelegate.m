@@ -41,7 +41,7 @@
     AuxViewController *auxViewController = [[AuxViewController alloc] initWithNibName:@"AuxViewController" bundle:nil];
     
     // settings
-    SettingsViewController *settingsViewController = [[SettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    SettingsViewController *settingsViewController = [[SettingsViewController alloc] init];
     
     self.tabBarController = [[UITabBarController alloc] init];
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:channelsViewController, auxViewController, settingsViewController, nil];
