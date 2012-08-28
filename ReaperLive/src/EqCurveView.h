@@ -8,11 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class Eq;
+
 @interface EqCurveView : UIView
 
-@property (nonatomic, strong) NSNumber *nPoints;
-
-@property (nonatomic, strong) NSMutableArray *eqFreqPoints;
-@property (nonatomic, strong) NSMutableArray *eqCurve;
+@property (nonatomic, strong) Eq *eq;
 
 @end

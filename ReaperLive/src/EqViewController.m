@@ -13,8 +13,7 @@
 #import "MHRotaryKnob.h"
 #import "EqPointsView.h"
 #import "EqCurveView.h"
-#import "Channel.h"
-#import "EqCurve.h"
+#import "Eq.h"
 
 @interface EqViewController ()
 
@@ -37,8 +36,8 @@
 
 @synthesize bandSelector;
 
-@synthesize channel;
-@synthesize selectedChannel;
+//@synthesize selectedChannel;
+@synthesize eq;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -69,29 +68,11 @@
     // create the EQ curve view
     eqCurveView = [[EqCurveView alloc] initWithFrame:CGRectMake(88, 48, 450, 200)];
     eqCurveView.opaque = NO;
-    
-    /*
-    // initialize a 4-element array with all zeros
-    for (int i = 0; i < 4; i++)
-    {
-        // initialize the gain points to zero and frequency points to as above
-        [gainPoints addObject:[NSNumber numberWithFloat:0.0]];
-        [freqPoints addObject:[NSNumber numberWithFloat:0.0]];
-        [qPoints addObject:[NSNumber numberWithFloat:0.0]];
-    }
-    */
-    
+        
 #if 0
     NSLog(@"setting eqCurveView's eqCurve reference");
 #endif
     
-    // set eqCurveView's points to self's points
-    eqCurveView.eqCurve = self.channel.eqCurve.eqCurve;
-    eqCurveView.eqFreqPoints = self.channel.eqCurve.eqFreqPoints;    
-    
-    // set eqPointView's points to self's points
-    eqPointsView.gainPoints = self.channel.gainPoints;
-    eqPointsView.freqPoints = self.channel.freqPoints;
     
     gainKnob.backgroundImage = [UIImage imageNamed:@"Knob.png"];
     [gainKnob setKnobImage:[UIImage imageNamed:@"Knob-Selector.png"] forState:UIControlStateNormal];
@@ -154,8 +135,12 @@
     // call the target to initialize it
     [self bandSelectorDidChange:bandSelector];
     
-    // update the eq curve
-    [self updateEqCurve];
+    // this calculate's the eqCurve for the channel
+    [self.eq calculateEqCurve];
+    // draws the new curve
+    [eqCurveView setNeedsDisplay];
+    // updates the location of the points
+    [eqPointsView updateEqPoints];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -165,18 +150,21 @@
     NSLog(@"eqViewController channel = %x",(unsigned int)self.channel);
     NSLog(@"EqViewController: gainPoint(0) = %0.0f",[[self.channel.gainPoints objectAtIndex:0] floatValue]);
 #endif
+
+#if 0
+    NSLog(@"EqViewController, gainPoints address = %x",(unsigned int)eq.gainPoints);
+#endif
     
-    // need to update the points references every time it will appear
-    // set eqCurveView's points to self's points
-    eqCurveView.eqCurve = self.channel.eqCurve.eqCurve;
-    eqCurveView.eqFreqPoints = self.channel.eqCurve.eqFreqPoints;    
+
+    eqCurveView.eq = self.eq;
+    eqPointsView.eq = self.eq;    
     
-    // set eqPointView's points to self's points
-    eqPointsView.gainPoints = self.channel.gainPoints;
-    eqPointsView.freqPoints = self.channel.freqPoints;
-    
-    // update the eq curve
-    [self updateEqCurve];
+    // this calculate's the eqCurve for the channel
+    [self.eq calculateEqCurve];
+    // draws the new curve
+    [eqCurveView setNeedsDisplay];
+    // updates the location of the points
+    [eqPointsView updateEqPoints];
     
     // this will initialize all the text fields
     [self bandSelectorDidChange:bandSelector];
@@ -207,7 +195,8 @@
     
     // draw the new EQ curve
     NSNumber *gainPoint = [NSNumber numberWithFloat:sender.value];
-    [self.channel.gainPoints replaceObjectAtIndex:idx withObject:gainPoint];
+        
+    [self.eq.gainPoints replaceObjectAtIndex:idx withObject:gainPoint];
     
 #if 0
     NSLog(@"gainKnobDidChange: gainPoint @ %d = %0.3f",idx,[[self.channel.gainPoints objectAtIndex:idx] floatValue]);
@@ -218,16 +207,12 @@
     NSLog(@"self.channel.eqCurve.eqCurve(20) = %0.3f",[[self.channel.eqCurve.eqCurve objectAtIndex:20] doubleValue]);
 #endif
     
-    // FIXME: Why do I have to reset these references?
-    eqCurveView.eqCurve = self.channel.eqCurve.eqCurve;
-    eqCurveView.eqFreqPoints = self.channel.eqCurve.eqFreqPoints;
-    eqCurveView.nPoints = self.channel.eqCurve.nPoints;
-    
-    [self.channel.eqCurve calculateEqCurve];
-    [self updateEqCurve];
-    
-    // notify ChannelsViewController that it needs to update the button
-    [(ChannelsViewController *)self.parentViewController.parentViewController updateSelectedChannelEqButton:selectedChannel];
+    // this calculate's the eqCurve for the channel
+    [self.eq calculateEqCurve];
+    // draws the new curve
+    [eqCurveView setNeedsDisplay];
+    // updates the location of the points
+    [eqPointsView updateEqPoints];
 }
 
 - (void)freqKnobDidChange:(MHRotaryKnob *)sender
@@ -239,22 +224,18 @@
     
     // draw the new EQ curve
     NSNumber *freqPoint = [NSNumber numberWithFloat:pow(10,sender.value)];
-    [self.channel.freqPoints replaceObjectAtIndex:idx withObject:freqPoint];
+    [self.eq.freqPoints replaceObjectAtIndex:idx withObject:freqPoint];
     
 #if 0
     NSLog(@"freqKnobDidChange: freqPoint @ %d = %0.3f",idx,[freqPoint floatValue]);
 #endif
-
-    // FIXME: Why do I have to reset these references?
-    eqCurveView.eqCurve = self.channel.eqCurve.eqCurve;
-    eqCurveView.eqFreqPoints = self.channel.eqCurve.eqFreqPoints;
-    eqCurveView.nPoints = self.channel.eqCurve.nPoints;
-    
-    [self.channel.eqCurve calculateEqCurve];
-    [self updateEqCurve];
-    
-    // notify ChannelsViewController that it needs to update the button
-    [(ChannelsViewController *)self.parentViewController.parentViewController updateSelectedChannelEqButton:selectedChannel];
+ 
+    // this calculate's the eqCurve for the channel
+    [self.eq calculateEqCurve];
+    // draws the new curve
+    [eqCurveView setNeedsDisplay];
+    // updates the location of the points
+    [eqPointsView updateEqPoints];
 }
 
 - (void)qKnobDidChange:(MHRotaryKnob *)sender
@@ -265,25 +246,19 @@
     qLabel.text = [NSString stringWithFormat:@"%0.3f",sender.value];
     
     NSNumber *qPoint = [NSNumber numberWithFloat:sender.value];
-    [self.channel.qPoints replaceObjectAtIndex:idx withObject:qPoint];
+    [self.eq.qPoints replaceObjectAtIndex:idx withObject:qPoint];
     
 #if 0
     //NSLog(@"qKnobDidChange: qPoint @ %d = %0.3f",idx,[[qPoints objectAtIndex:idx] floatValue]);
     NSLog(@"qKnobDidChange: qPoint @ %d = %0.3f",idx,sender.value);
 #endif    
     
-    // FIXME: Why do I have to reset these references?
-    eqCurveView.eqCurve = self.channel.eqCurve.eqCurve;
-    eqCurveView.eqFreqPoints = self.channel.eqCurve.eqFreqPoints;
-    eqCurveView.nPoints = self.channel.eqCurve.nPoints;
-    
     // this calculate's the eqCurve for the channel
-    [self.channel.eqCurve calculateEqCurve];
-    // this plots the new eqCurve
-    [self updateEqCurve];
-    
-    // notify ChannelsViewController that it needs to update the button
-    [(ChannelsViewController *)self.parentViewController.parentViewController updateSelectedChannelEqButton:selectedChannel];
+    [self.eq calculateEqCurve];
+    // draws the new curve
+    [eqCurveView setNeedsDisplay];
+    // updates the location of the points
+    [eqPointsView updateEqPoints];
 }
 
 - (void)bandSelectorDidChange:(UISegmentedControl *)sender
@@ -301,25 +276,17 @@
 #endif
     
     // set each rotary knob with the appropraite value
-    gainKnob.value = [[self.channel.gainPoints objectAtIndex:idx] floatValue];
-    freqKnob.value = log10f([[self.channel.freqPoints objectAtIndex:idx] floatValue]);
-    qKnob.value = [[self.channel.qPoints objectAtIndex:idx] floatValue];
+    gainKnob.value = [[self.eq.gainPoints objectAtIndex:idx] floatValue];
+    freqKnob.value = log10f([[self.eq.freqPoints objectAtIndex:idx] floatValue]);
+    qKnob.value = [[self.eq.qPoints objectAtIndex:idx] floatValue];
     
     // set each label
-    gainLabel.text = [NSString stringWithFormat:@"%0.0f",[[self.channel.gainPoints objectAtIndex:idx] floatValue]];
-    freqLabel.text = [NSString stringWithFormat:@"%0.0f",[[self.channel.freqPoints objectAtIndex:idx] floatValue]];
-    qLabel.text = [NSString stringWithFormat:@"%0.3f",[[self.channel.qPoints objectAtIndex:idx] floatValue]];
+    gainLabel.text = [NSString stringWithFormat:@"%0.0f",[[self.eq.gainPoints objectAtIndex:idx] floatValue]];
+    freqLabel.text = [NSString stringWithFormat:@"%0.0f",[[self.eq.freqPoints objectAtIndex:idx] floatValue]];
+    qLabel.text = [NSString stringWithFormat:@"%0.3f",[[self.eq.qPoints objectAtIndex:idx] floatValue]];
     
     // set the selected band for the current channel
-    channel.eqCurve.selectedBand = [NSNumber numberWithInt:idx];
-}
-
-- (void)updateEqCurve
-{
-    [eqCurveView setNeedsDisplay];
-    
-    // points
-    [eqPointsView updateEqPoints];
+    eq.selectedBand = [NSNumber numberWithInt:idx];
 }
 
 @end

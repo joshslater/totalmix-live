@@ -19,7 +19,7 @@
 		0309E72A15D24525004FDD58 /* MuteBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E71E15D24525004FDD58 /* MuteBtn.png */; };
 		0309E72B15D24525004FDD58 /* SoloBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E71F15D24525004FDD58 /* SoloBtn.png */; };
 		0309E74615D260FB004FDD58 /* VolumeSlider.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E74515D260FB004FDD58 /* VolumeSlider.png */; };
-		03306F4815E17F9E0094DF14 /* EqCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = 03306F4715E17F9E0094DF14 /* EqCurve.m */; };
+		03306F4815E17F9E0094DF14 /* Eq.m in Sources */ = {isa = PBXBuildFile; fileRef = 03306F4715E17F9E0094DF14 /* Eq.m */; };
 		0345FB5215D3660F009130E2 /* VerticalSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 0345FB5115D3660F009130E2 /* VerticalSlider.m */; };
 		0348F52215E9A58300992A0D /* Complex.m in Sources */ = {isa = PBXBuildFile; fileRef = 0348F52115E9A58200992A0D /* Complex.m */; };
 		035C46ED15BE6AE000C43574 /* ChannelsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 035C46EC15BE6AE000C43574 /* ChannelsViewController.xib */; };
@@ -82,8 +82,8 @@
 		0309E71E15D24525004FDD58 /* MuteBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MuteBtn.png; sourceTree = "<group>"; };
 		0309E71F15D24525004FDD58 /* SoloBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SoloBtn.png; sourceTree = "<group>"; };
 		0309E74515D260FB004FDD58 /* VolumeSlider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VolumeSlider.png; sourceTree = "<group>"; };
-		03306F4615E17F9E0094DF14 /* EqCurve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EqCurve.h; sourceTree = "<group>"; };
-		03306F4715E17F9E0094DF14 /* EqCurve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EqCurve.m; sourceTree = "<group>"; };
+		03306F4615E17F9E0094DF14 /* Eq.h */ = {isa = PBXFileReference; fileEncoding = 4; path = Eq.h; sourceTree = "<group>"; };
+		03306F4715E17F9E0094DF14 /* Eq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Eq.m; sourceTree = "<group>"; };
 		0345FB5015D3660F009130E2 /* VerticalSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerticalSlider.h; sourceTree = "<group>"; };
 		0345FB5115D3660F009130E2 /* VerticalSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerticalSlider.m; sourceTree = "<group>"; };
 		0348F52015E9A58200992A0D /* Complex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Complex.h; sourceTree = "<group>"; };
@@ -215,6 +215,39 @@
 			path = resources/images/2x;
 			sourceTree = "<group>";
 		};
+		0361820615EC720C001FB621 /* Tab Bar View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				03ADD58215BCFC0900EBDC71 /* ChannelsViewController.h */,
+				03ADD58315BCFC0900EBDC71 /* ChannelsViewController.m */,
+				036181D815EB2214001FB621 /* AuxViewController.h */,
+				036181D915EB2214001FB621 /* AuxViewController.m */,
+				0361820115EB4235001FB621 /* SettingsViewController.h */,
+				0361820215EB4235001FB621 /* SettingsViewController.m */,
+			);
+			name = "Tab Bar View Controllers";
+			sourceTree = "<group>";
+		};
+		0361820715EC7244001FB621 /* Detailed View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				03F292F615C63E3A007D1440 /* DetailedChannelViewController.h */,
+				03F292F715C63E3A007D1440 /* DetailedChannelViewController.m */,
+				03712C6015D8B62900EC9665 /* EqViewController.h */,
+				03712C6115D8B62900EC9665 /* EqViewController.m */,
+			);
+			name = "Detailed View Controllers";
+			sourceTree = "<group>";
+		};
+		0361820815EC726A001FB621 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				03D1EA5515DEE7B000F8C804 /* Channels */,
+				03F2328615C2681D009B0390 /* Detailed Channel */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		03ADD56115BCFC0900EBDC71 = {
 			isa = PBXGroup;
 			children = (
@@ -276,8 +309,8 @@
 				03F2328915C2690E009B0390 /* AppDelegate */,
 				03F2328815C268FB009B0390 /* Controllers */,
 				03F2328B15C26921009B0390 /* Models */,
-				03F2328615C2681D009B0390 /* Detailed Channel */,
-				03D1EA5515DEE7B000F8C804 /* Channels */,
+				0361820815EC726A001FB621 /* Views */,
+				03F2328A15C2691D009B0390 /* Helpers */,
 			);
 			name = Classes;
 			path = src;
@@ -336,17 +369,8 @@
 		03F2328815C268FB009B0390 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				036181D815EB2214001FB621 /* AuxViewController.h */,
-				036181D915EB2214001FB621 /* AuxViewController.m */,
-				03ADD58215BCFC0900EBDC71 /* ChannelsViewController.h */,
-				03ADD58315BCFC0900EBDC71 /* ChannelsViewController.m */,
-				03F292F615C63E3A007D1440 /* DetailedChannelViewController.h */,
-				03F292F715C63E3A007D1440 /* DetailedChannelViewController.m */,
-				0361820115EB4235001FB621 /* SettingsViewController.h */,
-				0361820215EB4235001FB621 /* SettingsViewController.m */,
-				03712C6015D8B62900EC9665 /* EqViewController.h */,
-				03712C6115D8B62900EC9665 /* EqViewController.m */,
-				03F2328A15C2691D009B0390 /* Helpers */,
+				0361820615EC720C001FB621 /* Tab Bar View Controllers */,
+				0361820715EC7244001FB621 /* Detailed View Controllers */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -382,8 +406,8 @@
 			children = (
 				03ADD59715BD107F00EBDC71 /* Channel.h */,
 				03ADD59815BD107F00EBDC71 /* Channel.m */,
-				03306F4615E17F9E0094DF14 /* EqCurve.h */,
-				03306F4715E17F9E0094DF14 /* EqCurve.m */,
+				03306F4615E17F9E0094DF14 /* Eq.h */,
+				03306F4715E17F9E0094DF14 /* Eq.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -502,7 +526,7 @@
 				03712C5B15D8ADC400EC9665 /* EqPointsView.m in Sources */,
 				03712C6215D8B62900EC9665 /* EqViewController.m in Sources */,
 				0385B0DF15DF66DB00EBE2F8 /* EqThumbView.m in Sources */,
-				03306F4815E17F9E0094DF14 /* EqCurve.m in Sources */,
+				03306F4815E17F9E0094DF14 /* Eq.m in Sources */,
 				0348F52215E9A58300992A0D /* Complex.m in Sources */,
 				036181DB15EB2214001FB621 /* AuxViewController.m in Sources */,
 				0361820415EB4235001FB621 /* SettingsViewController.m in Sources */,

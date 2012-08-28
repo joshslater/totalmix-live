@@ -12,7 +12,7 @@
 @class EqPointsView;
 @class EqCurveView;
 @class MHRotaryKnob;
-@class Channel;
+@class Eq;
 
 @interface EqViewController : UIViewController
 {
@@ -35,8 +35,8 @@
 
 @property (strong, nonatomic) IBOutlet UISegmentedControl *bandSelector;
 
-@property (strong, nonatomic) Channel *channel;
-@property (nonatomic) NSInteger selectedChannel;
+//@property (nonatomic) NSInteger selectedChannel;
+@property (strong, nonatomic) Eq *eq;
 
 
 

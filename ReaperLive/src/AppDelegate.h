@@ -11,6 +11,9 @@
 @class ViewController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
+{
+    NSMutableArray *channels;
+}
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) UITabBarController *tabBarController;

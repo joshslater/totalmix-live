@@ -14,7 +14,7 @@
 #import "VerticalSlider.h"
 #import "EqViewController.h"
 #import "EqThumbView.h"
-#import "EqCurve.h"
+#import "Eq.h"
 
 @interface ChannelsViewController ()
 
@@ -50,13 +50,6 @@
     
     [super viewDidLoad];
     
-    self.channels = [[NSMutableArray alloc]	initWithCapacity:100];
-    
-    for (int i = 0; i < 20; i++)
-    {
-        [self.channels addObject: [[Channel alloc] initWithChannelNumber:i]];
-    }
-    
 #if 0
     NSLog(@"channel(0), freqPoint(0) = %0.0f",[[[[channels objectAtIndex:0] freqPoints] objectAtIndex:0] floatValue]);
 #endif
@@ -77,11 +70,9 @@
     // create detailed channel view controller //
     /////////////////////////////////////////////
     self.detailedChannelViewController = [[DetailedChannelViewController alloc] init];  
+    // set the delegate of the detailedChannelViewController
+    detailedChannelViewController.delegate = self;
     
-    /*
-    // set the selected channel for the displayed view controller
-    detailedChannelViewController.selectedChannel = self.selectedChannel;
-    */
     
     // set the initial channel selection to -1 (no channel selected)
     selectedChannel = -1;
@@ -171,11 +162,9 @@
 
     // set the slider to 0
     cell.volumeSlider.value = [[self.channels objectAtIndex:indexPath.row] volume];
-
     
     // rotate the cell
     cell.transform = CGAffineTransformMakeRotation(M_PI/2);
-
 
     // populate channel label
     cell.channelLabel.text = [NSString stringWithFormat:@"%d",indexPath.row];
@@ -185,11 +174,8 @@
     NSLog(@"cellForRowAtIndexPath -- indexPath.row = %d",indexPath.row);
 #endif
 
-    // update the cell with the correct channel's points. note cannot do this through the 'updateSelectedChannelEqButton' method because that method pulls the cell from this very function, but it hasn't been updated yet. must do it manually here.
-    cell.eqThumbView.nPoints = [[[self.channels objectAtIndex:indexPath.row] eqCurve] nPoints];
-    cell.eqThumbView.eqFreqPoints = [[[self.channels objectAtIndex:indexPath.row] eqCurve] eqFreqPoints];
-    cell.eqThumbView.eqCurve = [[[self.channels objectAtIndex:indexPath.row] eqCurve] eqCurve];
-
+    // set the eq for each of the eqThumbsView's
+    cell.eqThumbView.eq = [[self.channels objectAtIndex:indexPath.row] eq];
     [cell.eqThumbView setNeedsDisplay];
     
     return cell;
@@ -258,19 +244,16 @@
 {    
 #if 0
     NSLog(@"ChannelsViewController: selectedChannel = %d",self.selectedChannel);
-    NSLog(@"ChannelsViewController: freqPoint(0) = %0.0f",[[[[self.channels objectAtIndex:selectedChannel] freqPoints] objectAtIndex:0] floatValue]);
+    NSLog(@"ChannelsViewController: gainPoint(0) = %0.0f",[[[[[self.channels objectAtIndex:selectedChannel] eq] gainPoints] objectAtIndex:0] floatValue]);
+    NSLog(@"gainPoints address = %x",(unsigned int)[[[self.channels objectAtIndex:selectedChannel] eq] gainPoints]);
 #endif
     
-/*    
-    // set the gain, freq, and q points of the detailed view controller to the selected channels'
-    detailedChannelViewController.gainPoints = [[self.channels objectAtIndex:selectedChannel] gainPoints];
-    detailedChannelViewController.freqPoints = [[self.channels objectAtIndex:selectedChannel] freqPoints];
-    detailedChannelViewController.qPoints = [[self.channels objectAtIndex:selectedChannel] qPoints];
-*/
+
 #if 0
     NSLog(@"setting detailedViewController.channel to %x",(unsigned int)[self.channels objectAtIndex:selectedChannel]);
 #endif
     
+    // pass the necessary properties about the cahnnel to the detailed view controller
     detailedChannelViewController.channel = [self.channels objectAtIndex:selectedChannel];
     detailedChannelViewController.selectedChannel = self.selectedChannel;
     
@@ -307,21 +290,15 @@
     }
 }
 
-- (void)updateSelectedChannelEqButton:(NSInteger)channelNumber
+- (void)updateChannelButtons:(NSInteger)channelNumber
 {
 #if 0
-    NSLog(@"In updateSelectedChannelEqButton, channel %d, gainPoints(0) = %0.0f",channelNumber,[[[[self.channels objectAtIndex:channelNumber] gainPoints] objectAtIndex:0] floatValue]);
+    NSLog(@"ChannelsViewController::updateChannelButtons, channel %d, gainPoints(0) = %0.0f",channelNumber,[[[[[self.channels objectAtIndex:channelNumber] eq] gainPoints] objectAtIndex:0] floatValue]);
 #endif
     
     ChannelTableCell *cell = (ChannelTableCell *)[self.channelsTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:channelNumber inSection:0]];
     
-    cell.eqThumbView.nPoints = [[[self.channels objectAtIndex:channelNumber] eqCurve] nPoints];
-    cell.eqThumbView.eqFreqPoints = [[[self.channels objectAtIndex:channelNumber] eqCurve] eqFreqPoints];
-    cell.eqThumbView.eqCurve = [[[self.channels objectAtIndex:channelNumber] eqCurve] eqCurve];
-    
     [cell.eqThumbView setNeedsDisplay];
-    
-    
 }
 
 

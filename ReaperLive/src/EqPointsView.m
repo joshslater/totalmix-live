@@ -8,11 +8,11 @@
 
 #import "Constants.h"
 #import "EqPointsView.h"
+#import "Eq.h"
 
 @implementation EqPointsView
 
-@synthesize freqPoints;
-@synthesize gainPoints;
+@synthesize eq;
 
 @synthesize eqPointImages;
 
@@ -52,8 +52,8 @@
         
         // move the EQ point
         CGRect frame = eqPoint.frame;
-        frame.origin.y = (DET_EQ_MAX_GAIN - DET_EQ_MIN_GAIN) * DET_EQ_POINTS_PER_DB / 2 + [[gainPoints objectAtIndex:i] floatValue] * -DET_EQ_POINTS_PER_DB;
-        frame.origin.x = DET_EQ_POINTS_PER_DECADE * (log10f([[freqPoints objectAtIndex:i] floatValue]) - log10f(DET_EQ_MIN_FREQ));
+        frame.origin.y = (DET_EQ_MAX_GAIN - DET_EQ_MIN_GAIN) * DET_EQ_POINTS_PER_DB / 2 + [[eq.gainPoints objectAtIndex:i] floatValue] * -DET_EQ_POINTS_PER_DB;
+        frame.origin.x = DET_EQ_POINTS_PER_DECADE * (log10f([[eq.freqPoints objectAtIndex:i] floatValue]) - log10f(DET_EQ_MIN_FREQ));
 
         // subtract half the height/width
         frame.origin.x -= frame.size.width/2;

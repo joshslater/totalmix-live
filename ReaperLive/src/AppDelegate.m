@@ -10,6 +10,7 @@
 
 #import <VVOSC/VVOSC.h>
 
+#import "Channel.h"
 #import "ChannelsViewController.h"
 #import "AuxViewController.h"
 #import "SettingsViewController.h"
@@ -21,17 +22,25 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // create channels
+    channels = [[NSMutableArray alloc]	initWithCapacity:100];
+    
+    for (int i = 0; i < 20; i++)
+    {
+        [channels addObject: [[Channel alloc] initWithChannelNumber:i]];
+    }
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
     // main channels mixer
     ChannelsViewController *channelsViewController = [[ChannelsViewController alloc] initWithNibName:@"ChannelsViewController" bundle:nil];
+    channelsViewController.channels = channels;
     
     // aux mixer
     AuxViewController *auxViewController = [[AuxViewController alloc] initWithNibName:@"AuxViewController" bundle:nil];
     
     // settings
-    //SettingsViewController *settingsViewController = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:nil];
     SettingsViewController *settingsViewController = [[SettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
     
     self.tabBarController = [[UITabBarController alloc] init];

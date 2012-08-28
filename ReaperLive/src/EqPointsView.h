@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class Eq;
+
 @interface EqPointsView : UIView
 
-@property (nonatomic, strong) NSMutableArray *gainPoints;
-@property (nonatomic, strong) NSMutableArray *freqPoints;
+@property (nonatomic, strong) Eq *eq;
 
 @property (strong, nonatomic) NSMutableArray *eqPointImages;
 

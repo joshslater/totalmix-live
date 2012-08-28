@@ -14,12 +14,20 @@
 @class EqViewController;
 @class Channel;
 
+@protocol DetailedChannelViewControllerProtocol <NSObject>
+@required
+- (void)updateChannelButtons:(NSInteger)channelNumber;
+@end
+
+
 @interface DetailedChannelViewController : UIViewController <UIScrollViewDelegate>
 {
     EQView *eqView;
     CompView *compView;
     GateView *gateView;
 }
+
+@property (weak, nonatomic) id <DetailedChannelViewControllerProtocol> delegate;
 
 @property (strong, nonatomic) IBOutlet UIScrollView *detailedChannelScrollView;
 @property (strong, nonatomic) UIButton *closeDetailedChannelViewButton;

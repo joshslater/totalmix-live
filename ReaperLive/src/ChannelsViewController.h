@@ -12,7 +12,7 @@
 #import "ChannelTableCell.h"
 #import "DetailedChannelViewController.h"
 
-@interface ChannelsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface ChannelsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, DetailedChannelViewControllerProtocol>
 
 @property (strong, nonatomic) NSMutableArray *channels;
 @property (strong, nonatomic) IBOutlet UITableView *channelsTableView;
@@ -28,6 +28,8 @@
 - (IBAction)gateButtonPressed:(id)sender;
 - (IBAction)compButtonPressed:(id)sender;
 - (void)channelSliderAction:(UISlider *)sender;
-- (void)updateSelectedChannelEqButton:(NSInteger)channelNumber;
+
+// DetailedChannelViewControllerProtocol implementation
+- (void)updateChannelButtons:(NSInteger)channelNumber;
 
 @end

@@ -13,12 +13,15 @@
 #import "CompView.h"
 #import "GateView.h"
 #import "MHRotaryKnob.h"
+#import "Channel.h"
 
 @interface DetailedChannelViewController ()
 
 @end
 
 @implementation DetailedChannelViewController
+
+@synthesize delegate;
 
 @synthesize detailedChannelScrollView;
 @synthesize closeDetailedChannelViewButton;
@@ -62,10 +65,7 @@
 #endif
     
     self.eqViewController = [[EqViewController alloc] init];
-
-    eqViewController.channel = self.channel;
-    eqViewController.selectedChannel = self.selectedChannel;
-    
+ 
     [self addChildViewController:self.eqViewController];
     [self.detailedChannelScrollView addSubview:eqViewController.view];
     
@@ -120,14 +120,21 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     // need to update the channel reference every time the view will appear
-    eqViewController.channel = self.channel;
-    eqViewController.selectedChannel = self.selectedChannel;
+    eqViewController.eq = self.channel.eq;
     
 #if 0
     NSLog(@"detailedChannelViewController channel = %x",(unsigned int)self.channel);
 #endif   
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+#if 0
+    NSLog(@"DetailedChannelViewController:: viewWillDisappear");
+#endif
     
-    
+    // whenever the detailed channel view controller will disappear, need to update the eq buttons for this channel
+    [delegate updateChannelButtons:self.selectedChannel];
 }
 
 - (void)viewDidUnload

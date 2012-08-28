@@ -9,13 +9,11 @@
 #import "EqCurveView.h"
 #import "Constants.h"
 #import "Complex.h"
+#import "Eq.h"
 
 @implementation EqCurveView
 
-@synthesize nPoints;
-
-@synthesize eqFreqPoints;
-@synthesize eqCurve;
+@synthesize eq;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -40,10 +38,10 @@
     [eqPath moveToPoint:CGPointMake(0.0, 0.0)];
     
     // convert the frequency points into log scale and add line to path
-    for (int i = 0; i <= [nPoints intValue]; i++)
+    for (int i = 0; i <= [eq.nPoints intValue]; i++)
     {
-        float logFreq = log10f([[eqFreqPoints objectAtIndex:i] doubleValue]) - log10f(DET_EQ_MIN_FREQ);
-        double eqVal = [[eqCurve objectAtIndex:i] doubleValue];
+        float logFreq = log10f([[eq.eqFreqPoints objectAtIndex:i] doubleValue]) - log10f(DET_EQ_MIN_FREQ);
+        double eqVal = [[eq.eqCurve objectAtIndex:i] doubleValue];
         
 #if 0        
         if(i == 0)

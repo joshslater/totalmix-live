@@ -7,50 +7,45 @@
 //
 
 #import "Channel.h"
-#import "EqCurve.h"
+#import "Eq.h"
 
 @implementation Channel
 
 @synthesize channelNumber;
 @synthesize volume;
 
-@synthesize gainPoints;
-@synthesize freqPoints;
-@synthesize qPoints;
+@synthesize eq;
 
-@synthesize eqCurve;
-
-- (id)initWithChannelNumber:(int)channel
+- (id)initWithChannelNumber:(int)chanNum
 {
     self = [super init];
     
     if(self)
     {
-        self.channelNumber = channel;
+        self.channelNumber = chanNum;
+
+        eq = [[Eq alloc] init];
         
         // initialize self's points arrays
-        gainPoints = [[NSMutableArray alloc] initWithObjects:   [NSNumber numberWithFloat:0.0],
-                      [NSNumber numberWithFloat:0.0],
-                      [NSNumber numberWithFloat:0.0],
-                      [NSNumber numberWithFloat:0.0], 
+        eq.gainPoints = [[NSMutableArray alloc] initWithObjects:   [NSNumber numberWithFloat:0.0],
+                         [NSNumber numberWithFloat:0.0],
+                         [NSNumber numberWithFloat:0.0],
+                         [NSNumber numberWithFloat:0.0], 
+                         nil];
+        
+        eq.freqPoints = [[NSMutableArray alloc] initWithObjects:   [NSNumber numberWithFloat:30.0],
+                         [NSNumber numberWithFloat:200.0],
+                         [NSNumber numberWithFloat:1500.0],
+                         [NSNumber numberWithFloat:5000.0], 
+                         nil];
+        
+        eq.qPoints = [[NSMutableArray alloc] initWithObjects:  [NSNumber numberWithFloat:0.707],
+                      [NSNumber numberWithFloat:0.707],
+                      [NSNumber numberWithFloat:0.707],
+                      [NSNumber numberWithFloat:0.707], 
                       nil];
         
-        freqPoints = [[NSMutableArray alloc] initWithObjects:   [NSNumber numberWithFloat:30.0],
-                      [NSNumber numberWithFloat:200.0],
-                      [NSNumber numberWithFloat:1500.0],
-                      [NSNumber numberWithFloat:5000.0], 
-                      nil];
-        
-        qPoints = [[NSMutableArray alloc] initWithObjects:  [NSNumber numberWithFloat:0.707],
-                   [NSNumber numberWithFloat:0.707],
-                   [NSNumber numberWithFloat:0.707],
-                   [NSNumber numberWithFloat:0.707], 
-                   nil];
-        
-        eqCurve = [[EqCurve alloc] init];        
-        eqCurve.freqPoints = freqPoints;
-        eqCurve.gainPoints = gainPoints;
-        eqCurve.qPoints = qPoints;
+
         
     }
     

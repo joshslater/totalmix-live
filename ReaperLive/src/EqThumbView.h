@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class Eq;
+
 @interface EqThumbView : UIView
 
-@property (strong, nonatomic) NSNumber *nPoints;
-@property (strong, nonatomic) NSMutableArray *eqFreqPoints;
-@property (strong, nonatomic) NSMutableArray *eqCurve;
+@property (strong, nonatomic) Eq *eq;
 
 @end
