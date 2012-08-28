@@ -36,7 +36,6 @@
 
 @synthesize bandSelector;
 
-//@synthesize selectedChannel;
 @synthesize eq;
 
 
@@ -115,6 +114,7 @@
     [gainKnob addTarget:self action:@selector(gainKnobDidChange:) forControlEvents:UIControlEventValueChanged];
     gainKnob.minimumValue = DET_EQ_MIN_GAIN;
     gainKnob.maximumValue = DET_EQ_MAX_GAIN;
+    gainKnob.defaultValue = 0.0;
     // [self gainKnobDidChange:gainKnob];
     
     [freqKnob addTarget:self action:@selector(freqKnobDidChange:) forControlEvents:UIControlEventValueChanged];
@@ -125,6 +125,7 @@
     [qKnob addTarget:self action:@selector(qKnobDidChange:) forControlEvents:UIControlEventValueChanged];
     qKnob.minimumValue = 0.1;
     qKnob.maximumValue = 3.0;
+    qKnob.defaultValue = 0.707;
     // [self qKnobDidChange:qKnob];
     
     // add a target for the segmented control
@@ -265,7 +266,7 @@
 {
     int idx = sender.selectedSegmentIndex;
     
-#if 0    
+#if 0
     NSLog(@"Selected index: %d",idx);
 #endif
     
@@ -284,6 +285,28 @@
     gainLabel.text = [NSString stringWithFormat:@"%0.0f",[[self.eq.gainPoints objectAtIndex:idx] floatValue]];
     freqLabel.text = [NSString stringWithFormat:@"%0.0f",[[self.eq.freqPoints objectAtIndex:idx] floatValue]];
     qLabel.text = [NSString stringWithFormat:@"%0.3f",[[self.eq.qPoints objectAtIndex:idx] floatValue]];
+    
+    // set the default value of the frequency knob depending on the band
+    switch (idx) {
+        case 0:
+            freqKnob.defaultValue = log10(EQ_LOW_FREQ);    
+            break;
+            
+        case 1:
+            freqKnob.defaultValue = log10(EQ_LOW_MID_FREQ);
+            break;
+            
+        case 2:
+            freqKnob.defaultValue = log10(EQ_HIGH_MID_FREQ);
+            break;
+            
+        case 3:
+            freqKnob.defaultValue = log10(EQ_HIGH_FREQ);
+            break;
+            
+        default:
+            break;
+    }
     
     // set the selected band for the current channel
     eq.selectedBand = [NSNumber numberWithInt:idx];

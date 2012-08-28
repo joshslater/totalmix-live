@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 Self. All rights reserved.
 //
 
+#import "Constants.h"
 #import "Channel.h"
 #import "Eq.h"
 
@@ -33,10 +34,10 @@
                          [NSNumber numberWithFloat:0.0], 
                          nil];
         
-        eq.freqPoints = [[NSMutableArray alloc] initWithObjects:   [NSNumber numberWithFloat:30.0],
-                         [NSNumber numberWithFloat:200.0],
-                         [NSNumber numberWithFloat:1500.0],
-                         [NSNumber numberWithFloat:5000.0], 
+        eq.freqPoints = [[NSMutableArray alloc] initWithObjects:   [NSNumber numberWithFloat:EQ_LOW_FREQ],
+                         [NSNumber numberWithFloat:EQ_LOW_MID_FREQ],
+                         [NSNumber numberWithFloat:EQ_HIGH_MID_FREQ],
+                         [NSNumber numberWithFloat:EQ_HIGH_FREQ], 
                          nil];
         
         eq.qPoints = [[NSMutableArray alloc] initWithObjects:  [NSNumber numberWithFloat:0.707],
