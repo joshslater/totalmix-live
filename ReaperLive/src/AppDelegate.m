@@ -8,12 +8,11 @@
 
 #import "AppDelegate.h"
 
-#import <VVOSC/VVOSC.h>
-
 #import "Channel.h"
 #import "ChannelsViewController.h"
 #import "AuxViewController.h"
 #import "SettingsViewController.h"
+#import "OSCManagerController.h"
 
 @implementation AppDelegate
 
@@ -43,47 +42,20 @@
     // settings
     SettingsViewController *settingsViewController = [[SettingsViewController alloc] init];
     
+    
+    /**************************/
+    /******** OSC STUFF *******/
+    /**************************/
+    // create an OSCManager- set myself up as its delegate
+    oscManagerController = [[OSCManagerController alloc] init];
+    settingsViewController.oscSettingsDelegate = oscManagerController;
+    
     self.tabBarController = [[UITabBarController alloc] init];
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:channelsViewController, auxViewController, settingsViewController, nil];
     
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
-    
-    
-    
-//    /**************************/
-//    /******** OSC STUFF *******/
-//    /**************************/
-//    // create an OSCManager- set myself up as its delegate
-//    OSCManager *manager = [[OSCManager alloc] init];
-//    [manager setDelegate:self];
-//    
-//    // create an input port for receiving OSC data
-//    [manager createNewInputForPort:1234];
-//    
-//    // create an output so i can send OSC data to myself
-//    OSCOutPort *outPort = [manager createNewOutputToAddress:@"127.0.0.1" atPort:1234];
-//    
-//    // make an OSC message
-//    OSCMessage *newMsg = [OSCMessage createWithAddress:@"/Address/Path/1"];
-//    
-//    // add a bunch arguments to the message
-//    [newMsg addInt:12];
-//    [newMsg addFloat:12.34];
-//    [newMsg addColor:[UIColor colorWithRed:0.0 green:1.0 blue:0.0 alpha:1.0]];
-//    [newMsg addBOOL:YES];
-//    [newMsg addString:@"Hello World!"];
-//    
-//    // send the OSC message
-//    [outPort sendThisMessage:newMsg];
-    
-    
-    
-    
-    
-    
-    
-    
+ 
     return YES;
 }
 

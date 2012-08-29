@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @class ViewController;
+@class OSCManagerController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
 {
     NSMutableArray *channels;
+    OSCManagerController *oscManagerController;
 }
 
 @property (strong, nonatomic) UIWindow *window;

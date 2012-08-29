@@ -8,6 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SettingsViewController : QuickDialogController <QuickDialogStyleProvider>
+@protocol OSCSettingsDelegate <NSObject>
+- (void)updateOscIpAddress:(NSString *)ipAddress inPort:(NSNumber *)inPort outPort:(NSNumber *)outPort;
+- (void)sendTestOscMsg;
+@end
+
+@interface SettingsViewController : QuickDialogController <QuickDialogEntryElementDelegate,QuickDialogStyleProvider>
+{
+    QEntryElement *oscIpAddressElement;
+    QEntryElement *oscInPortElement;
+    QEntryElement *oscOutPortElement;
+}
+
+@property (weak, nonatomic) id <OSCSettingsDelegate> oscSettingsDelegate;
 
 @end

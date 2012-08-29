@@ -14,6 +14,8 @@
 
 @implementation SettingsViewController
 
+@synthesize oscSettingsDelegate;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -44,15 +46,30 @@
     root.grouped = YES;
     QSection *section = [[QSection alloc] init];
     section.title = @"OSC Parameters";
-    
-    QEntryElement *ipAddress = [[QEntryElement alloc] initWithTitle:@"IP Address" Value:nil Placeholder:@"127.0.0.1"];
-    ipAddress.keyboardType = UIKeyboardTypeNumberPad;
-    
+
     [root addSection:section];
-    [section addElement:ipAddress];   
+    
+    oscIpAddressElement = [[QEntryElement alloc] initWithTitle:@"IP Address" Value:nil Placeholder:@"127.0.0.1"];
+    oscIpAddressElement.keyboardType = UIKeyboardTypeNumberPad;
+    oscIpAddressElement.delegate = self;
+    [section addElement:oscIpAddressElement];   
+    
+    oscOutPortElement = [[QEntryElement alloc] initWithTitle:@"Outgoing Port" Value:@"8001" Placeholder:@"8001"];
+    oscOutPortElement.keyboardType = UIKeyboardTypeNumberPad;
+    oscOutPortElement.delegate = self;
+    [section addElement:oscOutPortElement];
+    
+    oscInPortElement = [[QEntryElement alloc] initWithTitle:@"Incoming Port" Value:@"9001" Placeholder:@"9001"];
+    oscInPortElement.keyboardType = UIKeyboardTypeNumberPad;
+    oscInPortElement.delegate = self;
+    [section addElement:oscInPortElement];
+    
+    QButtonElement *testOscButtonElement = [[QButtonElement alloc] initWithTitle:@"Send OSC Test Message"];
+    testOscButtonElement.controllerAction = @"sendTestOscMsg";
+
+    [section addElement:testOscButtonElement];    
     
     self.root = root;
-    
     [super loadView];    
 }
 
@@ -75,5 +92,25 @@
     }   
 }
 
+- (void)QEntryDidEndEditingElement:(QEntryElement *)element andCell:(QEntryTableViewCell *)cell
+{
+#if 0    
+    NSLog(@"Done Editing Element");
+#endif
+    
+    NSNumber *inPort = [NSNumber numberWithInt:[oscInPortElement.textValue intValue]];
+    NSNumber *outPort = [NSNumber numberWithInt:[oscOutPortElement.textValue intValue]];
+    
+    [oscSettingsDelegate updateOscIpAddress:oscIpAddressElement.textValue inPort:inPort outPort:outPort];
+}
+
+- (void)sendTestOscMsg
+{
+#if 0
+    NSLog(@"settingsViewController::sendTestOscMsg");
+#endif
+    
+    [oscSettingsDelegate sendTestOscMsg];
+}
 
 @end

@@ -19,6 +19,7 @@
 		0309E72A15D24525004FDD58 /* MuteBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E71E15D24525004FDD58 /* MuteBtn.png */; };
 		0309E72B15D24525004FDD58 /* SoloBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E71F15D24525004FDD58 /* SoloBtn.png */; };
 		0309E74615D260FB004FDD58 /* VolumeSlider.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E74515D260FB004FDD58 /* VolumeSlider.png */; };
+		031C9D3E15EDECDC00ED2898 /* OSCManagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 031C9D3D15EDECDC00ED2898 /* OSCManagerController.m */; };
 		032504B915EC8B2B008B0E19 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 032504B815EC8B2B008B0E19 /* MapKit.framework */; };
 		032504BB15EC8B37008B0E19 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 032504BA15EC8B37008B0E19 /* CoreLocation.framework */; };
 		032504C115EC8C46008B0E19 /* libQuickDialog.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 032504B515EC89D2008B0E19 /* libQuickDialog.a */; };
@@ -102,6 +103,8 @@
 		0309E71E15D24525004FDD58 /* MuteBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MuteBtn.png; sourceTree = "<group>"; };
 		0309E71F15D24525004FDD58 /* SoloBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SoloBtn.png; sourceTree = "<group>"; };
 		0309E74515D260FB004FDD58 /* VolumeSlider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VolumeSlider.png; sourceTree = "<group>"; };
+		031C9D3C15EDECDC00ED2898 /* OSCManagerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCManagerController.h; sourceTree = "<group>"; };
+		031C9D3D15EDECDC00ED2898 /* OSCManagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCManagerController.m; sourceTree = "<group>"; };
 		032504A915EC89D1008B0E19 /* QuickDialog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = QuickDialog.xcodeproj; path = QuickDialog/QuickDialog.xcodeproj; sourceTree = "<group>"; };
 		032504B815EC8B2B008B0E19 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		032504BA15EC8B37008B0E19 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -344,6 +347,8 @@
 		03F2328215C26768009B0390 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				031C9D3C15EDECDC00ED2898 /* OSCManagerController.h */,
+				031C9D3D15EDECDC00ED2898 /* OSCManagerController.m */,
 				03F2328915C2690E009B0390 /* AppDelegate */,
 				03F2328815C268FB009B0390 /* Controllers */,
 				03F2328B15C26921009B0390 /* Models */,
@@ -591,6 +596,7 @@
 				0348F52215E9A58300992A0D /* Complex.m in Sources */,
 				036181DB15EB2214001FB621 /* AuxViewController.m in Sources */,
 				032504C715EC998A008B0E19 /* SettingsViewController.m in Sources */,
+				031C9D3E15EDECDC00ED2898 /* OSCManagerController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
