@@ -62,9 +62,9 @@
     // for some reason the frame's x/y max values are scaled backward -- add the conversion
     // factors to account for it. Not sure why don't have to subtract 49 (tab bar height)
     self.tracksTableView.frame = CGRectMake(0,
-                                              tracksToolbar.frame.size.height,
-                                              CHANNELS_WIDTH * CHANNELS_HEIGHT/CHANNELS_WIDTH, 
-                                              CHANNELS_HEIGHT * CHANNELS_WIDTH/CHANNELS_HEIGHT - [[UIApplication sharedApplication] statusBarFrame].size.height - tracksToolbar.frame.size.height);
+                                            tracksToolbar.frame.size.height,
+                                            TRACKS_WIDTH * TRACKS_HEIGHT/TRACKS_WIDTH, 
+                                            TRACKS_HEIGHT * TRACKS_WIDTH/TRACKS_HEIGHT - [[UIApplication sharedApplication] statusBarFrame].size.height - tracksToolbar.frame.size.height);
     
     /////////////////////////////////////////////
     // create detailed track view controller //
@@ -210,7 +210,7 @@
     NSLog(@"Comp Button Pushed for Track %d",indexPath.row);
 #endif
     
-    [self displayDetailedTrackViewControllerWithOffset:CGPointMake(CHANNELS_WIDTH, 0)];
+    [self displayDetailedTrackViewControllerWithOffset:CGPointMake(TRACKS_WIDTH, 0)];
 }
 
 - (IBAction)eqButtonPressed:(id)sender
@@ -223,7 +223,7 @@
     NSLog(@"EQ Button Pushed for Track %d",indexPath.row);
 #endif
     
-    [self displayDetailedTrackViewControllerWithOffset:CGPointMake(2*CHANNELS_WIDTH, 0)];
+    [self displayDetailedTrackViewControllerWithOffset:CGPointMake(2*TRACKS_WIDTH, 0)];
 }
 
 - (void)trackSliderAction:(UISlider *)sender
@@ -260,7 +260,7 @@
     [self addChildViewController:detailedTrackViewController];
     [self.view addSubview:detailedTrackViewController.view];
     
-    // set content offset to be CHANNELS_WIDTH
+    // set content offset to be TRACKS_WIDTH
     self.detailedTrackViewController.detailedTrackScrollView.contentOffset = offset;
     
     // make sure the close button's alpha is 1

@@ -38,20 +38,20 @@
 #endif
     
     // create an empty view
-    self.view = [[UIView alloc] initWithFrame:CGRectMake(0, 44, CHANNELS_WIDTH, DETAILED_CHANNEL_VIEW_HEIGHT)];
+    self.view = [[UIView alloc] initWithFrame:CGRectMake(0, 44, TRACKS_WIDTH, DETAILED_TRACK_VIEW_HEIGHT)];
         
     self.detailedTrackScrollView = [[UIScrollView alloc] 
                                       initWithFrame:CGRectMake(0, 
                                                                0, 
-                                                               CHANNELS_WIDTH, 
-                                                               DETAILED_CHANNEL_VIEW_HEIGHT)
+                                                               TRACKS_WIDTH, 
+                                                               DETAILED_TRACK_VIEW_HEIGHT)
                                       ];
     
     // add the 3 track views
-    gateView = [[GateView alloc] initWithFrame:CGRectMake(0, 0, CHANNELS_WIDTH, DETAILED_CHANNEL_VIEW_HEIGHT)];
+    gateView = [[GateView alloc] initWithFrame:CGRectMake(0, 0, TRACKS_WIDTH, DETAILED_TRACK_VIEW_HEIGHT)];
     [self.detailedTrackScrollView addSubview:gateView];
     
-    compView = [[CompView alloc] initWithFrame:CGRectMake(CHANNELS_WIDTH, 0, CHANNELS_WIDTH, DETAILED_CHANNEL_VIEW_HEIGHT)];
+    compView = [[CompView alloc] initWithFrame:CGRectMake(TRACKS_WIDTH, 0, TRACKS_WIDTH, DETAILED_TRACK_VIEW_HEIGHT)];
     [self.detailedTrackScrollView addSubview:compView];
     
     
@@ -70,7 +70,7 @@
     [self.detailedTrackScrollView addSubview:eqViewController.view];
     
     // set the content size to be 3 x 1024
-    detailedTrackScrollView.contentSize = CGSizeMake(3*CHANNELS_WIDTH, DETAILED_CHANNEL_VIEW_HEIGHT);
+    detailedTrackScrollView.contentSize = CGSizeMake(3*TRACKS_WIDTH, DETAILED_TRACK_VIEW_HEIGHT);
     
     // enable paging
     detailedTrackScrollView.pagingEnabled = YES;

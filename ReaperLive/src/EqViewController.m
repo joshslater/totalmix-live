@@ -58,7 +58,7 @@
 #endif
         
     [[NSBundle mainBundle] loadNibNamed:@"EQView" owner:self options:nil];       
-    self.view.frame = CGRectMake(2*CHANNELS_WIDTH, 0, CHANNELS_WIDTH, DETAILED_CHANNEL_VIEW_HEIGHT);
+    self.view.frame = CGRectMake(2*TRACKS_WIDTH, 0, TRACKS_WIDTH, DETAILED_TRACK_VIEW_HEIGHT);
         
     // create the EQ points view
     eqPointsView = [[EqPointsView alloc] initWithFrame:CGRectMake(88, 48, 450, 200)];

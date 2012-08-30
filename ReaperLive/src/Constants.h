@@ -1,6 +1,6 @@
-#define CHANNELS_WIDTH 1030 // FIXME: Why does this need to be more than 1024 to work?
-#define CHANNELS_HEIGHT 768
-#define DETAILED_CHANNEL_VIEW_HEIGHT 305
+#define TRACKS_WIDTH 1030 // FIXME: Why does this need to be more than 1024 to work?
+#define TRACKS_HEIGHT 768
+#define DETAILED_TRACK_VIEW_HEIGHT 305
 
 // detailed EQ view scale factors
 #define DET_EQ_POINTS_PER_DB 5.0
