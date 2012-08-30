@@ -23,11 +23,7 @@
 
 @synthesize delegate;
 
-@synthesize detailedTrackScrollView;
-@synthesize closeDetailedTrackViewButton;
-
-@synthesize eqViewController;
-
+@synthesize contentOffset;
 @synthesize track;
 @synthesize selectedTrack;
  
@@ -40,19 +36,19 @@
     // create an empty view
     self.view = [[UIView alloc] initWithFrame:CGRectMake(0, 44, TRACKS_WIDTH, DETAILED_TRACK_VIEW_HEIGHT)];
         
-    self.detailedTrackScrollView = [[UIScrollView alloc] 
-                                      initWithFrame:CGRectMake(0, 
-                                                               0, 
-                                                               TRACKS_WIDTH, 
-                                                               DETAILED_TRACK_VIEW_HEIGHT)
-                                      ];
+    detailedTrackScrollView = [[UIScrollView alloc] 
+                                initWithFrame:CGRectMake(0, 
+                                                         0, 
+                                                         TRACKS_WIDTH, 
+                                                         DETAILED_TRACK_VIEW_HEIGHT)
+                               ];
     
     // add the 3 track views
     gateView = [[GateView alloc] initWithFrame:CGRectMake(0, 0, TRACKS_WIDTH, DETAILED_TRACK_VIEW_HEIGHT)];
-    [self.detailedTrackScrollView addSubview:gateView];
-    
+    [detailedTrackScrollView addSubview:gateView];
+
     compView = [[CompView alloc] initWithFrame:CGRectMake(TRACKS_WIDTH, 0, TRACKS_WIDTH, DETAILED_TRACK_VIEW_HEIGHT)];
-    [self.detailedTrackScrollView addSubview:compView];
+    [detailedTrackScrollView addSubview:compView];
     
     
     /******* EQ VIEW *******/
@@ -64,10 +60,10 @@
     NSLog(@"initing eqViewController");
 #endif
     
-    self.eqViewController = [[EqViewController alloc] init];
+    eqViewController = [[EqViewController alloc] init];
  
-    [self addChildViewController:self.eqViewController];
-    [self.detailedTrackScrollView addSubview:eqViewController.view];
+    [self addChildViewController:eqViewController];
+    [detailedTrackScrollView addSubview:eqViewController.view];
     
     // set the content size to be 3 x 1024
     detailedTrackScrollView.contentSize = CGSizeMake(3*TRACKS_WIDTH, DETAILED_TRACK_VIEW_HEIGHT);
@@ -119,12 +115,22 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    
+#if 0
+    NSLog(@"detailedTrackViewController track = %x, contentOffset.x = %0.0f",(unsigned int)self.track,self.contentOffset.x);
+#endif   
+    
     // need to update the track reference every time the view will appear
     eqViewController.eq = self.track.eq;
     
-#if 0
-    NSLog(@"detailedTrackViewController track = %x",(unsigned int)self.track);
-#endif   
+    // set content offset
+    detailedTrackScrollView.contentOffset = self.contentOffset;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    // make sure the close button is visible
+    closeDetailedTrackViewButton.alpha = 1.0;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -164,9 +170,6 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {    
-    // set the alpha of the close button to zero
-    //closeDetailedTrackViewButton.alpha = 0.0;
-    
     [UIView animateWithDuration:0.5
                      animations:^{closeDetailedTrackViewButton.alpha = 0.0;}
                      completion:nil];

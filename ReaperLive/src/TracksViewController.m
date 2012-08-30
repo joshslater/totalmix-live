@@ -22,13 +22,35 @@
 
 @implementation TracksViewController
 
+#pragma mark Properties
+
 @synthesize tracks;
 @synthesize tracksTableView;
 @synthesize trackTableCell;
 @synthesize tracksToolbar;
-@synthesize detailedTrackViewController;
-
 @synthesize selectedTrack;
+
+// override setter for selected track
+- (void)setSelectedTrack:(NSInteger)aSelectedTrack
+{
+    // set previously selected track to grey
+    TrackTableCell *cell = (TrackTableCell *)[self.tracksTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:selectedTrack inSection:0]];
+    
+    cell.trackLabel.backgroundColor = [UIColor lightGrayColor];
+    
+    selectedTrack = aSelectedTrack;
+    
+    if(selectedTrack != -1)
+    {
+        // change the label background of the selected track
+        cell = (TrackTableCell *)[self.tracksTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:selectedTrack inSection:0]];
+        
+        cell.trackLabel.backgroundColor = [UIColor blackColor];
+    }
+}
+
+#pragma mark -
+#pragma mark Initialization
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {    
@@ -69,7 +91,7 @@
     /////////////////////////////////////////////
     // create detailed track view controller //
     /////////////////////////////////////////////
-    self.detailedTrackViewController = [[DetailedTrackViewController alloc] init];  
+    detailedTrackViewController = [[DetailedTrackViewController alloc] init];  
     // set the delegate of the detailedTrackViewController
     detailedTrackViewController.delegate = self;
     
@@ -186,6 +208,9 @@
     return 85.0;
 }
 
+#pragma mark -
+#pragma mark Action Handling
+
 - (IBAction)gateButtonPressed:(id)sender
 {
     NSIndexPath *indexPath = [self.tracksTableView indexPathForCell:(UITableViewCell *)[[sender superview] superview]];
@@ -256,38 +281,16 @@
     // pass the necessary properties about the cahnnel to the detailed view controller
     detailedTrackViewController.track = [self.tracks objectAtIndex:selectedTrack];
     detailedTrackViewController.selectedTrack = self.selectedTrack;
+        
+    // set content offset to be TRACKS_WIDTH
+    detailedTrackViewController.contentOffset = offset;
     
     [self addChildViewController:detailedTrackViewController];
     [self.view addSubview:detailedTrackViewController.view];
     
-    // set content offset to be TRACKS_WIDTH
-    self.detailedTrackViewController.detailedTrackScrollView.contentOffset = offset;
-    
-    // make sure the close button's alpha is 1
-    self.detailedTrackViewController.closeDetailedTrackViewButton.alpha = 1.0;
-    
 #if 0
-    NSLog(@"scrollview offset = %0.0f",self.detailedTrackViewController.detailedTrackScrollView.contentOffset.x);
+    NSLog(@"scrollview offset = %0.0f",offset.x);
 #endif
-}
-     
-// override setter for selected track
-- (void)setSelectedTrack:(NSInteger)aSelectedTrack
-{
-    // set previously selected track to grey
-    TrackTableCell *cell = (TrackTableCell *)[self.tracksTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:selectedTrack inSection:0]];
-    
-    cell.trackLabel.backgroundColor = [UIColor lightGrayColor];
-    
-    selectedTrack = aSelectedTrack;
-    
-    if(selectedTrack != -1)
-    {
-        // change the label background of the selected track
-        cell = (TrackTableCell *)[self.tracksTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:selectedTrack inSection:0]];
-        
-        cell.trackLabel.backgroundColor = [UIColor blackColor];
-    }
 }
 
 - (void)updateTrackButtons:(NSInteger)trackNumber

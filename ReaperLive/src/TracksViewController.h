@@ -13,12 +13,14 @@
 #import "DetailedTrackViewController.h"
 
 @interface TracksViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, DetailedTrackViewControllerProtocol>
+{
+    DetailedTrackViewController *detailedTrackViewController;
+}
 
 @property (strong, nonatomic) NSMutableArray *tracks;
-@property (strong, nonatomic) IBOutlet UITableView *tracksTableView;
-@property (strong, nonatomic) IBOutlet TrackTableCell *trackTableCell;
-@property (strong, nonatomic) IBOutlet UIToolbar *tracksToolbar;
-@property (strong, nonatomic) DetailedTrackViewController *detailedTrackViewController;
+@property (weak, nonatomic) IBOutlet UITableView *tracksTableView;
+@property (weak, nonatomic) IBOutlet TrackTableCell *trackTableCell;
+@property (weak, nonatomic) IBOutlet UIToolbar *tracksToolbar;
 
 @property (nonatomic) NSInteger selectedTrack;
 

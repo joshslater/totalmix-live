@@ -23,9 +23,6 @@
 
 @synthesize eqView;
 
-@synthesize eqCurveView;
-@synthesize eqPointsView;
-
 @synthesize gainKnob;
 @synthesize freqKnob;
 @synthesize qKnob;
@@ -35,7 +32,6 @@
 @synthesize qLabel;
 
 @synthesize bandSelector;
-
 @synthesize eq;
 
 
@@ -310,6 +306,13 @@
     
     // set the selected band for the current track
     eq.selectedBand = [NSNumber numberWithInt:idx];
+}
+
+- (void)dealloc
+{   
+    // release eqCurveView and eqPointsView
+    eqCurveView = nil;
+    eqPointsView = nil;
 }
 
 @end

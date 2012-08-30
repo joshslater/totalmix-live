@@ -17,23 +17,19 @@
 @interface EqViewController : UIViewController
 {
     int selectedBand;
+    EqCurveView *eqCurveView;
+    EqPointsView *eqPointsView;
 }
 
 @property (nonatomic, strong) EQView *eqView;
 
-@property (strong, nonatomic) EqCurveView *eqCurveView;
-@property (strong, nonatomic) EqPointsView *eqPointsView;
-
-
-@property (strong, nonatomic) IBOutlet MHRotaryKnob *gainKnob;
-@property (strong, nonatomic) IBOutlet MHRotaryKnob *freqKnob;
-@property (strong, nonatomic) IBOutlet MHRotaryKnob *qKnob;
-
-@property (strong, nonatomic) IBOutlet UILabel *gainLabel;
-@property (strong, nonatomic) IBOutlet UILabel *freqLabel;
-@property (strong, nonatomic) IBOutlet UILabel *qLabel;
-
-@property (strong, nonatomic) IBOutlet UISegmentedControl *bandSelector;
+@property (weak, nonatomic) IBOutlet MHRotaryKnob *gainKnob;
+@property (weak, nonatomic) IBOutlet MHRotaryKnob *freqKnob;
+@property (weak, nonatomic) IBOutlet MHRotaryKnob *qKnob;
+@property (weak, nonatomic) IBOutlet UILabel *gainLabel;
+@property (weak, nonatomic) IBOutlet UILabel *freqLabel;
+@property (weak, nonatomic) IBOutlet UILabel *qLabel;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *bandSelector;
 
 @property (strong, nonatomic) Eq *eq;
 

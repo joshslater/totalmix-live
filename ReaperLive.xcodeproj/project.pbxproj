@@ -269,8 +269,8 @@
 		0361820715EC7244001FB621 /* Detailed View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				03F292F715C63E3A007D1440 /* DetailedTrackViewController.m */,
 				03BC576D15EF1BA400414B32 /* DetailedTrackViewController.h */,
+				03F292F715C63E3A007D1440 /* DetailedTrackViewController.m */,
 				03712C6015D8B62900EC9665 /* EqViewController.h */,
 				03712C6115D8B62900EC9665 /* EqViewController.m */,
 			);

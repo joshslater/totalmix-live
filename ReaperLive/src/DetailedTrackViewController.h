@@ -22,18 +22,17 @@
 
 @interface DetailedTrackViewController : UIViewController <UIScrollViewDelegate>
 {
-    EQView *eqView;
     CompView *compView;
     GateView *gateView;
+    EqViewController *eqViewController;
+    UIButton *closeDetailedTrackViewButton;
+    UIScrollView *detailedTrackScrollView;
+
 }
 
 @property (weak, nonatomic) id <DetailedTrackViewControllerProtocol> delegate;
 
-@property (strong, nonatomic) IBOutlet UIScrollView *detailedTrackScrollView;
-@property (strong, nonatomic) UIButton *closeDetailedTrackViewButton;
-
-@property (strong, nonatomic) EqViewController *eqViewController;
-
+@property (nonatomic) CGPoint contentOffset;
 @property (nonatomic) NSInteger selectedTrack;
 @property (strong, nonatomic) Track *track;
 
