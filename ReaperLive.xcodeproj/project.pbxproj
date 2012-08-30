@@ -27,7 +27,7 @@
 		03306F4815E17F9E0094DF14 /* Eq.m in Sources */ = {isa = PBXBuildFile; fileRef = 03306F4715E17F9E0094DF14 /* Eq.m */; };
 		0345FB5215D3660F009130E2 /* VerticalSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 0345FB5115D3660F009130E2 /* VerticalSlider.m */; };
 		0348F52215E9A58300992A0D /* Complex.m in Sources */ = {isa = PBXBuildFile; fileRef = 0348F52115E9A58200992A0D /* Complex.m */; };
-		035C46ED15BE6AE000C43574 /* ChannelsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 035C46EC15BE6AE000C43574 /* ChannelsViewController.xib */; };
+		035C46ED15BE6AE000C43574 /* TracksViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 035C46EC15BE6AE000C43574 /* TracksViewController.xib */; };
 		036181DB15EB2214001FB621 /* AuxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 036181D915EB2214001FB621 /* AuxViewController.m */; };
 		036181E515EB2DA3001FB621 /* AuxViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 036181E415EB2DA3001FB621 /* AuxViewController.xib */; };
 		03712C4915D82E3F00EC9665 /* Knob-Selector@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03712C4715D82E3F00EC9665 /* Knob-Selector@2x.png */; };
@@ -45,10 +45,10 @@
 		03ADD57B15BCFC0900EBDC71 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 03ADD57915BCFC0900EBDC71 /* InfoPlist.strings */; };
 		03ADD57D15BCFC0900EBDC71 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 03ADD57C15BCFC0900EBDC71 /* main.m */; };
 		03ADD58115BCFC0900EBDC71 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 03ADD58015BCFC0900EBDC71 /* AppDelegate.m */; };
-		03ADD58415BCFC0900EBDC71 /* ChannelsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03ADD58315BCFC0900EBDC71 /* ChannelsViewController.m */; };
-		03ADD59515BD0FFE00EBDC71 /* ChannelTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03ADD59415BD0CD100EBDC71 /* ChannelTableCell.xib */; };
-		03ADD59615BD102D00EBDC71 /* ChannelTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03ADD59315BD0CD100EBDC71 /* ChannelTableCell.m */; };
-		03ADD59915BD107F00EBDC71 /* Channel.m in Sources */ = {isa = PBXBuildFile; fileRef = 03ADD59815BD107F00EBDC71 /* Channel.m */; };
+		03ADD58415BCFC0900EBDC71 /* TracksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03ADD58315BCFC0900EBDC71 /* TracksViewController.m */; };
+		03ADD59515BD0FFE00EBDC71 /* TrackTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03ADD59415BD0CD100EBDC71 /* TrackTableCell.xib */; };
+		03ADD59615BD102D00EBDC71 /* TrackTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03ADD59315BD0CD100EBDC71 /* TrackTableCell.m */; };
+		03ADD59915BD107F00EBDC71 /* Track.m in Sources */ = {isa = PBXBuildFile; fileRef = 03ADD59815BD107F00EBDC71 /* Track.m */; };
 		03B2006A15DB822700FC8C3C /* EQ-Point@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03B2006915DB822700FC8C3C /* EQ-Point@2x.png */; };
 		03C1494E15D37599008DCE9C /* DetailedComp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03C1494215D37599008DCE9C /* DetailedComp@2x.png */; };
 		03C1494F15D37599008DCE9C /* DetailedGate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03C1494315D37599008DCE9C /* DetailedGate@2x.png */; };
@@ -69,7 +69,7 @@
 		03F2327915C0E4E9009B0390 /* EQView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03F2327815C0E4E9009B0390 /* EQView.xib */; };
 		03F2327B15C0E4FB009B0390 /* GateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03F2327A15C0E4FB009B0390 /* GateView.xib */; };
 		03F2327D15C0ECB4009B0390 /* delete_control.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 03F2327C15C0ECB4009B0390 /* delete_control.jpg */; };
-		03F292F815C63E3A007D1440 /* DetailedChannelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F292F715C63E3A007D1440 /* DetailedChannelViewController.m */; };
+		03F292F815C63E3A007D1440 /* DetailedTrackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F292F715C63E3A007D1440 /* DetailedTrackViewController.m */; };
 		03F3CD7015D38552006AD784 /* MHRotaryKnob.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F3CD6F15D38552006AD784 /* MHRotaryKnob.m */; };
 /* End PBXBuildFile section */
 
@@ -116,7 +116,7 @@
 		0345FB5115D3660F009130E2 /* VerticalSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerticalSlider.m; sourceTree = "<group>"; };
 		0348F52015E9A58200992A0D /* Complex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Complex.h; sourceTree = "<group>"; };
 		0348F52115E9A58200992A0D /* Complex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Complex.m; sourceTree = "<group>"; };
-		035C46EC15BE6AE000C43574 /* ChannelsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChannelsViewController.xib; sourceTree = "<group>"; };
+		035C46EC15BE6AE000C43574 /* TracksViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TracksViewController.xib; sourceTree = "<group>"; };
 		036181D815EB2214001FB621 /* AuxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuxViewController.h; sourceTree = "<group>"; };
 		036181D915EB2214001FB621 /* AuxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuxViewController.m; sourceTree = "<group>"; };
 		036181E415EB2DA3001FB621 /* AuxViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuxViewController.xib; sourceTree = "<group>"; };
@@ -143,14 +143,15 @@
 		03ADD57E15BCFC0900EBDC71 /* ReaperLive-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ReaperLive-Prefix.pch"; sourceTree = "<group>"; };
 		03ADD57F15BCFC0900EBDC71 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		03ADD58015BCFC0900EBDC71 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		03ADD58215BCFC0900EBDC71 /* ChannelsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChannelsViewController.h; sourceTree = "<group>"; };
-		03ADD58315BCFC0900EBDC71 /* ChannelsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChannelsViewController.m; sourceTree = "<group>"; };
-		03ADD59215BD0CD100EBDC71 /* ChannelTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChannelTableCell.h; sourceTree = "<group>"; };
-		03ADD59315BD0CD100EBDC71 /* ChannelTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChannelTableCell.m; sourceTree = "<group>"; };
-		03ADD59415BD0CD100EBDC71 /* ChannelTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChannelTableCell.xib; sourceTree = "<group>"; };
-		03ADD59715BD107F00EBDC71 /* Channel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Channel.h; sourceTree = "<group>"; };
-		03ADD59815BD107F00EBDC71 /* Channel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Channel.m; sourceTree = "<group>"; };
+		03ADD58215BCFC0900EBDC71 /* TracksViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TracksViewController.h; sourceTree = "<group>"; };
+		03ADD58315BCFC0900EBDC71 /* TracksViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TracksViewController.m; sourceTree = "<group>"; };
+		03ADD59215BD0CD100EBDC71 /* TrackTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrackTableCell.h; sourceTree = "<group>"; };
+		03ADD59315BD0CD100EBDC71 /* TrackTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrackTableCell.m; sourceTree = "<group>"; };
+		03ADD59415BD0CD100EBDC71 /* TrackTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackTableCell.xib; sourceTree = "<group>"; };
+		03ADD59715BD107F00EBDC71 /* Track.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Track.h; sourceTree = "<group>"; };
+		03ADD59815BD107F00EBDC71 /* Track.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Track.m; sourceTree = "<group>"; };
 		03B2006915DB822700FC8C3C /* EQ-Point@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EQ-Point@2x.png"; sourceTree = "<group>"; };
+		03BC576D15EF1BA400414B32 /* DetailedTrackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailedTrackViewController.h; sourceTree = "<group>"; };
 		03BDCAA115D8DBCC0060456B /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = src/Constants.h; sourceTree = "<group>"; };
 		03C1494215D37599008DCE9C /* DetailedComp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DetailedComp@2x.png"; sourceTree = "<group>"; };
 		03C1494315D37599008DCE9C /* DetailedGate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DetailedGate@2x.png"; sourceTree = "<group>"; };
@@ -174,8 +175,7 @@
 		03F2327815C0E4E9009B0390 /* EQView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EQView.xib; sourceTree = "<group>"; };
 		03F2327A15C0E4FB009B0390 /* GateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GateView.xib; sourceTree = "<group>"; };
 		03F2327C15C0ECB4009B0390 /* delete_control.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = delete_control.jpg; sourceTree = "<group>"; };
-		03F292F615C63E3A007D1440 /* DetailedChannelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailedChannelViewController.h; sourceTree = "<group>"; };
-		03F292F715C63E3A007D1440 /* DetailedChannelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailedChannelViewController.m; sourceTree = "<group>"; };
+		03F292F715C63E3A007D1440 /* DetailedTrackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailedTrackViewController.m; sourceTree = "<group>"; };
 		03F3CD6E15D38552006AD784 /* MHRotaryKnob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHRotaryKnob.h; sourceTree = "<group>"; };
 		03F3CD6F15D38552006AD784 /* MHRotaryKnob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHRotaryKnob.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -256,8 +256,8 @@
 		0361820615EC720C001FB621 /* Tab Bar View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				03ADD58215BCFC0900EBDC71 /* ChannelsViewController.h */,
-				03ADD58315BCFC0900EBDC71 /* ChannelsViewController.m */,
+				03ADD58215BCFC0900EBDC71 /* TracksViewController.h */,
+				03ADD58315BCFC0900EBDC71 /* TracksViewController.m */,
 				036181D815EB2214001FB621 /* AuxViewController.h */,
 				036181D915EB2214001FB621 /* AuxViewController.m */,
 				032504C515EC9989008B0E19 /* SettingsViewController.h */,
@@ -269,8 +269,8 @@
 		0361820715EC7244001FB621 /* Detailed View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				03F292F615C63E3A007D1440 /* DetailedChannelViewController.h */,
-				03F292F715C63E3A007D1440 /* DetailedChannelViewController.m */,
+				03F292F715C63E3A007D1440 /* DetailedTrackViewController.m */,
+				03BC576D15EF1BA400414B32 /* DetailedTrackViewController.h */,
 				03712C6015D8B62900EC9665 /* EqViewController.h */,
 				03712C6115D8B62900EC9665 /* EqViewController.m */,
 			);
@@ -398,9 +398,9 @@
 		03F2328715C268D8009B0390 /* NIBs */ = {
 			isa = PBXGroup;
 			children = (
-				035C46EC15BE6AE000C43574 /* ChannelsViewController.xib */,
+				035C46EC15BE6AE000C43574 /* TracksViewController.xib */,
 				036181E415EB2DA3001FB621 /* AuxViewController.xib */,
-				03ADD59415BD0CD100EBDC71 /* ChannelTableCell.xib */,
+				03ADD59415BD0CD100EBDC71 /* TrackTableCell.xib */,
 				03F2327A15C0E4FB009B0390 /* GateView.xib */,
 				03F2326D15C0E0E3009B0390 /* CompView.xib */,
 				03F2327815C0E4E9009B0390 /* EQView.xib */,
@@ -432,8 +432,8 @@
 			children = (
 				0348F52015E9A58200992A0D /* Complex.h */,
 				0348F52115E9A58200992A0D /* Complex.m */,
-				03ADD59215BD0CD100EBDC71 /* ChannelTableCell.h */,
-				03ADD59315BD0CD100EBDC71 /* ChannelTableCell.m */,
+				03ADD59215BD0CD100EBDC71 /* TrackTableCell.h */,
+				03ADD59315BD0CD100EBDC71 /* TrackTableCell.m */,
 				0345FB5015D3660F009130E2 /* VerticalSlider.h */,
 				0345FB5115D3660F009130E2 /* VerticalSlider.m */,
 				03C867F415C6617E001ECCAD /* VolumeSlider.h */,
@@ -447,8 +447,8 @@
 		03F2328B15C26921009B0390 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				03ADD59715BD107F00EBDC71 /* Channel.h */,
-				03ADD59815BD107F00EBDC71 /* Channel.m */,
+				03ADD59715BD107F00EBDC71 /* Track.h */,
+				03ADD59815BD107F00EBDC71 /* Track.m */,
 				03306F4615E17F9E0094DF14 /* Eq.h */,
 				03306F4715E17F9E0094DF14 /* Eq.m */,
 			);
@@ -530,8 +530,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				03ADD57B15BCFC0900EBDC71 /* InfoPlist.strings in Resources */,
-				03ADD59515BD0FFE00EBDC71 /* ChannelTableCell.xib in Resources */,
-				035C46ED15BE6AE000C43574 /* ChannelsViewController.xib in Resources */,
+				03ADD59515BD0FFE00EBDC71 /* TrackTableCell.xib in Resources */,
+				035C46ED15BE6AE000C43574 /* TracksViewController.xib in Resources */,
 				03F2326E15C0E0E3009B0390 /* CompView.xib in Resources */,
 				03F2327915C0E4E9009B0390 /* EQView.xib in Resources */,
 				03F2327B15C0E4FB009B0390 /* GateView.xib in Resources */,
@@ -579,12 +579,12 @@
 			files = (
 				03ADD57D15BCFC0900EBDC71 /* main.m in Sources */,
 				03ADD58115BCFC0900EBDC71 /* AppDelegate.m in Sources */,
-				03ADD58415BCFC0900EBDC71 /* ChannelsViewController.m in Sources */,
-				03ADD59615BD102D00EBDC71 /* ChannelTableCell.m in Sources */,
-				03ADD59915BD107F00EBDC71 /* Channel.m in Sources */,
+				03ADD58415BCFC0900EBDC71 /* TracksViewController.m in Sources */,
+				03ADD59615BD102D00EBDC71 /* TrackTableCell.m in Sources */,
+				03ADD59915BD107F00EBDC71 /* Track.m in Sources */,
 				03F2326C15C0E0D1009B0390 /* CompView.m in Sources */,
 				03F2327715C0E4DB009B0390 /* GateView.m in Sources */,
-				03F292F815C63E3A007D1440 /* DetailedChannelViewController.m in Sources */,
+				03F292F815C63E3A007D1440 /* DetailedTrackViewController.m in Sources */,
 				03C867F615C6617F001ECCAD /* VolumeSlider.m in Sources */,
 				0345FB5215D3660F009130E2 /* VerticalSlider.m in Sources */,
 				03F3CD7015D38552006AD784 /* MHRotaryKnob.m in Sources */,

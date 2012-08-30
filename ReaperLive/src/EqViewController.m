@@ -8,8 +8,8 @@
 
 #import "Constants.h"
 #import "EqViewController.h"
-#import "ChannelsViewController.h"
-#import "DetailedChannelViewController.h"
+#import "TracksViewController.h"
+#import "DetailedTrackViewController.h"
 #import "MHRotaryKnob.h"
 #import "EqPointsView.h"
 #import "EqCurveView.h"
@@ -108,7 +108,7 @@
 	// Do any additional setup after loading the view.
     
 #if 0
-    NSLog(@"EqViewController: gainPoint(0) = %0.0f",[[self.channel.gainPoints objectAtIndex:0] floatValue]);
+    NSLog(@"EqViewController: gainPoint(0) = %0.0f",[[self.track.gainPoints objectAtIndex:0] floatValue]);
 #endif    
     
     [gainKnob addTarget:self action:@selector(gainKnobDidChange:) forControlEvents:UIControlEventValueChanged];
@@ -136,7 +136,7 @@
     // call the target to initialize it
     [self bandSelectorDidChange:bandSelector];
     
-    // this calculate's the eqCurve for the channel
+    // this calculate's the eqCurve for the track
     [self.eq calculateEqCurve];
     // draws the new curve
     [eqCurveView setNeedsDisplay];
@@ -148,8 +148,8 @@
 {
 #if 0
     NSLog(@"in EqViewController viewWillAppear");
-    NSLog(@"eqViewController channel = %x",(unsigned int)self.channel);
-    NSLog(@"EqViewController: gainPoint(0) = %0.0f",[[self.channel.gainPoints objectAtIndex:0] floatValue]);
+    NSLog(@"eqViewController track = %x",(unsigned int)self.track);
+    NSLog(@"EqViewController: gainPoint(0) = %0.0f",[[self.track.gainPoints objectAtIndex:0] floatValue]);
 #endif
 
 #if 0
@@ -160,7 +160,7 @@
     eqCurveView.eq = self.eq;
     eqPointsView.eq = self.eq;    
     
-    // this calculate's the eqCurve for the channel
+    // this calculate's the eqCurve for the track
     [self.eq calculateEqCurve];
     // draws the new curve
     [eqCurveView setNeedsDisplay];
@@ -200,15 +200,15 @@
     [self.eq.gainPoints replaceObjectAtIndex:idx withObject:gainPoint];
     
 #if 0
-    NSLog(@"gainKnobDidChange: gainPoint @ %d = %0.3f",idx,[[self.channel.gainPoints objectAtIndex:idx] floatValue]);
+    NSLog(@"gainKnobDidChange: gainPoint @ %d = %0.3f",idx,[[self.track.gainPoints objectAtIndex:idx] floatValue]);
 #endif
     
     
 #if 0
-    NSLog(@"self.channel.eqCurve.eqCurve(20) = %0.3f",[[self.channel.eqCurve.eqCurve objectAtIndex:20] doubleValue]);
+    NSLog(@"self.track.eqCurve.eqCurve(20) = %0.3f",[[self.track.eqCurve.eqCurve objectAtIndex:20] doubleValue]);
 #endif
     
-    // this calculate's the eqCurve for the channel
+    // this calculate's the eqCurve for the track
     [self.eq calculateEqCurve];
     // draws the new curve
     [eqCurveView setNeedsDisplay];
@@ -231,7 +231,7 @@
     NSLog(@"freqKnobDidChange: freqPoint @ %d = %0.3f",idx,[freqPoint floatValue]);
 #endif
  
-    // this calculate's the eqCurve for the channel
+    // this calculate's the eqCurve for the track
     [self.eq calculateEqCurve];
     // draws the new curve
     [eqCurveView setNeedsDisplay];
@@ -254,7 +254,7 @@
     NSLog(@"qKnobDidChange: qPoint @ %d = %0.3f",idx,sender.value);
 #endif    
     
-    // this calculate's the eqCurve for the channel
+    // this calculate's the eqCurve for the track
     [self.eq calculateEqCurve];
     // draws the new curve
     [eqCurveView setNeedsDisplay];
@@ -308,7 +308,7 @@
             break;
     }
     
-    // set the selected band for the current channel
+    // set the selected band for the current track
     eq.selectedBand = [NSNumber numberWithInt:idx];
 }
 

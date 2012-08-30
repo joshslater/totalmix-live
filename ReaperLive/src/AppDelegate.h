@@ -13,7 +13,7 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
 {
-    NSMutableArray *channels;
+    NSMutableArray *tracks;
     OSCManagerController *oscManagerController;
 }
 

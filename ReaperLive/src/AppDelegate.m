@@ -8,8 +8,8 @@
 
 #import "AppDelegate.h"
 
-#import "Channel.h"
-#import "ChannelsViewController.h"
+#import "Track.h"
+#import "TracksViewController.h"
 #import "AuxViewController.h"
 #import "SettingsViewController.h"
 #import "OSCManagerController.h"
@@ -21,20 +21,20 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // create channels
-    channels = [[NSMutableArray alloc]	initWithCapacity:100];
+    // create tracks
+    tracks = [[NSMutableArray alloc]	initWithCapacity:100];
     
     for (int i = 0; i < 20; i++)
     {
-        [channels addObject: [[Channel alloc] initWithChannelNumber:i]];
+        [tracks addObject: [[Track alloc] initWithTrackNumber:i]];
     }
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
-    // main channels mixer
-    ChannelsViewController *channelsViewController = [[ChannelsViewController alloc] initWithNibName:@"ChannelsViewController" bundle:nil];
-    channelsViewController.channels = channels;
+    // main tracks mixer
+    TracksViewController *tracksViewController = [[TracksViewController alloc] initWithNibName:@"TracksViewController" bundle:nil];
+    tracksViewController.tracks = tracks;
     
     // aux mixer
     AuxViewController *auxViewController = [[AuxViewController alloc] initWithNibName:@"AuxViewController" bundle:nil];
@@ -51,7 +51,7 @@
     settingsViewController.oscSettingsDelegate = oscManagerController;
     
     self.tabBarController = [[UITabBarController alloc] init];
-    self.tabBarController.viewControllers = [NSArray arrayWithObjects:channelsViewController, auxViewController, settingsViewController, nil];
+    self.tabBarController.viewControllers = [NSArray arrayWithObjects:tracksViewController, auxViewController, settingsViewController, nil];
     
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
