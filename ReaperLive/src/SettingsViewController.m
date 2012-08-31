@@ -49,17 +49,17 @@
 
     [root addSection:section];
     
-    oscIpAddressElement = [[QEntryElement alloc] initWithTitle:@"IP Address" Value:nil Placeholder:@"127.0.0.1"];
+    oscIpAddressElement = [[QEntryElement alloc] initWithTitle:@"IP Address" Value:@"192.168.1.133" Placeholder:@"192.168.1.133"];
     oscIpAddressElement.keyboardType = UIKeyboardTypeNumberPad;
     oscIpAddressElement.delegate = self;
     [section addElement:oscIpAddressElement];   
     
-    oscOutPortElement = [[QEntryElement alloc] initWithTitle:@"Outgoing Port" Value:@"8001" Placeholder:@"8001"];
+    oscOutPortElement = [[QEntryElement alloc] initWithTitle:@"Outgoing Port" Value:@"8000" Placeholder:@"8000"];
     oscOutPortElement.keyboardType = UIKeyboardTypeNumberPad;
     oscOutPortElement.delegate = self;
     [section addElement:oscOutPortElement];
     
-    oscInPortElement = [[QEntryElement alloc] initWithTitle:@"Incoming Port" Value:@"9001" Placeholder:@"9001"];
+    oscInPortElement = [[QEntryElement alloc] initWithTitle:@"Incoming Port" Value:@"9000" Placeholder:@"9000"];
     oscInPortElement.keyboardType = UIKeyboardTypeNumberPad;
     oscInPortElement.delegate = self;
     [section addElement:oscInPortElement];
@@ -68,6 +68,11 @@
     testOscButtonElement.controllerAction = @"sendTestOscMsg";
 
     [section addElement:testOscButtonElement];    
+    
+    // for now, just create the object straight away
+    NSNumber *inPort = [NSNumber numberWithInt:[oscInPortElement.textValue intValue]];
+    NSNumber *outPort = [NSNumber numberWithInt:[oscOutPortElement.textValue intValue]];
+    [oscSettingsDelegate updateOscIpAddress:oscIpAddressElement.textValue inPort:inPort outPort:outPort];
     
     self.root = root;
     [super loadView];    

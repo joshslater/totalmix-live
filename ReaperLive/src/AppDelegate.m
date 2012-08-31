@@ -50,6 +50,10 @@
     oscManagerController = [[OSCManagerController alloc] init];
     settingsViewController.oscSettingsDelegate = oscManagerController;
     
+    // pass the tracks data array to oscManagerController
+    oscManagerController.tracks = tracks;    
+    oscManagerController.tracksViewController = tracksViewController;
+    
     self.tabBarController = [[UITabBarController alloc] init];
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:tracksViewController, auxViewController, settingsViewController, nil];
     

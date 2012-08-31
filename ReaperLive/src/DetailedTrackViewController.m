@@ -160,7 +160,8 @@
     NSLog(@"Removing scrollview from TracksViewController.m");
 #endif
     
-    ((TracksViewController *)[self parentViewController]).selectedTrack = -1;
+    [delegate updateSelectedTrack:-1];
+    [delegate updateTrackButtons:selectedTrack];
     
     // remove this view controller/view from super
     [self removeFromParentViewController];

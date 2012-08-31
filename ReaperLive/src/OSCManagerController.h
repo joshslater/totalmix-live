@@ -9,9 +9,14 @@
 #import <VVOSC/VVOSC.h>
 #import "SettingsViewController.h"
 
-@interface OSCManagerController : OSCManager <OSCDelegateProtocol, OSCSettingsDelegate>
+@class TracksViewController;
+
+@interface OSCManagerController : OSCManager <OSCDelegateProtocol, OSCSettingsDelegateProtocol>
 {
     OSCOutPort *oscOutPort;
 }
+
+@property (nonatomic, strong) NSMutableArray *tracks;
+@property (nonatomic, strong) TracksViewController *tracksViewController;
 
 @end

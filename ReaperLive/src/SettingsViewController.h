@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol OSCSettingsDelegate <NSObject>
+@protocol OSCSettingsDelegateProtocol <NSObject>
 - (void)updateOscIpAddress:(NSString *)ipAddress inPort:(NSNumber *)inPort outPort:(NSNumber *)outPort;
 - (void)sendTestOscMsg;
 @end
@@ -20,6 +20,6 @@
     QEntryElement *oscOutPortElement;
 }
 
-@property (weak, nonatomic) id <OSCSettingsDelegate> oscSettingsDelegate;
+@property (weak, nonatomic) id <OSCSettingsDelegateProtocol> oscSettingsDelegate;
 
 @end

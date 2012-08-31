@@ -17,6 +17,7 @@
 @protocol DetailedTrackViewControllerProtocol <NSObject>
 @required
 - (void)updateTrackButtons:(NSInteger)trackNumber;
+- (void)updateSelectedTrack:(NSInteger)trackNumber;
 @end
 
 

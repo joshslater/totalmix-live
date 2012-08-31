@@ -61,6 +61,9 @@
         self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Tracks" image:nil tag:0];
     }
      
+    // register for track volume updates
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateVolumeFader:) name:@"TrackVolumeDidChange" object:nil];
+    
     return self;
 }
 
@@ -76,6 +79,7 @@
     NSLog(@"track(0), freqPoint(0) = %0.0f",[[[[tracks objectAtIndex:0] freqPoints] objectAtIndex:0] floatValue]);
 #endif
 
+    
     // Rotates the view.
     self.tracksTableView.transform = CGAffineTransformMakeRotation(-M_PI/2);  
       
@@ -97,7 +101,7 @@
     
     
     // set the initial track selection to -1 (no track selected)
-    selectedTrack = -1;
+    self.selectedTrack = -1;
     
 }
 
@@ -125,7 +129,7 @@
     {
         [[NSBundle mainBundle] loadNibNamed:@"TrackTableCell" owner:self options:nil];
         cell = [self trackTableCell];
-        [self setTrackTableCell:nil];
+        //[self setTrackTableCell:nil];
         
         // give the track label rounded corners
         cell.trackLabel.layer.cornerRadius = 6;
@@ -139,7 +143,7 @@
         [fader setRotatedMinTrackImage:[UIImage imageNamed:@"VolumeSlider.png"]];
         [fader setRotatedMaxTrackImage:[UIImage imageNamed:@"VolumeSlider.png"]];
         
-        [fader addTarget:self action:@selector(trackSliderAction:) forControlEvents:UIControlEventValueChanged];
+        [fader addTarget:self action:@selector(volumeFaderSliderAction:) forControlEvents:UIControlEventValueChanged];
         
         fader.value = 0;
         
@@ -191,9 +195,19 @@
     // populate track label
     cell.trackLabel.text = [NSString stringWithFormat:@"%d",indexPath.row];
     
+    // set it black if it's selected, otherwise grey
+    if(indexPath.row == selectedTrack)
+    {
+        cell.trackLabel.backgroundColor = [UIColor blackColor];
+    }
+    else 
+    {
+        cell.trackLabel.backgroundColor = [UIColor lightGrayColor];
+    }
+    
     // make sure the eqThumbView is plotted correctly
 #if 0
-    NSLog(@"cellForRowAtIndexPath -- indexPath.row = %d",indexPath.row);
+    NSLog(@"cellForRowAtIndexPath -- indexPath.row = %d, cell = 0x%x, vol = %0.3f",indexPath.row,(unsigned int)cell,[[self.tracks objectAtIndex:indexPath.row] volume]);
 #endif
 
     // set the eq for each of the eqThumbsView's
@@ -251,24 +265,35 @@
     [self displayDetailedTrackViewControllerWithOffset:CGPointMake(2*TRACKS_WIDTH, 0)];
 }
 
-- (void)trackSliderAction:(UISlider *)sender
+- (void)volumeFaderSliderAction:(UISlider *)sender
 {
     // set the volume of the track
     NSIndexPath *indexPath = [self.tracksTableView indexPathForCell:(UITableViewCell *)[[sender superview] superview]];
     
     Track *track = [self.tracks objectAtIndex:indexPath.row];
+    NSNumber *trackNumber = [NSNumber numberWithInt:indexPath.row];
     
     track.volume = [sender value];
+    
+    // post a notification
+    NSArray *keys = [[NSArray alloc] initWithObjects:@"trackNumber", @"value", nil];
+    NSArray *objects = [[NSArray alloc] initWithObjects:trackNumber, [NSNumber numberWithFloat:sender.value], nil];
+    NSDictionary *extraInfo = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
+    NSNotification *note = [NSNotification notificationWithName:@"VolumeFaderDidChange" object:self userInfo:extraInfo];
+    [[NSNotificationCenter defaultCenter] postNotification:note];
     
 #if 0    
     NSLog(@"Set Track %d Volume to %0.3f",indexPath.row,[sender value]);
 #endif
 }
 
+#pragma mark -
+#pragma mark View Handling
+
 - (void)displayDetailedTrackViewControllerWithOffset:(CGPoint)offset
 {    
 #if 0
-    NSLog(@"TracksViewController: selectedTrack = %d",self.selectedTrack);
+    NSLog(@"TracksViewController: selectedTrack = %d",selectedTrack);
     NSLog(@"TracksViewController: gainPoint(0) = %0.0f",[[[[[self.tracks objectAtIndex:selectedTrack] eq] gainPoints] objectAtIndex:0] floatValue]);
     NSLog(@"gainPoints address = %x",(unsigned int)[[[self.tracks objectAtIndex:selectedTrack] eq] gainPoints]);
 #endif
@@ -280,7 +305,7 @@
     
     // pass the necessary properties about the cahnnel to the detailed view controller
     detailedTrackViewController.track = [self.tracks objectAtIndex:selectedTrack];
-    detailedTrackViewController.selectedTrack = self.selectedTrack;
+    detailedTrackViewController.selectedTrack = selectedTrack;
         
     // set content offset to be TRACKS_WIDTH
     detailedTrackViewController.contentOffset = offset;
@@ -293,6 +318,9 @@
 #endif
 }
 
+#pragma mark -
+#pragma mark DetailedTrackViewControllerDelegate Implementation
+
 - (void)updateTrackButtons:(NSInteger)trackNumber
 {
 #if 0
@@ -304,7 +332,52 @@
     [cell.eqThumbView setNeedsDisplay];
 }
 
+- (void)updateSelectedTrack:(NSInteger)trackNumber
+{
+    self.selectedTrack = trackNumber;
+}
+
+#pragma mark -
+#pragma mark Notification Handling Methods
+
+- (void) updateVolumeFader:(NSNotification *)note
+{
+    
+
+//    NSDictionary *extraInfo = [note userInfo];
+//    int trackNumber = [[extraInfo objectForKey:@"trackNumber"] intValue];
+//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:trackNumber inSection:0];
+//
+//  
+//  
+//    TrackTableCell *cell = (TrackTableCell *)[self.tracksTableView cellForRowAtIndexPath:indexPath];
+    
+ 
+#if 0
+    NSLog(@"Received trackVolumeDidChange notification, trackNumber = %d, volume = %0.3f",trackNumber,[[tracks objectAtIndex:trackNumber] volume]);
+    NSLog(@"cell = 0x%x",(unsigned int)cell);
+#endif    
+    
+  
+    //cell.trackLabel.backgroundColor = [UIColor orangeColor];
+    //cell.volumeSlider.value = [[tracks objectAtIndex:trackNumber] volume];
+    
+    //[self.tracksTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationNone];
+
+    [self.tracksTableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];  
+    
+    //cell.volumeSlider.value = [[tracks objectAtIndex:trackNumber] volume];
+    //cell.trackLabel.backgroundColor = [UIColor orangeColor];
+    
+    //[tracksTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:0];
+    
+ 
+}
 
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 @end
