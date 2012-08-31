@@ -64,6 +64,8 @@
     // register for track volume updates
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateVolumeFader:) name:@"TrackVolumeDidChange" object:nil];
     
+    volumeSliders = nil;
+    
     return self;
 }
 
@@ -154,8 +156,7 @@
         fader.bounds = CGRectMake(0, 0, 265, 30);
         fader.center = CGPointMake(70, 515);
         
-        cell.volumeSlider = fader;
-        
+        cell.volumeSlider = fader;        
         
         /**************************/
         /********** METER *********/
@@ -184,7 +185,11 @@
         // add the subview
         [cell.eqButton addSubview:cell.eqThumbView];
     }
-
+    
+    if(![volumeSliders objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]])
+    {
+        [volumeSliders setValue:cell.volumeSlider forKey:[NSString stringWithFormat:@"%d",indexPath.row]];
+    }
 
     // set the slider to 0
     cell.volumeSlider.value = [[self.tracks objectAtIndex:indexPath.row] volume];
@@ -344,27 +349,38 @@
 {
     
 
-//    NSDictionary *extraInfo = [note userInfo];
-//    int trackNumber = [[extraInfo objectForKey:@"trackNumber"] intValue];
-//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:trackNumber inSection:0];
+    NSDictionary *extraInfo = [note userInfo];
+    int trackNumber = [[extraInfo objectForKey:@"trackNumber"] intValue];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:trackNumber inSection:0];
 //
 //  
 //  
-//    TrackTableCell *cell = (TrackTableCell *)[self.tracksTableView cellForRowAtIndexPath:indexPath];
+    TrackTableCell *cell = (TrackTableCell *)[self.tracksTableView cellForRowAtIndexPath:indexPath];
     
- 
+    //UISlider *volumeSlider = [volumeSliders objectForKey:[NSString stringWithFormat:@"%d",trackNumber]];
+    
+    
 #if 0
     NSLog(@"Received trackVolumeDidChange notification, trackNumber = %d, volume = %0.3f",trackNumber,[[tracks objectAtIndex:trackNumber] volume]);
     NSLog(@"cell = 0x%x",(unsigned int)cell);
 #endif    
     
+
+    
+    dispatch_async( dispatch_get_main_queue(), ^{
+        // running synchronously on the main thread now -- call the handler
+        cell.volumeSlider.value = [[tracks objectAtIndex:trackNumber] volume];
+    });
+
+    
+    //volumeSlider.value = [[tracks objectAtIndex:trackNumber] volume];
   
     //cell.trackLabel.backgroundColor = [UIColor orangeColor];
     //cell.volumeSlider.value = [[tracks objectAtIndex:trackNumber] volume];
     
     //[self.tracksTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationNone];
 
-    [self.tracksTableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];  
+    //[self.tracksTableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];  
     
     //cell.volumeSlider.value = [[tracks objectAtIndex:trackNumber] volume];
     //cell.trackLabel.backgroundColor = [UIColor orangeColor];
