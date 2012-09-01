@@ -64,6 +64,9 @@
     // register for track volume updates
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateVolumeFader:) name:@"TrackVolumeDidChange" object:nil];
     
+    // allocate the trackCells dict
+    trackCells = [[NSMutableDictionary alloc] initWithCapacity:[tracks count]];
+    
     return self;
 }
 
@@ -155,8 +158,85 @@
         [trackCells setObject:cell forKey:key];        
     }
     
-    // set the slider to 0
-    cell.volumeSlider.value = [[self.tracks objectAtIndex:indexPath.row] volume];
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 85.0;
+}
+
+- (TrackTableCell *)createCell:(int)trackNumber
+{
+    TrackTableCell *cell;
+    [[NSBundle mainBundle] loadNibNamed:@"TrackTableCell" owner:self options:nil];
+    cell = [self trackTableCell];
+    
+    
+#if 0    
+    ////////////////////////////////
+    ////// MANUAL CELL INIT/////////
+    ////////////////////////////////
+    //
+    cell = [[TrackTableCell alloc] initWithFrame:CGRectMake(0, 0, 85, 655)];
+    cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"TrackBkg.png"]];
+    
+    /////////// GATE BUTTON ///////////////
+    cell.gateButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    cell.gateButton.frame = CGRectMake(1, 8, 83, 83);
+    [cell.gateButton setBackgroundImage:[UIImage imageNamed:@"GateBtn.png"] forState:UIControlStateNormal];
+    [cell.gateButton addTarget:self action:@selector(gateButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.contentView addSubview:cell.gateButton];
+
+    
+    ////////// COMP BUTTON ///////////////
+    cell.compButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    cell.compButton.frame = CGRectMake(1, 95, 83, 83);
+    [cell.compButton setBackgroundImage:[UIImage imageNamed:@"CompBtn.png"] forState:UIControlStateNormal];
+    [cell.compButton addTarget:self action:@selector(compButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.contentView addSubview:cell.compButton];
+    
+    //////////// EQ BUTTON ////////////
+    cell.eqButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    cell.eqButton.frame = CGRectMake(1, 190, 83, 83);
+    [cell.eqButton setBackgroundImage:[UIImage imageNamed:@"EQBtn.png"] forState:UIControlStateNormal];
+    [cell.eqButton addTarget:self action:@selector(eqButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.contentView addSubview:cell.eqButton];
+
+
+    ////////// SOLO BUTTON ///////////
+    UIButton *soloBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    soloBtn.frame = CGRectMake(6, 308, 33, 32);
+    [soloBtn setBackgroundImage:[UIImage imageNamed:@"SoloBtn.png"] forState:UIControlStateNormal];
+    [cell.contentView addSubview:soloBtn];
+  
+    ////////// MUTE BUTTON ///////////
+    UIButton *muteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    muteBtn.frame = CGRectMake(40, 308, 33, 32);
+    [muteBtn setBackgroundImage:[UIImage imageNamed:@"MuteBtn.png"] forState:UIControlStateNormal];
+    [cell.contentView addSubview:muteBtn];
+    
+    /////////// TRACK LABEL //////////
+    cell.trackLabel = [[UILabel alloc] initWithFrame:CGRectMake(7, 348, 71, 45)];
+    cell.trackLabel.textColor = [UIColor whiteColor];
+    cell.trackLabel.highlightedTextColor = [UIColor whiteColor];
+    cell.trackLabel.font = [UIFont systemFontOfSize:17.0];
+    cell.trackLabel.textAlignment = UITextAlignmentCenter;
+    [cell.contentView addSubview:cell.trackLabel];
+#endif     
+    
+    cell.trackLabel.text = [NSString stringWithFormat:@"%d",trackNumber];
+    // give the track label rounded corners -- need to do this workaround as just
+    // setting the cornerRadius kills scroll performance
+    cell.trackLabel.backgroundColor = [UIColor clearColor];
+    cell.trackLabel.layer.backgroundColor = [UIColor lightGrayColor].CGColor;
+    cell.trackLabel.layer.cornerRadius = 6;
+    cell.trackLabel.layer.shouldRasterize = YES;
+    cell.trackLabel.layer.masksToBounds = NO;
+    
+    // set background image of EQ Button
+    cell.eqButton.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"EQBtn.png"]];
+    
     
     /**************************/
     /********* FADER  *********/
@@ -358,7 +438,7 @@
     dispatch_async( dispatch_get_main_queue(), ^{
         // running synchronously on the main thread now -- call the handler
         cell.volumeSlider.value = [[tracks objectAtIndex:trackNumber] volume];
-    }); 
+    });
 }
 
 

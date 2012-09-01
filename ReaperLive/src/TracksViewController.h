@@ -15,6 +15,7 @@
 @interface TracksViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, DetailedTrackViewControllerProtocol>
 {
     DetailedTrackViewController *detailedTrackViewController;
+    NSMutableDictionary *trackCells;
 }
 
 @property (strong, nonatomic) NSMutableArray *tracks;
