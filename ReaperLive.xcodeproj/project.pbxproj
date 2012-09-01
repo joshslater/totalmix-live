@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0309E72115D24525004FDD58 /* ChannelBkg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E71515D24525004FDD58 /* ChannelBkg.png */; };
+		0309E72115D24525004FDD58 /* TrackBkg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E71515D24525004FDD58 /* TrackBkg.png */; };
 		0309E72215D24525004FDD58 /* CompBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E71615D24525004FDD58 /* CompBtn.png */; };
 		0309E72315D24525004FDD58 /* DetailedComp.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E71715D24525004FDD58 /* DetailedComp.png */; };
 		0309E72415D24525004FDD58 /* DetailedEQ.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E71815D24525004FDD58 /* DetailedEQ.png */; };
@@ -39,6 +39,7 @@
 		03712C5B15D8ADC400EC9665 /* EqPointsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03712C5A15D8ADC300EC9665 /* EqPointsView.m */; };
 		03712C6215D8B62900EC9665 /* EqViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03712C6115D8B62900EC9665 /* EqViewController.m */; };
 		0385B0DF15DF66DB00EBE2F8 /* EqThumbView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0385B0DE15DF66DB00EBE2F8 /* EqThumbView.m */; };
+		03A40B1115F1D65A00CE0FAD /* EqButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A40B1015F1D65900CE0FAD /* EqButton.m */; };
 		03ADD57115BCFC0900EBDC71 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03ADD57015BCFC0900EBDC71 /* UIKit.framework */; };
 		03ADD57315BCFC0900EBDC71 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03ADD57215BCFC0900EBDC71 /* Foundation.framework */; };
 		03ADD57515BCFC0900EBDC71 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03ADD57415BCFC0900EBDC71 /* CoreGraphics.framework */; };
@@ -61,7 +62,7 @@
 		03C1495615D37599008DCE9C /* DetailedEQ@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03C1494A15D37599008DCE9C /* DetailedEQ@2x.png */; };
 		03C1495715D37599008DCE9C /* EQBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03C1494B15D37599008DCE9C /* EQBtn@2x.png */; };
 		03C1495815D37599008DCE9C /* GateBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03C1494C15D37599008DCE9C /* GateBtn@2x.png */; };
-		03C1495915D37599008DCE9C /* ChannelBkg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03C1494D15D37599008DCE9C /* ChannelBkg@2x.png */; };
+		03C1495915D37599008DCE9C /* TrackBkg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03C1494D15D37599008DCE9C /* TrackBkg@2x.png */; };
 		03C867F615C6617F001ECCAD /* VolumeSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C867F515C6617E001ECCAD /* VolumeSlider.m */; };
 		03F2326C15C0E0D1009B0390 /* CompView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F2326B15C0E0D1009B0390 /* CompView.m */; };
 		03F2326E15C0E0E3009B0390 /* CompView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03F2326D15C0E0E3009B0390 /* CompView.xib */; };
@@ -91,7 +92,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0309E71515D24525004FDD58 /* ChannelBkg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ChannelBkg.png; sourceTree = "<group>"; };
+		0309E71515D24525004FDD58 /* TrackBkg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrackBkg.png; sourceTree = "<group>"; };
 		0309E71615D24525004FDD58 /* CompBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CompBtn.png; sourceTree = "<group>"; };
 		0309E71715D24525004FDD58 /* DetailedComp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DetailedComp.png; sourceTree = "<group>"; };
 		0309E71815D24525004FDD58 /* DetailedEQ.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DetailedEQ.png; sourceTree = "<group>"; };
@@ -133,6 +134,8 @@
 		03712C6115D8B62900EC9665 /* EqViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EqViewController.m; sourceTree = "<group>"; };
 		0385B0DD15DF66DB00EBE2F8 /* EqThumbView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EqThumbView.h; sourceTree = "<group>"; };
 		0385B0DE15DF66DB00EBE2F8 /* EqThumbView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EqThumbView.m; sourceTree = "<group>"; };
+		03A40B0F15F1D65900CE0FAD /* EqButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EqButton.h; sourceTree = "<group>"; };
+		03A40B1015F1D65900CE0FAD /* EqButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EqButton.m; sourceTree = "<group>"; };
 		03ADD56C15BCFC0900EBDC71 /* ReaperLive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReaperLive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03ADD57015BCFC0900EBDC71 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		03ADD57215BCFC0900EBDC71 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -164,7 +167,7 @@
 		03C1494A15D37599008DCE9C /* DetailedEQ@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DetailedEQ@2x.png"; sourceTree = "<group>"; };
 		03C1494B15D37599008DCE9C /* EQBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EQBtn@2x.png"; sourceTree = "<group>"; };
 		03C1494C15D37599008DCE9C /* GateBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GateBtn@2x.png"; sourceTree = "<group>"; };
-		03C1494D15D37599008DCE9C /* ChannelBkg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ChannelBkg@2x.png"; sourceTree = "<group>"; };
+		03C1494D15D37599008DCE9C /* TrackBkg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TrackBkg@2x.png"; sourceTree = "<group>"; };
 		03C867F415C6617E001ECCAD /* VolumeSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolumeSlider.h; sourceTree = "<group>"; };
 		03C867F515C6617E001ECCAD /* VolumeSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolumeSlider.m; sourceTree = "<group>"; };
 		03F2326A15C0E0D1009B0390 /* CompView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompView.h; sourceTree = "<group>"; };
@@ -205,7 +208,7 @@
 				03712C4D15D82E4D00EC9665 /* Knob.png */,
 				03F2327C15C0ECB4009B0390 /* delete_control.jpg */,
 				0309E74515D260FB004FDD58 /* VolumeSlider.png */,
-				0309E71515D24525004FDD58 /* ChannelBkg.png */,
+				0309E71515D24525004FDD58 /* TrackBkg.png */,
 				0309E71615D24525004FDD58 /* CompBtn.png */,
 				0309E71715D24525004FDD58 /* DetailedComp.png */,
 				0309E71815D24525004FDD58 /* DetailedEQ.png */,
@@ -238,7 +241,7 @@
 				03C1494A15D37599008DCE9C /* DetailedEQ@2x.png */,
 				03C1494B15D37599008DCE9C /* EQBtn@2x.png */,
 				03C1494C15D37599008DCE9C /* GateBtn@2x.png */,
-				03C1494D15D37599008DCE9C /* ChannelBkg@2x.png */,
+				03C1494D15D37599008DCE9C /* TrackBkg@2x.png */,
 			);
 			name = "@2x";
 			path = resources/images/2x;
@@ -340,6 +343,8 @@
 			children = (
 				0385B0DD15DF66DB00EBE2F8 /* EqThumbView.h */,
 				0385B0DE15DF66DB00EBE2F8 /* EqThumbView.m */,
+				03A40B0F15F1D65900CE0FAD /* EqButton.h */,
+				03A40B1015F1D65900CE0FAD /* EqButton.m */,
 			);
 			name = Channels;
 			sourceTree = "<group>";
@@ -536,7 +541,7 @@
 				03F2327915C0E4E9009B0390 /* EQView.xib in Resources */,
 				03F2327B15C0E4FB009B0390 /* GateView.xib in Resources */,
 				03F2327D15C0ECB4009B0390 /* delete_control.jpg in Resources */,
-				0309E72115D24525004FDD58 /* ChannelBkg.png in Resources */,
+				0309E72115D24525004FDD58 /* TrackBkg.png in Resources */,
 				0309E72215D24525004FDD58 /* CompBtn.png in Resources */,
 				0309E72315D24525004FDD58 /* DetailedComp.png in Resources */,
 				0309E72415D24525004FDD58 /* DetailedEQ.png in Resources */,
@@ -559,7 +564,7 @@
 				03C1495615D37599008DCE9C /* DetailedEQ@2x.png in Resources */,
 				03C1495715D37599008DCE9C /* EQBtn@2x.png in Resources */,
 				03C1495815D37599008DCE9C /* GateBtn@2x.png in Resources */,
-				03C1495915D37599008DCE9C /* ChannelBkg@2x.png in Resources */,
+				03C1495915D37599008DCE9C /* TrackBkg@2x.png in Resources */,
 				03712C4915D82E3F00EC9665 /* Knob-Selector@2x.png in Resources */,
 				03712C4A15D82E3F00EC9665 /* Knob@2x.png in Resources */,
 				03712C4E15D82E4D00EC9665 /* Knob-Selector.png in Resources */,
@@ -597,6 +602,7 @@
 				036181DB15EB2214001FB621 /* AuxViewController.m in Sources */,
 				032504C715EC998A008B0E19 /* SettingsViewController.m in Sources */,
 				031C9D3E15EDECDC00ED2898 /* OSCManagerController.m in Sources */,
+				03A40B1115F1D65A00CE0FAD /* EqButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
