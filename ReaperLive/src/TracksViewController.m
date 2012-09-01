@@ -13,7 +13,7 @@
 #import "VolumeSlider.h"
 #import "VerticalSlider.h"
 #import "EqViewController.h"
-#import "EqThumbView.h"
+#import "EqButton.h"
 #import "Eq.h"
 
 @interface TracksViewController ()
@@ -99,6 +99,16 @@
     // set the delegate of the detailedTrackViewController
     detailedTrackViewController.delegate = self;
     
+    // initialize track cell array    
+    for (int trackNum = 0; trackNum < [tracks count]; trackNum++)
+    {
+#if 0        
+        NSLog(@"trying to create track cell %d",trackNum);
+#endif
+        TrackTableCell *cell = [self createCell:trackNum];
+        [trackCells setObject:cell forKey:[NSNumber numberWithInt:trackNum]]; 
+    }
+    
     
     // set the initial track selection to -1 (no track selected)
     self.selectedTrack = -1;
@@ -116,6 +126,8 @@
     return UIInterfaceOrientationIsLandscape(interfaceOrientation);
 }
 
+#pragma mark -
+#pragma mark TableView Delegate/DataSource Methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [self.tracks count];
@@ -123,76 +135,73 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TrackTableCell *cell = (TrackTableCell *)[tableView dequeueReusableCellWithIdentifier:@"TrackTableCell"];
+    TrackTableCell *cell;
+    NSNumber *key = [NSNumber numberWithInt:indexPath.row];
     
-    if(cell == nil)
+    if ([trackCells objectForKey:key])
+    {     
+        cell = (TrackTableCell *)[trackCells objectForKey:key];
+        
+        // set the volume slider, since we don't update it if it's not visible
+        cell.volumeSlider.value = [[self.tracks objectAtIndex:indexPath.row] volume];
+    } 
+    else 
     {
-        [[NSBundle mainBundle] loadNibNamed:@"TrackTableCell" owner:self options:nil];
-        cell = [self trackTableCell];
-        //[self setTrackTableCell:nil];
+#if 0        
+        NSLog(@"creating cell %d",indexPath.row);
+#endif
         
-        // give the track label rounded corners
-        cell.trackLabel.layer.cornerRadius = 6;
-        //cell.trackLabel.backgroundColor = [UIColor whiteColor];
-
-        /**************************/
-        /********* FADER  *********/
-        /**************************/
-        VolumeSlider *fader = [[VolumeSlider alloc] initWithFrame:CGRectMake(0, 0, 265, 30)];
-        [fader setRotatedThumbImage:[UIImage imageNamed:@"FaderCap.png"]];
-        [fader setRotatedMinTrackImage:[UIImage imageNamed:@"VolumeSlider.png"]];
-        [fader setRotatedMaxTrackImage:[UIImage imageNamed:@"VolumeSlider.png"]];
-        
-        [fader addTarget:self action:@selector(volumeFaderSliderAction:) forControlEvents:UIControlEventValueChanged];
-        
-        fader.value = 0;
-        
-        // rotate the slider
-        fader.transform = CGAffineTransformMakeRotation(-M_PI_2);
-        [cell.contentView addSubview:fader];
-        
-        fader.bounds = CGRectMake(0, 0, 265, 30);
-        fader.center = CGPointMake(70, 515);
-        
-        cell.volumeSlider = fader;        
-        
-        /**************************/
-        /********** METER *********/
-        /**************************/
-        VerticalSlider *meter = [[VerticalSlider alloc] initWithFrame:CGRectMake(0, 0, 225, 30)];
-        
-        // set the minimum track image
-        [meter setThumbImage:[[UIImage alloc] init] forState:UIControlStateNormal];
-        [meter setRotatedMinTrackImage:[UIImage imageNamed:@"Meter.png"]];
-        [meter setRotatedMaxTrackImage:[UIImage imageNamed:@"Meter.png"]];
-        
-        // rotate meter
-        meter.transform = CGAffineTransformMakeRotation(-M_PI_2);
-        [cell.contentView addSubview:meter];
-        
-        meter.bounds = CGRectMake(0, 0, 225, 30);
-        meter.center = CGPointMake(30, 515);
-        
-        
-        /************************/
-        /******** EQ BUTTON *****/
-        /************************/
-        // add eqThumbView on top of eq button
-        cell.eqThumbView = [[EqThumbView alloc] initWithFrame:CGRectMake(0, 0, 83, 83)];
-        
-        // add the subview
-        [cell.eqButton addSubview:cell.eqThumbView];
+        cell = [self createCell:indexPath.row];
+        [trackCells setObject:cell forKey:key];        
     }
     
     // set the slider to 0
     cell.volumeSlider.value = [[self.tracks objectAtIndex:indexPath.row] volume];
     
-    // rotate the cell
-    cell.transform = CGAffineTransformMakeRotation(M_PI/2);
-
-    // populate track label
-    cell.trackLabel.text = [NSString stringWithFormat:@"%d",indexPath.row];
+    /**************************/
+    /********* FADER  *********/
+    /**************************/
+    VolumeSlider *fader = [[VolumeSlider alloc] initWithFrame:CGRectMake(0, 0, 265, 30)];
+    [fader setRotatedThumbImage:[UIImage imageNamed:@"FaderCap.png"]];
+    [fader setRotatedMinTrackImage:[UIImage imageNamed:@"VolumeSlider.png"]];
+    [fader setRotatedMaxTrackImage:[UIImage imageNamed:@"VolumeSlider.png"]];
     
+    [fader addTarget:self action:@selector(volumeFaderSliderAction:) forControlEvents:UIControlEventValueChanged];
+    
+    fader.value = 0;
+    
+    // rotate the slider
+    fader.transform = CGAffineTransformMakeRotation(-M_PI_2);
+    [cell.contentView addSubview:fader];
+    
+    fader.bounds = CGRectMake(0, 0, 265, 30);
+    fader.center = CGPointMake(70, 515);
+    
+    cell.volumeSlider = fader;        
+    
+    /**************************/
+    /********** METER *********/
+    /**************************/
+    VerticalSlider *meter = [[VerticalSlider alloc] initWithFrame:CGRectMake(0, 0, 225, 30)];
+    
+    // set the minimum track image
+    [meter setThumbImage:[[UIImage alloc] init] forState:UIControlStateNormal];
+    [meter setRotatedMinTrackImage:[UIImage imageNamed:@"Meter.png"]];
+    [meter setRotatedMaxTrackImage:[UIImage imageNamed:@"Meter.png"]];
+    
+    // rotate meter
+    meter.transform = CGAffineTransformMakeRotation(-M_PI_2);
+    [cell.contentView addSubview:meter];
+    
+    meter.bounds = CGRectMake(0, 0, 225, 30);
+    meter.center = CGPointMake(30, 515);
+    
+    
+    
+        // rotate the cell
+    cell.transform = CGAffineTransformMakeRotation(M_PI/2);
+    
+/*    
     // set it black if it's selected, otherwise grey
     if(indexPath.row == selectedTrack)
     {
@@ -207,17 +216,12 @@
 #if 0
     NSLog(@"cellForRowAtIndexPath -- indexPath.row = %d, cell = 0x%x, vol = %0.3f",indexPath.row,(unsigned int)cell,[[self.tracks objectAtIndex:indexPath.row] volume]);
 #endif
-
-    // set the eq for each of the eqThumbsView's
-    cell.eqThumbView.eq = [[self.tracks objectAtIndex:indexPath.row] eq];
-    [cell.eqThumbView setNeedsDisplay];
+*/
     
-    return cell;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 85.0;
+    // set the eq for each of the eqThumbsView's
+    cell.eqButton.eq = [[self.tracks objectAtIndex:trackNumber] eq];
+    [cell.eqButton setNeedsDisplay];    
+    return cell; 
 }
 
 #pragma mark -
@@ -327,7 +331,7 @@
     
     TrackTableCell *cell = (TrackTableCell *)[self.tracksTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:trackNumber inSection:0]];
     
-    [cell.eqThumbView setNeedsDisplay];
+    [cell.eqButton setNeedsDisplay];
 }
 
 - (void)updateSelectedTrack:(NSInteger)trackNumber

@@ -9,13 +9,14 @@
 #import <UIKit/UIKit.h>
 
 @class EqThumbView;
+@class EqButton;
 
 @interface TrackTableCell : UITableViewCell
 
 @property (nonatomic, retain) IBOutlet UILabel *trackLabel;
 @property (nonatomic, retain) IBOutlet UIButton *gateButton;
 @property (nonatomic, retain) IBOutlet UIButton *compButton;
-@property (nonatomic, retain) IBOutlet UIButton *eqButton;
+@property (nonatomic, retain) IBOutlet EqButton *eqButton;
 @property (nonatomic, retain) IBOutlet UISlider *volumeSlider;
 @property (nonatomic, retain) EqThumbView *eqThumbView;
 
