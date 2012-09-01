@@ -36,7 +36,7 @@
     // set previously selected track to grey
     TrackTableCell *cell = (TrackTableCell *)[self.tracksTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:selectedTrack inSection:0]];
     
-    cell.trackLabel.backgroundColor = [UIColor lightGrayColor];
+    cell.trackLabel.layer.backgroundColor = [UIColor lightGrayColor].CGColor;
     
     selectedTrack = aSelectedTrack;
     
@@ -45,7 +45,7 @@
         // change the label background of the selected track
         cell = (TrackTableCell *)[self.tracksTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:selectedTrack inSection:0]];
         
-        cell.trackLabel.backgroundColor = [UIColor blackColor];
+        cell.trackLabel.layer.backgroundColor = [UIColor blackColor].CGColor;
     }
 }
 
@@ -276,9 +276,7 @@
     meter.bounds = CGRectMake(0, 0, 225, 30);
     meter.center = CGPointMake(30, 515);
     
-    
-    
-        // rotate the cell
+    // rotate the cell
     cell.transform = CGAffineTransformMakeRotation(M_PI/2);
     
 /*    
