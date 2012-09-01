@@ -168,6 +168,10 @@
 
 - (TrackTableCell *)createCell:(int)trackNumber
 {
+#if 0
+    NSLog(@"TracksViewController::createCell");
+#endif
+    
     TrackTableCell *cell;
     [[NSBundle mainBundle] loadNibNamed:@"TrackTableCell" owner:self options:nil];
     cell = [self trackTableCell];

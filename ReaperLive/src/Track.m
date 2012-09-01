@@ -19,6 +19,10 @@
 
 - (id)initWithTrackNumber:(int)trackNum
 {
+#if 0
+    NSLog(@"Track::initWithTrackNumber");
+#endif
+    
     self = [super init];
     
     if(self)
