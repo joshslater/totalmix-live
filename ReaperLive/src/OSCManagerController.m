@@ -101,7 +101,7 @@
     
     NSRegularExpression *regex = [NSRegularExpression
                                   regularExpressionWithPattern:@"^/track/(\\d)/volume$"
-                                  options:NSRegularExpressionCaseInsensitive
+                                  options:0
                                   error:nil];
     
     NSTextCheckingResult *match = [regex firstMatchInString:address
