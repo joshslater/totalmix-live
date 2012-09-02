@@ -29,7 +29,7 @@
 - (void)drawRect:(CGRect)rect
 {
 #if 0
-    NSLog(@"EqThumbView:: drawRect, gainPoint(0): %0.0f",[[eq.gainPoints objectAtIndex:0] floatValue]);
+    NSLog(@"EqButton:: drawRect, gainPoint(0): %0.0f",[[eq.gainPoints objectAtIndex:0] floatValue]);
 #endif
     
     UIBezierPath* eqPath = [UIBezierPath bezierPath];

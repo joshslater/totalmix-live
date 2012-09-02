@@ -37,7 +37,6 @@
 		03712C5815D882F600EC9665 /* EqCurveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03712C5715D882F600EC9665 /* EqCurveView.m */; };
 		03712C5B15D8ADC400EC9665 /* EqPointsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03712C5A15D8ADC300EC9665 /* EqPointsView.m */; };
 		03712C6215D8B62900EC9665 /* EqViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03712C6115D8B62900EC9665 /* EqViewController.m */; };
-		0385B0DF15DF66DB00EBE2F8 /* EqThumbView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0385B0DE15DF66DB00EBE2F8 /* EqThumbView.m */; };
 		03A40B1115F1D65A00CE0FAD /* EqButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A40B1015F1D65900CE0FAD /* EqButton.m */; };
 		03ADD57115BCFC0900EBDC71 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03ADD57015BCFC0900EBDC71 /* UIKit.framework */; };
 		03ADD57315BCFC0900EBDC71 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03ADD57215BCFC0900EBDC71 /* Foundation.framework */; };
@@ -117,8 +116,6 @@
 		03712C5A15D8ADC300EC9665 /* EqPointsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EqPointsView.m; sourceTree = "<group>"; };
 		03712C6015D8B62900EC9665 /* EqViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EqViewController.h; sourceTree = "<group>"; };
 		03712C6115D8B62900EC9665 /* EqViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EqViewController.m; sourceTree = "<group>"; };
-		0385B0DD15DF66DB00EBE2F8 /* EqThumbView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EqThumbView.h; sourceTree = "<group>"; };
-		0385B0DE15DF66DB00EBE2F8 /* EqThumbView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EqThumbView.m; sourceTree = "<group>"; };
 		03A40B0F15F1D65900CE0FAD /* EqButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EqButton.h; sourceTree = "<group>"; };
 		03A40B1015F1D65900CE0FAD /* EqButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EqButton.m; sourceTree = "<group>"; };
 		03ADD56C15BCFC0900EBDC71 /* ReaperLive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReaperLive.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -300,8 +297,6 @@
 		03D1EA5515DEE7B000F8C804 /* Channels */ = {
 			isa = PBXGroup;
 			children = (
-				0385B0DD15DF66DB00EBE2F8 /* EqThumbView.h */,
-				0385B0DE15DF66DB00EBE2F8 /* EqThumbView.m */,
 				03A40B0F15F1D65900CE0FAD /* EqButton.h */,
 				03A40B1015F1D65900CE0FAD /* EqButton.m */,
 			);
@@ -539,7 +534,6 @@
 				03712C5815D882F600EC9665 /* EqCurveView.m in Sources */,
 				03712C5B15D8ADC400EC9665 /* EqPointsView.m in Sources */,
 				03712C6215D8B62900EC9665 /* EqViewController.m in Sources */,
-				0385B0DF15DF66DB00EBE2F8 /* EqThumbView.m in Sources */,
 				03306F4815E17F9E0094DF14 /* Eq.m in Sources */,
 				0348F52215E9A58300992A0D /* Complex.m in Sources */,
 				036181DB15EB2214001FB621 /* AuxViewController.m in Sources */,

@@ -16,8 +16,6 @@
 @synthesize compButton;
 @synthesize volumeSlider;
 @synthesize vuMeter;
-@synthesize eqThumbView;
-
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

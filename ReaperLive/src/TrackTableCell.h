@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@class EqThumbView;
 @class EqButton;
 
 @interface TrackTableCell : UITableViewCell
@@ -19,6 +18,4 @@
 @property (nonatomic, weak) IBOutlet EqButton *eqButton;
 @property (nonatomic, retain) UISlider *volumeSlider;
 @property (nonatomic, retain) UISlider *vuMeter;
-@property (nonatomic, retain) EqThumbView *eqThumbView;
-
 @end
