@@ -9,6 +9,7 @@
 #import "Constants.h"
 #import "TracksViewController.h"
 #import "Track.h"
+#import "TracksTableView.h"
 #import "TrackTableCell.h"
 #import "VolumeSlider.h"
 #import "VerticalSlider.h"
@@ -66,7 +67,6 @@
     
     // register for track vu updates
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateVuMeter:) name:@"TrackVuDidChange" object:nil];
-
     
     // allocate the trackCells dict
     trackCells = [[NSMutableDictionary alloc] initWithCapacity:[tracks count]];
@@ -74,6 +74,57 @@
     return self;
 }
 
+
+- (void)loadView
+{
+#if 0    
+    NSLog(@"TracksViewController::loadView");
+#endif
+    
+    [super loadView];
+    
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    
+#if 1
+    UIDevice *myDevice = [UIDevice currentDevice];
+    [myDevice beginGeneratingDeviceOrientationNotifications];
+    UIDeviceOrientation currentOrientation = [myDevice orientation];
+    [myDevice endGeneratingDeviceOrientationNotifications];
+
+    
+    NSLog(@"Orientation = %d",currentOrientation);
+#endif
+    
+    // add toolbar
+    tracksToolbar = [[UIToolbar alloc] init];
+    // why do I use screen height here? is screen not rotated yet?
+    tracksToolbar.frame = CGRectMake(0, 0, screenRect.size.height, 44);
+    NSMutableArray *items = [[NSMutableArray alloc] init];
+    [items addObject:[[UIBarButtonItem alloc] initWithTitle:@"Item" style:UIBarButtonItemStyleBordered target:self action:nil]];
+    [tracksToolbar setItems:items animated:NO];
+    [self.view addSubview:tracksToolbar];
+    
+    // add tracks view
+    tracksTableView = [[TracksTableView alloc] init];
+    
+    // Rotates the view.
+    self.tracksTableView.transform = CGAffineTransformMakeRotation(-M_PI/2);  
+    
+#if 1
+    NSLog(@"Tab Bar Height = %0.0f",[super tabBarController].tabBar.frame.size.height);
+#endif
+    
+    // why do I have to add 1 to the height?
+    tracksTableView.frame = CGRectMake(2, tracksToolbar.frame.size.height, screenRect.size.height - 4, screenRect.size.width - [[UIApplication sharedApplication] statusBarFrame].size.height - tracksToolbar.frame.size.height - [super tabBarController].tabBar.frame.size.height + 1);
+    
+    tracksTableView.backgroundColor = [UIColor blackColor];
+    
+    tracksTableView.delegate = self;
+    tracksTableView.dataSource = self;
+    [self.view addSubview:tracksTableView];
+}
+
+ 
 - (void)viewDidLoad
 {
 #if 0
@@ -86,18 +137,6 @@
     NSLog(@"track(0), freqPoint(0) = %0.0f",[[[[tracks objectAtIndex:0] freqPoints] objectAtIndex:0] floatValue]);
 #endif
 
-    
-    // Rotates the view.
-    self.tracksTableView.transform = CGAffineTransformMakeRotation(-M_PI/2);  
-      
-    // Repositions and resizes the view.
-    
-    // for some reason the frame's x/y max values are scaled backward -- add the conversion
-    // factors to account for it. Not sure why don't have to subtract 49 (tab bar height)
-    self.tracksTableView.frame = CGRectMake(0,
-                                            tracksToolbar.frame.size.height,
-                                            TRACKS_WIDTH * TRACKS_HEIGHT/TRACKS_WIDTH, 
-                                            TRACKS_HEIGHT * TRACKS_WIDTH/TRACKS_HEIGHT - [[UIApplication sharedApplication] statusBarFrame].size.height - tracksToolbar.frame.size.height);
     
     /////////////////////////////////////////////
     // create detailed track view controller //
@@ -130,6 +169,17 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
+    
+#if 0
+    UIDevice *myDevice = [UIDevice currentDevice];
+    [myDevice beginGeneratingDeviceOrientationNotifications];
+    UIDeviceOrientation currentOrientation = [myDevice orientation];
+    [myDevice endGeneratingDeviceOrientationNotifications];
+    
+    
+    NSLog(@"Orientation = %d",currentOrientation);
+#endif
+    
     return UIInterfaceOrientationIsLandscape(interfaceOrientation);
 }
 

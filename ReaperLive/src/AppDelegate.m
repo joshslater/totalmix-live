@@ -33,7 +33,8 @@
     // Override point for customization after application launch.
     
     // main tracks mixer
-    TracksViewController *tracksViewController = [[TracksViewController alloc] initWithNibName:@"TracksViewController" bundle:nil];
+    //TracksViewController *tracksViewController = [[TracksViewController alloc] initWithNibName:@"TracksViewController" bundle:nil];
+    TracksViewController *tracksViewController = [[TracksViewController alloc] init];
     tracksViewController.tracks = tracks;
     
     // aux mixer

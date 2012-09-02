@@ -19,9 +19,9 @@
 }
 
 @property (strong, nonatomic) NSMutableArray *tracks;
-@property (weak, nonatomic) IBOutlet UITableView *tracksTableView;
+@property (strong, nonatomic) UITableView *tracksTableView;
 @property (weak, nonatomic) IBOutlet TrackTableCell *trackTableCell;
-@property (weak, nonatomic) IBOutlet UIToolbar *tracksToolbar;
+@property (strong, nonatomic) UIToolbar *tracksToolbar;
 // this is a property because the setter is overridden to set the track label's background color
 @property (nonatomic) NSInteger selectedTrack;
 

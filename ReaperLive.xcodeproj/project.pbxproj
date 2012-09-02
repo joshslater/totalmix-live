@@ -28,7 +28,6 @@
 		03306F4815E17F9E0094DF14 /* Eq.m in Sources */ = {isa = PBXBuildFile; fileRef = 03306F4715E17F9E0094DF14 /* Eq.m */; };
 		0345FB5215D3660F009130E2 /* VerticalSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 0345FB5115D3660F009130E2 /* VerticalSlider.m */; };
 		0348F52215E9A58300992A0D /* Complex.m in Sources */ = {isa = PBXBuildFile; fileRef = 0348F52115E9A58200992A0D /* Complex.m */; };
-		035C46ED15BE6AE000C43574 /* TracksViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 035C46EC15BE6AE000C43574 /* TracksViewController.xib */; };
 		036181DB15EB2214001FB621 /* AuxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 036181D915EB2214001FB621 /* AuxViewController.m */; };
 		036181E515EB2DA3001FB621 /* AuxViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 036181E415EB2DA3001FB621 /* AuxViewController.xib */; };
 		03712C4E15D82E4D00EC9665 /* Knob-Selector.png in Resources */ = {isa = PBXBuildFile; fileRef = 03712C4C15D82E4D00EC9665 /* Knob-Selector.png */; };
@@ -37,6 +36,7 @@
 		03712C5815D882F600EC9665 /* EqCurveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03712C5715D882F600EC9665 /* EqCurveView.m */; };
 		03712C5B15D8ADC400EC9665 /* EqPointsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03712C5A15D8ADC300EC9665 /* EqPointsView.m */; };
 		03712C6215D8B62900EC9665 /* EqViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03712C6115D8B62900EC9665 /* EqViewController.m */; };
+		0375A26A15F3F4BE00390740 /* TracksTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0375A26915F3F4BE00390740 /* TracksTableView.m */; };
 		03A40B1115F1D65A00CE0FAD /* EqButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A40B1015F1D65900CE0FAD /* EqButton.m */; };
 		03ADD57115BCFC0900EBDC71 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03ADD57015BCFC0900EBDC71 /* UIKit.framework */; };
 		03ADD57315BCFC0900EBDC71 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03ADD57215BCFC0900EBDC71 /* Foundation.framework */; };
@@ -103,7 +103,6 @@
 		0345FB5115D3660F009130E2 /* VerticalSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerticalSlider.m; sourceTree = "<group>"; };
 		0348F52015E9A58200992A0D /* Complex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Complex.h; sourceTree = "<group>"; };
 		0348F52115E9A58200992A0D /* Complex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Complex.m; sourceTree = "<group>"; };
-		035C46EC15BE6AE000C43574 /* TracksViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TracksViewController.xib; sourceTree = "<group>"; };
 		036181D815EB2214001FB621 /* AuxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuxViewController.h; sourceTree = "<group>"; };
 		036181D915EB2214001FB621 /* AuxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuxViewController.m; sourceTree = "<group>"; };
 		036181E415EB2DA3001FB621 /* AuxViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuxViewController.xib; sourceTree = "<group>"; };
@@ -116,6 +115,8 @@
 		03712C5A15D8ADC300EC9665 /* EqPointsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EqPointsView.m; sourceTree = "<group>"; };
 		03712C6015D8B62900EC9665 /* EqViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EqViewController.h; sourceTree = "<group>"; };
 		03712C6115D8B62900EC9665 /* EqViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EqViewController.m; sourceTree = "<group>"; };
+		0375A26815F3F4BE00390740 /* TracksTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TracksTableView.h; sourceTree = "<group>"; };
+		0375A26915F3F4BE00390740 /* TracksTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TracksTableView.m; sourceTree = "<group>"; };
 		03A40B0F15F1D65900CE0FAD /* EqButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EqButton.h; sourceTree = "<group>"; };
 		03A40B1015F1D65900CE0FAD /* EqButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EqButton.m; sourceTree = "<group>"; };
 		03ADD56C15BCFC0900EBDC71 /* ReaperLive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReaperLive.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -212,35 +213,53 @@
 			name = OSC;
 			sourceTree = "<group>";
 		};
-		0361820615EC720C001FB621 /* Tab Bar View Controllers */ = {
+		0375A26715F3F4A300390740 /* Tracks */ = {
 			isa = PBXGroup;
 			children = (
 				03ADD58215BCFC0900EBDC71 /* TracksViewController.h */,
 				03ADD58315BCFC0900EBDC71 /* TracksViewController.m */,
-				036181D815EB2214001FB621 /* AuxViewController.h */,
-				036181D915EB2214001FB621 /* AuxViewController.m */,
-				032504C515EC9989008B0E19 /* SettingsViewController.h */,
-				032504C615EC998A008B0E19 /* SettingsViewController.m */,
-			);
-			name = "Tab Bar View Controllers";
-			sourceTree = "<group>";
-		};
-		0361820715EC7244001FB621 /* Detailed View Controllers */ = {
-			isa = PBXGroup;
-			children = (
+				0375A26815F3F4BE00390740 /* TracksTableView.h */,
+				0375A26915F3F4BE00390740 /* TracksTableView.m */,
 				03BC576D15EF1BA400414B32 /* DetailedTrackViewController.h */,
 				03F292F715C63E3A007D1440 /* DetailedTrackViewController.m */,
 				03712C6015D8B62900EC9665 /* EqViewController.h */,
 				03712C6115D8B62900EC9665 /* EqViewController.m */,
+				0375A26D15F3FD3500390740 /* Views */,
 			);
-			name = "Detailed View Controllers";
+			name = Tracks;
 			sourceTree = "<group>";
 		};
-		0361820815EC726A001FB621 /* Views */ = {
+		0375A26B15F3FC0B00390740 /* Aux */ = {
 			isa = PBXGroup;
 			children = (
-				03D1EA5515DEE7B000F8C804 /* Channels */,
-				03F2328615C2681D009B0390 /* Detailed Channel */,
+				036181D815EB2214001FB621 /* AuxViewController.h */,
+				036181D915EB2214001FB621 /* AuxViewController.m */,
+			);
+			name = Aux;
+			sourceTree = "<group>";
+		};
+		0375A26C15F3FC2200390740 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				032504C515EC9989008B0E19 /* SettingsViewController.h */,
+				032504C615EC998A008B0E19 /* SettingsViewController.m */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		0375A26D15F3FD3500390740 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				03A40B0F15F1D65900CE0FAD /* EqButton.h */,
+				03A40B1015F1D65900CE0FAD /* EqButton.m */,
+				03F2326A15C0E0D1009B0390 /* CompView.h */,
+				03F2326B15C0E0D1009B0390 /* CompView.m */,
+				03F2327515C0E4DA009B0390 /* GateView.h */,
+				03F2327615C0E4DA009B0390 /* GateView.m */,
+				03712C5615D882F600EC9665 /* EqCurveView.h */,
+				03712C5715D882F600EC9665 /* EqCurveView.m */,
+				03712C5915D8ADC300EC9665 /* EqPointsView.h */,
+				03712C5A15D8ADC300EC9665 /* EqPointsView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -294,22 +313,15 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		03D1EA5515DEE7B000F8C804 /* Channels */ = {
-			isa = PBXGroup;
-			children = (
-				03A40B0F15F1D65900CE0FAD /* EqButton.h */,
-				03A40B1015F1D65900CE0FAD /* EqButton.m */,
-			);
-			name = Channels;
-			sourceTree = "<group>";
-		};
 		03F2328215C26768009B0390 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
 				03F2328915C2690E009B0390 /* AppDelegate */,
-				03F2328815C268FB009B0390 /* Controllers */,
+				0328372815F29F70000B29DC /* OSC */,
+				0375A26715F3F4A300390740 /* Tracks */,
+				0375A26B15F3FC0B00390740 /* Aux */,
+				0375A26C15F3FC2200390740 /* Settings */,
 				03F2328B15C26921009B0390 /* Models */,
-				0361820815EC726A001FB621 /* Views */,
 				03F2328A15C2691D009B0390 /* Helpers */,
 			);
 			name = Classes;
@@ -336,25 +348,9 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
-		03F2328615C2681D009B0390 /* Detailed Channel */ = {
-			isa = PBXGroup;
-			children = (
-				03F2326A15C0E0D1009B0390 /* CompView.h */,
-				03F2326B15C0E0D1009B0390 /* CompView.m */,
-				03F2327515C0E4DA009B0390 /* GateView.h */,
-				03F2327615C0E4DA009B0390 /* GateView.m */,
-				03712C5615D882F600EC9665 /* EqCurveView.h */,
-				03712C5715D882F600EC9665 /* EqCurveView.m */,
-				03712C5915D8ADC300EC9665 /* EqPointsView.h */,
-				03712C5A15D8ADC300EC9665 /* EqPointsView.m */,
-			);
-			name = "Detailed Channel";
-			sourceTree = "<group>";
-		};
 		03F2328715C268D8009B0390 /* NIBs */ = {
 			isa = PBXGroup;
 			children = (
-				035C46EC15BE6AE000C43574 /* TracksViewController.xib */,
 				036181E415EB2DA3001FB621 /* AuxViewController.xib */,
 				03ADD59415BD0CD100EBDC71 /* TrackTableCell.xib */,
 				03F2327A15C0E4FB009B0390 /* GateView.xib */,
@@ -363,16 +359,6 @@
 			);
 			name = NIBs;
 			path = resources/nibs;
-			sourceTree = "<group>";
-		};
-		03F2328815C268FB009B0390 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				0328372815F29F70000B29DC /* OSC */,
-				0361820615EC720C001FB621 /* Tab Bar View Controllers */,
-				0361820715EC7244001FB621 /* Detailed View Controllers */,
-			);
-			name = Controllers;
 			sourceTree = "<group>";
 		};
 		03F2328915C2690E009B0390 /* AppDelegate */ = {
@@ -488,7 +474,6 @@
 			files = (
 				03ADD57B15BCFC0900EBDC71 /* InfoPlist.strings in Resources */,
 				03ADD59515BD0FFE00EBDC71 /* TrackTableCell.xib in Resources */,
-				035C46ED15BE6AE000C43574 /* TracksViewController.xib in Resources */,
 				03F2326E15C0E0E3009B0390 /* CompView.xib in Resources */,
 				03F2327915C0E4E9009B0390 /* EQView.xib in Resources */,
 				03F2327B15C0E4FB009B0390 /* GateView.xib in Resources */,
@@ -540,6 +525,7 @@
 				032504C715EC998A008B0E19 /* SettingsViewController.m in Sources */,
 				031C9D3E15EDECDC00ED2898 /* OSCManagerController.m in Sources */,
 				03A40B1115F1D65A00CE0FAD /* EqButton.m in Sources */,
+				0375A26A15F3F4BE00390740 /* TracksTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
