@@ -24,7 +24,7 @@
     // create tracks
     tracks = [[NSMutableArray alloc]	initWithCapacity:100];
     
-    for (int i = 0; i < 20; i++)
+    for (int i = 0; i < 50; i++)
     {
         [tracks addObject: [[Track alloc] initWithTrackNumber:i]];
     }

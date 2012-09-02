@@ -36,7 +36,6 @@
 		03712C5815D882F600EC9665 /* EqCurveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03712C5715D882F600EC9665 /* EqCurveView.m */; };
 		03712C5B15D8ADC400EC9665 /* EqPointsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03712C5A15D8ADC300EC9665 /* EqPointsView.m */; };
 		03712C6215D8B62900EC9665 /* EqViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03712C6115D8B62900EC9665 /* EqViewController.m */; };
-		0375A26A15F3F4BE00390740 /* TracksTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0375A26915F3F4BE00390740 /* TracksTableView.m */; };
 		03A40B1115F1D65A00CE0FAD /* EqButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A40B1015F1D65900CE0FAD /* EqButton.m */; };
 		03ADD57115BCFC0900EBDC71 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03ADD57015BCFC0900EBDC71 /* UIKit.framework */; };
 		03ADD57315BCFC0900EBDC71 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03ADD57215BCFC0900EBDC71 /* Foundation.framework */; };
@@ -115,8 +114,6 @@
 		03712C5A15D8ADC300EC9665 /* EqPointsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EqPointsView.m; sourceTree = "<group>"; };
 		03712C6015D8B62900EC9665 /* EqViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EqViewController.h; sourceTree = "<group>"; };
 		03712C6115D8B62900EC9665 /* EqViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EqViewController.m; sourceTree = "<group>"; };
-		0375A26815F3F4BE00390740 /* TracksTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TracksTableView.h; sourceTree = "<group>"; };
-		0375A26915F3F4BE00390740 /* TracksTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TracksTableView.m; sourceTree = "<group>"; };
 		03A40B0F15F1D65900CE0FAD /* EqButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EqButton.h; sourceTree = "<group>"; };
 		03A40B1015F1D65900CE0FAD /* EqButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EqButton.m; sourceTree = "<group>"; };
 		03ADD56C15BCFC0900EBDC71 /* ReaperLive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReaperLive.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -218,8 +215,6 @@
 			children = (
 				03ADD58215BCFC0900EBDC71 /* TracksViewController.h */,
 				03ADD58315BCFC0900EBDC71 /* TracksViewController.m */,
-				0375A26815F3F4BE00390740 /* TracksTableView.h */,
-				0375A26915F3F4BE00390740 /* TracksTableView.m */,
 				03BC576D15EF1BA400414B32 /* DetailedTrackViewController.h */,
 				03F292F715C63E3A007D1440 /* DetailedTrackViewController.m */,
 				03712C6015D8B62900EC9665 /* EqViewController.h */,
@@ -525,7 +520,6 @@
 				032504C715EC998A008B0E19 /* SettingsViewController.m in Sources */,
 				031C9D3E15EDECDC00ED2898 /* OSCManagerController.m in Sources */,
 				03A40B1115F1D65A00CE0FAD /* EqButton.m in Sources */,
-				0375A26A15F3F4BE00390740 /* TracksTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,7 +9,6 @@
 #import "Constants.h"
 #import "TracksViewController.h"
 #import "Track.h"
-#import "TracksTableView.h"
 #import "TrackTableCell.h"
 #import "VolumeSlider.h"
 #import "VerticalSlider.h"
@@ -105,7 +104,7 @@
     [self.view addSubview:tracksToolbar];
     
     // add tracks view
-    tracksTableView = [[TracksTableView alloc] init];
+    tracksTableView = [[UITableView alloc] init];
     
     // Rotates the view.
     self.tracksTableView.transform = CGAffineTransformMakeRotation(-M_PI/2);  
@@ -121,6 +120,9 @@
     
     tracksTableView.delegate = self;
     tracksTableView.dataSource = self;
+    
+    // decelerate faster
+    tracksTableView.decelerationRate = UIScrollViewDecelerationRateFast;
     [self.view addSubview:tracksTableView];
 }
 
@@ -367,6 +369,16 @@
     cell.eqButton.eq = [[self.tracks objectAtIndex:trackNumber] eq];
     [cell.eqButton setNeedsDisplay];    
     return cell; 
+}
+
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
+{
+     NSLog(@"TracksViewController::scrollViewWillEndDragging:withVelocity:targetContentOffset:(%0.2f,%0.2f)",targetContentOffset->x,targetContentOffset->y);
+    
+    // calculate nearest cell
+    float newTargetOffset = round(targetContentOffset->y / TRACK_CELL_WIDTH) * TRACK_CELL_WIDTH;
+    
+    *targetContentOffset = CGPointMake(targetContentOffset->x, newTargetOffset);
 }
 
 #pragma mark -
