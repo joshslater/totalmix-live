@@ -15,6 +15,7 @@
 @synthesize gateButton;
 @synthesize compButton;
 @synthesize volumeSlider;
+@synthesize vuMeter;
 @synthesize eqThumbView;
 
 

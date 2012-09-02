@@ -14,6 +14,7 @@
 
 @property int trackNumber;
 @property float volume;
+@property float vuLevel;
 
 @property (strong, nonatomic) Eq *eq;
 

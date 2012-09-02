@@ -13,11 +13,12 @@
 
 @interface TrackTableCell : UITableViewCell
 
-@property (nonatomic, retain) IBOutlet UILabel *trackLabel;
-@property (nonatomic, retain) IBOutlet UIButton *gateButton;
-@property (nonatomic, retain) IBOutlet UIButton *compButton;
-@property (nonatomic, retain) IBOutlet EqButton *eqButton;
-@property (nonatomic, retain) IBOutlet UISlider *volumeSlider;
+@property (nonatomic, weak) IBOutlet UILabel *trackLabel;
+@property (nonatomic, weak) IBOutlet UIButton *gateButton;
+@property (nonatomic, weak) IBOutlet UIButton *compButton;
+@property (nonatomic, weak) IBOutlet EqButton *eqButton;
+@property (nonatomic, retain) UISlider *volumeSlider;
+@property (nonatomic, retain) UISlider *vuMeter;
 @property (nonatomic, retain) EqThumbView *eqThumbView;
 
 @end

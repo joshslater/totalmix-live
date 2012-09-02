@@ -94,52 +94,59 @@
 #endif
     
     NSString *address = [m address];
-
+    
 #if 0
     NSLog(@"Address = %@",address);
 #endif
     
-    NSRegularExpression *regex = [NSRegularExpression
-                                  regularExpressionWithPattern:@"^/track/(\\d)/volume$"
-                                  options:0
-                                  error:nil];
+    NSRegularExpression *regex;
+    NSTextCheckingResult *match;
     
-    NSTextCheckingResult *match = [regex firstMatchInString:address
-                                                    options:0
-                                                      range:NSMakeRange(0, [address length])];
-    
-    
-
-#if 0
-    NSLog(@"Num Matches = %d",num);
-#endif
+    ///////// TRACK VOLUME ///////////
+    regex = [NSRegularExpression regularExpressionWithPattern:@"^/track/(\\d)/volume$" options:0 error:nil];
+    match = [regex firstMatchInString:address options:0 range:NSMakeRange(0, [address length])];
     
     if (match)
     {
-#if 0       
-        NSLog(@"Track Volume Match");
-#endif
-    
         int trackNumber = [[address substringWithRange:[match rangeAtIndex:1]] intValue];
         
-#if 0
-        NSLog(@"OSC message received, trackNumber = %@",[address substringWithRange:[match rangeAtIndex:1]]);
+#if 1
+        NSLog(@"OSC::/track/%d/volume %0.3f",trackNumber,[m.value floatValue]);
 #endif
-        
+    
         ((Track *)[tracks objectAtIndex:trackNumber]).volume = [m.value floatValue];
-        
-        
+                
         // post notifcation
         NSArray *keys = [[NSArray alloc] initWithObjects:@"trackNumber", nil];
         NSArray *objects = [[NSArray alloc] initWithObjects:[NSNumber numberWithInt:trackNumber], nil];
         NSDictionary *extraInfo = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
         NSNotification *note = [NSNotification notificationWithName:@"TrackVolumeDidChange" object:self userInfo:extraInfo];
         [[NSNotificationCenter defaultCenter] postNotification:note];
-         
-        
-        //[tracksViewController updateVolumeFader:trackNumber];
         
     }
+    
+    /////////// METER LEVEL //////////////
+    regex = [NSRegularExpression regularExpressionWithPattern:@"^/track/(\\d)/vu$" options:0 error:nil];
+    match = [regex firstMatchInString:address options:0 range:NSMakeRange(0, [address length])];
+    
+    if (match)
+    {
+        int trackNumber = [[address substringWithRange:[match rangeAtIndex:1]] intValue];
+        
+#if 1
+        NSLog(@"OSC::/track/%d/vu %0.3f",trackNumber,[m.value floatValue]);
+#endif
+        
+        ((Track *)[tracks objectAtIndex:trackNumber]).vuLevel = [m.value floatValue];
+        
+        // post notifcation
+        NSArray *keys = [[NSArray alloc] initWithObjects:@"trackNumber", nil];
+        NSArray *objects = [[NSArray alloc] initWithObjects:[NSNumber numberWithInt:trackNumber], nil];
+        NSDictionary *extraInfo = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
+        NSNotification *note = [NSNotification notificationWithName:@"TrackVuDidChange" object:self userInfo:extraInfo];
+        [[NSNotificationCenter defaultCenter] postNotification:note];
+    }
+
 }
 
 - (void)dealloc

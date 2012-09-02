@@ -64,6 +64,10 @@
     // register for track volume updates
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateVolumeFader:) name:@"TrackVolumeDidChange" object:nil];
     
+    // register for track vu updates
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateVuMeter:) name:@"TrackVuDidChange" object:nil];
+
+    
     // allocate the trackCells dict
     trackCells = [[NSMutableDictionary alloc] initWithCapacity:[tracks count]];
     
@@ -245,7 +249,7 @@
     /**************************/
     /********* FADER  *********/
     /**************************/
-    VolumeSlider *fader = [[VolumeSlider alloc] initWithFrame:CGRectMake(0, 0, 265, 30)];
+    VolumeSlider *fader = [[VolumeSlider alloc] initWithFrame:CGRectMake(0, 0, 250, 30)];
     [fader setRotatedThumbImage:[UIImage imageNamed:@"FaderCap.png"]];
     [fader setRotatedMinTrackImage:[UIImage imageNamed:@"VolumeSlider.png"]];
     [fader setRotatedMaxTrackImage:[UIImage imageNamed:@"VolumeSlider.png"]];
@@ -258,7 +262,7 @@
     fader.transform = CGAffineTransformMakeRotation(-M_PI_2);
     [cell.contentView addSubview:fader];
     
-    fader.bounds = CGRectMake(0, 0, 265, 30);
+    //fader.bounds = CGRectMake(0, 0, 265, 30);
     fader.center = CGPointMake(70, 515);
     
     cell.volumeSlider = fader;        
@@ -266,19 +270,28 @@
     /**************************/
     /********** METER *********/
     /**************************/
-    VerticalSlider *meter = [[VerticalSlider alloc] initWithFrame:CGRectMake(0, 0, 225, 30)];
+    // Why do I need to set height to 206 even though image is only 202?
+    VerticalSlider *meter = [[VerticalSlider alloc] initWithFrame:CGRectMake(0, 0, 206, 30)];
     
     // set the minimum track image
     [meter setThumbImage:[[UIImage alloc] init] forState:UIControlStateNormal];
-    [meter setRotatedMinTrackImage:[UIImage imageNamed:@"Meter.png"]];
-    [meter setRotatedMaxTrackImage:[UIImage imageNamed:@"Meter.png"]];
+    
+    // because of the way the rotation works out, actually need to set the
+    // images opposite of their supposed names (min = max and vice versa)
+    [meter setRotatedMinTrackImage:[UIImage imageNamed:@"MeterMax.png"]];
+    [meter setRotatedMaxTrackImage:[UIImage imageNamed:@"MeterMin.png"]];
+    
+    meter.userInteractionEnabled = YES;
     
     // rotate meter
     meter.transform = CGAffineTransformMakeRotation(-M_PI_2);
     [cell.contentView addSubview:meter];
     
-    meter.bounds = CGRectMake(0, 0, 225, 30);
+    //meter.bounds = CGRectMake(0, 0, 202, 30);
     meter.center = CGPointMake(30, 515);
+    
+    cell.vuMeter = meter;
+    
     
     // rotate the cell
     cell.transform = CGAffineTransformMakeRotation(M_PI/2);
@@ -440,6 +453,25 @@
     dispatch_async( dispatch_get_main_queue(), ^{
         // running synchronously on the main thread now -- call the handler
         cell.volumeSlider.value = [[tracks objectAtIndex:trackNumber] volume];
+    });
+}
+
+- (void) updateVuMeter:(NSNotification *)note
+{
+    NSDictionary *extraInfo = [note userInfo];
+    int trackNumber = [[extraInfo objectForKey:@"trackNumber"] intValue];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:trackNumber inSection:0];
+    
+    TrackTableCell *cell = (TrackTableCell *)[self.tracksTableView cellForRowAtIndexPath:indexPath];
+    
+#if 0
+    NSLog(@"Received trackVuDidChange notification, trackNumber = %d, vu level = %0.3f",trackNumber,[[tracks objectAtIndex:trackNumber] volume]);
+    NSLog(@"cell = 0x%x",(unsigned int)cell);
+#endif    
+    
+    dispatch_async( dispatch_get_main_queue(), ^{
+        // running synchronously on the main thread now -- call the handler
+        cell.vuMeter.value = [[tracks objectAtIndex:trackNumber] vuLevel];
     });
 }
 

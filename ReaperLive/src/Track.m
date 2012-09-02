@@ -14,6 +14,7 @@
 
 @synthesize trackNumber;
 @synthesize volume;
+@synthesize vuLevel;
 
 @synthesize eq;
 
