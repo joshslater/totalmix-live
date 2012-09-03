@@ -24,6 +24,7 @@
 
 #pragma mark Properties
 
+@synthesize oscDelegate;
 @synthesize tracks;
 @synthesize tracksTableView;
 @synthesize trackTableCell;
@@ -84,7 +85,7 @@
     
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     
-#if 1
+#if 0
     UIDevice *myDevice = [UIDevice currentDevice];
     [myDevice beginGeneratingDeviceOrientationNotifications];
     UIDeviceOrientation currentOrientation = [myDevice orientation];
@@ -108,7 +109,7 @@
     // Rotates the view.
     self.tracksTableView.transform = CGAffineTransformMakeRotation(-M_PI/2);  
     
-#if 1
+#if 0
     NSLog(@"Tab Bar Height = %0.0f",[super tabBarController].tabBar.frame.size.height);
 #endif
     
@@ -223,14 +224,13 @@
 
 - (TrackTableCell *)createCell:(int)trackNumber
 {
-#if 1
+#if 0
     NSLog(@"TracksViewController::createCell:%d",trackNumber);
 #endif
     
     TrackTableCell *cell;
     [[NSBundle mainBundle] loadNibNamed:@"TrackTableCell" owner:self options:nil];
     cell = [self trackTableCell];
-    
     
 #if 0    
     ////////////////////////////////
@@ -429,17 +429,12 @@
     NSIndexPath *indexPath = [self.tracksTableView indexPathForCell:(UITableViewCell *)[[sender superview] superview]];
     
     Track *track = [self.tracks objectAtIndex:indexPath.row];
-    NSNumber *trackNumber = [NSNumber numberWithInt:indexPath.row];
     
     track.volume = [sender value];
     
-    // post a notification
-    NSArray *keys = [[NSArray alloc] initWithObjects:@"trackNumber", @"value", nil];
-    NSArray *objects = [[NSArray alloc] initWithObjects:trackNumber, [NSNumber numberWithFloat:sender.value], nil];
-    NSDictionary *extraInfo = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
-    NSNotification *note = [NSNotification notificationWithName:@"VolumeFaderDidChange" object:self userInfo:extraInfo];
-    [[NSNotificationCenter defaultCenter] postNotification:note];
-    
+    // call the oscDelegate with the new value
+    [oscDelegate volumeFaderDidChange:track.trackNumber toValue:[sender value]];
+
 #if 0    
     NSLog(@"Set Track %d Volume to %0.3f",indexPath.row,[sender value]);
 #endif
@@ -467,6 +462,8 @@
         
     // set content offset to be TRACKS_WIDTH
     detailedTrackViewController.contentOffset = offset;
+    
+    detailedTrackViewController.oscDelegate = (id <DetailedTrackOscProtocol>)oscDelegate;
     
     [self addChildViewController:detailedTrackViewController];
     [self.view addSubview:detailedTrackViewController.view];
@@ -502,7 +499,7 @@
 {
     NSDictionary *extraInfo = [note userInfo];
     int trackNumber = [[extraInfo objectForKey:@"trackNumber"] intValue];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:trackNumber inSection:0];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:trackNumber-1 inSection:0];
 
     TrackTableCell *cell = (TrackTableCell *)[self.tracksTableView cellForRowAtIndexPath:indexPath];
     

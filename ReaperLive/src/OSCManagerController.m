@@ -23,10 +23,7 @@
     {
         self.delegate = self;
     }
-    
-    // register for volume fader notifications
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sendOscVolume:) name:@"VolumeFaderDidChange" object:nil];
-    
+        
     return self;
 }
 
@@ -63,13 +60,8 @@
 #pragma mark -
 #pragma mark OSC Send Methods
 
-- (void)sendOscVolume:(NSNotification *)note
+- (void)volumeFaderDidChange:(int)trackNumber toValue:(float)value
 {
-    NSDictionary *extraInfo = [note userInfo];
-    int trackNumber = [[extraInfo objectForKey:@"trackNumber"] intValue];
-    float value = [[extraInfo objectForKey:@"value"] floatValue];
-    
-    
     OSCMessage *msg = [OSCMessage createWithAddress:[NSString stringWithFormat:@"/track/%d/volume",trackNumber]];
     [msg addFloat:value];
     
@@ -78,6 +70,93 @@
 #if 0
     NSLog(@"Received VolumeFaderDidChange notification, track %d, value %0.3f",trackNumber,value);
 #endif
+}
+
+- (void)eqValueDidChange:(NSInteger)trackNumber band:(NSInteger)band item:(eqItems_t)item value:(float)value
+{
+    NSString *itemString;
+    
+    switch (item) {
+        case EQItemFrequency:
+            itemString = @"freq/hz";
+            break;
+            
+        case EQItemGain:
+            itemString = @"gain/db";
+            break;
+            
+        case EQItemQ:
+            itemString = @"q/oct";
+            break;
+            
+        default:
+            break;
+    }
+    
+    NSString *bandString;
+    
+    switch (band) {
+        case 0:
+            bandString = @"loshelf";
+            break;
+            
+        case 1:
+            bandString = @"band/2";
+            break;
+            
+        case 2:
+            bandString = @"band/3";
+            break;
+            
+        case 3:
+            bandString = @"hishelf";
+            break;
+            
+        default:
+            break;
+    }
+    
+    NSString *addressString = [NSString stringWithFormat:@"/track/%d/fxeq/%@/%@",trackNumber,bandString,itemString];
+    
+    OSCMessage *msg = [OSCMessage createWithAddress:addressString];
+    
+    // even though the message is specified as "db" for gain, REAPER expects a linear gain value
+    float sendValue;
+    
+    if(item == EQItemGain)
+        sendValue = pow(10,value/20);
+    else if(item == EQItemQ)
+    {
+        // need to calculate BW in octaves given Q -- NASTY!
+        float q = value;
+        /*
+        float y = 1 + 1/(2*q*q) + sqrt(((2 + (1/(q*q))) * (2 + (1/(q*q))) - 1) / 4);
+        float bwOct = log(y)/log(2);
+        */
+        
+        float Q2bw1st = ((2*q*q)+1)/(2*q*q);
+        float Q2bw2nd = pow(2*Q2bw1st,2)/4;
+        float Q2bw3rd = sqrt(Q2bw2nd-1);
+        float Q2bw4th = Q2bw1st+Q2bw3rd;
+        
+        float bwOct;
+        if(band == 0 | band == 3)
+            bwOct = log(Q2bw4th/2)/log(2);
+        else
+            bwOct = log(Q2bw4th)/log(2);
+        
+        sendValue = bwOct;
+    }
+    else
+        sendValue = value;
+    
+    [msg addFloat:sendValue];
+    
+#if 1
+    NSLog(@"eqValueDidChange::sending %@ %0.2f",addressString,sendValue);
+#endif
+    
+    [oscOutPort sendThisMessage:msg];
 }
 
 #pragma mark -

@@ -49,6 +49,7 @@
     // create an OSCManager- set myself up as its delegate
     oscManagerController = [[OSCManagerController alloc] init];
     settingsViewController.oscSettingsDelegate = oscManagerController;
+    tracksViewController.oscDelegate = oscManagerController;
     
     // pass the tracks data array to oscManagerController
     oscManagerController.tracks = tracks;    

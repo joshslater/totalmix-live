@@ -21,6 +21,8 @@
 
 @implementation EqViewController
 
+@synthesize oscDelegate;
+
 @synthesize eqView;
 
 @synthesize gainKnob;
@@ -32,6 +34,7 @@
 @synthesize qLabel;
 
 @synthesize bandSelector;
+@synthesize trackNumber;
 @synthesize eq;
 
 
@@ -116,19 +119,22 @@
     [freqKnob addTarget:self action:@selector(freqKnobDidChange:) forControlEvents:UIControlEventValueChanged];
     freqKnob.minimumValue = log10f(DET_EQ_MIN_FREQ);
     freqKnob.maximumValue = log10f(DET_EQ_MAX_FREQ);
-    // [self freqKnobDidChange:freqKnob];
     
     [qKnob addTarget:self action:@selector(qKnobDidChange:) forControlEvents:UIControlEventValueChanged];
-    qKnob.minimumValue = 0.1;
-    qKnob.maximumValue = 3.0;
+    qKnob.minimumValue = 0.2;
+    qKnob.maximumValue = 10.0;
     qKnob.defaultValue = 0.707;
-    // [self qKnobDidChange:qKnob];
     
     // add a target for the segmented control
     [bandSelector addTarget:self action:@selector(bandSelectorDidChange:) forControlEvents:UIControlEventValueChanged];
     
     selectedBand = bandSelector.selectedSegmentIndex;
     
+    if(selectedBand == 0 | selectedBand == 3)
+        qKnob.maximumValue = 0.707;
+    else
+        qKnob.maximumValue = 10.0;
+     
     // call the target to initialize it
     [self bandSelectorDidChange:bandSelector];
     
@@ -192,8 +198,9 @@
     
     // draw the new EQ curve
     NSNumber *gainPoint = [NSNumber numberWithFloat:sender.value];
-        
     [self.eq.gainPoints replaceObjectAtIndex:idx withObject:gainPoint];
+    
+    [oscDelegate eqValueDidChange:self.trackNumber band:bandSelector.selectedSegmentIndex item:EQItemGain value:sender.value];
     
 #if 0
     NSLog(@"gainKnobDidChange: gainPoint @ %d = %0.3f",idx,[[self.track.gainPoints objectAtIndex:idx] floatValue]);
@@ -223,6 +230,9 @@
     NSNumber *freqPoint = [NSNumber numberWithFloat:pow(10,sender.value)];
     [self.eq.freqPoints replaceObjectAtIndex:idx withObject:freqPoint];
     
+    [oscDelegate eqValueDidChange:self.trackNumber band:bandSelector.selectedSegmentIndex item:EQItemFrequency value:[freqPoint floatValue]];
+    
+    
 #if 0
     NSLog(@"freqKnobDidChange: freqPoint @ %d = %0.3f",idx,[freqPoint floatValue]);
 #endif
@@ -244,6 +254,8 @@
     
     NSNumber *qPoint = [NSNumber numberWithFloat:sender.value];
     [self.eq.qPoints replaceObjectAtIndex:idx withObject:qPoint];
+    
+    [oscDelegate eqValueDidChange:self.trackNumber band:bandSelector.selectedSegmentIndex item:EQItemQ value:sender.value];
     
 #if 0
     //NSLog(@"qKnobDidChange: qPoint @ %d = %0.3f",idx,[[qPoints objectAtIndex:idx] floatValue]);
@@ -275,6 +287,13 @@
     // set each rotary knob with the appropraite value
     gainKnob.value = [[self.eq.gainPoints objectAtIndex:idx] floatValue];
     freqKnob.value = log10f([[self.eq.freqPoints objectAtIndex:idx] floatValue]);
+    
+    // limit q to 0.707 max value for low and high shelf
+    if(idx == 0 | idx == 3)
+        qKnob.maximumValue = 0.707;
+    else
+        qKnob.maximumValue = 10.0;
+    
     qKnob.value = [[self.eq.qPoints objectAtIndex:idx] floatValue];
     
     // set each label
@@ -282,10 +301,13 @@
     freqLabel.text = [NSString stringWithFormat:@"%0.0f",[[self.eq.freqPoints objectAtIndex:idx] floatValue]];
     qLabel.text = [NSString stringWithFormat:@"%0.3f",[[self.eq.qPoints objectAtIndex:idx] floatValue]];
     
+
+    
+     
     // set the default value of the frequency knob depending on the band
     switch (idx) {
         case 0:
-            freqKnob.defaultValue = log10(EQ_LOW_FREQ);    
+            freqKnob.defaultValue = log10(EQ_LOW_FREQ);   
             break;
             
         case 1:

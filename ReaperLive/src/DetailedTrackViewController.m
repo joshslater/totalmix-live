@@ -21,8 +21,8 @@
 
 @implementation DetailedTrackViewController
 
+@synthesize oscDelegate;
 @synthesize delegate;
-
 @synthesize contentOffset;
 @synthesize track;
 @synthesize selectedTrack;
@@ -62,6 +62,8 @@
     
     eqViewController = [[EqViewController alloc] init];
  
+    eqViewController.oscDelegate = (id <EqOscProtocol>)oscDelegate;
+    
     [self addChildViewController:eqViewController];
     [detailedTrackScrollView addSubview:eqViewController.view];
     
@@ -121,6 +123,7 @@
 #endif   
     
     // need to update the track reference every time the view will appear
+    eqViewController.trackNumber = self.track.trackNumber;
     eqViewController.eq = self.track.eq;
     
     // set content offset

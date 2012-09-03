@@ -12,12 +12,17 @@
 #import "TrackTableCell.h"
 #import "DetailedTrackViewController.h"
 
+@protocol TracksOscProtocol <NSObject>
+- (void)volumeFaderDidChange:(int)trackNumber toValue:(float)value;
+@end
+
 @interface TracksViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, DetailedTrackViewControllerProtocol>
 {
     DetailedTrackViewController *detailedTrackViewController;
     NSMutableDictionary *trackCells;
 }
 
+@property (weak, nonatomic) id <TracksOscProtocol> oscDelegate;
 @property (strong, nonatomic) NSMutableArray *tracks;
 @property (strong, nonatomic) UITableView *tracksTableView;
 @property (weak, nonatomic) IBOutlet TrackTableCell *trackTableCell;

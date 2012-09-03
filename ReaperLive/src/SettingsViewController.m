@@ -49,7 +49,7 @@
 
     [root addSection:section];
     
-    oscIpAddressElement = [[QEntryElement alloc] initWithTitle:@"IP Address" Value:@"192.168.1.114" Placeholder:@"192.168.1.114"];
+    oscIpAddressElement = [[QEntryElement alloc] initWithTitle:@"IP Address" Value:@"192.168.1.133" Placeholder:@"192.168.1.133"];
     oscIpAddressElement.keyboardType = UIKeyboardTypeNumberPad;
     oscIpAddressElement.delegate = self;
     [section addElement:oscIpAddressElement];   
