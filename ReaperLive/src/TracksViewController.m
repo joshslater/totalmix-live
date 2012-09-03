@@ -34,7 +34,7 @@
 - (void)setSelectedTrack:(NSInteger)aSelectedTrack
 {
     // set previously selected track to grey
-    TrackTableCell *cell = (TrackTableCell *)[self.tracksTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:selectedTrack inSection:0]];
+    TrackTableCell *cell = (TrackTableCell *)[self.tracksTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:selectedTrack-1 inSection:0]];
     
     cell.trackLabel.layer.backgroundColor = [UIColor lightGrayColor].CGColor;
     
@@ -43,7 +43,7 @@
     if(selectedTrack != -1)
     {
         // change the label background of the selected track
-        cell = (TrackTableCell *)[self.tracksTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:selectedTrack inSection:0]];
+        cell = (TrackTableCell *)[self.tracksTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:selectedTrack-1 inSection:0]];
         
         cell.trackLabel.layer.backgroundColor = [UIColor blackColor].CGColor;
     }
@@ -89,7 +89,6 @@
     [myDevice beginGeneratingDeviceOrientationNotifications];
     UIDeviceOrientation currentOrientation = [myDevice orientation];
     [myDevice endGeneratingDeviceOrientationNotifications];
-
     
     NSLog(@"Orientation = %d",currentOrientation);
 #endif
@@ -148,13 +147,13 @@
     detailedTrackViewController.delegate = self;
     
     // initialize track cell array    
-    for (int trackNum = 0; trackNum < [tracks count]; trackNum++)
+    for (int cellNum = 0; cellNum < [tracks count]; cellNum++)
     {
 #if 0        
-        NSLog(@"trying to create track cell %d",trackNum);
+        NSLog(@"trying to create track cellNum %d",cellNum);
 #endif
-        TrackTableCell *cell = [self createCell:trackNum];
-        [trackCells setObject:cell forKey:[NSNumber numberWithInt:trackNum]]; 
+        TrackTableCell *cell = [self createCell:((Track *)[tracks objectAtIndex:cellNum]).trackNumber];
+        [trackCells setObject:cell forKey:[NSNumber numberWithInt:cellNum]]; 
     }
     
     
@@ -210,7 +209,7 @@
         NSLog(@"creating cell %d",indexPath.row);
 #endif
         
-        cell = [self createCell:indexPath.row];
+        cell = [self createCell:((Track *)[tracks objectAtIndex:indexPath.row]).trackNumber];
         [trackCells setObject:cell forKey:key];        
     }
     
@@ -224,8 +223,8 @@
 
 - (TrackTableCell *)createCell:(int)trackNumber
 {
-#if 0
-    NSLog(@"TracksViewController::createCell");
+#if 1
+    NSLog(@"TracksViewController::createCell:%d",trackNumber);
 #endif
     
     TrackTableCell *cell;
@@ -366,7 +365,7 @@
 */
     
     // set the eq for each of the eqThumbsView's
-    cell.eqButton.eq = [[self.tracks objectAtIndex:trackNumber] eq];
+    cell.eqButton.eq = [[self.tracks objectAtIndex:trackNumber-1] eq];
     [cell.eqButton setNeedsDisplay];    
     return cell; 
 }
@@ -415,7 +414,7 @@
 {
     NSIndexPath *indexPath = [self.tracksTableView indexPathForCell:(UITableViewCell *)[[sender superview] superview]];
     
-    self.selectedTrack = indexPath.row;    
+    self.selectedTrack = ((Track *)[tracks objectAtIndex:indexPath.row]).trackNumber;
     
 #if 0
     NSLog(@"EQ Button Pushed for Track %d",indexPath.row);
@@ -453,17 +452,17 @@
 {    
 #if 0
     NSLog(@"TracksViewController: selectedTrack = %d",selectedTrack);
-    NSLog(@"TracksViewController: gainPoint(0) = %0.0f",[[[[[self.tracks objectAtIndex:selectedTrack] eq] gainPoints] objectAtIndex:0] floatValue]);
-    NSLog(@"gainPoints address = %x",(unsigned int)[[[self.tracks objectAtIndex:selectedTrack] eq] gainPoints]);
+    NSLog(@"TracksViewController: gainPoint(0) = %0.0f",[[[[[self.tracks objectAtIndex:selectedTrack-1] eq] gainPoints] objectAtIndex:0] floatValue]);
+    NSLog(@"gainPoints address = %x",(unsigned int)[[[self.tracks objectAtIndex:selectedTrack-1] eq] gainPoints]);
 #endif
     
 
 #if 0
-    NSLog(@"setting detailedViewController.track to %x",(unsigned int)[self.tracks objectAtIndex:selectedTrack]);
+    NSLog(@"setting detailedViewController.track to %x",(unsigned int)[self.tracks objectAtIndex:selectedTrack-1]);
 #endif
     
     // pass the necessary properties about the cahnnel to the detailed view controller
-    detailedTrackViewController.track = [self.tracks objectAtIndex:selectedTrack];
+    detailedTrackViewController.track = [self.tracks objectAtIndex:selectedTrack-1];
     detailedTrackViewController.selectedTrack = selectedTrack;
         
     // set content offset to be TRACKS_WIDTH
@@ -514,7 +513,7 @@
     
     dispatch_async( dispatch_get_main_queue(), ^{
         // running synchronously on the main thread now -- call the handler
-        cell.volumeSlider.value = [[tracks objectAtIndex:trackNumber] volume];
+        cell.volumeSlider.value = [[tracks objectAtIndex:trackNumber-1] volume];
     });
 }
 
@@ -533,7 +532,7 @@
     
     dispatch_async( dispatch_get_main_queue(), ^{
         // running synchronously on the main thread now -- call the handler
-        cell.vuMeter.value = [[tracks objectAtIndex:trackNumber] vuLevel];
+        cell.vuMeter.value = [[tracks objectAtIndex:trackNumber-1] vuLevel];
     });
 }
 

@@ -22,18 +22,17 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // create tracks
-    tracks = [[NSMutableArray alloc]	initWithCapacity:100];
+    tracks = [[NSMutableArray alloc] initWithCapacity:100];
     
     for (int i = 0; i < 50; i++)
     {
-        [tracks addObject: [[Track alloc] initWithTrackNumber:i]];
+        [tracks addObject: [[Track alloc] initWithTrackNumber:(i+1)]];
     }
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
     // main tracks mixer
-    //TracksViewController *tracksViewController = [[TracksViewController alloc] initWithNibName:@"TracksViewController" bundle:nil];
     TracksViewController *tracksViewController = [[TracksViewController alloc] init];
     tracksViewController.tracks = tracks;
     

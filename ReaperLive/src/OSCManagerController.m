@@ -114,7 +114,7 @@
         NSLog(@"OSC::/track/%d/volume %0.3f",trackNumber,[m.value floatValue]);
 #endif
     
-        ((Track *)[tracks objectAtIndex:trackNumber]).volume = [m.value floatValue];
+        ((Track *)[tracks objectAtIndex:trackNumber-1]).volume = [m.value floatValue];
                 
         // post notifcation
         NSArray *keys = [[NSArray alloc] initWithObjects:@"trackNumber", nil];
@@ -137,7 +137,7 @@
         NSLog(@"OSC::/track/%d/vu %0.3f",trackNumber,[m.value floatValue]);
 #endif
         
-        ((Track *)[tracks objectAtIndex:trackNumber]).vuLevel = [m.value floatValue];
+        ((Track *)[tracks objectAtIndex:trackNumber-1]).vuLevel = [m.value floatValue];
         
         // post notifcation
         NSArray *keys = [[NSArray alloc] initWithObjects:@"trackNumber", nil];
