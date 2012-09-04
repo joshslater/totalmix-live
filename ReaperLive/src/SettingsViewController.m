@@ -7,6 +7,8 @@
 //
 
 #import "SettingsViewController.h"
+#import "Settings.h"
+
 
 @interface SettingsViewController ()
 
@@ -16,12 +18,14 @@
 
 @synthesize oscSettingsDelegate;
 
+@synthesize settings;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Settings" image:nil tag:0];        
+        self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Settings" image:nil tag:0];
     }
     return self;
 }
@@ -30,7 +34,13 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-
+    
+    oscIpAddressElement.textValue = self.settings.oscIpAddress;
+    if(self.settings.oscInPort != 0)
+        oscInPortElement.textValue = [NSString stringWithFormat:@"%d",self.settings.oscInPort];
+    
+    if(self.settings.oscOutPort != 0)
+        oscOutPortElement.textValue = [NSString stringWithFormat:@"%d",self.settings.oscOutPort];
 }
 
 - (void)setQuickDialogTableView:(QuickDialogTableView *)aQuickDialogTableView {
@@ -49,30 +59,28 @@
 
     [root addSection:section];
     
-    oscIpAddressElement = [[QEntryElement alloc] initWithTitle:@"IP Address" Value:@"192.168.1.133" Placeholder:@"192.168.1.133"];
+    oscIpAddressElement = [[QEntryElement alloc] initWithTitle:@"IP Address" Value:nil Placeholder:@"xxx.xxx.xxx.xxx"];
     oscIpAddressElement.keyboardType = UIKeyboardTypeNumberPad;
     oscIpAddressElement.delegate = self;
+    oscIpAddressElement.key = kIpAddressKey;
     [section addElement:oscIpAddressElement];   
     
-    oscOutPortElement = [[QEntryElement alloc] initWithTitle:@"Outgoing Port" Value:@"8000" Placeholder:@"8000"];
+    oscOutPortElement = [[QEntryElement alloc] initWithTitle:@"Outgoing Port" Value:nil Placeholder:@"xxxx"];
     oscOutPortElement.keyboardType = UIKeyboardTypeNumberPad;
     oscOutPortElement.delegate = self;
+    oscOutPortElement.key = kOutPortKey;
     [section addElement:oscOutPortElement];
     
-    oscInPortElement = [[QEntryElement alloc] initWithTitle:@"Incoming Port" Value:@"9000" Placeholder:@"9000"];
+    oscInPortElement = [[QEntryElement alloc] initWithTitle:@"Incoming Port" Value:nil Placeholder:@"xxxx"];
     oscInPortElement.keyboardType = UIKeyboardTypeNumberPad;
     oscInPortElement.delegate = self;
+    oscInPortElement.key = kInPortKey;
     [section addElement:oscInPortElement];
     
     QButtonElement *testOscButtonElement = [[QButtonElement alloc] initWithTitle:@"Send OSC Test Message"];
     testOscButtonElement.controllerAction = @"sendTestOscMsg";
 
     [section addElement:testOscButtonElement];    
-    
-    // for now, just create the object straight away
-    NSNumber *inPort = [NSNumber numberWithInt:[oscInPortElement.textValue intValue]];
-    NSNumber *outPort = [NSNumber numberWithInt:[oscOutPortElement.textValue intValue]];
-    [oscSettingsDelegate updateOscIpAddress:oscIpAddressElement.textValue inPort:inPort outPort:outPort];
     
     self.root = root;
     [super loadView];    
@@ -99,14 +107,25 @@
 
 - (void)QEntryDidEndEditingElement:(QEntryElement *)element andCell:(QEntryTableViewCell *)cell
 {
-#if 0    
-    NSLog(@"Done Editing Element");
+#if 1    
+    NSLog(@"Done Editing Element, key = %@",element.key);
 #endif
     
-    NSNumber *inPort = [NSNumber numberWithInt:[oscInPortElement.textValue intValue]];
-    NSNumber *outPort = [NSNumber numberWithInt:[oscOutPortElement.textValue intValue]];
+    if([element.key isEqualToString:kIpAddressKey])
+    {
+        self.settings.oscIpAddress = oscIpAddressElement.textValue;
+    }
+    else if([element.key isEqualToString:kInPortKey])
+    {
+        self.settings.oscInPort = [oscInPortElement.textValue intValue];
+    }
+    else if([element.key isEqualToString:kOutPortKey])
+    {
+        self.settings.oscOutPort = [oscOutPortElement.textValue intValue];
+    }
     
-    [oscSettingsDelegate updateOscIpAddress:oscIpAddressElement.textValue inPort:inPort outPort:outPort];
+    // no matter who was edited, update the osc delegate
+    [oscSettingsDelegate updateOscIpAddress:oscIpAddressElement.textValue inPort:self.settings.oscInPort outPort:self.settings.oscOutPort];
 }
 
 - (void)sendTestOscMsg
@@ -117,5 +136,6 @@
     
     [oscSettingsDelegate sendTestOscMsg];
 }
+
 
 @end

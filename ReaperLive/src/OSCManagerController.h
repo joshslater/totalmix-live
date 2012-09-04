@@ -19,6 +19,5 @@
 }
 
 @property (nonatomic, strong) NSMutableArray *tracks;
-@property (nonatomic, strong) TracksViewController *tracksViewController;
 
 @end

@@ -8,12 +8,10 @@
 
 #import "OSCManagerController.h"
 #import "Track.h"
-#import "TracksViewController.h"
 
 @implementation OSCManagerController
 
 @synthesize tracks;
-@synthesize tracksViewController;
 
 - (id)init
 {
@@ -27,7 +25,10 @@
     return self;
 }
 
-- (void)updateOscIpAddress:(NSString *)ipAddress inPort:(NSNumber *)inPort outPort:(NSNumber *)outPort
+#pragma mark -
+#pragma mark <OSCSettingsDelegateProtocol>
+
+- (void)updateOscIpAddress:(NSString *)ipAddress inPort:(NSInteger)inPort outPort:(NSInteger)outPort
 {
     
 #if 0
@@ -35,10 +36,10 @@
 #endif
     
     // create an input port for receiving OSC data
-    [self createNewInputForPort:[inPort intValue]];
+    [self createNewInputForPort:inPort];
     
     // create an output so i can send OSC data to myself
-    oscOutPort = [self createNewOutputToAddress:ipAddress atPort:[outPort intValue]];    
+    oscOutPort = [self createNewOutputToAddress:ipAddress atPort:outPort];    
 }
 
 - (void)sendTestOscMsg

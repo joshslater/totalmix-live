@@ -8,13 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+#define kFilename @"archive"
+#define kSettingsKey @"settings"
+
 @class ViewController;
 @class OSCManagerController;
+@class Settings;
+@class SettingsViewController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
 {
     NSMutableArray *tracks;
     OSCManagerController *oscManagerController;
+    Settings *settings;
 }
 
 @property (strong, nonatomic) UIWindow *window;

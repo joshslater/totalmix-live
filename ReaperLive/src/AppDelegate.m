@@ -13,6 +13,7 @@
 #import "AuxViewController.h"
 #import "SettingsViewController.h"
 #import "OSCManagerController.h"
+#import "Settings.h"
 
 @implementation AppDelegate
 
@@ -39,9 +40,10 @@
     // aux mixer
     AuxViewController *auxViewController = [[AuxViewController alloc] initWithNibName:@"AuxViewController" bundle:nil];
     
-    // settings
+    ////////// SETTINGS ////////////
     SettingsViewController *settingsViewController = [[SettingsViewController alloc] init];
-    
+    settings = [self initializeSettings];
+    settingsViewController.settings = settings;
     
     /**************************/
     /******** OSC STUFF *******/
@@ -51,10 +53,12 @@
     settingsViewController.oscSettingsDelegate = oscManagerController;
     tracksViewController.oscDelegate = oscManagerController;
     
-    // pass the tracks data array to oscManagerController
-    oscManagerController.tracks = tracks;    
-    oscManagerController.tracksViewController = tracksViewController;
+    // update the outPort
+    [oscManagerController updateOscIpAddress:settings.oscIpAddress inPort:settings.oscInPort outPort:settings.oscOutPort];
     
+    // pass the tracks data array to oscManagerController
+    oscManagerController.tracks = tracks;
+       
     self.tabBarController = [[UITabBarController alloc] init];
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:tracksViewController, auxViewController, settingsViewController, nil];
     
@@ -74,6 +78,18 @@
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+    NSLog(@"applicationDidEnterBackground");
+    
+    NSMutableData *data = [[NSMutableData alloc] init];
+    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+    [archiver encodeObject:settings forKey:kSettingsKey];
+    [archiver finishEncoding];
+    
+    NSLog(@"settings.oscIpAddress = %@",settings.oscIpAddress);
+    NSLog(@"settings.oscInPort = %d",settings.oscInPort);
+    
+    [data writeToFile:[self dataFilePath] atomically:YES];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -89,6 +105,38 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (Settings *)initializeSettings
+{
+    Settings *aSettings;
+    
+    // create the settings object
+    if([[NSFileManager defaultManager] fileExistsAtPath:[self dataFilePath]])
+    {
+        NSData *data = [[NSMutableData alloc] initWithContentsOfFile:[self dataFilePath]];
+        NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+        aSettings = [unarchiver decodeObjectForKey:kSettingsKey];
+        [unarchiver finishDecoding];
+        
+#if 0
+        NSLog(@"oscIpAddress = %@",aSettings.oscIpAddress);        
+#endif
+        
+    }
+    else
+    {
+        aSettings = [[Settings alloc] init];
+    }
+    
+    return aSettings;
+}
+
+- (NSString *)dataFilePath
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    return [documentsDirectory stringByAppendingPathComponent:kFilename];
 }
 
 /*

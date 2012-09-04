@@ -18,6 +18,7 @@
 		0309E72A15D24525004FDD58 /* MuteBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E71E15D24525004FDD58 /* MuteBtn.png */; };
 		0309E72B15D24525004FDD58 /* SoloBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E71F15D24525004FDD58 /* SoloBtn.png */; };
 		0309E74615D260FB004FDD58 /* VolumeSlider.png in Resources */ = {isa = PBXBuildFile; fileRef = 0309E74515D260FB004FDD58 /* VolumeSlider.png */; };
+		03159B2415F5BE1C00B82888 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 03159B2315F5BE1C00B82888 /* Settings.m */; };
 		031C9D3E15EDECDC00ED2898 /* OSCManagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 031C9D3D15EDECDC00ED2898 /* OSCManagerController.m */; };
 		032504B915EC8B2B008B0E19 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 032504B815EC8B2B008B0E19 /* MapKit.framework */; };
 		032504BB15EC8B37008B0E19 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 032504BA15EC8B37008B0E19 /* CoreLocation.framework */; };
@@ -87,6 +88,8 @@
 		0309E71E15D24525004FDD58 /* MuteBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MuteBtn.png; sourceTree = "<group>"; };
 		0309E71F15D24525004FDD58 /* SoloBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SoloBtn.png; sourceTree = "<group>"; };
 		0309E74515D260FB004FDD58 /* VolumeSlider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VolumeSlider.png; sourceTree = "<group>"; };
+		03159B2215F5BE1C00B82888 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
+		03159B2315F5BE1C00B82888 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
 		031C9D3C15EDECDC00ED2898 /* OSCManagerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCManagerController.h; sourceTree = "<group>"; };
 		031C9D3D15EDECDC00ED2898 /* OSCManagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCManagerController.m; sourceTree = "<group>"; };
 		032504A915EC89D1008B0E19 /* QuickDialog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = QuickDialog.xcodeproj; path = QuickDialog/QuickDialog.xcodeproj; sourceTree = "<group>"; };
@@ -238,6 +241,8 @@
 			children = (
 				032504C515EC9989008B0E19 /* SettingsViewController.h */,
 				032504C615EC998A008B0E19 /* SettingsViewController.m */,
+				03159B2215F5BE1C00B82888 /* Settings.h */,
+				03159B2315F5BE1C00B82888 /* Settings.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -520,6 +525,7 @@
 				032504C715EC998A008B0E19 /* SettingsViewController.m in Sources */,
 				031C9D3E15EDECDC00ED2898 /* OSCManagerController.m in Sources */,
 				03A40B1115F1D65A00CE0FAD /* EqButton.m in Sources */,
+				03159B2415F5BE1C00B82888 /* Settings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+
+@class Settings;
+
 @protocol OSCSettingsDelegateProtocol <NSObject>
-- (void)updateOscIpAddress:(NSString *)ipAddress inPort:(NSNumber *)inPort outPort:(NSNumber *)outPort;
+- (void)updateOscIpAddress:(NSString *)ipAddress inPort:(NSInteger)inPort outPort:(NSInteger)outPort;
 - (void)sendTestOscMsg;
 @end
 
@@ -21,5 +24,7 @@
 }
 
 @property (weak, nonatomic) id <OSCSettingsDelegateProtocol> oscSettingsDelegate;
+
+@property (strong, nonatomic) Settings *settings;
 
 @end

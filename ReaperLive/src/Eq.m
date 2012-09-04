@@ -141,7 +141,6 @@
 //    % a0 = 1 + alpha;
 //    % a1 = -2*wC;
 //    % a2 = 1 - alpha;
-//    
     
     Complex *num = [[Complex alloc] init];
     Complex *num1 = [[Complex alloc] init];
