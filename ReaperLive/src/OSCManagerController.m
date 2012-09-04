@@ -153,7 +153,7 @@
     
     [msg addFloat:sendValue];
     
-#if 1
+#if 0
     NSLog(@"eqValueDidChange::sending %@ %0.2f",addressString,sendValue);
 #endif
     
@@ -190,7 +190,7 @@
     {
         int trackNumber = [[address substringWithRange:[match rangeAtIndex:1]] intValue];
         
-#if 1
+#if 0
         NSLog(@"OSC::/track/%d/volume %0.3f",trackNumber,[m.value floatValue]);
 #endif
     
@@ -213,7 +213,7 @@
     {
         int trackNumber = [[address substringWithRange:[match rangeAtIndex:1]] intValue];
         
-#if 1
+#if 0
         NSLog(@"OSC::/track/%d/vu %0.3f",trackNumber,[m.value floatValue]);
 #endif
         

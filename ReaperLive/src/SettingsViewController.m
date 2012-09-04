@@ -107,7 +107,7 @@
 
 - (void)QEntryDidEndEditingElement:(QEntryElement *)element andCell:(QEntryTableViewCell *)cell
 {
-#if 1    
+#if 0
     NSLog(@"Done Editing Element, key = %@",element.key);
 #endif
     
