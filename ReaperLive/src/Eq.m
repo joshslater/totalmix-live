@@ -29,7 +29,7 @@
         fs = 44100;        
         
         // Initialization code here
-        nPoints = [NSNumber numberWithInt:1000];
+        nPoints = [NSNumber numberWithInt:200];
         HArray = [[NSMutableArray alloc] init];
         eqFreqPoints = [[NSMutableArray alloc] init];
         eqCurve = [[NSMutableArray alloc] init];
