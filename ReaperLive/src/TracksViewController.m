@@ -518,7 +518,7 @@
 {
     NSDictionary *extraInfo = [note userInfo];
     int trackNumber = [[extraInfo objectForKey:@"trackNumber"] intValue];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:trackNumber inSection:0];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:trackNumber-1 inSection:0];
     
     TrackTableCell *cell = (TrackTableCell *)[self.tracksTableView cellForRowAtIndexPath:indexPath];
     
