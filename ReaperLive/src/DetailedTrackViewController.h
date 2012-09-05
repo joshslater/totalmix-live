@@ -14,10 +14,6 @@
 @class EqViewController;
 @class Track;
 
-@protocol DetailedTrackOscProtocol <NSObject>
-// no methods for now
-@end
-
 @protocol DetailedTrackViewControllerProtocol <NSObject>
 @required
 - (void)updateTrackButtons:(NSInteger)trackNumber;
@@ -31,10 +27,9 @@
     EqViewController *eqViewController;
     UIButton *closeDetailedTrackViewButton;
     UIScrollView *detailedTrackScrollView;
-
 }
 
-@property (weak, nonatomic) id <DetailedTrackOscProtocol> oscDelegate;
+@property (weak, nonatomic) id <OSCMessagingProtocol> oscDelegate;
 @property (weak, nonatomic) id <DetailedTrackViewControllerProtocol> delegate;
 @property (nonatomic) CGPoint contentOffset;
 @property (nonatomic) NSInteger selectedTrack;

@@ -99,7 +99,9 @@
     // why do I use screen height here? is screen not rotated yet?
     tracksToolbar.frame = CGRectMake(0, 0, screenRect.size.height, 44);
     NSMutableArray *items = [[NSMutableArray alloc] init];
-    [items addObject:[[UIBarButtonItem alloc] initWithTitle:@"Item" style:UIBarButtonItemStyleBordered target:self action:nil]];
+    
+    // button to tell Reaper to update devices
+    [items addObject:[[UIBarButtonItem alloc] initWithTitle:@"Refesh OSC" style:UIBarButtonItemStyleBordered target:self action:@selector(refreshOSCButtonPressed:)]];
     [tracksToolbar setItems:items animated:NO];
     [self.view addSubview:tracksToolbar];
     
@@ -440,6 +442,15 @@
 #endif
 }
 
+- (void)refreshOSCButtonPressed:(id)sender
+{
+#if 0    
+    NSLog(@"Refresh OSC Button Pressed");
+#endif
+    
+    [oscDelegate sendOscAction:OSCActionRefreshDevices];
+}
+
 #pragma mark -
 #pragma mark View Handling
 
@@ -463,7 +474,7 @@
     // set content offset to be TRACKS_WIDTH
     detailedTrackViewController.contentOffset = offset;
     
-    detailedTrackViewController.oscDelegate = (id <DetailedTrackOscProtocol>)oscDelegate;
+    detailedTrackViewController.oscDelegate = (id <OSCMessagingProtocol>)oscDelegate;
     
     [self addChildViewController:detailedTrackViewController];
     [self.view addSubview:detailedTrackViewController.view];

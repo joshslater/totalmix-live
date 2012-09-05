@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OSCMessagingProtocol.h"
 
 @class EQView;
 @class EqPointsView;
@@ -14,16 +15,6 @@
 @class MHRotaryKnob;
 @class Eq;
 
-typedef enum
-{
-    EQItemGain,
-    EQItemFrequency,
-    EQItemQ    
-} eqItems_t;
-
-@protocol EqOscProtocol <NSObject>
-- (void)eqValueDidChange:(NSInteger)trackNumber band:(NSInteger)band item:(eqItems_t)item value:(float)value;
-@end
 
 @interface EqViewController : UIViewController
 {
@@ -32,7 +23,7 @@ typedef enum
     EqPointsView *eqPointsView;
 }
 
-@property (nonatomic, weak) id <EqOscProtocol> oscDelegate;
+@property (nonatomic, weak) id <OSCMessagingProtocol> oscDelegate;
 @property (nonatomic, strong) EQView *eqView;
 @property (weak, nonatomic) IBOutlet MHRotaryKnob *gainKnob;
 @property (weak, nonatomic) IBOutlet MHRotaryKnob *freqKnob;

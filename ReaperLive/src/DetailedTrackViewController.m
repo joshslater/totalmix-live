@@ -7,6 +7,7 @@
 //
 
 #import "Constants.h"
+#import "OSCMessagingProtocol.h"
 #import "TracksViewController.h"
 #import "DetailedTrackViewController.h"
 #import "EqViewController.h"
@@ -62,7 +63,7 @@
     
     eqViewController = [[EqViewController alloc] init];
  
-    eqViewController.oscDelegate = (id <EqOscProtocol>)oscDelegate;
+    eqViewController.oscDelegate = (id <OSCMessagingProtocol>)oscDelegate;
     
     [self addChildViewController:eqViewController];
     [detailedTrackScrollView addSubview:eqViewController.view];

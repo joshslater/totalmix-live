@@ -101,6 +101,7 @@
 		0328372A15F2F21A000B29DC /* MeterMin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MeterMin.png; sourceTree = "<group>"; };
 		03306F4615E17F9E0094DF14 /* Eq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Eq.h; sourceTree = "<group>"; };
 		03306F4715E17F9E0094DF14 /* Eq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Eq.m; sourceTree = "<group>"; };
+		033682E515F723F1000CEA96 /* OSCMessagingProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OSCMessagingProtocol.h; sourceTree = "<group>"; };
 		0345FB5015D3660F009130E2 /* VerticalSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerticalSlider.h; sourceTree = "<group>"; };
 		0345FB5115D3660F009130E2 /* VerticalSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerticalSlider.m; sourceTree = "<group>"; };
 		0348F52015E9A58200992A0D /* Complex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Complex.h; sourceTree = "<group>"; };
@@ -207,6 +208,7 @@
 		0328372815F29F70000B29DC /* OSC */ = {
 			isa = PBXGroup;
 			children = (
+				033682E515F723F1000CEA96 /* OSCMessagingProtocol.h */,
 				031C9D3C15EDECDC00ED2898 /* OSCManagerController.h */,
 				031C9D3D15EDECDC00ED2898 /* OSCManagerController.m */,
 			);

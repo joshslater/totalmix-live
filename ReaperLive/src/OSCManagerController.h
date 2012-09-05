@@ -8,12 +8,11 @@
 
 #import <VVOSC/VVOSC.h>
 #import "SettingsViewController.h"
-#import "TracksViewController.h"
-#import "EqViewController.h"
+#import "OSCMessagingProtocol.h"
 
 @class TracksViewController;
 
-@interface OSCManagerController : OSCManager <OSCDelegateProtocol, OSCSettingsDelegateProtocol, TracksOscProtocol, EqOscProtocol>
+@interface OSCManagerController : OSCManager <OSCDelegateProtocol, OSCMessagingProtocol>
 {
     OSCOutPort *oscOutPort;
 }

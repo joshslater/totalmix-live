@@ -7,14 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "OSCMessagingProtocol.h"
 
 @class Settings;
-
-@protocol OSCSettingsDelegateProtocol <NSObject>
-- (void)updateOscIpAddress:(NSString *)ipAddress inPort:(NSInteger)inPort outPort:(NSInteger)outPort;
-- (void)sendTestOscMsg;
-@end
 
 @interface SettingsViewController : QuickDialogController <QuickDialogEntryElementDelegate,QuickDialogStyleProvider>
 {
@@ -23,7 +18,7 @@
     QEntryElement *oscOutPortElement;
 }
 
-@property (weak, nonatomic) id <OSCSettingsDelegateProtocol> oscSettingsDelegate;
+@property (weak, nonatomic) id <OSCMessagingProtocol> oscSettingsDelegate;
 
 @property (strong, nonatomic) Settings *settings;
 

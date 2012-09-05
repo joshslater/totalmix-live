@@ -59,7 +59,7 @@
 }
 
 #pragma mark -
-#pragma mark OSC Send Methods
+#pragma mark <OscMessagingProtocol>
 
 - (void)volumeFaderDidChange:(int)trackNumber toValue:(float)value
 {
@@ -72,6 +72,31 @@
     NSLog(@"Received VolumeFaderDidChange notification, track %d, value %0.3f",trackNumber,value);
 #endif
 }
+
+- (void)sendOscAction:(oscActions_t)action
+{
+    NSInteger actionId;
+    
+    switch (action) {
+        case OSCActionRefreshDevices:
+            actionId = 41743;
+            break;
+            
+        default:
+            break;
+    }
+
+#if 1
+    NSLog(@"OSCManagerController :: sending actionId %d",actionId);
+#endif
+    
+    OSCMessage *msg = [OSCMessage createWithAddress:@"/action"];
+    [msg addInt:actionId];
+    [oscOutPort sendThisMessage:msg];
+}
+
+#pragma mark -
+#pragma mark <EqOscProtocol>
 
 - (void)eqValueDidChange:(NSInteger)trackNumber band:(NSInteger)band item:(eqItems_t)item value:(float)value
 {

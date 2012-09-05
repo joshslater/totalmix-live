@@ -9,12 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
+#import "OSCMessagingProtocol.h"
 #import "TrackTableCell.h"
 #import "DetailedTrackViewController.h"
-
-@protocol TracksOscProtocol <NSObject>
-- (void)volumeFaderDidChange:(int)trackNumber toValue:(float)value;
-@end
 
 @interface TracksViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, DetailedTrackViewControllerProtocol>
 {
@@ -22,7 +19,7 @@
     NSMutableDictionary *trackCells;
 }
 
-@property (weak, nonatomic) id <TracksOscProtocol> oscDelegate;
+@property (weak, nonatomic) id<OSCMessagingProtocol> oscDelegate;
 @property (strong, nonatomic) NSMutableArray *tracks;
 @property (strong, nonatomic) UITableView *tracksTableView;
 @property (weak, nonatomic) IBOutlet TrackTableCell *trackTableCell;
