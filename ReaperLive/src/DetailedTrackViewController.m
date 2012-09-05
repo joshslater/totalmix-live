@@ -164,7 +164,7 @@
 #endif
     
     [delegate updateSelectedTrack:-1];
-    [delegate updateTrackButtons:selectedTrack];
+    [delegate updateTrackButtons:selectedTrack-1];
     
     // remove this view controller/view from super
     [self removeFromParentViewController];
