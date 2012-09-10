@@ -51,6 +51,7 @@
 		03C867F615C6617F001ECCAD /* VolumeSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C867F515C6617E001ECCAD /* VolumeSlider.m */; };
 		03D8BAB515FDBA1F006F3B90 /* CloseButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 03D8BAB415FDBA1F006F3B90 /* CloseButton.png */; };
 		03D8BAB715FDBB38006F3B90 /* EQPoint.png in Resources */ = {isa = PBXBuildFile; fileRef = 03D8BAB615FDBB38006F3B90 /* EQPoint.png */; };
+		03D8BAB915FDC94A006F3B90 /* SettingsIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 03D8BAB815FDC94A006F3B90 /* SettingsIcon.png */; };
 		03F2326C15C0E0D1009B0390 /* CompView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F2326B15C0E0D1009B0390 /* CompView.m */; };
 		03F2326E15C0E0E3009B0390 /* CompView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03F2326D15C0E0E3009B0390 /* CompView.xib */; };
 		03F2327715C0E4DB009B0390 /* GateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F2327615C0E4DA009B0390 /* GateView.m */; };
@@ -144,6 +145,7 @@
 		03C867F515C6617E001ECCAD /* VolumeSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolumeSlider.m; sourceTree = "<group>"; };
 		03D8BAB415FDBA1F006F3B90 /* CloseButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseButton.png; sourceTree = "<group>"; };
 		03D8BAB615FDBB38006F3B90 /* EQPoint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EQPoint.png; sourceTree = "<group>"; };
+		03D8BAB815FDC94A006F3B90 /* SettingsIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SettingsIcon.png; sourceTree = "<group>"; };
 		03F2326A15C0E0D1009B0390 /* CompView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompView.h; sourceTree = "<group>"; };
 		03F2326B15C0E0D1009B0390 /* CompView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompView.m; sourceTree = "<group>"; };
 		03F2326D15C0E0E3009B0390 /* CompView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompView.xib; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 		0309E6E215D2405C004FDD58 /* @1x */ = {
 			isa = PBXGroup;
 			children = (
+				03D8BAB815FDC94A006F3B90 /* SettingsIcon.png */,
 				03D8BAB415FDBA1F006F3B90 /* CloseButton.png */,
 				03B0FB7415FDB1E800DD81CC /* TracksIcon.png */,
 				0328372915F2F21A000B29DC /* MeterMax.png */,
@@ -501,6 +504,7 @@
 				03B0FB7515FDB1E800DD81CC /* TracksIcon.png in Resources */,
 				03D8BAB515FDBA1F006F3B90 /* CloseButton.png in Resources */,
 				03D8BAB715FDBB38006F3B90 /* EQPoint.png in Resources */,
+				03D8BAB915FDC94A006F3B90 /* SettingsIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
