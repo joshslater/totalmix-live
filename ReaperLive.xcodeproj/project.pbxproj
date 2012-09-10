@@ -33,7 +33,6 @@
 		036181E515EB2DA3001FB621 /* AuxViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 036181E415EB2DA3001FB621 /* AuxViewController.xib */; };
 		03712C4E15D82E4D00EC9665 /* Knob-Selector.png in Resources */ = {isa = PBXBuildFile; fileRef = 03712C4C15D82E4D00EC9665 /* Knob-Selector.png */; };
 		03712C4F15D82E4D00EC9665 /* Knob.png in Resources */ = {isa = PBXBuildFile; fileRef = 03712C4D15D82E4D00EC9665 /* Knob.png */; };
-		03712C5515D84C4F00EC9665 /* EQ-Point.png in Resources */ = {isa = PBXBuildFile; fileRef = 03712C5415D84C4F00EC9665 /* EQ-Point.png */; };
 		03712C5815D882F600EC9665 /* EqCurveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03712C5715D882F600EC9665 /* EqCurveView.m */; };
 		03712C5B15D8ADC400EC9665 /* EqPointsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03712C5A15D8ADC300EC9665 /* EqPointsView.m */; };
 		03712C6215D8B62900EC9665 /* EqViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03712C6115D8B62900EC9665 /* EqViewController.m */; };
@@ -48,13 +47,15 @@
 		03ADD59515BD0FFE00EBDC71 /* TrackTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03ADD59415BD0CD100EBDC71 /* TrackTableCell.xib */; };
 		03ADD59615BD102D00EBDC71 /* TrackTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03ADD59315BD0CD100EBDC71 /* TrackTableCell.m */; };
 		03ADD59915BD107F00EBDC71 /* Track.m in Sources */ = {isa = PBXBuildFile; fileRef = 03ADD59815BD107F00EBDC71 /* Track.m */; };
+		03B0FB7515FDB1E800DD81CC /* TracksIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 03B0FB7415FDB1E800DD81CC /* TracksIcon.png */; };
 		03C867F615C6617F001ECCAD /* VolumeSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C867F515C6617E001ECCAD /* VolumeSlider.m */; };
+		03D8BAB515FDBA1F006F3B90 /* CloseButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 03D8BAB415FDBA1F006F3B90 /* CloseButton.png */; };
+		03D8BAB715FDBB38006F3B90 /* EQPoint.png in Resources */ = {isa = PBXBuildFile; fileRef = 03D8BAB615FDBB38006F3B90 /* EQPoint.png */; };
 		03F2326C15C0E0D1009B0390 /* CompView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F2326B15C0E0D1009B0390 /* CompView.m */; };
 		03F2326E15C0E0E3009B0390 /* CompView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03F2326D15C0E0E3009B0390 /* CompView.xib */; };
 		03F2327715C0E4DB009B0390 /* GateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F2327615C0E4DA009B0390 /* GateView.m */; };
 		03F2327915C0E4E9009B0390 /* EQView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03F2327815C0E4E9009B0390 /* EQView.xib */; };
 		03F2327B15C0E4FB009B0390 /* GateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03F2327A15C0E4FB009B0390 /* GateView.xib */; };
-		03F2327D15C0ECB4009B0390 /* delete_control.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 03F2327C15C0ECB4009B0390 /* delete_control.jpg */; };
 		03F292F815C63E3A007D1440 /* DetailedTrackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F292F715C63E3A007D1440 /* DetailedTrackViewController.m */; };
 		03F3CD7015D38552006AD784 /* MHRotaryKnob.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F3CD6F15D38552006AD784 /* MHRotaryKnob.m */; };
 /* End PBXBuildFile section */
@@ -111,7 +112,6 @@
 		036181E415EB2DA3001FB621 /* AuxViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuxViewController.xib; sourceTree = "<group>"; };
 		03712C4C15D82E4D00EC9665 /* Knob-Selector.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Knob-Selector.png"; sourceTree = "<group>"; };
 		03712C4D15D82E4D00EC9665 /* Knob.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Knob.png; sourceTree = "<group>"; };
-		03712C5415D84C4F00EC9665 /* EQ-Point.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EQ-Point.png"; sourceTree = "<group>"; };
 		03712C5615D882F600EC9665 /* EqCurveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EqCurveView.h; sourceTree = "<group>"; };
 		03712C5715D882F600EC9665 /* EqCurveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EqCurveView.m; sourceTree = "<group>"; };
 		03712C5915D8ADC300EC9665 /* EqPointsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EqPointsView.h; sourceTree = "<group>"; };
@@ -137,10 +137,13 @@
 		03ADD59415BD0CD100EBDC71 /* TrackTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackTableCell.xib; sourceTree = "<group>"; };
 		03ADD59715BD107F00EBDC71 /* Track.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Track.h; sourceTree = "<group>"; };
 		03ADD59815BD107F00EBDC71 /* Track.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Track.m; sourceTree = "<group>"; };
+		03B0FB7415FDB1E800DD81CC /* TracksIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TracksIcon.png; sourceTree = "<group>"; };
 		03BC576D15EF1BA400414B32 /* DetailedTrackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailedTrackViewController.h; sourceTree = "<group>"; };
 		03BDCAA115D8DBCC0060456B /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = src/Constants.h; sourceTree = "<group>"; };
 		03C867F415C6617E001ECCAD /* VolumeSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolumeSlider.h; sourceTree = "<group>"; };
 		03C867F515C6617E001ECCAD /* VolumeSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolumeSlider.m; sourceTree = "<group>"; };
+		03D8BAB415FDBA1F006F3B90 /* CloseButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseButton.png; sourceTree = "<group>"; };
+		03D8BAB615FDBB38006F3B90 /* EQPoint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EQPoint.png; sourceTree = "<group>"; };
 		03F2326A15C0E0D1009B0390 /* CompView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompView.h; sourceTree = "<group>"; };
 		03F2326B15C0E0D1009B0390 /* CompView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompView.m; sourceTree = "<group>"; };
 		03F2326D15C0E0E3009B0390 /* CompView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompView.xib; sourceTree = "<group>"; };
@@ -148,7 +151,6 @@
 		03F2327615C0E4DA009B0390 /* GateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GateView.m; sourceTree = "<group>"; };
 		03F2327815C0E4E9009B0390 /* EQView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EQView.xib; sourceTree = "<group>"; };
 		03F2327A15C0E4FB009B0390 /* GateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GateView.xib; sourceTree = "<group>"; };
-		03F2327C15C0ECB4009B0390 /* delete_control.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = delete_control.jpg; sourceTree = "<group>"; };
 		03F292F715C63E3A007D1440 /* DetailedTrackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailedTrackViewController.m; sourceTree = "<group>"; };
 		03F3CD6E15D38552006AD784 /* MHRotaryKnob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHRotaryKnob.h; sourceTree = "<group>"; };
 		03F3CD6F15D38552006AD784 /* MHRotaryKnob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHRotaryKnob.m; sourceTree = "<group>"; };
@@ -174,13 +176,14 @@
 		0309E6E215D2405C004FDD58 /* @1x */ = {
 			isa = PBXGroup;
 			children = (
-				03712C5415D84C4F00EC9665 /* EQ-Point.png */,
+				03D8BAB415FDBA1F006F3B90 /* CloseButton.png */,
+				03B0FB7415FDB1E800DD81CC /* TracksIcon.png */,
 				0328372915F2F21A000B29DC /* MeterMax.png */,
 				0328372A15F2F21A000B29DC /* MeterMin.png */,
 				03712C4C15D82E4D00EC9665 /* Knob-Selector.png */,
 				03712C4D15D82E4D00EC9665 /* Knob.png */,
-				03F2327C15C0ECB4009B0390 /* delete_control.jpg */,
 				0309E74515D260FB004FDD58 /* VolumeSlider.png */,
+				03D8BAB615FDBB38006F3B90 /* EQPoint.png */,
 				0309E71515D24525004FDD58 /* TrackBkg.png */,
 				0309E71615D24525004FDD58 /* CompBtn.png */,
 				0309E71715D24525004FDD58 /* DetailedComp.png */,
@@ -479,7 +482,6 @@
 				03F2326E15C0E0E3009B0390 /* CompView.xib in Resources */,
 				03F2327915C0E4E9009B0390 /* EQView.xib in Resources */,
 				03F2327B15C0E4FB009B0390 /* GateView.xib in Resources */,
-				03F2327D15C0ECB4009B0390 /* delete_control.jpg in Resources */,
 				0309E72115D24525004FDD58 /* TrackBkg.png in Resources */,
 				0309E72215D24525004FDD58 /* CompBtn.png in Resources */,
 				0309E72315D24525004FDD58 /* DetailedComp.png in Resources */,
@@ -493,10 +495,12 @@
 				0309E74615D260FB004FDD58 /* VolumeSlider.png in Resources */,
 				03712C4E15D82E4D00EC9665 /* Knob-Selector.png in Resources */,
 				03712C4F15D82E4D00EC9665 /* Knob.png in Resources */,
-				03712C5515D84C4F00EC9665 /* EQ-Point.png in Resources */,
 				036181E515EB2DA3001FB621 /* AuxViewController.xib in Resources */,
 				0328372B15F2F21A000B29DC /* MeterMax.png in Resources */,
 				0328372C15F2F21A000B29DC /* MeterMin.png in Resources */,
+				03B0FB7515FDB1E800DD81CC /* TracksIcon.png in Resources */,
+				03D8BAB515FDBA1F006F3B90 /* CloseButton.png in Resources */,
+				03D8BAB715FDBB38006F3B90 /* EQPoint.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -59,7 +59,7 @@
     if (self) 
     {
         // create UITabBarItem
-        self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Tracks" image:nil tag:0];
+        self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Tracks" image:[UIImage imageNamed:@"TracksIcon.png"] tag:0];
     }
      
     // register for track volume updates

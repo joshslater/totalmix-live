@@ -66,11 +66,23 @@
     // create the EQ curve view
     eqCurveView = [[EqCurveView alloc] initWithFrame:CGRectMake(88, 48, 450, 200)];
     eqCurveView.opaque = NO;
+    
+    // reduce height of band selector
+    CGRect frame = bandSelector.frame;
+    frame.size.height = 34;
+    bandSelector.frame = frame;
         
+    // change font of band selector
+    UIFont *font = [UIFont boldSystemFontOfSize:14.0f];
+    NSDictionary *attributes = [NSDictionary dictionaryWithObject:font
+                                                           forKey:UITextAttributeFont];
+    [bandSelector setTitleTextAttributes:attributes 
+                                forState:UIControlStateNormal];
+
+    
 #if 0
     NSLog(@"setting eqCurveView's eqCurve reference");
 #endif
-    
     
     gainKnob.backgroundImage = [UIImage imageNamed:@"Knob.png"];
     [gainKnob setKnobImage:[UIImage imageNamed:@"Knob-Selector.png"] forState:UIControlStateNormal];

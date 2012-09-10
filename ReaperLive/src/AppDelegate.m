@@ -6,6 +6,8 @@
 //  Copyright (c) 2012 Self. All rights reserved.
 //
 
+#define NTRACKS 50
+
 #import "AppDelegate.h"
 
 #import "OSCMessagingProtocol.h"
@@ -26,7 +28,7 @@
     // create tracks
     tracks = [[NSMutableArray alloc] initWithCapacity:100];
     
-    for (int i = 0; i < 50; i++)
+    for (int i = 0; i < NTRACKS; i++)
     {
         [tracks addObject: [[Track alloc] initWithTrackNumber:(i+1)]];
     }
@@ -53,18 +55,19 @@
     oscManagerController = [[OSCManagerController alloc] init];
     settingsViewController.oscSettingsDelegate = oscManagerController;
     tracksViewController.oscDelegate = oscManagerController;
+    // pass the tracks data array to oscManagerController
+    oscManagerController.tracks = tracks;
     
     // update the outPort
     [oscManagerController updateOscIpAddress:settings.oscIpAddress inPort:settings.oscInPort outPort:settings.oscOutPort];
     
     // refresh the osc device
+    [oscManagerController sendEntireState];
     //[oscManagerController selectFX:1];
-    [oscManagerController selectTrack:1];
-    [oscManagerController sendOscAction:OSCActionRefreshDevices];
+    //[oscManagerController selectTrack:1];
+    //[oscManagerController sendOscAction:OSCActionRefreshDevices];
     //[oscManagerController sendCannedMsg];
     
-    // pass the tracks data array to oscManagerController
-    oscManagerController.tracks = tracks;
        
     self.tabBarController = [[UITabBarController alloc] init];
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:tracksViewController, auxViewController, settingsViewController, nil];

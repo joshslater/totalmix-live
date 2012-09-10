@@ -90,7 +90,7 @@
     closeDetailedTrackViewButton = [UIButton buttonWithType:UIButtonTypeCustom];
     closeDetailedTrackViewButton.backgroundColor = [UIColor clearColor];
     closeDetailedTrackViewButton.frame = CGRectMake(950, 0, 44, 44);
-    [closeDetailedTrackViewButton setImage:[UIImage imageNamed:@"delete_control.jpg"] forState:UIControlStateNormal];
+    [closeDetailedTrackViewButton setImage:[UIImage imageNamed:@"CloseButton.png"] forState:UIControlStateNormal];
     [closeDetailedTrackViewButton addTarget:self action:@selector(closeDetailedTrackView:) forControlEvents:UIControlEventTouchDown];    
     
     // add the button

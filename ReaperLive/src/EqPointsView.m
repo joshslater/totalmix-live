@@ -25,7 +25,7 @@
         
         for (int i = 0; i < 4; i++)
         {
-            UIImageView *eqPoint =[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"EQ-Point.png"]];
+            UIImageView *eqPoint =[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"EQPoint.png"]];
             
 #if 0            
             NSLog(@"%x",(unsigned int)eqPoint);

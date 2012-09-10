@@ -203,31 +203,27 @@ DEVICE_ROTARY_CENTER 0
 # The default REAPER OSC pattern configuration follows. To create a custom 
 # configuration, copy this file and edit the copy.
 
-#TRACK_VOLUME n/track/@/volume
-#TRACK_VU n/track/@/vu
+TRACK_VOLUME n/track/@/volume
+TRACK_VU n/track/@/vu
 
 #FX_NAME s/track/@/fx/@/name
-FX_PARAM_VALUE s/fxparam/@/value/str
+#FX_PARAM_VALUE s/fxparam/@/value/str
 #FX_BYPASS b/track/@/fx/@/bypass
 #FX_PARAM_VALUE n/track/@/fx/@/fxparam/@/value
 #FX_PARAM_VALUE s/fxparam/@/value/str s/fx/@/fxparam/@/value/str
+#FX_PARAM_VALUE s/track/@/fx/@/fxparam/@/value/str
 
-#FX_EQ_LOSHELF_FREQ f/track/@/fxeq/loshelf/freq/hz
-#FX_EQ_LOSHELF_GAIN f/track/@/fxeq/loshelf/gain/db
+FX_EQ_LOSHELF_FREQ f/track/@/fxeq/loshelf/freq/hz f/fxeq/loshelf/freq/hz
+FX_EQ_LOSHELF_GAIN f/track/@/fxeq/loshelf/gain/db
+FX_EQ_LOSHELF_Q f/track/@/fxeq/loshelf/q/oct
 
-#FX_EQ_LOSHELF_FREQ f/fxeq/loshelf/freq
-#FX_EQ_LOSHELF_GAIN f/fxeq/loshelf/gain/db
-#FX_EQ_LOSHELF_Q f/fxeq/loshelf/q/oct
+FX_EQ_BAND_FREQ f/track/@/fxeq/band/@/freq/hz
+FX_EQ_BAND_GAIN f/track/@/fxeq/band/@/gain/db
+FX_EQ_BAND_Q f/track/@/fxeq/band/@/q/oct
 
-#FX_EQ_BAND_FREQ n/fxeq/band/@/freq
-#FX_EQ_BAND_FREQ f/fxeq/band/@/freq/hz f/track/@/fxeq/band/@/freq/hz
-#FX_EQ_BAND_FREQ f/fxeq/band/@/freq/
-#FX_EQ_BAND_GAIN f/fxeq/band/@/gain/db
-#FX_EQ_BAND_Q f/fxeq/band/@/q/oct
-
-#FX_EQ_HISHELF_FREQ f/fxeq/hishelf/freq/hz
-#FX_EQ_HISHELF_GAIN f/fxeq/hishelf/gain/db
-#FX_EQ_HISHELF_Q f/fxeq/hishelf/q/oct
+FX_EQ_HISHELF_FREQ f/track/@/fxeq/hishelf/freq/hz
+FX_EQ_HISHELF_GAIN f/track/@/fxeq/hishelf/gain/db
+FX_EQ_HISHELF_Q f/track/@/fxeq/hishelf/q/oct
 
 # test
 #FX_PARAM_VALUE n/fxparam/@/value

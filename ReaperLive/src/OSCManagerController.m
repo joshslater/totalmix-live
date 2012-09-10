@@ -8,6 +8,7 @@
 
 #import "OSCManagerController.h"
 #import "Track.h"
+#import "Eq.h"
 
 @implementation OSCManagerController
 
@@ -124,8 +125,33 @@
     [oscOutPort sendThisMessage:msg];    
 }
 
-#pragma mark -
-#pragma mark <EqOscProtocol>
+// initializes all channel and FX states
+- (void)sendEntireState
+{
+    for (Track *track in tracks)
+    {
+#if 1
+        NSLog(@"Sending track %d state",track.trackNumber);
+#endif
+        // volume
+        NSInteger trackNumber = track.trackNumber;
+        [self volumeFaderDidChange:trackNumber toValue:track.volume];
+        
+        // EQ
+        for (NSInteger band = 0; band < 4; band++)
+        {
+            for(NSInteger eqItem = EQItemGain; eqItem <= EQItemQ; eqItem++)
+            {
+                if(eqItem == EQItemGain)
+                    [self eqValueDidChange:trackNumber band:band item:eqItem value:[[track.eq.gainPoints objectAtIndex:band] floatValue]];
+                else if (eqItem == EQItemFrequency)
+                    [self eqValueDidChange:trackNumber band:band item:eqItem value:[[track.eq.freqPoints objectAtIndex:band] floatValue]];
+                else if (eqItem == EQItemQ)
+                    [self eqValueDidChange:trackNumber band:band item:eqItem value:[[track.eq.qPoints objectAtIndex:band] floatValue]];
+            }
+        }
+    }
+}
 
 - (void)eqValueDidChange:(NSInteger)trackNumber band:(NSInteger)band item:(eqItems_t)item value:(float)value
 {
@@ -215,10 +241,6 @@
 }
 
 #pragma mark -
-#pragma mark OSC Receive Methods
-
-
-#pragma mark -
 #pragma mark <OSCDelegateProtocol> Implementation
 
 - (void)receivedOSCMessage:(OSCMessage *)m
@@ -230,7 +252,7 @@
     NSString *address = [m address];
     
 #if 1
-    NSLog(@"Address = %@, value %@",address,[m value]);
+    NSLog(@"Address = %@, %@",address,[m value]);
 #endif
     
     NSRegularExpression *regex;
@@ -283,6 +305,7 @@
 
 }
 
+#pragma mark -
 - (void)dealloc
 {
     // remove self as observer
