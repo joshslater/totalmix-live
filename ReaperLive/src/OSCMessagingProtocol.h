@@ -26,4 +26,7 @@ typedef enum
 - (void)eqValueDidChange:(NSInteger)trackNumber band:(NSInteger)band item:(eqItems_t)item value:(float)value;
 - (void)updateOscIpAddress:(NSString *)ipAddress inPort:(NSInteger)inPort outPort:(NSInteger)outPort;
 - (void)sendTestOscMsg;
+- (void)selectTrack:(NSInteger)trackNumber;
+- (void)selectFX:(NSInteger)fxNumber;
+- (void)sendCannedMsg;
 @end

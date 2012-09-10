@@ -86,13 +86,42 @@
             break;
     }
 
-#if 1
+#if 0
     NSLog(@"OSCManagerController :: sending actionId %d",actionId);
 #endif
     
     OSCMessage *msg = [OSCMessage createWithAddress:@"/action"];
     [msg addInt:actionId];
     [oscOutPort sendThisMessage:msg];
+}
+
+- (void)selectTrack:(NSInteger)trackNumber
+{
+    OSCMessage *msg = [OSCMessage createWithAddress:@"/device/track/select"];
+    [msg addInt:trackNumber];
+    [oscOutPort sendThisMessage:msg];
+}
+
+- (void)selectFX:(NSInteger)fxNumber
+{
+    OSCMessage *msg = [OSCMessage createWithAddress:@"/device/fx/select"];
+    [msg addInt:fxNumber];
+    [oscOutPort sendThisMessage:msg];    
+}
+
+- (void)sendCannedMsg
+{
+    OSCMessage *msg;
+    
+    msg = [OSCMessage createWithAddress:@"/track/1/fxeq/loshelf/freq/hz"];
+    [msg addFloat:200];
+    
+    [oscOutPort sendThisMessage:msg];   
+    
+    msg = [OSCMessage createWithAddress:@"/track/1/fxeq/loshelf/gain/db"];
+    [msg addFloat:pow(10.0,(10.0/20.0))];
+    
+    [oscOutPort sendThisMessage:msg];    
 }
 
 #pragma mark -
@@ -200,8 +229,8 @@
     
     NSString *address = [m address];
     
-#if 0
-    NSLog(@"Address = %@",address);
+#if 1
+    NSLog(@"Address = %@, value %@",address,[m value]);
 #endif
     
     NSRegularExpression *regex;

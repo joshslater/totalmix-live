@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 
+#import "OSCMessagingProtocol.h"
 #import "Track.h"
 #import "TracksViewController.h"
 #import "AuxViewController.h"
@@ -55,6 +56,12 @@
     
     // update the outPort
     [oscManagerController updateOscIpAddress:settings.oscIpAddress inPort:settings.oscInPort outPort:settings.oscOutPort];
+    
+    // refresh the osc device
+    //[oscManagerController selectFX:1];
+    [oscManagerController selectTrack:1];
+    [oscManagerController sendOscAction:OSCActionRefreshDevices];
+    //[oscManagerController sendCannedMsg];
     
     // pass the tracks data array to oscManagerController
     oscManagerController.tracks = tracks;
