@@ -18,11 +18,24 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        // Initialization code        
     }
     return self;
 }
 
+- (void)awakeFromNib
+{
+    NSLog(@"initting");
+    
+    // give the track label rounded corners -- need to do this workaround as just
+    // setting the cornerRadius kills scroll performance
+    self.backgroundColor = [UIColor clearColor];
+    self.layer.backgroundColor = [UIColor lightGrayColor].CGColor;
+    self.layer.cornerRadius = 6;
+    self.layer.shouldRasterize = YES;
+    self.layer.masksToBounds = NO;
+    
+}
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

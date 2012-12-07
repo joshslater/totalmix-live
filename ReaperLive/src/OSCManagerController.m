@@ -130,7 +130,7 @@
 {
     for (Track *track in tracks)
     {
-#if 1
+#if 0
         NSLog(@"Sending track %d state",track.trackNumber);
 #endif
         // volume

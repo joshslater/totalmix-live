@@ -116,9 +116,7 @@
 #endif
     
     // why do I have to add 1 to the height?
-    tracksTableView.frame = CGRectMake(2, tracksToolbar.frame.size.height, screenRect.size.height - 4, screenRect.size.width - [[UIApplication sharedApplication] statusBarFrame].size.height - tracksToolbar.frame.size.height - [super tabBarController].tabBar.frame.size.height + 1);
-    
-    tracksTableView.backgroundColor = [UIColor blackColor];
+    tracksTableView.frame = CGRectMake(0, tracksToolbar.frame.size.height, 8 * TRACK_CELL_WIDTH, screenRect.size.width - [[UIApplication sharedApplication] statusBarFrame].size.width - tracksToolbar.frame.size.height - [super tabBarController].tabBar.frame.size.height + 1);
     
     tracksTableView.delegate = self;
     tracksTableView.dataSource = self;
@@ -152,13 +150,12 @@
     // initialize track cell array    
     for (int cellNum = 0; cellNum < [tracks count]; cellNum++)
     {
-#if 0        
+#if 1
         NSLog(@"trying to create track cellNum %d",cellNum);
 #endif
         TrackTableCell *cell = [self createCell:((Track *)[tracks objectAtIndex:cellNum]).trackNumber];
         [trackCells setObject:cell forKey:[NSNumber numberWithInt:cellNum]]; 
     }
-    
     
     // set the initial track selection to -1 (no track selected)
     self.selectedTrack = -1;
@@ -200,7 +197,11 @@
     NSNumber *key = [NSNumber numberWithInt:indexPath.row];
     
     if ([trackCells objectForKey:key])
-    {     
+    {
+#if 1
+        NSLog(@"getting cell %d",indexPath.row);
+#endif
+        
         cell = (TrackTableCell *)[trackCells objectForKey:key];
         
         // set the volume slider, since we don't update it if it's not visible
@@ -208,7 +209,7 @@
     } 
     else 
     {
-#if 0        
+#if 1       
         NSLog(@"creating cell %d",indexPath.row);
 #endif
         
@@ -221,7 +222,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 85.0;
+    return TRACK_CELL_WIDTH;
 }
 
 - (TrackTableCell *)createCell:(int)trackNumber
@@ -234,11 +235,11 @@
     [[NSBundle mainBundle] loadNibNamed:@"TrackTableCell" owner:self options:nil];
     cell = [self trackTableCell];
     
-#if 0    
+#if 0   
     ////////////////////////////////
     ////// MANUAL CELL INIT/////////
     ////////////////////////////////
-    //
+    
     cell = [[TrackTableCell alloc] initWithFrame:CGRectMake(0, 0, 85, 655)];
     cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"TrackBkg.png"]];
     
@@ -264,7 +265,6 @@
     [cell.eqButton addTarget:self action:@selector(eqButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [cell.contentView addSubview:cell.eqButton];
 
-
     ////////// SOLO BUTTON ///////////
     UIButton *soloBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     soloBtn.frame = CGRectMake(6, 308, 33, 32);
@@ -286,6 +286,11 @@
     [cell.contentView addSubview:cell.trackLabel];
 #endif     
     
+    // create border
+    cell.layer.borderColor = [UIColor blackColor].CGColor;
+    cell.layer.borderWidth = 1.0f;
+    
+    
     cell.trackLabel.text = [NSString stringWithFormat:@"%d",trackNumber];
     // give the track label rounded corners -- need to do this workaround as just
     // setting the cornerRadius kills scroll performance
@@ -294,10 +299,6 @@
     cell.trackLabel.layer.cornerRadius = 6;
     cell.trackLabel.layer.shouldRasterize = YES;
     cell.trackLabel.layer.masksToBounds = NO;
-    
-    // set background image of EQ Button
-    cell.eqButton.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"EQBtn.png"]];
-    
     
     /**************************/
     /********* FADER  *********/
@@ -387,7 +388,7 @@
 
 - (IBAction)gateButtonPressed:(id)sender
 {
-    NSIndexPath *indexPath = [self.tracksTableView indexPathForCell:(UITableViewCell *)[[sender superview] superview]];
+    NSIndexPath *indexPath = [self.tracksTableView indexPathForCell:(UITableViewCell *)[[[sender superview] superview] superview]];
     
     self.selectedTrack = indexPath.row;
     
@@ -401,11 +402,11 @@
 
 - (IBAction)compButtonPressed:(id)sender
 {
-    NSIndexPath *indexPath = [self.tracksTableView indexPathForCell:(UITableViewCell *)[[sender superview] superview]];
+    NSIndexPath *indexPath = [self.tracksTableView indexPathForCell:(UITableViewCell *)[[[sender superview] superview] superview]];
 
-    self.selectedTrack = indexPath.row;    
+    self.selectedTrack = indexPath.row;
     
-#if 0
+#if 1
     NSLog(@"Comp Button Pushed for Track %d",indexPath.row);
 #endif
     
@@ -414,11 +415,11 @@
 
 - (IBAction)eqButtonPressed:(id)sender
 {
-    NSIndexPath *indexPath = [self.tracksTableView indexPathForCell:(UITableViewCell *)[[sender superview] superview]];
+    NSIndexPath *indexPath = [self.tracksTableView indexPathForCell:(UITableViewCell *)[[[sender superview] superview] superview]];
     
     self.selectedTrack = ((Track *)[tracks objectAtIndex:indexPath.row]).trackNumber;
     
-#if 0
+#if 1
     NSLog(@"EQ Button Pushed for Track %d",indexPath.row);
 #endif
     

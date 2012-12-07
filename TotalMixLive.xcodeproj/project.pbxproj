@@ -121,14 +121,14 @@
 		03712C6115D8B62900EC9665 /* EqViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EqViewController.m; sourceTree = "<group>"; };
 		03A40B0F15F1D65900CE0FAD /* EqButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EqButton.h; sourceTree = "<group>"; };
 		03A40B1015F1D65900CE0FAD /* EqButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EqButton.m; sourceTree = "<group>"; };
-		03ADD56C15BCFC0900EBDC71 /* ReaperLive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReaperLive.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		03ADD56C15BCFC0900EBDC71 /* TotalMixLive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TotalMixLive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03ADD57015BCFC0900EBDC71 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		03ADD57215BCFC0900EBDC71 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		03ADD57415BCFC0900EBDC71 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		03ADD57815BCFC0900EBDC71 /* ReaperLive-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ReaperLive-Info.plist"; sourceTree = "<group>"; };
+		03ADD57815BCFC0900EBDC71 /* TotalMixLive-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TotalMixLive-Info.plist"; sourceTree = "<group>"; };
 		03ADD57A15BCFC0900EBDC71 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		03ADD57C15BCFC0900EBDC71 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		03ADD57E15BCFC0900EBDC71 /* ReaperLive-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ReaperLive-Prefix.pch"; sourceTree = "<group>"; };
+		03ADD57E15BCFC0900EBDC71 /* TotalMixLive-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TotalMixLive-Prefix.pch"; sourceTree = "<group>"; };
 		03ADD57F15BCFC0900EBDC71 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		03ADD58015BCFC0900EBDC71 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		03ADD58215BCFC0900EBDC71 /* TracksViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TracksViewController.h; sourceTree = "<group>"; };
@@ -286,7 +286,7 @@
 		03ADD56D15BCFC0900EBDC71 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				03ADD56C15BCFC0900EBDC71 /* ReaperLive.app */,
+				03ADD56C15BCFC0900EBDC71 /* TotalMixLive.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -339,10 +339,10 @@
 		03F2328415C267C4009B0390 /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				03ADD57815BCFC0900EBDC71 /* ReaperLive-Info.plist */,
+				03ADD57815BCFC0900EBDC71 /* TotalMixLive-Info.plist */,
 				03ADD57915BCFC0900EBDC71 /* InfoPlist.strings */,
 				03ADD57C15BCFC0900EBDC71 /* main.m */,
-				03ADD57E15BCFC0900EBDC71 /* ReaperLive-Prefix.pch */,
+				03ADD57E15BCFC0900EBDC71 /* TotalMixLive-Prefix.pch */,
 				03BDCAA115D8DBCC0060456B /* Constants.h */,
 			);
 			name = "Other Sources";
@@ -409,9 +409,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		03ADD56B15BCFC0900EBDC71 /* ReaperLive */ = {
+		03ADD56B15BCFC0900EBDC71 /* TotalMixLive */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 03ADD58A15BCFC0900EBDC71 /* Build configuration list for PBXNativeTarget "ReaperLive" */;
+			buildConfigurationList = 03ADD58A15BCFC0900EBDC71 /* Build configuration list for PBXNativeTarget "TotalMixLive" */;
 			buildPhases = (
 				03ADD56815BCFC0900EBDC71 /* Sources */,
 				03ADD56915BCFC0900EBDC71 /* Frameworks */,
@@ -421,9 +421,9 @@
 			);
 			dependencies = (
 			);
-			name = ReaperLive;
+			name = TotalMixLive;
 			productName = ReaperLive;
-			productReference = 03ADD56C15BCFC0900EBDC71 /* ReaperLive.app */;
+			productReference = 03ADD56C15BCFC0900EBDC71 /* TotalMixLive.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -435,7 +435,7 @@
 				LastUpgradeCheck = 0430;
 				ORGANIZATIONNAME = Self;
 			};
-			buildConfigurationList = 03ADD56615BCFC0900EBDC71 /* Build configuration list for PBXProject "ReaperLive" */;
+			buildConfigurationList = 03ADD56615BCFC0900EBDC71 /* Build configuration list for PBXProject "TotalMixLive" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -453,7 +453,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				03ADD56B15BCFC0900EBDC71 /* ReaperLive */,
+				03ADD56B15BCFC0900EBDC71 /* TotalMixLive */,
 			);
 		};
 /* End PBXProject section */
@@ -607,14 +607,14 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ReaperLive/ReaperLive-Prefix.pch";
-				INFOPLIST_FILE = "ReaperLive/ReaperLive-Info.plist";
+				GCC_PREFIX_HEADER = "ReaperLive/TotalMixLive-Prefix.pch";
+				INFOPLIST_FILE = "ReaperLive/TotalMixLive-Info.plist";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lVVOSC",
 					"-lVVBasics",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = TotalMixLive;
 				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/QuickDialog\"/**";
 				WRAPPER_EXTENSION = app;
@@ -628,14 +628,14 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ReaperLive/ReaperLive-Prefix.pch";
-				INFOPLIST_FILE = "ReaperLive/ReaperLive-Info.plist";
+				GCC_PREFIX_HEADER = "ReaperLive/TotalMixLive-Prefix.pch";
+				INFOPLIST_FILE = "ReaperLive/TotalMixLive-Info.plist";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lVVOSC",
 					"-lVVBasics",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = TotalMixLive;
 				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/QuickDialog\"/**";
 				WRAPPER_EXTENSION = app;
@@ -645,7 +645,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		03ADD56615BCFC0900EBDC71 /* Build configuration list for PBXProject "ReaperLive" */ = {
+		03ADD56615BCFC0900EBDC71 /* Build configuration list for PBXProject "TotalMixLive" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				03ADD58815BCFC0900EBDC71 /* Debug */,
@@ -654,7 +654,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		03ADD58A15BCFC0900EBDC71 /* Build configuration list for PBXNativeTarget "ReaperLive" */ = {
+		03ADD58A15BCFC0900EBDC71 /* Build configuration list for PBXNativeTarget "TotalMixLive" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				03ADD58B15BCFC0900EBDC71 /* Debug */,

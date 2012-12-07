@@ -1,6 +1,6 @@
 #define TRACKS_WIDTH 1030 // FIXME: Why does this need to be more than 1024 to work?
 #define TRACKS_HEIGHT 768
-#define TRACK_CELL_WIDTH 85.0
+#define TRACK_CELL_WIDTH 100
 #define DETAILED_TRACK_VIEW_HEIGHT 305
 
 // detailed EQ view scale factors
