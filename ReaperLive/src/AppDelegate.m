@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Self. All rights reserved.
 //
 
-#define NTRACKS 50
+#import "Constants.h"
 
 #import "AppDelegate.h"
 
@@ -25,19 +25,22 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // create tracks
-    tracks = [[NSMutableArray alloc] initWithCapacity:100];
-    
-    for (int i = 0; i < NTRACKS; i++)
-    {
-        [tracks addObject: [[Track alloc] initWithTrackNumber:(i+1)]];
-    }
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
+    
+    // create tracks
+    tracks = [[NSMutableArray alloc] initWithCapacity:MAX_TRACK_NUMBER];
+    
+    for (int i = 0; i < MAX_TRACK_NUMBER; i++)
+    {
+        [tracks addObject: [[Track alloc] initWithTrackNumber:(i+1)]];
+    }
+
+    
     // main tracks mixer
-    TracksViewController *tracksViewController = [[TracksViewController alloc] init];
+    TracksViewController *tracksViewController = [[TracksViewController alloc] initWithNibName:@"TracksViewController" bundle:nil];
     tracksViewController.tracks = tracks;
     
     // aux mixer
@@ -58,17 +61,23 @@
     // pass the tracks data array to oscManagerController
     oscManagerController.tracks = tracks;
     
+    
     // update the outPort
     [oscManagerController updateOscIpAddress:settings.oscIpAddress inPort:settings.oscInPort outPort:settings.oscOutPort];
+
+    [oscManagerController setInitialState];
+    
     
     // refresh the osc device
-    [oscManagerController sendEntireState];
+    //[oscManagerController sendEntireState];
     //[oscManagerController selectFX:1];
     //[oscManagerController selectTrack:1];
     //[oscManagerController sendOscAction:OSCActionRefreshDevices];
     //[oscManagerController sendCannedMsg];
     
-       
+    
+
+    
     self.tabBarController = [[UITabBarController alloc] init];
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:tracksViewController, auxViewController, settingsViewController, nil];
     

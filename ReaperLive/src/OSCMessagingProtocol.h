@@ -21,6 +21,9 @@ typedef enum
 } oscActions_t;
 
 @protocol OSCMessagingProtocol <NSObject>
+
+
+- (void)setBankStart:(int)trackNumber;
 - (void)volumeFaderDidChange:(int)trackNumber toValue:(float)value;
 - (void)sendOscAction:(oscActions_t)action;
 - (void)eqValueDidChange:(NSInteger)trackNumber band:(NSInteger)band item:(eqItems_t)item value:(float)value;

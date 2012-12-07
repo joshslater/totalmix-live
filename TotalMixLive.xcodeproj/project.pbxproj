@@ -36,6 +36,7 @@
 		03712C5815D882F600EC9665 /* EqCurveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03712C5715D882F600EC9665 /* EqCurveView.m */; };
 		03712C5B15D8ADC400EC9665 /* EqPointsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03712C5A15D8ADC300EC9665 /* EqPointsView.m */; };
 		03712C6215D8B62900EC9665 /* EqViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03712C6115D8B62900EC9665 /* EqViewController.m */; };
+		039AD79A167191C300980B62 /* TracksViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 039AD799167191C300980B62 /* TracksViewController.xib */; };
 		03A40B1115F1D65A00CE0FAD /* EqButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A40B1015F1D65900CE0FAD /* EqButton.m */; };
 		03ADD57115BCFC0900EBDC71 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03ADD57015BCFC0900EBDC71 /* UIKit.framework */; };
 		03ADD57315BCFC0900EBDC71 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03ADD57215BCFC0900EBDC71 /* Foundation.framework */; };
@@ -119,6 +120,7 @@
 		03712C5A15D8ADC300EC9665 /* EqPointsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EqPointsView.m; sourceTree = "<group>"; };
 		03712C6015D8B62900EC9665 /* EqViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EqViewController.h; sourceTree = "<group>"; };
 		03712C6115D8B62900EC9665 /* EqViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EqViewController.m; sourceTree = "<group>"; };
+		039AD799167191C300980B62 /* TracksViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TracksViewController.xib; sourceTree = "<group>"; };
 		03A40B0F15F1D65900CE0FAD /* EqButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EqButton.h; sourceTree = "<group>"; };
 		03A40B1015F1D65900CE0FAD /* EqButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EqButton.m; sourceTree = "<group>"; };
 		03ADD56C15BCFC0900EBDC71 /* TotalMixLive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TotalMixLive.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -359,6 +361,7 @@
 		03F2328715C268D8009B0390 /* NIBs */ = {
 			isa = PBXGroup;
 			children = (
+				039AD799167191C300980B62 /* TracksViewController.xib */,
 				036181E415EB2DA3001FB621 /* AuxViewController.xib */,
 				03ADD59415BD0CD100EBDC71 /* TrackTableCell.xib */,
 				03F2327A15C0E4FB009B0390 /* GateView.xib */,
@@ -505,6 +508,7 @@
 				03D8BAB515FDBA1F006F3B90 /* CloseButton.png in Resources */,
 				03D8BAB715FDBB38006F3B90 /* EQPoint.png in Resources */,
 				03D8BAB915FDC94A006F3B90 /* SettingsIcon.png in Resources */,
+				039AD79A167191C300980B62 /* TracksViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -616,6 +620,7 @@
 				);
 				PRODUCT_NAME = TotalMixLive;
 				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/QuickDialog\"/**";
 				WRAPPER_EXTENSION = app;
 			};
@@ -637,6 +642,7 @@
 				);
 				PRODUCT_NAME = TotalMixLive;
 				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/QuickDialog\"/**";
 				WRAPPER_EXTENSION = app;
 			};

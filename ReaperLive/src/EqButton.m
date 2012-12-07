@@ -25,8 +25,6 @@
 
 - (void)awakeFromNib
 {
-    NSLog(@"initting");
-    
     // give the track label rounded corners -- need to do this workaround as just
     // setting the cornerRadius kills scroll performance
     self.backgroundColor = [UIColor clearColor];

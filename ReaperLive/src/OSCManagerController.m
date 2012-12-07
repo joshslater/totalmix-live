@@ -27,12 +27,32 @@
 }
 
 #pragma mark -
+#pragma mark Private Methods
+- (void)setInitialState
+{
+#if 0
+    NSLog(@"oscManagerController::cycleAllTracks");
+#endif
+    
+    OSCMessage *msg;
+    
+    // page 1
+    msg = [OSCMessage createWithAddress:@"/1"];
+    [oscOutPort sendThisMessage:msg];
+
+    // start at track 0
+    msg = [OSCMessage createWithAddress:@"/setBankStart"];
+    [msg addFloat:0.0];
+    [oscOutPort sendThisMessage:msg];    
+}
+
+#pragma mark -
 #pragma mark <OSCSettingsDelegateProtocol>
 
 - (void)updateOscIpAddress:(NSString *)ipAddress inPort:(NSInteger)inPort outPort:(NSInteger)outPort
 {
     
-#if 0
+#if 1
     NSLog(@"oscManagerController::updateOscIpAddress");
 #endif
     
@@ -61,16 +81,33 @@
 
 #pragma mark -
 #pragma mark <OscMessagingProtocol>
+- (void)setBankStart:(int)trackNumber
+{
+    // update the bankStart private variable
+    bankStart = trackNumber;
+    
+    OSCMessage *msg = [OSCMessage createWithAddress:@"/setBankStart"];
+    [msg addFloat:(float)trackNumber];
+    
+    [oscOutPort sendThisMessage:msg];
+    
+#if 0
+    NSLog(@"OSC TX: /setBankStart %d",trackNumber);
+#endif
+}
+
 
 - (void)volumeFaderDidChange:(int)trackNumber toValue:(float)value
 {
-    OSCMessage *msg = [OSCMessage createWithAddress:[NSString stringWithFormat:@"/track/%d/volume",trackNumber]];
+    int relativeTrackNumber = trackNumber - bankStart;
+    
+    OSCMessage *msg = [OSCMessage createWithAddress:[NSString stringWithFormat:@"/1/volume%d",relativeTrackNumber]];
     [msg addFloat:value];
     
     [oscOutPort sendThisMessage:msg];
     
 #if 0
-    NSLog(@"Received VolumeFaderDidChange notification, track %d, value %0.3f",trackNumber,value);
+    NSLog(@"OSC TX: /1/volume%d %0.3f",relativeTrackNumber,value);
 #endif
 }
 
@@ -130,7 +167,8 @@
 {
     for (Track *track in tracks)
     {
-#if 0
+#if 1
+        NSLog(@"asdf");
         NSLog(@"Sending track %d state",track.trackNumber);
 #endif
         // volume
@@ -251,25 +289,54 @@
     
     NSString *address = [m address];
     
-#if 1
+#if 0
     NSLog(@"Address = %@, %@",address,[m value]);
 #endif
     
     NSRegularExpression *regex;
     NSTextCheckingResult *match;
     
-    ///////// TRACK VOLUME ///////////
-    regex = [NSRegularExpression regularExpressionWithPattern:@"^/track/(\\d)/volume$" options:0 error:nil];
+    ///////// TRACK NAME ///////////
+    regex = [NSRegularExpression regularExpressionWithPattern:@"^/1/trackname(\\d)$" options:0 error:nil];
     match = [regex firstMatchInString:address options:0 range:NSMakeRange(0, [address length])];
     
     if (match)
     {
-        int trackNumber = [[address substringWithRange:[match rangeAtIndex:1]] intValue];
+        int relativeTrackNumber = [[address substringWithRange:[match rangeAtIndex:1]] intValue];
+        int trackNumber = relativeTrackNumber + bankStart;
         
-#if 0
-        NSLog(@"OSC::/track/%d/volume %0.3f",trackNumber,[m.value floatValue]);
+#if 1
+        NSLog(@"OSC::/1/trackname%d %@",relativeTrackNumber,[m.value stringValue]);
 #endif
+        
+        NSString *trackName = [m.value stringValue];
+
+        ((Track *)[tracks objectAtIndex:trackNumber-1]).name = trackName;
+        
+        // post notifcation
+        NSArray *keys = [[NSArray alloc] initWithObjects:@"trackNumber", nil];
+        NSArray *objects = [[NSArray alloc] initWithObjects:[NSNumber numberWithInt:trackNumber], nil];
+        NSDictionary *extraInfo = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
+        NSNotification *note = [NSNotification notificationWithName:@"TrackNameDidChange" object:self userInfo:extraInfo];
+        [[NSNotificationCenter defaultCenter] postNotification:note];
+        
+    }
     
+    
+    
+    ///////// TRACK VOLUME ///////////
+    regex = [NSRegularExpression regularExpressionWithPattern:@"^/1/volume(\\d)$" options:0 error:nil];
+    match = [regex firstMatchInString:address options:0 range:NSMakeRange(0, [address length])];
+    
+    if (match)
+    {
+        int relativeTrackNumber = [[address substringWithRange:[match rangeAtIndex:1]] intValue];
+        int trackNumber = relativeTrackNumber + bankStart;
+        
+#if 1
+        NSLog(@"OSC::/1/volume%d %0.3f",relativeTrackNumber,[m.value floatValue]);
+#endif
+        
         ((Track *)[tracks objectAtIndex:trackNumber-1]).volume = [m.value floatValue];
                 
         // post notifcation
@@ -282,15 +349,15 @@
     }
     
     /////////// METER LEVEL //////////////
-    regex = [NSRegularExpression regularExpressionWithPattern:@"^/track/(\\d)/vu$" options:0 error:nil];
+    regex = [NSRegularExpression regularExpressionWithPattern:@"^/1/level(\\d)Left$" options:0 error:nil];
     match = [regex firstMatchInString:address options:0 range:NSMakeRange(0, [address length])];
     
     if (match)
     {
         int trackNumber = [[address substringWithRange:[match rangeAtIndex:1]] intValue];
         
-#if 0
-        NSLog(@"OSC::/track/%d/vu %0.3f",trackNumber,[m.value floatValue]);
+#if 1
+        NSLog(@"OSC::/1/level%dLeft %0.3f",trackNumber,[m.value floatValue]);
 #endif
         
         ((Track *)[tracks objectAtIndex:trackNumber-1]).vuLevel = [m.value floatValue];

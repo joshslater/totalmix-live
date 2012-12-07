@@ -13,6 +13,7 @@
 @implementation Track
 
 @synthesize trackNumber;
+@synthesize name;
 @synthesize volume;
 @synthesize vuLevel;
 

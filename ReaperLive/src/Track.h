@@ -13,6 +13,7 @@
 @interface Track : NSObject
 
 @property int trackNumber;
+@property (strong, nonatomic) NSString *name;
 @property float volume;
 @property float vuLevel;
 

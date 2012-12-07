@@ -89,7 +89,7 @@
     // create the detailed track close button, but don't add to subview yet
     closeDetailedTrackViewButton = [UIButton buttonWithType:UIButtonTypeCustom];
     closeDetailedTrackViewButton.backgroundColor = [UIColor clearColor];
-    closeDetailedTrackViewButton.frame = CGRectMake(950, 0, 44, 44);
+    closeDetailedTrackViewButton.frame = CGRectMake(700, 0, 44, 44);
     [closeDetailedTrackViewButton setImage:[UIImage imageNamed:@"CloseButton.png"] forState:UIControlStateNormal];
     [closeDetailedTrackViewButton addTarget:self action:@selector(closeDetailedTrackView:) forControlEvents:UIControlEventTouchDown];    
     

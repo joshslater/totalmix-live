@@ -68,6 +68,9 @@
     // register for track vu updates
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateVuMeter:) name:@"TrackVuDidChange" object:nil];
     
+    // register for track name updates
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTrackName:) name:@"TrackNameDidChange" object:nil];
+        
     // allocate the trackCells dict
     trackCells = [[NSMutableDictionary alloc] initWithCapacity:[tracks count]];
     
@@ -85,25 +88,18 @@
     
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     
-#if 0
-    UIDevice *myDevice = [UIDevice currentDevice];
-    [myDevice beginGeneratingDeviceOrientationNotifications];
-    UIDeviceOrientation currentOrientation = [myDevice orientation];
-    [myDevice endGeneratingDeviceOrientationNotifications];
-    
-    NSLog(@"Orientation = %d",currentOrientation);
-#endif
-    
-    // add toolbar
-    tracksToolbar = [[UIToolbar alloc] init];
-    // why do I use screen height here? is screen not rotated yet?
-    tracksToolbar.frame = CGRectMake(0, 0, screenRect.size.height, 44);
+    /****************************/
+    /********* TOOLBAR **********/
+    /****************************/
     NSMutableArray *items = [[NSMutableArray alloc] init];
-    
     // button to tell Reaper to update devices
     [items addObject:[[UIBarButtonItem alloc] initWithTitle:@"Refesh OSC" style:UIBarButtonItemStyleBordered target:self action:@selector(refreshOSCButtonPressed:)]];
     [tracksToolbar setItems:items animated:NO];
     [self.view addSubview:tracksToolbar];
+    
+    
+    
+    
     
     // add tracks view
     tracksTableView = [[UITableView alloc] init];
@@ -150,8 +146,8 @@
     // initialize track cell array    
     for (int cellNum = 0; cellNum < [tracks count]; cellNum++)
     {
-#if 1
-        NSLog(@"trying to create track cellNum %d",cellNum);
+#if 0
+        NSLog(@"Creating track cellNum %d",cellNum);
 #endif
         TrackTableCell *cell = [self createCell:((Track *)[tracks objectAtIndex:cellNum]).trackNumber];
         [trackCells setObject:cell forKey:[NSNumber numberWithInt:cellNum]]; 
@@ -198,7 +194,7 @@
     
     if ([trackCells objectForKey:key])
     {
-#if 1
+#if 0
         NSLog(@"getting cell %d",indexPath.row);
 #endif
         
@@ -291,7 +287,7 @@
     cell.layer.borderWidth = 1.0f;
     
     
-    cell.trackLabel.text = [NSString stringWithFormat:@"%d",trackNumber];
+    cell.trackLabel.text = ((Track *)[tracks objectAtIndex:trackNumber-1]).name;
     // give the track label rounded corners -- need to do this workaround as just
     // setting the cornerRadius kills scroll performance
     cell.trackLabel.backgroundColor = [UIColor clearColor];
@@ -375,12 +371,23 @@
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
 {
+#if 0
      NSLog(@"TracksViewController::scrollViewWillEndDragging:withVelocity:targetContentOffset:(%0.2f,%0.2f)",targetContentOffset->x,targetContentOffset->y);
+#endif
     
     // calculate nearest cell
     float newTargetOffset = round(targetContentOffset->y / TRACK_CELL_WIDTH) * TRACK_CELL_WIDTH;
     
     *targetContentOffset = CGPointMake(targetContentOffset->x, newTargetOffset);
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    NSArray *visible = [tracksTableView indexPathsForVisibleRows];
+    int trackNumber = ((NSIndexPath *)[visible objectAtIndex:0]).row;
+
+    // call the oscDelegate with the new value
+    [oscDelegate setBankStart:trackNumber];
 }
 
 #pragma mark -
@@ -434,7 +441,7 @@
     Track *track = [self.tracks objectAtIndex:indexPath.row];
     
     track.volume = [sender value];
-    
+        
     // call the oscDelegate with the new value
     [oscDelegate volumeFaderDidChange:track.trackNumber toValue:[sender value]];
 
@@ -545,6 +552,24 @@
     });
 }
 
+- (void) updateTrackName:(NSNotification *)note
+{
+    NSDictionary *extraInfo = [note userInfo];
+    int trackNumber = [[extraInfo objectForKey:@"trackNumber"] intValue];    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:trackNumber-1 inSection:0];
+    
+    TrackTableCell *cell = (TrackTableCell *)[self.tracksTableView cellForRowAtIndexPath:indexPath];
+    
+#if 0
+    NSLog(@"Received trackNameDidChange notification, trackNumber = %d, track name = %@",trackNumber,[[tracks objectAtIndex:trackNumber] name]);
+    NSLog(@"cell = 0x%x",(unsigned int)cell);
+#endif
+    
+    dispatch_async( dispatch_get_main_queue(), ^{
+        // running synchronously on the main thread now -- call the handler
+        cell.trackLabel.text = [[tracks objectAtIndex:trackNumber-1] name];
+    });
+}
 
 - (void)dealloc
 {
