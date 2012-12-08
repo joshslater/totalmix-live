@@ -13,7 +13,18 @@
 #import "TrackTableCell.h"
 #import "DetailedTrackViewController.h"
 
-@interface TracksViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, DetailedTrackViewControllerProtocol>
+
+@protocol TracksViewControllerProtocol <NSObject>
+
+@required
+- (void)setNumVisibleTracks:(int)numTracks;
+- (void)initializeTracks:(int)numTracks;
+- (void)initializeTrackCells:(int)numTracks;
+
+@end
+
+
+@interface TracksViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, DetailedTrackViewControllerProtocol, TracksViewControllerProtocol>
 {
     DetailedTrackViewController *detailedTrackViewController;
     NSMutableDictionary *trackCells;
@@ -26,12 +37,13 @@
 @property (weak, nonatomic) IBOutlet UIToolbar *tracksToolbar;
 @property (weak, nonatomic) IBOutlet UIView *masterView;
 
+// number of visible tracks isn't necessarily the number of stored tracks
+@property (nonatomic) NSInteger numVisibleTracks;
+
 // buttons to control inputs/playback/outputs
 @property (weak, nonatomic) IBOutlet UIButton *inputsButton;
 @property (weak, nonatomic) IBOutlet UIButton *playbackButton;
 @property (weak, nonatomic) IBOutlet UIButton *outputsButton;
-
-
 
 // this is a property because the setter is overridden to set the track label's background color
 @property (nonatomic) NSInteger selectedTrack;

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "OSCMessagingProtocol.h"
+#import "TracksViewController.h"
 
 @class Settings;
 
@@ -25,6 +26,7 @@
 }
 
 @property (weak, nonatomic) id <OSCMessagingProtocol> oscSettingsDelegate;
+@property (weak, nonatomic) id <TracksViewControllerProtocol> tracksViewControllerDelegate;
 
 @property (strong, nonatomic) Settings *settings;
 

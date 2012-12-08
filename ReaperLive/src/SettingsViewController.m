@@ -17,6 +17,7 @@
 @implementation SettingsViewController
 
 @synthesize oscSettingsDelegate;
+@synthesize tracksViewControllerDelegate;
 
 @synthesize settings;
 
@@ -133,7 +134,7 @@
 
 - (void)QEntryDidEndEditingElement:(QEntryElement *)element andCell:(QEntryTableViewCell *)cell
 {
-#if 0
+#if 1
     NSLog(@"Done Editing Element, key = %@",element.key);
 #endif
     
@@ -164,6 +165,11 @@
     
     // no matter who was edited, update the osc delegate
     [oscSettingsDelegate updateOscIpAddress:oscIpAddressElement.textValue inPort:self.settings.oscInPort outPort:self.settings.oscOutPort];
+    
+    // initialize tracks
+    [tracksViewControllerDelegate setNumVisibleTracks:self.settings.nInputTracks];
+    [tracksViewControllerDelegate initializeTracks:self.settings.nInputTracks];
+    [tracksViewControllerDelegate initializeTrackCells:self.settings.nInputTracks];
 }
 
 - (void)sendTestOscMsg

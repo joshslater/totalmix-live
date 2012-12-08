@@ -305,7 +305,7 @@
         int relativeTrackNumber = [[address substringWithRange:[match rangeAtIndex:1]] intValue];
         int trackNumber = relativeTrackNumber + bankStart;
         
-#if 1
+#if 0
         NSLog(@"OSC::/1/trackname%d %@",relativeTrackNumber,[m.value stringValue]);
 #endif
         
@@ -333,7 +333,7 @@
         int relativeTrackNumber = [[address substringWithRange:[match rangeAtIndex:1]] intValue];
         int trackNumber = relativeTrackNumber + bankStart;
         
-#if 1
+#if 0
         NSLog(@"OSC::/1/volume%d %0.3f",relativeTrackNumber,[m.value floatValue]);
 #endif
         
@@ -356,7 +356,7 @@
     {
         int trackNumber = [[address substringWithRange:[match rangeAtIndex:1]] intValue];
         
-#if 1
+#if 0
         NSLog(@"OSC::/1/level%dLeft %0.3f",trackNumber,[m.value floatValue]);
 #endif
         

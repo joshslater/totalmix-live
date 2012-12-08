@@ -24,6 +24,7 @@
 
 #pragma mark Properties
 
+@synthesize numVisibleTracks;
 @synthesize oscDelegate;
 @synthesize tracks;
 @synthesize tracksTableView;
@@ -61,7 +62,7 @@
         // create UITabBarItem
         self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Tracks" image:[UIImage imageNamed:@"TracksIcon.png"] tag:0];
     }
-     
+    
     // register for track volume updates
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateVolumeFader:) name:@"TrackVolumeDidChange" object:nil];
     
@@ -72,7 +73,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTrackName:) name:@"TrackNameDidChange" object:nil];
         
     // allocate the trackCells dict
-    trackCells = [[NSMutableDictionary alloc] initWithCapacity:[tracks count]];
+    trackCells = [[NSMutableDictionary alloc] initWithCapacity:100];
     
     return self;
 }
@@ -96,10 +97,6 @@
     [items addObject:[[UIBarButtonItem alloc] initWithTitle:@"Refesh OSC" style:UIBarButtonItemStyleBordered target:self action:@selector(refreshOSCButtonPressed:)]];
     [tracksToolbar setItems:items animated:NO];
     [self.view addSubview:tracksToolbar];
-    
-    
-    
-    
     
     // add tracks view
     tracksTableView = [[UITableView alloc] init];
@@ -142,20 +139,16 @@
     detailedTrackViewController = [[DetailedTrackViewController alloc] init];  
     // set the delegate of the detailedTrackViewController
     detailedTrackViewController.delegate = self;
-    
-    // initialize track cell array    
-    for (int cellNum = 0; cellNum < [tracks count]; cellNum++)
-    {
-#if 0
-        NSLog(@"Creating track cellNum %d",cellNum);
-#endif
-        TrackTableCell *cell = [self createCell:((Track *)[tracks objectAtIndex:cellNum]).trackNumber];
-        [trackCells setObject:cell forKey:[NSNumber numberWithInt:cellNum]]; 
-    }
-    
+        
     // set the initial track selection to -1 (no track selected)
     self.selectedTrack = -1;
     
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    // reload the data whenever the view will appear
+    [tracksTableView reloadData];
 }
 
 - (void)viewDidUnload
@@ -163,6 +156,8 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
+
+
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -184,11 +179,19 @@
 #pragma mark TableView Delegate/DataSource Methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.tracks count];
+#if 1
+    NSLog(@"numberofRowsInSection:%d",self.numVisibleTracks);
+#endif
+    
+    return self.numVisibleTracks;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+#if 1
+    NSLog(@"cellForRowAtIndexPath");
+#endif
+    
     TrackTableCell *cell;
     NSNumber *key = [NSNumber numberWithInt:indexPath.row];
     
@@ -205,7 +208,7 @@
     } 
     else 
     {
-#if 1       
+#if 0
         NSLog(@"creating cell %d",indexPath.row);
 #endif
         
@@ -223,7 +226,7 @@
 
 - (TrackTableCell *)createCell:(int)trackNumber
 {
-#if 0
+#if 1
     NSLog(@"TracksViewController::createCell:%d",trackNumber);
 #endif
     
@@ -342,7 +345,6 @@
     
     cell.vuMeter = meter;
     
-    
     // rotate the cell
     cell.transform = CGAffineTransformMakeRotation(M_PI/2);
     
@@ -399,7 +401,7 @@
     
     self.selectedTrack = indexPath.row;
     
-#if 0    
+#if 1
     NSLog(@"Gate Button Pushed for Track %d",indexPath.row);
 #endif
 
@@ -570,6 +572,60 @@
         cell.trackLabel.text = [[tracks objectAtIndex:trackNumber-1] name];
     });
 }
+
+
+
+#pragma mark -
+#pragma mark TracksViewControllerProtocol Implementation
+
+/*
+- (void)setNumVisibleTracks:(int)numTracks
+{
+    self.numVisibleTracks = numTracks;
+}
+*/
+
+- (void)initializeTracks:(int)numTracks
+{
+#if 1
+    NSLog(@"tracksViewController::initializeTracks:%d",numTracks);
+#endif
+    
+    // clear old tracks
+    [self.tracks removeAllObjects];
+    
+    for (int i = 0; i < MAX(numTracks,8); i++)
+    {
+        [tracks addObject: [[Track alloc] initWithTrackNumber:(i+1)]];
+    }
+}
+
+- (void)initializeTrackCells:(int)numTracks
+{
+#if 1
+    NSLog(@"tracksViewController::initializeTrackCells:%d",numTracks);
+#endif
+    
+//    [tracksTableView beginUpdates];
+    
+    // clear old track cells
+    [trackCells removeAllObjects];
+        
+    // initialize track cell array
+    for (int cellNum = 0; cellNum < numTracks; cellNum++)
+    {
+#if 0
+        NSLog(@"creating cell %d",((Track *)[tracks objectAtIndex:cellNum]).trackNumber);
+#endif
+        
+        TrackTableCell *cell = [self createCell:((Track *)[tracks objectAtIndex:cellNum]).trackNumber];
+        [trackCells setObject:cell forKey:[NSNumber numberWithInt:cellNum]];
+    }
+
+}
+
+#pragma mark -
+#pragma mark dealloc
 
 - (void)dealloc
 {

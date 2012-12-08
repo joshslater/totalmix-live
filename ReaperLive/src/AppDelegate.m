@@ -29,10 +29,9 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
-    
-    // create tracks
+    // create & initialize tracks and cells tracks
     tracks = [[NSMutableArray alloc] init];
-
+    
     // main tracks mixer
     TracksViewController *tracksViewController = [[TracksViewController alloc] initWithNibName:@"TracksViewController" bundle:nil];
     tracksViewController.tracks = tracks;
@@ -44,15 +43,15 @@
     SettingsViewController *settingsViewController = [[SettingsViewController alloc] init];
     settings = [self initializeSettings];
     settingsViewController.settings = settings;
+    settingsViewController.tracksViewControllerDelegate = tracksViewController;   
+
+    // initialize tracks based on settings
+    tracksViewController.numVisibleTracks = settings.nInputTracks;
+    [tracksViewController initializeTracks:settings.nInputTracks];
+    [tracksViewController initializeTrackCells:settings.nInputTracks];
     
-    
-    
-    for (int i = 0; i < MAX_TRACK_NUMBER; i++)
-    {
-        [tracks addObject: [[Track alloc] initWithTrackNumber:(i+1)]];
-    }
-    
-    
+    NSLog(@"[tracksViewController.tracks count] = %d",[tracksViewController.tracks count]);
+        
     /**************************/
     /******** OSC STUFF *******/
     /**************************/
@@ -62,7 +61,6 @@
     tracksViewController.oscDelegate = oscManagerController;
     // pass the tracks data array to oscManagerController
     oscManagerController.tracks = tracks;
-    
     
     // update the outPort
     [oscManagerController updateOscIpAddress:settings.oscIpAddress inPort:settings.oscInPort outPort:settings.oscOutPort];

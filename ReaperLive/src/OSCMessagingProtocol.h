@@ -33,4 +33,6 @@ typedef enum
 - (void)selectFX:(NSInteger)fxNumber;
 - (void)sendCannedMsg;
 - (void)sendEntireState;
+
+
 @end
