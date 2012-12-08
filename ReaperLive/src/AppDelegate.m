@@ -46,9 +46,11 @@
     settingsViewController.tracksViewControllerDelegate = tracksViewController;   
 
     // initialize tracks based on settings
-    tracksViewController.numVisibleTracks = settings.nInputTracks;
-    [tracksViewController initializeTracks:settings.nInputTracks];
-    [tracksViewController initializeTrackCells:settings.nInputTracks];
+    tracksViewController.nTracks = settings.nTracks;
+    [tracksViewController initializeTracks];
+    tracksViewController.currentRow = 0;
+    [tracksViewController refreshTracks:settings.nTracks];
+    [tracksViewController refreshTrackCells:settings.nTracks];
     
     NSLog(@"[tracksViewController.tracks count] = %d",[tracksViewController.tracks count]);
         
@@ -60,7 +62,7 @@
     settingsViewController.oscSettingsDelegate = oscManagerController;
     tracksViewController.oscDelegate = oscManagerController;
     // pass the tracks data array to oscManagerController
-    oscManagerController.tracks = tracks;
+    oscManagerController.rowTracks = tracksViewController.rowTracks;
     
     // update the outPort
     [oscManagerController updateOscIpAddress:settings.oscIpAddress inPort:settings.oscInPort outPort:settings.oscOutPort];

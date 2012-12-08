@@ -20,7 +20,7 @@
     int bankStart;
 }
 
-@property (nonatomic, strong) NSMutableArray *tracks;
+@property (nonatomic, strong) NSMutableArray *rowTracks;
 
 - (void)setInitialState;
 

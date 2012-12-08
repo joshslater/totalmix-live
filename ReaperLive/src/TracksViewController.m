@@ -24,7 +24,10 @@
 
 #pragma mark Properties
 
-@synthesize numVisibleTracks;
+@synthesize nTracks;
+@synthesize currentRow;
+@synthesize rowTracks;
+
 @synthesize oscDelegate;
 @synthesize tracks;
 @synthesize tracksTableView;
@@ -51,6 +54,13 @@
     }
 }
 
+- (void)setCurrentRow:(NSInteger)aCurrentRow
+{
+    currentRow = aCurrentRow;
+    
+    rowTracks = (NSMutableArray *)[tracks objectAtIndex:aCurrentRow];
+}
+
 #pragma mark -
 #pragma mark Initialization
 
@@ -75,13 +85,23 @@
     // allocate the trackCells dict
     trackCells = [[NSMutableDictionary alloc] initWithCapacity:100];
     
+    // allocate rowTracks
+    rowTracks = [[NSMutableArray alloc] init];
+    
     return self;
 }
 
+- (void)initializeTracks
+{
+    for(int i = 0; i < 3; i++)
+    {
+        [tracks addObject:[[NSMutableArray alloc] init]];
+    }
+}
 
 - (void)loadView
 {
-#if 0    
+#if 1    
     NSLog(@"TracksViewController::loadView");
 #endif
     
@@ -145,15 +165,15 @@
     
 }
 
-//- (void)viewWillAppear:(BOOL)animated
-//{
-//    // reload the data whenever the view will appear
-//    [tracksTableView reloadData];
-//    
-//    // scroll the tableview to the top
-//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-//    [tracksTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
-//}
+- (void)viewWillAppear:(BOOL)animated
+{
+    // reload the data whenever the view will appear
+    [tracksTableView reloadData];
+    
+    // scroll the tableview to the top
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    [tracksTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
+}
 
 - (void)viewDidUnload
 {
@@ -184,10 +204,10 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 #if 1
-    NSLog(@"numberofRowsInSection:%d",self.numVisibleTracks);
+    NSLog(@"numberofRowsInSection:%d",[(NSNumber *)[nTracks objectAtIndex:currentRow] intValue]);
 #endif
     
-    return self.numVisibleTracks;
+    return [(NSNumber *)[nTracks objectAtIndex:currentRow] intValue];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -208,7 +228,7 @@
         cell = (TrackTableCell *)[trackCells objectForKey:key];
         
         // set the volume slider, since we don't update it if it's not visible
-        cell.volumeSlider.value = [[self.tracks objectAtIndex:indexPath.row] volume];
+        cell.volumeSlider.value = [[self.rowTracks objectAtIndex:indexPath.row] volume];
     } 
     else 
     {
@@ -216,7 +236,7 @@
         NSLog(@"creating cell %d",indexPath.row);
 #endif
         
-        cell = [self createCell:((Track *)[tracks objectAtIndex:indexPath.row]).trackNumber];
+        cell = [self createCell:((Track *)[rowTracks objectAtIndex:indexPath.row]).trackNumber];
         [trackCells setObject:cell forKey:key];        
     }
     
@@ -294,7 +314,7 @@
     cell.layer.borderWidth = 1.0f;
     
     
-    cell.trackLabel.text = ((Track *)[tracks objectAtIndex:trackNumber-1]).name;
+    cell.trackLabel.text = ((Track *)[rowTracks objectAtIndex:trackNumber-1]).name;
     // give the track label rounded corners -- need to do this workaround as just
     // setting the cornerRadius kills scroll performance
     cell.trackLabel.backgroundColor = [UIColor clearColor];
@@ -370,7 +390,7 @@
 */
     
     // set the eq for each of the eqThumbsView's
-    cell.eqButton.eq = [[self.tracks objectAtIndex:trackNumber-1] eq];
+    cell.eqButton.eq = [[rowTracks objectAtIndex:trackNumber-1] eq];
     [cell.eqButton setNeedsDisplay];    
     return cell; 
 }
@@ -458,7 +478,7 @@
 {
     NSIndexPath *indexPath = [self.tracksTableView indexPathForCell:(UITableViewCell *)[[[sender superview] superview] superview]];
     
-    self.selectedTrack = ((Track *)[tracks objectAtIndex:indexPath.row]).trackNumber;
+    self.selectedTrack = ((Track *)[self.rowTracks objectAtIndex:indexPath.row]).trackNumber;
     
 #if 1
     NSLog(@"EQ Button Pushed for Track %d",indexPath.row);
@@ -472,7 +492,7 @@
     // set the volume of the track
     NSIndexPath *indexPath = [self.tracksTableView indexPathForCell:(UITableViewCell *)[[sender superview] superview]];
     
-    Track *track = [self.tracks objectAtIndex:indexPath.row];
+    Track *track = [self.rowTracks objectAtIndex:indexPath.row];
     
     track.volume = [sender value];
         
@@ -500,17 +520,17 @@
 {    
 #if 0
     NSLog(@"TracksViewController: selectedTrack = %d",selectedTrack);
-    NSLog(@"TracksViewController: gainPoint(0) = %0.0f",[[[[[self.tracks objectAtIndex:selectedTrack-1] eq] gainPoints] objectAtIndex:0] floatValue]);
-    NSLog(@"gainPoints address = %x",(unsigned int)[[[self.tracks objectAtIndex:selectedTrack-1] eq] gainPoints]);
+    NSLog(@"TracksViewController: gainPoint(0) = %0.0f",[[[[[self.rowTracks objectAtIndex:selectedTrack-1] eq] gainPoints] objectAtIndex:0] floatValue]);
+    NSLog(@"gainPoints address = %x",(unsigned int)[[[self.rowTracks objectAtIndex:selectedTrack-1] eq] gainPoints]);
 #endif
     
 
 #if 0
-    NSLog(@"setting detailedViewController.track to %x",(unsigned int)[self.tracks objectAtIndex:selectedTrack-1]);
+    NSLog(@"setting detailedViewController.track to %x",(unsigned int)[self.rowTracks objectAtIndex:selectedTrack-1]);
 #endif
     
     // pass the necessary properties about the cahnnel to the detailed view controller
-    detailedTrackViewController.track = [self.tracks objectAtIndex:selectedTrack-1];
+    detailedTrackViewController.track = [self.rowTracks objectAtIndex:selectedTrack-1];
     detailedTrackViewController.selectedTrack = selectedTrack;
         
     // set content offset to be TRACKS_WIDTH
@@ -563,7 +583,7 @@
     
     dispatch_async( dispatch_get_main_queue(), ^{
         // running synchronously on the main thread now -- call the handler
-        cell.volumeSlider.value = [[tracks objectAtIndex:trackNumber-1] volume];
+        cell.volumeSlider.value = [[rowTracks objectAtIndex:trackNumber-1] volume];
     });
 }
 
@@ -582,7 +602,7 @@
     
     dispatch_async( dispatch_get_main_queue(), ^{
         // running synchronously on the main thread now -- call the handler
-        cell.vuMeter.value = [[tracks objectAtIndex:trackNumber-1] vuLevel];
+        cell.vuMeter.value = [[rowTracks objectAtIndex:trackNumber-1] vuLevel];
     });
 }
 
@@ -601,7 +621,7 @@
     
     dispatch_async( dispatch_get_main_queue(), ^{
         // running synchronously on the main thread now -- call the handler
-        cell.trackLabel.text = [[tracks objectAtIndex:trackNumber-1] name];
+        cell.trackLabel.text = [[rowTracks objectAtIndex:trackNumber-1] name];
     });
 }
 
@@ -610,25 +630,30 @@
 #pragma mark -
 #pragma mark TracksViewControllerProtocol Implementation
 
-- (void)initializeTracks:(int)numTracks
+- (void)refreshTracks:(NSMutableArray *)numTracks
 {
 #if 1
-    NSLog(@"tracksViewController::initializeTracks:%d",numTracks);
+    NSLog(@"tracksViewController::refreshTracks:[%d %d %d]",[(NSNumber *)[numTracks objectAtIndex:0] intValue],[(NSNumber *)[numTracks objectAtIndex:1] intValue],[(NSNumber *)[numTracks objectAtIndex:2] intValue]);
 #endif
     
-    // clear old tracks
-    [self.tracks removeAllObjects];
+    NSLog(@"%d",MAX([(NSNumber *)[nTracks objectAtIndex:0] intValue],8));
     
-    for (int i = 0; i < MAX(numTracks,8); i++)
+    // clear old tracks
+    for (int i = 0; i < 3; i++)
     {
-        [tracks addObject: [[Track alloc] initWithTrackNumber:(i+1)]];
+        [[self.tracks objectAtIndex:i] removeAllObjects];
+    
+        for (int j = 0; j < MAX([(NSNumber *)[nTracks objectAtIndex:i] intValue],8); j++)
+        {
+            [[self.tracks objectAtIndex:i] addObject: [[Track alloc] initWithTrackNumber:(j+1)]];
+        }
     }
 }
 
-- (void)initializeTrackCells:(int)numTracks
+- (void)refreshTrackCells:(NSMutableArray *)numTracks
 {
 #if 1
-    NSLog(@"tracksViewController::initializeTrackCells:%d",numTracks);
+    NSLog(@"tracksViewController::refreshTrackCells:[%d %d %d]",[(NSNumber *)[numTracks objectAtIndex:0] intValue],[(NSNumber *)[numTracks objectAtIndex:1] intValue],[(NSNumber *)[numTracks objectAtIndex:2] intValue]);
 #endif
     
 //    [tracksTableView beginUpdates];
@@ -637,25 +662,25 @@
     [trackCells removeAllObjects];
         
     // initialize track cell array
-    for (int cellNum = 0; cellNum < numTracks; cellNum++)
+    for (int cellNum = 0; cellNum < [(NSNumber *)[nTracks objectAtIndex:self.currentRow] intValue]; cellNum++)
     {
 #if 0
         NSLog(@"creating cell %d",((Track *)[tracks objectAtIndex:cellNum]).trackNumber);
 #endif
         
-        TrackTableCell *cell = [self createCell:((Track *)[tracks objectAtIndex:cellNum]).trackNumber];
+        TrackTableCell *cell = [self createCell:((Track *)[rowTracks objectAtIndex:cellNum]).trackNumber];
         [trackCells setObject:cell forKey:[NSNumber numberWithInt:cellNum]];
     }
 }
 
 - (void)tracksDidUpdate
 {
-    // reload the data whenever the view will appear
-    [tracksTableView reloadData];
-    
-    // scroll the tableview to the top
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [tracksTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
+//    // reload the data whenever the view will appear
+//    [tracksTableView reloadData];
+//    
+//    // scroll the tableview to the top
+//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+//    [tracksTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
 }
 
 #pragma mark -

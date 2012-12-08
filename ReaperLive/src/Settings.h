@@ -12,10 +12,11 @@
 #define kOutPortKey @"outPortKey"
 #define kInPortKey @"inPortKey"
 
+#define kNTracksKey @"nTracksKey"
+
 #define kNInputTracksKey @"nInputTracksKey"
 #define kNPlaybackTracksKey @"nPlaybackTracksKey"
 #define kNOutputTracksKey @"nOutputTracksKey"
-
 
 @interface Settings : NSObject <NSCoding, NSCopying>
 
@@ -24,10 +25,8 @@
 @property (nonatomic) NSInteger oscInPort;
 @property (nonatomic) NSInteger oscOutPort;
 
-// number of tracks
-@property (nonatomic) NSInteger nInputTracks;
-@property (nonatomic) NSInteger nPlaybackTracks;
-@property (nonatomic) NSInteger nOutputTracks;
+// array with number of tracks. idx 0 = input, idx 1 = playback, idx 2 = output
+@property (strong, nonatomic) NSMutableArray *nTracks;
 
 
 @end

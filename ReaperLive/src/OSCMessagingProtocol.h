@@ -32,7 +32,7 @@ typedef enum
 - (void)selectTrack:(NSInteger)trackNumber;
 - (void)selectFX:(NSInteger)fxNumber;
 - (void)sendCannedMsg;
-- (void)sendEntireState;
+//- (void)sendEntireState;
 
 
 @end

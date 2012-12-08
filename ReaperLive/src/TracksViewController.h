@@ -17,9 +17,9 @@
 @protocol TracksViewControllerProtocol <NSObject>
 
 @required
-- (void)setNumVisibleTracks:(int)numTracks;
-- (void)initializeTracks:(int)numTracks;
-- (void)initializeTrackCells:(int)numTracks;
+- (void)setNTracks:(NSMutableArray *)numTracks;
+- (void)refreshTracks:(NSMutableArray *)numTracks;
+- (void)refreshTrackCells:(NSMutableArray *)numTracks;
 - (void)tracksDidUpdate;
 
 @end
@@ -39,7 +39,12 @@
 @property (weak, nonatomic) IBOutlet UIView *masterView;
 
 // number of visible tracks isn't necessarily the number of stored tracks
-@property (nonatomic) NSInteger numVisibleTracks;
+@property (strong, nonatomic) NSMutableArray *nTracks;
+// current row
+@property (nonatomic) NSInteger currentRow;
+// tracks for current row
+@property (strong, nonatomic) NSMutableArray *rowTracks;
+
 
 // buttons to control inputs/playback/outputs
 @property (weak, nonatomic) IBOutlet UIButton *inputsButton;
@@ -48,6 +53,9 @@
 
 // this is a property because the setter is overridden to set the track label's background color
 @property (nonatomic) NSInteger selectedTrack;
+
+// initialization
+- (void)initializeTracks;
 
 // button pushes
 - (IBAction)eqButtonPressed:(id)sender;
@@ -58,7 +66,6 @@
 // DetailedTrackViewControllerProtocol implementation
 - (void)updateTrackButtons:(NSInteger)trackNumber;
 - (void)updateSelectedTrack:(NSInteger)trackNumber;
-
 - (void) updateVolumeFader:(NSNotification *)note;
 
 @end

@@ -43,14 +43,14 @@
     if(self.settings.oscOutPort != 0)
         oscOutPortElement.textValue = [NSString stringWithFormat:@"%d",self.settings.oscOutPort];
     
-    if(self.settings.nInputTracks != 0)
-        nInputTracksElement.textValue = [NSString stringWithFormat:@"%d",self.settings.nInputTracks];
+    if([(NSNumber *)[self.settings.nTracks objectAtIndex:0] intValue] != 0)
+        nInputTracksElement.textValue = [NSString stringWithFormat:@"%d",[(NSNumber *)[self.settings.nTracks objectAtIndex:0] intValue]];
     
-    if(self.settings.nPlaybackTracks != 0)
-        nPlaybackTracksElement.textValue = [NSString stringWithFormat:@"%d",self.settings.nPlaybackTracks];
+    if([(NSNumber *)[self.settings.nTracks objectAtIndex:1] intValue] != 0)
+        nPlaybackTracksElement.textValue = [NSString stringWithFormat:@"%d",[(NSNumber *)[self.settings.nTracks objectAtIndex:1] intValue]];
     
-    if(self.settings.nOutputTracks != 0)
-        nOutputTracksElement.textValue = [NSString stringWithFormat:@"%d",self.settings.nOutputTracks];
+    if([(NSNumber *)[self.settings.nTracks objectAtIndex:2] intValue] != 0)
+        nOutputTracksElement.textValue = [NSString stringWithFormat:@"%d",[(NSNumber *)[self.settings.nTracks objectAtIndex:2] intValue]];
 }
 
 - (void)setQuickDialogTableView:(QuickDialogTableView *)aQuickDialogTableView {
@@ -152,25 +152,26 @@
     }
     else if([element.key isEqualToString:kNInputTracksKey])
     {
-        self.settings.nInputTracks = [nInputTracksElement.textValue intValue];
+        [self.settings.nTracks replaceObjectAtIndex:0 withObject:[[NSNumber alloc] initWithInt:[nInputTracksElement.textValue intValue]]];
     }
     else if([element.key isEqualToString:kNPlaybackTracksKey])
     {
-        self.settings.nPlaybackTracks = [nPlaybackTracksElement.textValue intValue];
+        [self.settings.nTracks replaceObjectAtIndex:1 withObject:[[NSNumber alloc] initWithInt:[nPlaybackTracksElement.textValue intValue]]];
     }
     else if([element.key isEqualToString:kNOutputTracksKey])
     {
-        self.settings.nOutputTracks = [nOutputTracksElement.textValue intValue];
+        [self.settings.nTracks replaceObjectAtIndex:2 withObject:[[NSNumber alloc] initWithInt:[nOutputTracksElement.textValue intValue]]];
     }
     
     // no matter who was edited, update the osc delegate
     [oscSettingsDelegate updateOscIpAddress:oscIpAddressElement.textValue inPort:self.settings.oscInPort outPort:self.settings.oscOutPort];
     
     // initialize tracks
-    [tracksViewControllerDelegate setNumVisibleTracks:self.settings.nInputTracks];
-    [tracksViewControllerDelegate initializeTracks:self.settings.nInputTracks];
-    [tracksViewControllerDelegate initializeTrackCells:self.settings.nInputTracks];
+    [tracksViewControllerDelegate setNTracks:self.settings.nTracks];
+    [tracksViewControllerDelegate refreshTracks:self.settings.nTracks];
+    [tracksViewControllerDelegate refreshTrackCells:self.settings.nTracks];
     [tracksViewControllerDelegate tracksDidUpdate];
+    
 }
 
 - (void)sendTestOscMsg

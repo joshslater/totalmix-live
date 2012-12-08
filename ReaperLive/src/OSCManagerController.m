@@ -12,7 +12,7 @@
 
 @implementation OSCManagerController
 
-@synthesize tracks;
+@synthesize rowTracks;
 
 - (id)init
 {
@@ -162,6 +162,7 @@
     [oscOutPort sendThisMessage:msg];    
 }
 
+/*
 // initializes all channel and FX states
 - (void)sendEntireState
 {
@@ -190,6 +191,7 @@
         }
     }
 }
+ */
 
 - (void)eqValueDidChange:(NSInteger)trackNumber band:(NSInteger)band item:(eqItems_t)item value:(float)value
 {
@@ -311,7 +313,7 @@
         
         NSString *trackName = [m.value stringValue];
 
-        ((Track *)[tracks objectAtIndex:trackNumber-1]).name = trackName;
+        ((Track *)[rowTracks objectAtIndex:trackNumber-1]).name = trackName;
         
         // post notifcation
         NSArray *keys = [[NSArray alloc] initWithObjects:@"trackNumber", nil];
@@ -337,7 +339,7 @@
         NSLog(@"OSC::/1/volume%d %0.3f",relativeTrackNumber,[m.value floatValue]);
 #endif
         
-        ((Track *)[tracks objectAtIndex:trackNumber-1]).volume = [m.value floatValue];
+        ((Track *)[rowTracks objectAtIndex:trackNumber-1]).volume = [m.value floatValue];
                 
         // post notifcation
         NSArray *keys = [[NSArray alloc] initWithObjects:@"trackNumber", nil];
@@ -360,7 +362,7 @@
         NSLog(@"OSC::/1/level%dLeft %0.3f",trackNumber,[m.value floatValue]);
 #endif
         
-        ((Track *)[tracks objectAtIndex:trackNumber-1]).vuLevel = [m.value floatValue];
+        ((Track *)[rowTracks objectAtIndex:trackNumber-1]).vuLevel = [m.value floatValue];
         
         // post notifcation
         NSArray *keys = [[NSArray alloc] initWithObjects:@"trackNumber", nil];

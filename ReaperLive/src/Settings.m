@@ -14,15 +14,36 @@
 @synthesize oscInPort;
 @synthesize oscOutPort;
 
-@synthesize nInputTracks;
-@synthesize nPlaybackTracks;
-@synthesize nOutputTracks;
+@synthesize nTracks;
 
 #pragma mark -
 #pragma mark <NSCoding>
 
+-(id)init
+{
+    self = [super init];
+    if (self)
+    {
+        self.nTracks = [[NSMutableArray alloc] init];
+        
+#if 1
+        NSLog(@"Creating nTracks");
+#endif
+        for(int i = 0; i < 3; i++)
+        {
+            [self.nTracks addObject:[[NSNumber alloc] initWithInt:0]];
+        }
+    }
+    
+    return self;
+}
+
 - (id)initWithCoder:(NSCoder *)decoder
 {
+#if 1
+    NSLog(@"settings::initWithCoder");
+#endif
+    
     self = [super init];
     if (self)
     {
@@ -33,9 +54,7 @@
         oscInPort = [decoder decodeIntForKey:kInPortKey];
         oscOutPort = [decoder decodeIntForKey:kOutPortKey];
         
-        nInputTracks = [decoder decodeIntForKey:kNInputTracksKey];
-        nPlaybackTracks = [decoder decodeIntForKey:kNPlaybackTracksKey];
-        nOutputTracks = [decoder decodeIntForKey:kNOutputTracksKey];
+        nTracks = (NSMutableArray *)[decoder decodeObjectForKey:kNTracksKey];
     }
     
     return self;
@@ -51,9 +70,7 @@
     [encoder encodeInt:oscInPort forKey:kInPortKey];
     [encoder encodeInt:oscOutPort forKey:kOutPortKey];
     
-    [encoder encodeInt:nInputTracks forKey:kNInputTracksKey];
-    [encoder encodeInt:nPlaybackTracks forKey:kNPlaybackTracksKey];
-    [encoder encodeInt:nOutputTracks forKey:kNOutputTracksKey];
+    [encoder encodeObject:nTracks forKey:kNTracksKey];
 }
 
 #pragma mark -
@@ -67,9 +84,7 @@
     copy.oscInPort = self.oscInPort;
     copy.oscOutPort = self.oscOutPort;
     
-    copy.nInputTracks = self.nInputTracks;
-    copy.nPlaybackTracks = self.nPlaybackTracks;
-    copy.nOutputTracks = self.nOutputTracks;
+    copy.nTracks = self.nTracks;
     
     return copy;
 }
