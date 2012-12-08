@@ -52,7 +52,7 @@
 - (void)updateOscIpAddress:(NSString *)ipAddress inPort:(NSInteger)inPort outPort:(NSInteger)outPort
 {
     
-#if 1
+#if 0
     NSLog(@"oscManagerController::updateOscIpAddress");
 #endif
     
@@ -276,6 +276,33 @@
 #if 0
     NSLog(@"eqValueDidChange::sending %@ %0.2f",addressString,sendValue);
 #endif
+    
+    [oscOutPort sendThisMessage:msg];
+}
+
+-(void) setBusInput
+{    
+    OSCMessage *msg = [OSCMessage createWithAddress:[NSString stringWithFormat:@"/1/busInput"]];
+    [msg addFloat:1.0];
+    
+    [oscOutPort sendThisMessage:msg];
+}
+
+-(void) setBusPlayback
+{
+#if 1
+    NSLog(@"oscManagerController::setBusPlayback");
+#endif
+    OSCMessage *msg = [OSCMessage createWithAddress:[NSString stringWithFormat:@"/1/busPlayback"]];
+    [msg addFloat:1.0];
+    
+    [oscOutPort sendThisMessage:msg];
+}
+
+-(void) setBusOutput
+{
+    OSCMessage *msg = [OSCMessage createWithAddress:[NSString stringWithFormat:@"/1/busOutput"]];
+    [msg addFloat:1.0];
     
     [oscOutPort sendThisMessage:msg];
 }

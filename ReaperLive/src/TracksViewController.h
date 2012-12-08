@@ -29,6 +29,10 @@
 {
     DetailedTrackViewController *detailedTrackViewController;
     NSMutableDictionary *trackCells;
+    
+    // track direction of tracksTableView scrolling
+    float startScrollOffset;
+    float currentScrollOffset;
 }
 
 @property (weak, nonatomic) id<OSCMessagingProtocol> oscDelegate;
@@ -47,9 +51,9 @@
 
 
 // buttons to control inputs/playback/outputs
-@property (weak, nonatomic) IBOutlet UIButton *inputsButton;
-@property (weak, nonatomic) IBOutlet UIButton *playbackButton;
-@property (weak, nonatomic) IBOutlet UIButton *outputsButton;
+@property (weak, nonatomic) IBOutlet UIButton *setInputButton;
+@property (weak, nonatomic) IBOutlet UIButton *setPlaybackButton;
+@property (weak, nonatomic) IBOutlet UIButton *setOutputButton;
 
 // this is a property because the setter is overridden to set the track label's background color
 @property (nonatomic) NSInteger selectedTrack;
@@ -62,6 +66,9 @@
 - (IBAction)gateButtonPressed:(id)sender;
 - (IBAction)compButtonPressed:(id)sender;
 - (void)volumeFaderSliderAction:(UISlider *)sender;
+- (IBAction)setInputButtonPressed:(id)sender;
+- (IBAction)setPlaybackButtonPressed:(id)sender;
+- (IBAction)setOutputButtonPressed:(id)sender;
 
 // DetailedTrackViewControllerProtocol implementation
 - (void)updateTrackButtons:(NSInteger)trackNumber;

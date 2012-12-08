@@ -119,7 +119,6 @@
 								<string key="NSFrame">{{20, 491}, {90, 44}}</string>
 								<reference key="NSSuperview" ref="521855709"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -198,27 +197,54 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">inputsButton</string>
+						<string key="label">setInputButton</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="584730460"/>
 					</object>
-					<int key="connectionID">48</int>
+					<int key="connectionID">51</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">playbackButton</string>
+						<string key="label">setPlaybackButton</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="273833948"/>
 					</object>
-					<int key="connectionID">49</int>
+					<int key="connectionID">52</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">outputsButton</string>
+						<string key="label">setOutputButton</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="466683541"/>
 					</object>
-					<int key="connectionID">50</int>
+					<int key="connectionID">53</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">setInputButtonPressed:</string>
+						<reference key="source" ref="584730460"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">1</int>
+					</object>
+					<int key="connectionID">54</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">setPlaybackButtonPressed:</string>
+						<reference key="source" ref="273833948"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">1</int>
+					</object>
+					<int key="connectionID">55</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">setOutputButtonPressed:</string>
+						<reference key="source" ref="466683541"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">1</int>
+					</object>
+					<int key="connectionID">56</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -654,7 +680,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">50</int>
+			<int key="maxID">56</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -713,6 +739,9 @@
 						<string key="compButtonPressed:">id</string>
 						<string key="eqButtonPressed:">id</string>
 						<string key="gateButtonPressed:">id</string>
+						<string key="setInputButtonPressed:">id</string>
+						<string key="setOutputButtonPressed:">id</string>
+						<string key="setPlaybackButtonPressed:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="compButtonPressed:">
@@ -727,30 +756,42 @@
 							<string key="name">gateButtonPressed:</string>
 							<string key="candidateClassName">id</string>
 						</object>
+						<object class="IBActionInfo" key="setInputButtonPressed:">
+							<string key="name">setInputButtonPressed:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="setOutputButtonPressed:">
+							<string key="name">setOutputButtonPressed:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="setPlaybackButtonPressed:">
+							<string key="name">setPlaybackButtonPressed:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="inputsButton">UIButton</string>
 						<string key="masterView">UIView</string>
-						<string key="outputsButton">UIButton</string>
-						<string key="playbackButton">UIButton</string>
+						<string key="setInputButton">UIButton</string>
+						<string key="setOutputButton">UIButton</string>
+						<string key="setPlaybackButton">UIButton</string>
 						<string key="trackTableCell">TrackTableCell</string>
 						<string key="tracksToolbar">UIToolbar</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="inputsButton">
-							<string key="name">inputsButton</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
 						<object class="IBToOneOutletInfo" key="masterView">
 							<string key="name">masterView</string>
 							<string key="candidateClassName">UIView</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="outputsButton">
-							<string key="name">outputsButton</string>
+						<object class="IBToOneOutletInfo" key="setInputButton">
+							<string key="name">setInputButton</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="playbackButton">
-							<string key="name">playbackButton</string>
+						<object class="IBToOneOutletInfo" key="setOutputButton">
+							<string key="name">setOutputButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="setPlaybackButton">
+							<string key="name">setPlaybackButton</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="trackTableCell">

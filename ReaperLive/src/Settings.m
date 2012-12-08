@@ -26,7 +26,7 @@
     {
         self.nTracks = [[NSMutableArray alloc] init];
         
-#if 1
+#if 0
         NSLog(@"Creating nTracks");
 #endif
         for(int i = 0; i < 3; i++)
@@ -40,14 +40,14 @@
 
 - (id)initWithCoder:(NSCoder *)decoder
 {
-#if 1
+#if 0
     NSLog(@"settings::initWithCoder");
 #endif
     
     self = [super init];
     if (self)
     {
-#if 1
+#if 0
         NSLog(@"Decoding Settings");
 #endif
         oscIpAddress = [decoder decodeObjectForKey:kIpAddressKey];
@@ -62,7 +62,7 @@
 
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
-#if 1
+#if 0
     NSLog(@"Encoding Settings");
 #endif
     

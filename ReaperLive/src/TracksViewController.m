@@ -101,7 +101,7 @@
 
 - (void)loadView
 {
-#if 1    
+#if 0
     NSLog(@"TracksViewController::loadView");
 #endif
     
@@ -203,7 +203,7 @@
 #pragma mark TableView Delegate/DataSource Methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#if 1
+#if 0
     NSLog(@"numberofRowsInSection:%d",[(NSNumber *)[nTracks objectAtIndex:currentRow] intValue]);
 #endif
     
@@ -250,7 +250,7 @@
 
 - (TrackTableCell *)createCell:(int)trackNumber
 {
-#if 1
+#if 0
     NSLog(@"TracksViewController::createCell:%d",trackNumber);
 #endif
     
@@ -407,42 +407,44 @@
     *targetContentOffset = CGPointMake(targetContentOffset->x, newTargetOffset);
 }
 
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
+#if 0
+    NSLog(@"scrollViewWillBeginDragging::offset [%0.3f, %0.3f]",scrollView.contentOffset.x,scrollView.contentOffset.y);
+#endif
+    
+    startScrollOffset = scrollView.contentOffset.y;
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+#if 0
+    NSLog(@"scrollViewDidScroll::offset [%0.3f, %0.3f]",scrollView.contentOffset.x,scrollView.contentOffset.y);
+#endif
+    
+    currentScrollOffset = scrollView.contentOffset.y;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+#if 0
+    NSLog(@"willDisplayCell:%d",indexPath.row);
+#endif
+    
     NSArray *visible = [tracksTableView indexPathsForVisibleRows];
     int trackNumber = ((NSIndexPath *)[visible objectAtIndex:0]).row;
+    
+    // add 1 if we're scrolling right
+    if(currentScrollOffset - startScrollOffset > 0)
+        trackNumber++;
 
+    // don't allow the bank start to go above numVisibleTracks-8
+    trackNumber = MIN(trackNumber,[[nTracks objectAtIndex:currentRow] intValue]-8);
+    
     // call the oscDelegate with the new value
     [oscDelegate setBankStart:trackNumber];
 }
 
-
-/*
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    static NSInteger scrollCtr = 0;
-    
-    if(scrollCtr % 20 == 0)
-    {
-    
-        NSArray *visible = [tracksTableView indexPathsForVisibleRows];
-        int trackNumber = ((NSIndexPath *)[visible objectAtIndex:0]).row;
-    
-#if 0
-        NSLog(@"Row 0 = Track %d",trackNumber);
-#endif
-    
-        // don't allow the bank start to go above numVisibleTracks-8
-        trackNumber = MIN(trackNumber,numVisibleTracks-8);
-        
-        // call the oscDelegate with the new value
-        [oscDelegate setBankStart:trackNumber];
-    }
-    
-    scrollCtr++;    
-}
- */
 
 #pragma mark -
 #pragma mark Action Handling
@@ -511,6 +513,21 @@
 #endif
     
     [oscDelegate sendOscAction:OSCActionRefreshDevices];
+}
+
+- (IBAction)setInputButtonPressed:(id)sender
+{
+    [oscDelegate setBusInput];
+}
+
+- (IBAction)setPlaybackButtonPressed:(id)sender
+{
+    [oscDelegate setBusPlayback];
+}
+
+- (IBAction)setOutputButtonPressed:(id)sender
+{
+    [oscDelegate setBusOutput];
 }
 
 #pragma mark -
@@ -632,11 +649,9 @@
 
 - (void)refreshTracks:(NSMutableArray *)numTracks
 {
-#if 1
+#if 0
     NSLog(@"tracksViewController::refreshTracks:[%d %d %d]",[(NSNumber *)[numTracks objectAtIndex:0] intValue],[(NSNumber *)[numTracks objectAtIndex:1] intValue],[(NSNumber *)[numTracks objectAtIndex:2] intValue]);
 #endif
-    
-    NSLog(@"%d",MAX([(NSNumber *)[nTracks objectAtIndex:0] intValue],8));
     
     // clear old tracks
     for (int i = 0; i < 3; i++)
@@ -652,7 +667,7 @@
 
 - (void)refreshTrackCells:(NSMutableArray *)numTracks
 {
-#if 1
+#if 0
     NSLog(@"tracksViewController::refreshTrackCells:[%d %d %d]",[(NSNumber *)[numTracks objectAtIndex:0] intValue],[(NSNumber *)[numTracks objectAtIndex:1] intValue],[(NSNumber *)[numTracks objectAtIndex:2] intValue]);
 #endif
     

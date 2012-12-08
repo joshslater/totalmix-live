@@ -52,8 +52,10 @@
     [tracksViewController refreshTracks:settings.nTracks];
     [tracksViewController refreshTrackCells:settings.nTracks];
     
+#if 0
     NSLog(@"[tracksViewController.tracks count] = %d",[tracksViewController.tracks count]);
-        
+#endif
+    
     /**************************/
     /******** OSC STUFF *******/
     /**************************/
