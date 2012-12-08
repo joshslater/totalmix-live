@@ -41,6 +41,15 @@
     
     if(self.settings.oscOutPort != 0)
         oscOutPortElement.textValue = [NSString stringWithFormat:@"%d",self.settings.oscOutPort];
+    
+    if(self.settings.nInputTracks != 0)
+        nInputTracksElement.textValue = [NSString stringWithFormat:@"%d",self.settings.nInputTracks];
+    
+    if(self.settings.nPlaybackTracks != 0)
+        nPlaybackTracksElement.textValue = [NSString stringWithFormat:@"%d",self.settings.nPlaybackTracks];
+    
+    if(self.settings.nOutputTracks != 0)
+        nOutputTracksElement.textValue = [NSString stringWithFormat:@"%d",self.settings.nOutputTracks];
 }
 
 - (void)setQuickDialogTableView:(QuickDialogTableView *)aQuickDialogTableView {
@@ -79,8 +88,25 @@
     
     QButtonElement *testOscButtonElement = [[QButtonElement alloc] initWithTitle:@"Send OSC Test Message"];
     testOscButtonElement.controllerAction = @"sendTestOscMsg";
-
-    [section addElement:testOscButtonElement];    
+    [section addElement:testOscButtonElement];
+    
+    nInputTracksElement = [[QEntryElement alloc] initWithTitle:@"Number of Input Tracks" Value:nil Placeholder:@"15"];
+    nInputTracksElement.keyboardType = UIKeyboardTypeNumberPad;
+    nInputTracksElement.delegate = self;
+    nInputTracksElement.key = kNInputTracksKey;
+    [section addElement:nInputTracksElement];
+    
+    nPlaybackTracksElement = [[QEntryElement alloc] initWithTitle:@"Number of Playback Tracks" Value:nil Placeholder:@"15"];
+    nPlaybackTracksElement.keyboardType = UIKeyboardTypeNumberPad;
+    nPlaybackTracksElement.delegate = self;
+    nPlaybackTracksElement.key = kNPlaybackTracksKey;
+    [section addElement:nPlaybackTracksElement];
+    
+    nOutputTracksElement = [[QEntryElement alloc] initWithTitle:@"Number of Output Tracks" Value:nil Placeholder:@"15"];
+    nOutputTracksElement.keyboardType = UIKeyboardTypeNumberPad;
+    nOutputTracksElement.delegate = self;
+    nOutputTracksElement.key = kNOutputTracksKey;
+    [section addElement:nOutputTracksElement];
     
     self.root = root;
     [super loadView];    
@@ -122,6 +148,18 @@
     else if([element.key isEqualToString:kOutPortKey])
     {
         self.settings.oscOutPort = [oscOutPortElement.textValue intValue];
+    }
+    else if([element.key isEqualToString:kNInputTracksKey])
+    {
+        self.settings.nInputTracks = [nInputTracksElement.textValue intValue];
+    }
+    else if([element.key isEqualToString:kNPlaybackTracksKey])
+    {
+        self.settings.nPlaybackTracks = [nPlaybackTracksElement.textValue intValue];
+    }
+    else if([element.key isEqualToString:kNOutputTracksKey])
+    {
+        self.settings.nOutputTracks = [nOutputTracksElement.textValue intValue];
     }
     
     // no matter who was edited, update the osc delegate

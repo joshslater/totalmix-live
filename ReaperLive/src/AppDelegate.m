@@ -31,14 +31,8 @@
     
     
     // create tracks
-    tracks = [[NSMutableArray alloc] initWithCapacity:MAX_TRACK_NUMBER];
-    
-    for (int i = 0; i < MAX_TRACK_NUMBER; i++)
-    {
-        [tracks addObject: [[Track alloc] initWithTrackNumber:(i+1)]];
-    }
+    tracks = [[NSMutableArray alloc] init];
 
-    
     // main tracks mixer
     TracksViewController *tracksViewController = [[TracksViewController alloc] initWithNibName:@"TracksViewController" bundle:nil];
     tracksViewController.tracks = tracks;
@@ -50,6 +44,14 @@
     SettingsViewController *settingsViewController = [[SettingsViewController alloc] init];
     settings = [self initializeSettings];
     settingsViewController.settings = settings;
+    
+    
+    
+    for (int i = 0; i < MAX_TRACK_NUMBER; i++)
+    {
+        [tracks addObject: [[Track alloc] initWithTrackNumber:(i+1)]];
+    }
+    
     
     /**************************/
     /******** OSC STUFF *******/

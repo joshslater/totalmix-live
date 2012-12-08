@@ -13,9 +13,15 @@
 
 @interface SettingsViewController : QuickDialogController <QuickDialogEntryElementDelegate,QuickDialogStyleProvider>
 {
+    // OSC
     QEntryElement *oscIpAddressElement;
     QEntryElement *oscInPortElement;
     QEntryElement *oscOutPortElement;
+    
+    // tracks
+    QEntryElement *nInputTracksElement;
+    QEntryElement *nPlaybackTracksElement;
+    QEntryElement *nOutputTracksElement;
 }
 
 @property (weak, nonatomic) id <OSCMessagingProtocol> oscSettingsDelegate;
