@@ -145,11 +145,15 @@
     
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    // reload the data whenever the view will appear
-    [tracksTableView reloadData];
-}
+//- (void)viewWillAppear:(BOOL)animated
+//{
+//    // reload the data whenever the view will appear
+//    [tracksTableView reloadData];
+//    
+//    // scroll the tableview to the top
+//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+//    [tracksTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
+//}
 
 - (void)viewDidUnload
 {
@@ -188,7 +192,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-#if 1
+#if 0
     NSLog(@"cellForRowAtIndexPath");
 #endif
     
@@ -383,6 +387,7 @@
     *targetContentOffset = CGPointMake(targetContentOffset->x, newTargetOffset);
 }
 
+
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     NSArray *visible = [tracksTableView indexPathsForVisibleRows];
@@ -391,6 +396,33 @@
     // call the oscDelegate with the new value
     [oscDelegate setBankStart:trackNumber];
 }
+
+
+/*
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    static NSInteger scrollCtr = 0;
+    
+    if(scrollCtr % 20 == 0)
+    {
+    
+        NSArray *visible = [tracksTableView indexPathsForVisibleRows];
+        int trackNumber = ((NSIndexPath *)[visible objectAtIndex:0]).row;
+    
+#if 0
+        NSLog(@"Row 0 = Track %d",trackNumber);
+#endif
+    
+        // don't allow the bank start to go above numVisibleTracks-8
+        trackNumber = MIN(trackNumber,numVisibleTracks-8);
+        
+        // call the oscDelegate with the new value
+        [oscDelegate setBankStart:trackNumber];
+    }
+    
+    scrollCtr++;    
+}
+ */
 
 #pragma mark -
 #pragma mark Action Handling
@@ -578,13 +610,6 @@
 #pragma mark -
 #pragma mark TracksViewControllerProtocol Implementation
 
-/*
-- (void)setNumVisibleTracks:(int)numTracks
-{
-    self.numVisibleTracks = numTracks;
-}
-*/
-
 - (void)initializeTracks:(int)numTracks
 {
 #if 1
@@ -621,7 +646,16 @@
         TrackTableCell *cell = [self createCell:((Track *)[tracks objectAtIndex:cellNum]).trackNumber];
         [trackCells setObject:cell forKey:[NSNumber numberWithInt:cellNum]];
     }
+}
 
+- (void)tracksDidUpdate
+{
+    // reload the data whenever the view will appear
+    [tracksTableView reloadData];
+    
+    // scroll the tableview to the top
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    [tracksTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
 }
 
 #pragma mark -

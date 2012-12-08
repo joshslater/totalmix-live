@@ -170,6 +170,7 @@
     [tracksViewControllerDelegate setNumVisibleTracks:self.settings.nInputTracks];
     [tracksViewControllerDelegate initializeTracks:self.settings.nInputTracks];
     [tracksViewControllerDelegate initializeTrackCells:self.settings.nInputTracks];
+    [tracksViewControllerDelegate tracksDidUpdate];
 }
 
 - (void)sendTestOscMsg

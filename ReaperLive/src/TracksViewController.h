@@ -20,6 +20,7 @@
 - (void)setNumVisibleTracks:(int)numTracks;
 - (void)initializeTracks:(int)numTracks;
 - (void)initializeTrackCells:(int)numTracks;
+- (void)tracksDidUpdate;
 
 @end
 
