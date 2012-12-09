@@ -55,6 +55,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *setPlaybackButton;
 @property (weak, nonatomic) IBOutlet UIButton *setOutputButton;
 
+// buttons to control track +/-
+@property (weak, nonatomic) IBOutlet UIButton *trackPlus;
+@property (weak, nonatomic) IBOutlet UIButton *trackMinus;
+
 // this is a property because the setter is overridden to set the track label's background color
 @property (nonatomic) NSInteger selectedTrack;
 
@@ -69,6 +73,8 @@
 - (IBAction)setInputButtonPressed:(id)sender;
 - (IBAction)setPlaybackButtonPressed:(id)sender;
 - (IBAction)setOutputButtonPressed:(id)sender;
+- (IBAction)trackPlus:(id)sender;
+- (IBAction)trackMinus:(id)sender;
 
 // DetailedTrackViewControllerProtocol implementation
 - (void)updateTrackButtons:(NSInteger)trackNumber;

@@ -54,7 +54,7 @@
     // initialize page 2 to be channel 0
     [oscDelegate setPage:2];
     [oscDelegate sendSetBankStart:0];
-    [oscDelegate.bankStart replaceObjectAtIndex:1 withObject:[[NSNumber alloc] initWithInt:0]];
+    //[oscDelegate.bankStart replaceObjectAtIndex:1 withObject:[[NSNumber alloc] initWithInt:0]];
     
     /******* EQ VIEW *******/
     

@@ -140,8 +140,8 @@
     tracksTableView.delegate = self;
     tracksTableView.dataSource = self;
     
-    // decelerate faster
-    tracksTableView.decelerationRate = UIScrollViewDecelerationRateFast;
+    // disable scrolling
+    tracksTableView.scrollEnabled = NO;
     [self.view addSubview:tracksTableView];
 }
 
@@ -413,55 +413,6 @@
     *targetContentOffset = CGPointMake(targetContentOffset->x, newTargetOffset);
 }
 
-/*
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
-{
-#if 0
-    NSLog(@"scrollViewWillBeginDragging::offset [%0.3f, %0.3f]",scrollView.contentOffset.x,scrollView.contentOffset.y);
-#endif
-    
-    startScrollOffset = scrollView.contentOffset.y;
-}
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-#if 0
-    NSLog(@"scrollViewDidScroll::offset [%0.3f, %0.3f]",scrollView.contentOffset.x,scrollView.contentOffset.y);
-#endif
-    
-    currentScrollOffset = scrollView.contentOffset.y;
-}
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-#if 0
-    NSLog(@"willDisplayCell:%d",indexPath.row);
-#endif
-    
-    NSArray *visible = [tracksTableView indexPathsForVisibleRows];
-    int trackNumber = ((NSIndexPath *)[visible objectAtIndex:0]).row;
-    
-    // add 1 if we're scrolling right
-    if(currentScrollOffset - startScrollOffset > 0)
-        trackNumber++;
-
-    // don't allow the bank start to go above numVisibleTracks-8
-    trackNumber = MIN(trackNumber,[[nTracks objectAtIndex:currentRow] intValue]-8);
-    
-    // call the oscDelegate with the new value
-    [oscDelegate setBankStart:trackNumber];
-}
-*/
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    NSArray *visible = [tracksTableView indexPathsForVisibleRows];
-    int trackNumber = ((NSIndexPath *)[visible objectAtIndex:0]).row;
-    
-    // call the oscDelegate with the new value
-    [oscDelegate setStartTrack:trackNumber page:1];
-}
-
 #pragma mark -
 #pragma mark Action Handling
 
@@ -507,7 +458,6 @@
 
 - (void)volumeFaderSliderAction:(UISlider *)sender
 {
-    // set the volume of the track
     NSIndexPath *indexPath = [self.tracksTableView indexPathForCell:(UITableViewCell *)[[sender superview] superview]];
     
     Track *track = [self.rowTracks objectAtIndex:indexPath.row];
@@ -515,7 +465,7 @@
     track.volume = [sender value];
         
     // call the oscDelegate with the new value
-    [oscDelegate volumeFaderDidChange:track.trackNumber toValue:[sender value]];
+    [oscDelegate volumeFaderDidChange:indexPath.row+1 toValue:[sender value]];
 
 #if 0    
     NSLog(@"Set Track %d Volume to %0.3f",indexPath.row,[sender value]);
@@ -527,8 +477,6 @@
 #if 0    
     NSLog(@"Refresh OSC Button Pressed");
 #endif
-    
-    [oscDelegate sendOscAction:OSCActionRefreshDevices];
 }
 
 - (IBAction)setInputButtonPressed:(id)sender
@@ -559,6 +507,16 @@
     [oscDelegate setBusOutput];
     
     [tracksTableView reloadData];
+}
+
+- (IBAction)trackPlus:(id)sender
+{
+    [oscDelegate trackPlusMinus:OSCIncrementTrack page:1];
+}
+
+- (IBAction)trackMinus:(id)sender
+{
+    [oscDelegate trackPlusMinus:OSCDecrementTrack page:1];
 }
 
 #pragma mark -
@@ -619,57 +577,60 @@
 - (void) updateVolumeFader:(NSNotification *)note
 {
     NSDictionary *extraInfo = [note userInfo];
-    int trackNumber = [[extraInfo objectForKey:@"trackNumber"] intValue];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:trackNumber-1 inSection:0];
+    int visibleTrackNumber = [[extraInfo objectForKey:@"visibleTrackNumber"] intValue];
+    float trackVolume = [[extraInfo objectForKey:@"trackVolume"] floatValue];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:visibleTrackNumber-1 inSection:0];
 
     TrackTableCell *cell = (TrackTableCell *)[self.tracksTableView cellForRowAtIndexPath:indexPath];
     
 #if 0
-    NSLog(@"Received trackVolumeDidChange notification, trackNumber = %d, volume = %0.3f",trackNumber,[[tracks objectAtIndex:trackNumber] volume]);
+    NSLog(@"Received trackVolumeDidChange notification, visibleTrackNumber = %d, volume = %0.3f",visibleTrackNumber,trackVolume);
     NSLog(@"cell = 0x%x",(unsigned int)cell);
 #endif    
     
     dispatch_async( dispatch_get_main_queue(), ^{
         // running synchronously on the main thread now -- call the handler
-        cell.volumeSlider.value = [[rowTracks objectAtIndex:trackNumber-1] volume];
+        cell.volumeSlider.value = trackVolume;
     });
 }
 
 - (void) updateVuMeter:(NSNotification *)note
 {
     NSDictionary *extraInfo = [note userInfo];
-    int trackNumber = [[extraInfo objectForKey:@"trackNumber"] intValue];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:trackNumber-1 inSection:0];
+    int visibleTrackNumber = [[extraInfo objectForKey:@"visibleTrackNumber"] intValue];
+    float meterLevel = [[extraInfo objectForKey:@"meterLevel"] floatValue];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:visibleTrackNumber-1 inSection:0];
     
     TrackTableCell *cell = (TrackTableCell *)[self.tracksTableView cellForRowAtIndexPath:indexPath];
     
 #if 0
-    NSLog(@"Received trackVuDidChange notification, trackNumber = %d, vu level = %0.3f",trackNumber,[[tracks objectAtIndex:trackNumber] volume]);
+    NSLog(@"Received trackVuDidChange notification, visibleTrackNumber = %d, vu level = %0.3f",visibleTrackNumber,meterLevel);
     NSLog(@"cell = 0x%x",(unsigned int)cell);
 #endif    
     
     dispatch_async( dispatch_get_main_queue(), ^{
         // running synchronously on the main thread now -- call the handler
-        cell.vuMeter.value = [[rowTracks objectAtIndex:trackNumber-1] vuLevel];
+        cell.vuMeter.value = meterLevel;
     });
 }
 
 - (void) updateTrackName:(NSNotification *)note
 {
     NSDictionary *extraInfo = [note userInfo];
-    int trackNumber = [[extraInfo objectForKey:@"trackNumber"] intValue];    
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:trackNumber-1 inSection:0];
+    int visibleTrackNumber = [[extraInfo objectForKey:@"visibleTrackNumber"] intValue];
+    NSString *trackName = [extraInfo objectForKey:@"trackName"];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:visibleTrackNumber-1 inSection:0];
     
     TrackTableCell *cell = (TrackTableCell *)[self.tracksTableView cellForRowAtIndexPath:indexPath];
     
 #if 0
-    NSLog(@"Received trackNameDidChange notification, trackNumber = %d, track name = %@",trackNumber,[[tracks objectAtIndex:trackNumber] name]);
+    NSLog(@"Received trackNameDidChange notification, visibleTrackNumber = %d, track name = %@",visibleTrackNumber,trackName);
     NSLog(@"cell = 0x%x",(unsigned int)cell);
 #endif
     
     dispatch_async( dispatch_get_main_queue(), ^{
         // running synchronously on the main thread now -- call the handler
-        cell.trackLabel.text = [[rowTracks objectAtIndex:trackNumber-1] name];
+        cell.trackLabel.text = trackName;
     });
 }
 

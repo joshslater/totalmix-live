@@ -16,6 +16,9 @@
 @synthesize rowTracks;
 @synthesize bankStart;
 
+#pragma mark -
+#pragma mark Initialization
+
 - (id)init
 {
     self = [super init];
@@ -25,7 +28,7 @@
         self.delegate = self;
     }
 
-    bankStart = [[NSMutableArray alloc] initWithObjects:[[NSNumber alloc] initWithInt:0], [[NSNumber alloc] initWithInt:0], nil];
+    //bankStart = [[NSMutableArray alloc] initWithObjects:[[NSNumber alloc] initWithInt:0], [[NSNumber alloc] initWithInt:0], nil];
     
     return self;
 }
@@ -85,6 +88,31 @@
 
 #pragma mark -
 #pragma mark <OscMessagingProtocol>
+- (void)initState
+{
+    for(int bus = 0; bus < 3; bus ++)
+    {
+        switch (bus) {
+            case 0:
+                [self setBusInput];
+                break;
+            case 1:
+                [self setBusPlayback];
+                break;
+            case 2:
+                [self setBusOutput];
+                break;
+            default:
+                break;
+        }
+        
+        
+        
+        
+    }
+}
+
+
 - (void)sendSetBankStart:(int)bankStartValue
 {
     OSCMessage *msg = [OSCMessage createWithAddress:@"/setBankStart"];
@@ -97,6 +125,7 @@
 #endif
 }
 
+/*
 - (void)setStartTrack:(int)trackNumber page:(int)pageNum
 {
     // how many tracks did we move?
@@ -114,24 +143,24 @@
     
     for(int i = 0; i < ABS(relativeTrack); i++)
     {
-        [self changeTrack:direction page:pageNum];
+        [self trackPlusMinus:direction page:pageNum];
     }
     
     [bankStart replaceObjectAtIndex:pageNum-1 withObject:[[NSNumber alloc] initWithInt:trackNumber]];
 }
+ */
 
 // for now, this will only happen on page 1
-- (void)volumeFaderDidChange:(int)trackNumber toValue:(float)value
+- (void)volumeFaderDidChange:(int)visibleTrackNumber toValue:(float)value
 {
-    int relativeTrackNumber = trackNumber - [[bankStart objectAtIndex:0] intValue];
     
-    OSCMessage *msg = [OSCMessage createWithAddress:[NSString stringWithFormat:@"/1/volume%d",relativeTrackNumber]];
+    OSCMessage *msg = [OSCMessage createWithAddress:[NSString stringWithFormat:@"/1/volume%d",visibleTrackNumber]];
     [msg addFloat:value];
     
     [oscOutPort sendThisMessage:msg];
     
-#if 0
-    NSLog(@"OSC TX: /1/volume%d %0.3f",relativeTrackNumber,value);
+#if 1
+    NSLog(@"OSC TX: /1/volume%d %0.3f",visibleTrackNumber,value);
 #endif
 }
 
@@ -178,37 +207,6 @@
     
     [oscOutPort sendThisMessage:msg];    
 }
-
-/*
-// initializes all channel and FX states
-- (void)sendEntireState
-{
-    for (Track *track in tracks)
-    {
-#if 1
-        NSLog(@"asdf");
-        NSLog(@"Sending track %d state",track.trackNumber);
-#endif
-        // volume
-        NSInteger trackNumber = track.trackNumber;
-        [self volumeFaderDidChange:trackNumber toValue:track.volume];
-        
-        // EQ
-        for (NSInteger band = 0; band < 4; band++)
-        {
-            for(NSInteger eqItem = EQItemGain; eqItem <= EQItemQ; eqItem++)
-            {
-                if(eqItem == EQItemGain)
-                    [self eqValueDidChange:trackNumber band:band item:eqItem value:[[track.eq.gainPoints objectAtIndex:band] floatValue]];
-                else if (eqItem == EQItemFrequency)
-                    [self eqValueDidChange:trackNumber band:band item:eqItem value:[[track.eq.freqPoints objectAtIndex:band] floatValue]];
-                else if (eqItem == EQItemQ)
-                    [self eqValueDidChange:trackNumber band:band item:eqItem value:[[track.eq.qPoints objectAtIndex:band] floatValue]];
-            }
-        }
-    }
-}
- */
 
 - (void)eqValueDidChange:(NSInteger)trackNumber band:(NSInteger)band item:(eqItems_t)item value:(float)value
 {
@@ -307,7 +305,7 @@
     [oscOutPort sendThisMessage:msg];
 }
 
-- (void)changeTrack:(oscChangeTrackDirection_t)direction page:(int)pageNum
+- (void)trackPlusMinus:(oscChangeTrackDirection_t)direction page:(int)pageNum
 {
     NSString *directionString;
     
@@ -354,7 +352,7 @@
     
     NSString *address = [m address];
     
-#if 1
+#if 0
     NSLog(@"Address = %@, %@",address,[m value]);
 #endif
     
@@ -367,34 +365,28 @@
     
     if (match)
     {
-        int relativeTrackNumber = [[address substringWithRange:[match rangeAtIndex:1]] intValue];
-        int trackNumber = relativeTrackNumber + [[bankStart objectAtIndex:0] intValue];
-
+        int visibleTrackNumber = [[address substringWithRange:[match rangeAtIndex:1]] intValue];
+        NSString *trackName = [m.value stringValue];
+        
 #if 0
         NSLog(@"rowTracks[%d].name = %@",trackNumber-1,((Track *)[rowTracks objectAtIndex:trackNumber-1]).name);
         NSLog(@"oscManagerController.rowTracks = %x",(int)rowTracks);
 #endif
         
         
-#if 0
-        NSLog(@"OSC::/1/trackname%d %@",relativeTrackNumber,[m.value stringValue]);
+#if 1
+        NSLog(@"OSC::/1/trackname%d %@",visibleTrackNumber,trackName);
 #endif
         
-        NSString *trackName = [m.value stringValue];
-
-        
-        ((Track *)[rowTracks objectAtIndex:trackNumber-1]).name = trackName;
         
         // post notifcation
-        NSArray *keys = [[NSArray alloc] initWithObjects:@"trackNumber", nil];
-        NSArray *objects = [[NSArray alloc] initWithObjects:[NSNumber numberWithInt:trackNumber], nil];
+        NSArray *keys = [[NSArray alloc] initWithObjects:@"visibleTrackNumber", @"trackName", nil];
+        NSArray *objects = [[NSArray alloc] initWithObjects:[NSNumber numberWithInt:visibleTrackNumber], trackName, nil];
         NSDictionary *extraInfo = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
         NSNotification *note = [NSNotification notificationWithName:@"TrackNameDidChange" object:self userInfo:extraInfo];
         [[NSNotificationCenter defaultCenter] postNotification:note];
         
     }
-    
-    
     
     ///////// TRACK VOLUME ///////////
     regex = [NSRegularExpression regularExpressionWithPattern:@"^/1/volume(\\d)$" options:0 error:nil];
@@ -402,18 +394,16 @@
     
     if (match)
     {
-        int relativeTrackNumber = [[address substringWithRange:[match rangeAtIndex:1]] intValue];
-        int trackNumber = relativeTrackNumber + [[bankStart objectAtIndex:0] intValue];
+        int visibleTrackNumber = [[address substringWithRange:[match rangeAtIndex:1]] intValue];
+        float trackVolume = [m.value floatValue];
         
-#if 0
-        NSLog(@"OSC::/1/volume%d %0.3f",relativeTrackNumber,[m.value floatValue]);
+#if 1
+        NSLog(@"OSC::/1/volume%d %0.3f",visibleTrackNumber,trackVolume);
 #endif
         
-        ((Track *)[rowTracks objectAtIndex:trackNumber-1]).volume = [m.value floatValue];
-                
         // post notifcation
-        NSArray *keys = [[NSArray alloc] initWithObjects:@"trackNumber", nil];
-        NSArray *objects = [[NSArray alloc] initWithObjects:[NSNumber numberWithInt:trackNumber], nil];
+        NSArray *keys = [[NSArray alloc] initWithObjects:@"visibleTrackNumber", @"trackVolume", nil];
+        NSArray *objects = [[NSArray alloc] initWithObjects:[NSNumber numberWithInt:visibleTrackNumber], [NSNumber numberWithFloat:trackVolume], nil];
         NSDictionary *extraInfo = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
         NSNotification *note = [NSNotification notificationWithName:@"TrackVolumeDidChange" object:self userInfo:extraInfo];
         [[NSNotificationCenter defaultCenter] postNotification:note];
@@ -426,17 +416,16 @@
     
     if (match)
     {
-        int trackNumber = [[address substringWithRange:[match rangeAtIndex:1]] intValue];
+        int visibleTrackNumber = [[address substringWithRange:[match rangeAtIndex:1]] intValue];
+        float meterLevel = [m.value floatValue];
         
-#if 0
-        NSLog(@"OSC::/1/level%dLeft %0.3f",trackNumber,[m.value floatValue]);
+#if 1
+        NSLog(@"OSC::/1/level%dLeft %0.3f",visibleTrackNumber,meterLevel);
 #endif
-        
-        ((Track *)[rowTracks objectAtIndex:trackNumber-1]).vuLevel = [m.value floatValue];
-        
+                
         // post notifcation
-        NSArray *keys = [[NSArray alloc] initWithObjects:@"trackNumber", nil];
-        NSArray *objects = [[NSArray alloc] initWithObjects:[NSNumber numberWithInt:trackNumber], nil];
+        NSArray *keys = [[NSArray alloc] initWithObjects:@"visibleTrackNumber", @"meterLevel", nil];
+        NSArray *objects = [[NSArray alloc] initWithObjects:[NSNumber numberWithInt:visibleTrackNumber], [NSNumber numberWithFloat:meterLevel], nil];
         NSDictionary *extraInfo = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
         NSNotification *note = [NSNotification notificationWithName:@"TrackVuDidChange" object:self userInfo:extraInfo];
         [[NSNotificationCenter defaultCenter] postNotification:note];

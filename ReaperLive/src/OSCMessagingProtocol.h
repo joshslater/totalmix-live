@@ -31,26 +31,25 @@ oscChangeTrackDirection_t;
 
 // FIXME: I don't really think these properties should be in the protocol
 @property (nonatomic, strong) NSMutableArray *rowTracks;
-// keep track of the bank start value, which is different for each page
-@property (strong, nonatomic) NSMutableArray *bankStart;
+// keep track of the bank start value
+@property (nonatomic) NSInteger bankStart;
 
 - (void)updateOscIpAddress:(NSString *)ipAddress inPort:(NSInteger)inPort outPort:(NSInteger)outPort;
 - (void)sendTestOscMsg;
 
+- (void)initState;
 
-- (void)sendOscAction:(oscActions_t)action;
-- (void)selectFX:(NSInteger)fxNumber;
 - (void)sendCannedMsg;
 - (void)eqValueDidChange:(NSInteger)trackNumber band:(NSInteger)band item:(eqItems_t)item value:(float)value;
 
 - (void)setStartTrack:(int)trackNumber page:(int)pageNum;
 - (void)sendSetBankStart:(int)bankStartValue;
-- (void)volumeFaderDidChange:(int)trackNumber toValue:(float)value;
+- (void)volumeFaderDidChange:(int)visibleTrackNumber toValue:(float)value;
 - (void)setBusInput;
 - (void)setBusPlayback;
 - (void)setBusOutput;
 - (void)setPage:(int)pageNum;
-
+- (void)trackPlusMinus:(oscChangeTrackDirection_t)direction page:(int)pageNum;
 
 
 
