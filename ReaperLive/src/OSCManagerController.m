@@ -96,6 +96,29 @@
 #endif
 }
 
+- (void)setStartTrack:(int)trackNumber
+{
+    // how many tracks did we move?
+    int relativeTrack = trackNumber - bankStart;
+    
+#if 0
+    NSLog(@"relativeTrack = %d",relativeTrack);
+#endif
+    
+    oscChangeTrackDirection_t direction;
+    if(relativeTrack > 0)
+        direction = OSCIncrementTrack;
+    else
+        direction = OSCDecrementTrack;
+    
+    for(int i = 0; i < ABS(relativeTrack); i++)
+    {
+        [self changeTrack:direction];
+    }
+    
+    bankStart = trackNumber;
+}
+
 
 - (void)volumeFaderDidChange:(int)trackNumber toValue:(float)value
 {
@@ -130,13 +153,6 @@
     
     OSCMessage *msg = [OSCMessage createWithAddress:@"/action"];
     [msg addInt:actionId];
-    [oscOutPort sendThisMessage:msg];
-}
-
-- (void)selectTrack:(NSInteger)trackNumber
-{
-    OSCMessage *msg = [OSCMessage createWithAddress:@"/device/track/select"];
-    [msg addInt:trackNumber];
     [oscOutPort sendThisMessage:msg];
 }
 
@@ -280,15 +296,18 @@
     [oscOutPort sendThisMessage:msg];
 }
 
--(void) setBusInput
-{    
+- (void)setBusInput
+{
+#if 1
+    NSLog(@"oscManagerController::setBusInput");
+#endif
     OSCMessage *msg = [OSCMessage createWithAddress:[NSString stringWithFormat:@"/1/busInput"]];
     [msg addFloat:1.0];
     
     [oscOutPort sendThisMessage:msg];
 }
 
--(void) setBusPlayback
+- (void)setBusPlayback
 {
 #if 1
     NSLog(@"oscManagerController::setBusPlayback");
@@ -299,9 +318,32 @@
     [oscOutPort sendThisMessage:msg];
 }
 
--(void) setBusOutput
+- (void)setBusOutput
 {
+#if 1
+    NSLog(@"oscManagerController::setBusOutput");
+#endif
+    
     OSCMessage *msg = [OSCMessage createWithAddress:[NSString stringWithFormat:@"/1/busOutput"]];
+    [msg addFloat:1.0];
+    
+    [oscOutPort sendThisMessage:msg];
+}
+
+- (void)changeTrack:(oscChangeTrackDirection_t)direction
+{
+    NSString *directionString;
+    
+    if(direction == OSCIncrementTrack)
+    {
+        directionString = @"+";
+    }
+    else
+    {
+        directionString = @"-";
+    }
+    
+    OSCMessage *msg = [OSCMessage createWithAddress:[NSString stringWithFormat:@"/1/track%@",directionString]];
     [msg addFloat:1.0];
     
     [oscOutPort sendThisMessage:msg];
@@ -333,6 +375,13 @@
     {
         int relativeTrackNumber = [[address substringWithRange:[match rangeAtIndex:1]] intValue];
         int trackNumber = relativeTrackNumber + bankStart;
+ 
+        
+#if 0
+        NSLog(@"rowTracks[%d].name = %@",trackNumber-1,((Track *)[rowTracks objectAtIndex:trackNumber-1]).name);
+        NSLog(@"oscManagerController.rowTracks = %x",(int)rowTracks);
+#endif
+        
         
 #if 0
         NSLog(@"OSC::/1/trackname%d %@",relativeTrackNumber,[m.value stringValue]);
@@ -340,6 +389,7 @@
         
         NSString *trackName = [m.value stringValue];
 
+        
         ((Track *)[rowTracks objectAtIndex:trackNumber-1]).name = trackName;
         
         // post notifcation

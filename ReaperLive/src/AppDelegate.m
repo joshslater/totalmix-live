@@ -49,8 +49,8 @@
     tracksViewController.nTracks = settings.nTracks;
     [tracksViewController initializeTracks];
     tracksViewController.currentRow = 0;
-    [tracksViewController refreshTracks:settings.nTracks];
-    [tracksViewController refreshTrackCells:settings.nTracks];
+    [tracksViewController refreshTracks];
+    [tracksViewController refreshTrackCells];
     
 #if 0
     NSLog(@"[tracksViewController.tracks count] = %d",[tracksViewController.tracks count]);

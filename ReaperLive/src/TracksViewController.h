@@ -18,8 +18,8 @@
 
 @required
 - (void)setNTracks:(NSMutableArray *)numTracks;
-- (void)refreshTracks:(NSMutableArray *)numTracks;
-- (void)refreshTrackCells:(NSMutableArray *)numTracks;
+- (void)refreshTracks;
+- (void)refreshTrackCells;
 - (void)tracksDidUpdate;
 
 @end

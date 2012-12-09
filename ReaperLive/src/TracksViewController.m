@@ -58,7 +58,13 @@
 {
     currentRow = aCurrentRow;
     
-    rowTracks = (NSMutableArray *)[tracks objectAtIndex:aCurrentRow];
+    rowTracks = [tracks objectAtIndex:aCurrentRow];
+    // update OSC's rowtracks
+    oscDelegate.rowTracks = rowTracks;
+    
+#if 0
+    NSLog(@"tracksViewController.rowTracks = %x",(int)rowTracks);
+#endif
 }
 
 #pragma mark -
@@ -203,7 +209,7 @@
 #pragma mark TableView Delegate/DataSource Methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#if 0
+#if 1
     NSLog(@"numberofRowsInSection:%d",[(NSNumber *)[nTracks objectAtIndex:currentRow] intValue]);
 #endif
     
@@ -407,6 +413,7 @@
     *targetContentOffset = CGPointMake(targetContentOffset->x, newTargetOffset);
 }
 
+/*
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
 #if 0
@@ -444,7 +451,16 @@
     // call the oscDelegate with the new value
     [oscDelegate setBankStart:trackNumber];
 }
+*/
 
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    NSArray *visible = [tracksTableView indexPathsForVisibleRows];
+    int trackNumber = ((NSIndexPath *)[visible objectAtIndex:0]).row;
+    
+    // call the oscDelegate with the new value
+    [oscDelegate setStartTrack:trackNumber];
+}
 
 #pragma mark -
 #pragma mark Action Handling
@@ -517,17 +533,32 @@
 
 - (IBAction)setInputButtonPressed:(id)sender
 {
+    // setting current row will update rowTracks
+    self.currentRow = 0;
+    [self refreshTrackCells];
     [oscDelegate setBusInput];
+    
+    [tracksTableView reloadData];
 }
 
 - (IBAction)setPlaybackButtonPressed:(id)sender
 {
+    // setting current row will update rowTracks
+    self.currentRow = 1;
+    [self refreshTrackCells];
     [oscDelegate setBusPlayback];
+    
+    [tracksTableView reloadData];
 }
 
 - (IBAction)setOutputButtonPressed:(id)sender
 {
+    // setting current row will update rowTracks
+    self.currentRow = 2;
+    [self refreshTrackCells];
     [oscDelegate setBusOutput];
+    
+    [tracksTableView reloadData];
 }
 
 #pragma mark -
@@ -647,10 +678,10 @@
 #pragma mark -
 #pragma mark TracksViewControllerProtocol Implementation
 
-- (void)refreshTracks:(NSMutableArray *)numTracks
+- (void)refreshTracks
 {
 #if 0
-    NSLog(@"tracksViewController::refreshTracks:[%d %d %d]",[(NSNumber *)[numTracks objectAtIndex:0] intValue],[(NSNumber *)[numTracks objectAtIndex:1] intValue],[(NSNumber *)[numTracks objectAtIndex:2] intValue]);
+    NSLog(@"tracksViewController::refreshTracks:[%d %d %d]",[(NSNumber *)[nTracks objectAtIndex:0] intValue],[(NSNumber *)[nTracks objectAtIndex:1] intValue],[(NSNumber *)[nTracks objectAtIndex:2] intValue]);
 #endif
     
     // clear old tracks
@@ -660,18 +691,20 @@
     
         for (int j = 0; j < MAX([(NSNumber *)[nTracks objectAtIndex:i] intValue],8); j++)
         {
+#if 0
+            NSLog(@"refreshTracks:: i = %d, j = %d",i,j);
+#endif
+            
             [[self.tracks objectAtIndex:i] addObject: [[Track alloc] initWithTrackNumber:(j+1)]];
         }
     }
 }
 
-- (void)refreshTrackCells:(NSMutableArray *)numTracks
+- (void)refreshTrackCells
 {
 #if 0
-    NSLog(@"tracksViewController::refreshTrackCells:[%d %d %d]",[(NSNumber *)[numTracks objectAtIndex:0] intValue],[(NSNumber *)[numTracks objectAtIndex:1] intValue],[(NSNumber *)[numTracks objectAtIndex:2] intValue]);
+    NSLog(@"tracksViewController::refreshTrackCells:[%d %d %d]",[(NSNumber *)[nTracks objectAtIndex:0] intValue],[(NSNumber *)[nTracks objectAtIndex:1] intValue],[(NSNumber *)[nTracks objectAtIndex:2] intValue]);
 #endif
-    
-//    [tracksTableView beginUpdates];
     
     // clear old track cells
     [trackCells removeAllObjects];
@@ -680,7 +713,7 @@
     for (int cellNum = 0; cellNum < [(NSNumber *)[nTracks objectAtIndex:self.currentRow] intValue]; cellNum++)
     {
 #if 0
-        NSLog(@"creating cell %d",((Track *)[tracks objectAtIndex:cellNum]).trackNumber);
+        NSLog(@"creating cell %d",((Track *)[rowTracks objectAtIndex:cellNum]).trackNumber);
 #endif
         
         TrackTableCell *cell = [self createCell:((Track *)[rowTracks objectAtIndex:cellNum]).trackNumber];

@@ -168,8 +168,8 @@
     
     // initialize tracks
     [tracksViewControllerDelegate setNTracks:self.settings.nTracks];
-    [tracksViewControllerDelegate refreshTracks:self.settings.nTracks];
-    [tracksViewControllerDelegate refreshTrackCells:self.settings.nTracks];
+    [tracksViewControllerDelegate refreshTracks];
+    [tracksViewControllerDelegate refreshTrackCells];
     [tracksViewControllerDelegate tracksDidUpdate];
     
 }

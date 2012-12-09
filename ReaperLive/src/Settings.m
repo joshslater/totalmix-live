@@ -31,7 +31,8 @@
 #endif
         for(int i = 0; i < 3; i++)
         {
-            [self.nTracks addObject:[[NSNumber alloc] initWithInt:0]];
+            // FIXME: Initting with 0 tracks causes it to crash
+            [self.nTracks addObject:[[NSNumber alloc] initWithInt:1]];
         }
     }
     
