@@ -6,15 +6,14 @@
 // detailed EQ view scale factors
 #define DET_EQ_POINTS_PER_DB 5.0
 #define DET_EQ_POINTS_PER_DECADE 150.0
-#define DET_EQ_MIN_FREQ 20.0
-#define DET_EQ_MAX_FREQ 20000.0
-#define DET_EQ_MIN_GAIN -20.0
-#define DET_EQ_MAX_GAIN 20.0
+#define DET_EQ_MIN_FREQ 20
+#define DET_EQ_MAX_FREQ 20000
+#define DET_EQ_MIN_GAIN -20
+#define DET_EQ_MAX_GAIN 20
 
 // EQ band default frequencies
-#define EQ_LOW_FREQ 30.0
-#define EQ_LOW_MID_FREQ 200.0
-#define EQ_HIGH_MID_FREQ 1500.0
+#define EQ_LOW_FREQ 80.0
+#define EQ_MID_FREQ 1000.0
 #define EQ_HIGH_FREQ 5000.0
 
 // EQ Button scale factors

@@ -459,7 +459,7 @@
     int trackNumber = ((NSIndexPath *)[visible objectAtIndex:0]).row;
     
     // call the oscDelegate with the new value
-    [oscDelegate setStartTrack:trackNumber];
+    [oscDelegate setStartTrack:trackNumber page:1];
 }
 
 #pragma mark -

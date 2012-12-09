@@ -50,7 +50,7 @@
         z = [[NSMutableArray alloc] initWithCapacity:[nPoints intValue]];
 
         
-        for (int j = 0; j < 4; j++)
+        for (int j = 0; j < 3; j++)
         {
             [HArray addObject:[[NSMutableArray alloc] init]];
             
@@ -113,7 +113,7 @@
             a2 = ((A+1)+((A-1)*wC)-(beta*wS));
             break;
             
-        case 3:
+        case 2:
             // high shelf
             b0 = A*((A+1)+((A-1)*wC)+(beta*wS));
             b1 = -2*A*((A-1)+((A+1)*wC));
@@ -182,7 +182,7 @@
         Complex *eqCurveVal = [[Complex alloc] initWithReal:[[[HArray objectAtIndex:0] objectAtIndex:i] real] andImag:[[[HArray objectAtIndex:0] objectAtIndex:i] imag]];
         
         // recalculate eqCurve
-        for (int j = 1; j < 4; j++)
+        for (int j = 1; j < 3; j++)
         {
             [eqCurveVal mult:eqCurveVal :[[HArray objectAtIndex:j] objectAtIndex:i]];
         }

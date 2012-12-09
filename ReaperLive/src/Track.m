@@ -37,19 +37,16 @@
         eq.gainPoints = [[NSMutableArray alloc] initWithObjects:   [NSNumber numberWithFloat:0.0],
                          [NSNumber numberWithFloat:0.0],
                          [NSNumber numberWithFloat:0.0],
-                         [NSNumber numberWithFloat:0.0], 
                          nil];
         
         eq.freqPoints = [[NSMutableArray alloc] initWithObjects:   [NSNumber numberWithFloat:EQ_LOW_FREQ],
-                         [NSNumber numberWithFloat:EQ_LOW_MID_FREQ],
-                         [NSNumber numberWithFloat:EQ_HIGH_MID_FREQ],
+                         [NSNumber numberWithFloat:EQ_MID_FREQ],
                          [NSNumber numberWithFloat:EQ_HIGH_FREQ], 
                          nil];
         
-        eq.qPoints = [[NSMutableArray alloc] initWithObjects:  [NSNumber numberWithFloat:0.707],
-                      [NSNumber numberWithFloat:0.707],
-                      [NSNumber numberWithFloat:0.707],
-                      [NSNumber numberWithFloat:0.707], 
+        eq.qPoints = [[NSMutableArray alloc] initWithObjects:  [NSNumber numberWithFloat:1.0],
+                      [NSNumber numberWithFloat:1.0],
+                      [NSNumber numberWithFloat:1.0],
                       nil];
         
 

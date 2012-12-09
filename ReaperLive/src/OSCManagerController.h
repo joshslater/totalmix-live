@@ -15,9 +15,6 @@
 @interface OSCManagerController : OSCManager <OSCDelegateProtocol, OSCMessagingProtocol>
 {
     OSCOutPort *oscOutPort;
-    
-    // keep track of the bank start value
-    int bankStart;
 }
 
 - (void)setInitialState;

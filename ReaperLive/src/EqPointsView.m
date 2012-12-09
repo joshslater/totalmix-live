@@ -23,7 +23,7 @@
         // add the EQ point markers    
         eqPointImages = [[NSMutableArray alloc] init];
         
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 3; i++)
         {
             UIImageView *eqPoint =[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"EQPoint.png"]];
             
@@ -46,7 +46,7 @@
 - (void)updateEqPoints
 {
     
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 3; i++)
     {
         UIImageView *eqPoint = [eqPointImages objectAtIndex:i];
         

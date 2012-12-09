@@ -253,23 +253,21 @@
 					<object class="IBUISegmentedControl" id="559595408">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{593, 43}, {194, 44}}</string>
+						<string key="NSFrame">{{614, 43}, {152, 44}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="33597388"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-						<int key="IBNumberOfSegments">4</int>
+						<int key="IBNumberOfSegments">3</int>
 						<int key="IBSelectedSegmentIndex">0</int>
 						<array key="IBSegmentTitles">
 							<string>Low</string>
-							<string>Low Mid</string>
-							<string>High Mid</string>
-							<string>High</string>
+							<string>Mid</string>
+							<string>Hi</string>
 						</array>
 						<array class="NSMutableArray" key="IBSegmentWidths">
-							<real value="0.0"/>
 							<real value="0.0"/>
 							<real value="0.0"/>
 							<real value="0.0"/>
@@ -278,17 +276,14 @@
 							<boolean value="YES"/>
 							<boolean value="YES"/>
 							<boolean value="YES"/>
-							<boolean value="YES"/>
 						</array>
 						<array class="NSMutableArray" key="IBSegmentContentOffsets">
-							<string>{0, 0}</string>
 							<string>{0, 0}</string>
 							<string>{0, 0}</string>
 							<string>{0, 0}</string>
 						</array>
 						<array class="NSMutableArray" key="IBSegmentImages">
 							<object class="NSNull" id="4"/>
-							<reference ref="4"/>
 							<reference ref="4"/>
 							<reference ref="4"/>
 						</array>
@@ -393,7 +388,6 @@
 						<int key="objectID">1</int>
 						<reference key="object" ref="191373211"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="559595408"/>
 							<reference ref="33597388"/>
 							<reference ref="961998489"/>
 							<reference ref="948099483"/>
@@ -404,6 +398,7 @@
 							<reference ref="41721097"/>
 							<reference ref="246239679"/>
 							<reference ref="837641477"/>
+							<reference ref="559595408"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>

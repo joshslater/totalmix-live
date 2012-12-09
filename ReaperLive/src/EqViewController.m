@@ -133,19 +133,14 @@
     freqKnob.maximumValue = log10f(DET_EQ_MAX_FREQ);
     
     [qKnob addTarget:self action:@selector(qKnobDidChange:) forControlEvents:UIControlEventValueChanged];
-    qKnob.minimumValue = 0.2;
-    qKnob.maximumValue = 10.0;
-    qKnob.defaultValue = 0.707;
+    qKnob.minimumValue = 0.7;
+    qKnob.maximumValue = 5.0;
+    qKnob.defaultValue = 3.0;
     
     // add a target for the segmented control
     [bandSelector addTarget:self action:@selector(bandSelectorDidChange:) forControlEvents:UIControlEventValueChanged];
     
     selectedBand = bandSelector.selectedSegmentIndex;
-    
-    if(selectedBand == 0 | selectedBand == 3)
-        qKnob.maximumValue = 0.707;
-    else
-        qKnob.maximumValue = 10.0;
      
     // call the target to initialize it
     [self bandSelectorDidChange:bandSelector];
@@ -234,7 +229,7 @@
 - (void)freqKnobDidChange:(MHRotaryKnob *)sender
 {
     int idx = bandSelector.selectedSegmentIndex;
-
+    
     // update the label
     freqLabel.text = [NSString stringWithFormat:@"%0.0f",pow(10,sender.value)];
     
@@ -242,7 +237,7 @@
     NSNumber *freqPoint = [NSNumber numberWithFloat:pow(10,sender.value)];
     [self.eq.freqPoints replaceObjectAtIndex:idx withObject:freqPoint];
     
-    [oscDelegate eqValueDidChange:self.trackNumber band:bandSelector.selectedSegmentIndex item:EQItemFrequency value:[freqPoint floatValue]];
+    [oscDelegate eqValueDidChange:self.trackNumber band:bandSelector.selectedSegmentIndex item:EQItemFrequency value:sender.value];
     
     
 #if 0
@@ -300,12 +295,6 @@
     gainKnob.value = [[self.eq.gainPoints objectAtIndex:idx] floatValue];
     freqKnob.value = log10f([[self.eq.freqPoints objectAtIndex:idx] floatValue]);
     
-    // limit q to 0.707 max value for low and high shelf
-    if(idx == 0 | idx == 3)
-        qKnob.maximumValue = 0.707;
-    else
-        qKnob.maximumValue = 10.0;
-    
     qKnob.value = [[self.eq.qPoints objectAtIndex:idx] floatValue];
     
     // set each label
@@ -313,9 +302,6 @@
     freqLabel.text = [NSString stringWithFormat:@"%0.0f",[[self.eq.freqPoints objectAtIndex:idx] floatValue]];
     qLabel.text = [NSString stringWithFormat:@"%0.3f",[[self.eq.qPoints objectAtIndex:idx] floatValue]];
     
-
-    
-     
     // set the default value of the frequency knob depending on the band
     switch (idx) {
         case 0:
@@ -323,14 +309,10 @@
             break;
             
         case 1:
-            freqKnob.defaultValue = log10(EQ_LOW_MID_FREQ);
+            freqKnob.defaultValue = log10(EQ_MID_FREQ);
             break;
             
         case 2:
-            freqKnob.defaultValue = log10(EQ_HIGH_MID_FREQ);
-            break;
-            
-        case 3:
             freqKnob.defaultValue = log10(EQ_HIGH_FREQ);
             break;
             

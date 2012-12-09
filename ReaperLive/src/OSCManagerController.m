@@ -9,10 +9,12 @@
 #import "OSCManagerController.h"
 #import "Track.h"
 #import "Eq.h"
+#import "Constants.h"
 
 @implementation OSCManagerController
 
 @synthesize rowTracks;
+@synthesize bankStart;
 
 - (id)init
 {
@@ -22,7 +24,9 @@
     {
         self.delegate = self;
     }
-        
+
+    bankStart = [[NSMutableArray alloc] initWithObjects:[[NSNumber alloc] initWithInt:0], [[NSNumber alloc] initWithInt:0], nil];
+    
     return self;
 }
 
@@ -81,25 +85,22 @@
 
 #pragma mark -
 #pragma mark <OscMessagingProtocol>
-- (void)setBankStart:(int)trackNumber
+- (void)sendSetBankStart:(int)bankStartValue
 {
-    // update the bankStart private variable
-    bankStart = trackNumber;
-    
     OSCMessage *msg = [OSCMessage createWithAddress:@"/setBankStart"];
-    [msg addFloat:(float)trackNumber];
+    [msg addFloat:(float)bankStartValue];
     
     [oscOutPort sendThisMessage:msg];
     
-#if 0
-    NSLog(@"OSC TX: /setBankStart %d",trackNumber);
+#if 1
+    NSLog(@"OSC TX: /setBankStart %d",bankStartValue);
 #endif
 }
 
-- (void)setStartTrack:(int)trackNumber
+- (void)setStartTrack:(int)trackNumber page:(int)pageNum
 {
     // how many tracks did we move?
-    int relativeTrack = trackNumber - bankStart;
+    int relativeTrack = trackNumber - [[bankStart objectAtIndex:pageNum-1] intValue];
     
 #if 0
     NSLog(@"relativeTrack = %d",relativeTrack);
@@ -113,16 +114,16 @@
     
     for(int i = 0; i < ABS(relativeTrack); i++)
     {
-        [self changeTrack:direction];
+        [self changeTrack:direction page:pageNum];
     }
     
-    bankStart = trackNumber;
+    [bankStart replaceObjectAtIndex:pageNum-1 withObject:[[NSNumber alloc] initWithInt:trackNumber]];
 }
 
-
+// for now, this will only happen on page 1
 - (void)volumeFaderDidChange:(int)trackNumber toValue:(float)value
 {
-    int relativeTrackNumber = trackNumber - bankStart;
+    int relativeTrackNumber = trackNumber - [[bankStart objectAtIndex:0] intValue];
     
     OSCMessage *msg = [OSCMessage createWithAddress:[NSString stringWithFormat:@"/1/volume%d",relativeTrackNumber]];
     [msg addFloat:value];
@@ -215,15 +216,15 @@
     
     switch (item) {
         case EQItemFrequency:
-            itemString = @"freq/hz";
+            itemString = @"eqFreq";
             break;
             
         case EQItemGain:
-            itemString = @"gain/db";
+            itemString = @"eqGain";
             break;
             
         case EQItemQ:
-            itemString = @"q/oct";
+            itemString = @"eqQ";
             break;
             
         default:
@@ -234,26 +235,22 @@
     
     switch (band) {
         case 0:
-            bandString = @"loshelf";
+            bandString = @"1";
             break;
             
         case 1:
-            bandString = @"band/2";
+            bandString = @"2";
             break;
             
         case 2:
-            bandString = @"band/3";
-            break;
-            
-        case 3:
-            bandString = @"hishelf";
+            bandString = @"3";
             break;
             
         default:
             break;
     }
     
-    NSString *addressString = [NSString stringWithFormat:@"/track/%d/fxeq/%@/%@",trackNumber,bandString,itemString];
+    NSString *addressString = [NSString stringWithFormat:@"/2/%@%@",itemString,bandString];
     
     OSCMessage *msg = [OSCMessage createWithAddress:addressString];
     
@@ -261,35 +258,15 @@
     float sendValue;
     
     if(item == EQItemGain)
-        sendValue = pow(10,value/20);
+        sendValue = (value + 20)/40;
     else if(item == EQItemQ)
-    {
-        // need to calculate BW in octaves given Q -- NASTY!
-        float q = value;
-        /*
-        float y = 1 + 1/(2*q*q) + sqrt(((2 + (1/(q*q))) * (2 + (1/(q*q))) - 1) / 4);
-        float bwOct = log(y)/log(2);
-        */
-        
-        float Q2bw1st = ((2*q*q)+1)/(2*q*q);
-        float Q2bw2nd = pow(2*Q2bw1st,2)/4;
-        float Q2bw3rd = sqrt(Q2bw2nd-1);
-        float Q2bw4th = Q2bw1st+Q2bw3rd;
-        
-        float bwOct;
-        if(band == 0 | band == 3)
-            bwOct = log(Q2bw4th/2)/log(2);
-        else
-            bwOct = log(Q2bw4th)/log(2);
-        
-        sendValue = bwOct;
-    }
+        sendValue = (value - 0.7)/4.3;
     else
-        sendValue = value;
+        sendValue = (value-1.3)/3;
     
     [msg addFloat:sendValue];
     
-#if 0
+#if 1
     NSLog(@"eqValueDidChange::sending %@ %0.2f",addressString,sendValue);
 #endif
     
@@ -330,7 +307,7 @@
     [oscOutPort sendThisMessage:msg];
 }
 
-- (void)changeTrack:(oscChangeTrackDirection_t)direction
+- (void)changeTrack:(oscChangeTrackDirection_t)direction page:(int)pageNum
 {
     NSString *directionString;
     
@@ -343,11 +320,28 @@
         directionString = @"-";
     }
     
-    OSCMessage *msg = [OSCMessage createWithAddress:[NSString stringWithFormat:@"/1/track%@",directionString]];
+#if 1
+    NSLog(@"/%d/track%@",pageNum,directionString);
+#endif
+    
+    OSCMessage *msg = [OSCMessage createWithAddress:[NSString stringWithFormat:@"/%d/track%@",pageNum,directionString]];
     [msg addFloat:1.0];
     
     [oscOutPort sendThisMessage:msg];
 }
+
+- (void)setPage:(int)pageNum
+{
+    OSCMessage *msg = [OSCMessage createWithAddress:[NSString stringWithFormat:@"/%d",pageNum]];
+    [msg addFloat:1.0];
+    
+#if 1
+    NSLog(@"/%d",pageNum);
+#endif
+    
+    [oscOutPort sendThisMessage:msg];
+}
+
 
 #pragma mark -
 #pragma mark <OSCDelegateProtocol> Implementation
@@ -360,7 +354,7 @@
     
     NSString *address = [m address];
     
-#if 0
+#if 1
     NSLog(@"Address = %@, %@",address,[m value]);
 #endif
     
@@ -374,9 +368,8 @@
     if (match)
     {
         int relativeTrackNumber = [[address substringWithRange:[match rangeAtIndex:1]] intValue];
-        int trackNumber = relativeTrackNumber + bankStart;
- 
-        
+        int trackNumber = relativeTrackNumber + [[bankStart objectAtIndex:0] intValue];
+
 #if 0
         NSLog(@"rowTracks[%d].name = %@",trackNumber-1,((Track *)[rowTracks objectAtIndex:trackNumber-1]).name);
         NSLog(@"oscManagerController.rowTracks = %x",(int)rowTracks);
@@ -410,7 +403,7 @@
     if (match)
     {
         int relativeTrackNumber = [[address substringWithRange:[match rangeAtIndex:1]] intValue];
-        int trackNumber = relativeTrackNumber + bankStart;
+        int trackNumber = relativeTrackNumber + [[bankStart objectAtIndex:0] intValue];
         
 #if 0
         NSLog(@"OSC::/1/volume%d %0.3f",relativeTrackNumber,[m.value floatValue]);

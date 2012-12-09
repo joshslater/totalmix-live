@@ -51,6 +51,10 @@
     compView = [[CompView alloc] initWithFrame:CGRectMake(TRACKS_WIDTH, 0, TRACKS_WIDTH, DETAILED_TRACK_VIEW_HEIGHT)];
     [detailedTrackScrollView addSubview:compView];
     
+    // initialize page 2 to be channel 0
+    [oscDelegate setPage:2];
+    [oscDelegate sendSetBankStart:0];
+    [oscDelegate.bankStart replaceObjectAtIndex:1 withObject:[[NSNumber alloc] initWithInt:0]];
     
     /******* EQ VIEW *******/
     
@@ -129,6 +133,18 @@
     
     // set content offset
     detailedTrackScrollView.contentOffset = self.contentOffset;
+    
+    
+#if 1
+    NSLog(@"setStartTrack:%d",self.track.trackNumber-1);
+#endif
+    
+    // set page 2
+    [oscDelegate setPage:2];
+    
+    // send osc message to set the correct start track
+    [oscDelegate setStartTrack:self.track.trackNumber-1 page:2];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -143,6 +159,9 @@
     NSLog(@"DetailedTrackViewController:: viewWillDisappear");
 #endif
     
+    // set page 1
+    [oscDelegate setPage:1];
+        
     // whenever the detailed track view controller will disappear, need to update the eq buttons for this track
     [delegate updateTrackButtons:self.selectedTrack];
 }
