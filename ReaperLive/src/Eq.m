@@ -20,8 +20,6 @@
 @synthesize eqFreqPoints;
 @synthesize eqCurve;
 
-@synthesize selectedBand;
-
 -(Eq *)init
 {
     if (self = [super init])
@@ -82,15 +80,15 @@
     return self;
 }
 
--(void)calculateEqCurve
+-(void)calculateEqCurve:(NSNumber *)band
 {
-#if 0
-    NSLog(@"in calculateEqCurve, selectedBand = %d",[selectedBand integerValue]);
+#if 1
+    NSLog(@"in calculateEqCurve, band = %d",[band integerValue]);
 #endif
     
-    double fc = [[freqPoints objectAtIndex:[selectedBand integerValue]] doubleValue];
-    double q = [[qPoints objectAtIndex:[selectedBand integerValue]] doubleValue];
-    double g = [[gainPoints objectAtIndex:[selectedBand integerValue]] doubleValue];
+    double fc = [[freqPoints objectAtIndex:[band integerValue]] doubleValue];
+    double q = [[qPoints objectAtIndex:[band integerValue]] doubleValue];
+    double g = [[gainPoints objectAtIndex:[band integerValue]] doubleValue];
     
     double A = sqrt(pow(10, g/20));
     double wc = 2*M_PI*fc / fs;
@@ -101,7 +99,7 @@
     
     double b0, b1, b2, a0, a1, a2;
     
-    switch([selectedBand integerValue])
+    switch([band integerValue])
     {
         case 0:
             // low shelf
@@ -152,7 +150,7 @@
     
     Complex *result = [[Complex alloc] init];
         
-    NSMutableArray *H = [HArray objectAtIndex:[selectedBand integerValue]];
+    NSMutableArray *H = [HArray objectAtIndex:[band integerValue]];
     
     for (int i = 0; i <= [nPoints intValue]; i++)
     {        

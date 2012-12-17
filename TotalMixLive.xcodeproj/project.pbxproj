@@ -26,6 +26,7 @@
 		032504C715EC998A008B0E19 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 032504C615EC998A008B0E19 /* SettingsViewController.m */; };
 		0328372B15F2F21A000B29DC /* MeterMax.png in Resources */ = {isa = PBXBuildFile; fileRef = 0328372915F2F21A000B29DC /* MeterMax.png */; };
 		0328372C15F2F21A000B29DC /* MeterMin.png in Resources */ = {isa = PBXBuildFile; fileRef = 0328372A15F2F21A000B29DC /* MeterMin.png */; };
+		032F9243167EE48500C9B699 /* NSMutableArray+Tracks.m in Sources */ = {isa = PBXBuildFile; fileRef = 032F9242167EE48500C9B699 /* NSMutableArray+Tracks.m */; };
 		03306F4815E17F9E0094DF14 /* Eq.m in Sources */ = {isa = PBXBuildFile; fileRef = 03306F4715E17F9E0094DF14 /* Eq.m */; };
 		0345FB5215D3660F009130E2 /* VerticalSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 0345FB5115D3660F009130E2 /* VerticalSlider.m */; };
 		0348F52215E9A58300992A0D /* Complex.m in Sources */ = {isa = PBXBuildFile; fileRef = 0348F52115E9A58200992A0D /* Complex.m */; };
@@ -102,6 +103,8 @@
 		032504C615EC998A008B0E19 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		0328372915F2F21A000B29DC /* MeterMax.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MeterMax.png; sourceTree = "<group>"; };
 		0328372A15F2F21A000B29DC /* MeterMin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MeterMin.png; sourceTree = "<group>"; };
+		032F9241167EE48500C9B699 /* NSMutableArray+Tracks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Tracks.h"; sourceTree = "<group>"; };
+		032F9242167EE48500C9B699 /* NSMutableArray+Tracks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Tracks.m"; sourceTree = "<group>"; };
 		03306F4615E17F9E0094DF14 /* Eq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Eq.h; sourceTree = "<group>"; };
 		03306F4715E17F9E0094DF14 /* Eq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Eq.m; sourceTree = "<group>"; };
 		033682E515F723F1000CEA96 /* OSCMessagingProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OSCMessagingProtocol.h; sourceTree = "<group>"; };
@@ -401,6 +404,8 @@
 		03F2328B15C26921009B0390 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				032F9241167EE48500C9B699 /* NSMutableArray+Tracks.h */,
+				032F9242167EE48500C9B699 /* NSMutableArray+Tracks.m */,
 				03ADD59715BD107F00EBDC71 /* Track.h */,
 				03ADD59815BD107F00EBDC71 /* Track.m */,
 				03306F4615E17F9E0094DF14 /* Eq.h */,
@@ -540,6 +545,7 @@
 				031C9D3E15EDECDC00ED2898 /* OSCManagerController.m in Sources */,
 				03A40B1115F1D65A00CE0FAD /* EqButton.m in Sources */,
 				03159B2415F5BE1C00B82888 /* Settings.m in Sources */,
+				032F9243167EE48500C9B699 /* NSMutableArray+Tracks.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

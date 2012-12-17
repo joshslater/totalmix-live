@@ -25,8 +25,6 @@
 @property (nonatomic, strong) NSMutableArray *eqFreqPoints;
 @property (nonatomic, strong) NSMutableArray *eqCurve;
 
-@property (nonatomic, strong) NSNumber *selectedBand;
-
--(void)calculateEqCurve;
+-(void)calculateEqCurve:(NSNumber*)band;
 
 @end

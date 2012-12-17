@@ -146,7 +146,11 @@
     [self bandSelectorDidChange:bandSelector];
     
     // this calculate's the eqCurve for the track
-    [self.eq calculateEqCurve];
+    for(int band = 0; band<3; band++)
+    {
+        [self.eq calculateEqCurve:[NSNumber numberWithInt:band]];
+    }
+    
     // draws the new curve
     [eqCurveView setNeedsDisplay];
     // updates the location of the points
@@ -169,7 +173,10 @@
     eqPointsView.eq = self.eq;    
     
     // this calculate's the eqCurve for the track
-    [self.eq calculateEqCurve];
+    for(int band = 0; band<3; band++)
+    {
+        [self.eq calculateEqCurve:[NSNumber numberWithInt:band]];
+    }
     // draws the new curve
     [eqCurveView setNeedsDisplay];
     // updates the location of the points
@@ -218,7 +225,7 @@
 #endif
     
     // this calculate's the eqCurve for the track
-    [self.eq calculateEqCurve];
+    [self.eq calculateEqCurve:[NSNumber numberWithInt:bandSelector.selectedSegmentIndex]];
     // draws the new curve
     [eqCurveView setNeedsDisplay];
     // updates the location of the points
@@ -244,7 +251,7 @@
 #endif
  
     // this calculate's the eqCurve for the track
-    [self.eq calculateEqCurve];
+    [self.eq calculateEqCurve:[NSNumber numberWithInt:bandSelector.selectedSegmentIndex]];
     // draws the new curve
     [eqCurveView setNeedsDisplay];
     // updates the location of the points
@@ -269,7 +276,7 @@
 #endif    
     
     // this calculate's the eqCurve for the track
-    [self.eq calculateEqCurve];
+    [self.eq calculateEqCurve:[NSNumber numberWithInt:bandSelector.selectedSegmentIndex]];
     // draws the new curve
     [eqCurveView setNeedsDisplay];
     // updates the location of the points
@@ -318,9 +325,6 @@
         default:
             break;
     }
-    
-    // set the selected band for the current track
-    eq.selectedBand = [NSNumber numberWithInt:idx];
 }
 
 - (void)dealloc

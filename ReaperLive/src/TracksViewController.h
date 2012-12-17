@@ -13,7 +13,6 @@
 #import "TrackTableCell.h"
 #import "DetailedTrackViewController.h"
 
-
 @protocol TracksViewControllerProtocol <NSObject>
 
 @required
@@ -45,8 +44,6 @@
 
 // number of visible tracks isn't necessarily the number of stored tracks
 @property (strong, nonatomic) NSMutableArray *nTracks;
-// tracks for current row
-@property (strong, nonatomic) NSMutableArray *rowTracks;
 
 
 // buttons to control inputs/playback/outputs
@@ -78,6 +75,5 @@
 // DetailedTrackViewControllerProtocol implementation
 - (void)updateTrackButtons:(NSInteger)trackNumber;
 - (void)updateSelectedTrack:(NSInteger)trackNumber;
-- (void) updateVolumeFader:(NSNotification *)note;
 
 @end

@@ -9,6 +9,7 @@
 #import "Constants.h"
 #import "TracksViewController.h"
 #import "Track.h"
+#import "NSMutableArray+Tracks.h"
 #import "TrackTableCell.h"
 #import "VolumeSlider.h"
 #import "VerticalSlider.h"
@@ -25,7 +26,6 @@
 #pragma mark Properties
 
 @synthesize nTracks;
-@synthesize rowTracks;
 
 @synthesize oscDelegate;
 @synthesize tracks;
@@ -66,19 +66,11 @@
     }
     
     // register for track volume updates
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateVolumeFader:) name:@"TrackVolumeDidChange" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTrackParam:) name:@"TrackParamDidChange" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateDetailedTrackParam:) name:@"DetailedTrackParamDidChange" object:nil];
     
-    // register for track vu updates
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateVuMeter:) name:@"TrackVuDidChange" object:nil];
-    
-    // register for track name updates
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTrackName:) name:@"TrackNameDidChange" object:nil];
-        
     // allocate the trackCells dict
     trackCells = [[NSMutableDictionary alloc] initWithCapacity:100];
-    
-    // allocate rowTracks
-    rowTracks = [[NSMutableArray alloc] init];
     
     return self;
 }
@@ -374,8 +366,6 @@
 */
     
     // set the eq for each of the eqThumbsView's
-//    cell.eqButton.eq = [[rowTracks objectAtIndex:trackNumber-1] eq];
-//    [cell.eqButton setNeedsDisplay];    
     return cell;
 }
 
@@ -504,10 +494,11 @@
 #endif
     
     // get the track with this track name
-    Track *track = [[tracks objectAtIndex:currentRow] objectForKey:trackName];
+    int bankStart = [tracks getBankStartForRow:currentRow forTrackName:trackName];
+    Track *track = [[tracks objectAtIndex:currentRow] objectForKey:[NSNumber numberWithInt:bankStart]];
     
 #if 1
-    NSLog(@"trackname = %@, track.bankStart = %d",trackName, track.bankStart);
+    NSLog(@"trackname = %@, bankStart = %d",track.name, bankStart);
 #endif
         
     // pass the necessary properties about the cahnnel to the detailed view controller
@@ -516,7 +507,8 @@
     
     // set the previous bankStart
     NSString *firstTrackName = ((TrackTableCell*)[trackCells objectForKey:[NSNumber numberWithInt:0]]).trackLabel.text;
-    detailedTrackViewController.prevBankStart = ((Track *)[[tracks objectAtIndex:currentRow] objectForKey:firstTrackName]).bankStart;
+    int firstTrackBankStart = [tracks getBankStartForRow:currentRow forTrackName:firstTrackName];
+    detailedTrackViewController.prevBankStart = firstTrackBankStart;
     
     // set content offset to be TRACKS_WIDTH
     detailedTrackViewController.contentOffset = offset;
@@ -553,74 +545,102 @@
 #pragma mark -
 #pragma mark Notification Handling Methods
 
-- (void) updateVolumeFader:(NSNotification *)note
+- (void) updateTrackParam:(NSNotification *)note
 {
     NSDictionary *extraInfo = [note userInfo];
     int visibleTrackNumber = [[extraInfo objectForKey:@"visibleTrackNumber"] intValue];
-    float trackVolume = [[extraInfo objectForKey:@"trackVolume"] floatValue];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:visibleTrackNumber-1 inSection:0];
-
-    TrackTableCell *cell = (TrackTableCell *)[self.tracksTableView cellForRowAtIndexPath:indexPath];
-    
-#if 0
-    NSLog(@"Received trackVolumeDidChange notification, visibleTrackNumber = %d, volume = %0.3f",visibleTrackNumber,trackVolume);
-    NSLog(@"cell = 0x%x",(unsigned int)cell);
-#endif    
-    
-    dispatch_async( dispatch_get_main_queue(), ^{
-        // running synchronously on the main thread now -- call the handler
-        cell.volumeSlider.value = trackVolume;
-    });
-}
-
-- (void) updateVuMeter:(NSNotification *)note
-{
-    NSDictionary *extraInfo = [note userInfo];
-    int visibleTrackNumber = [[extraInfo objectForKey:@"visibleTrackNumber"] intValue];
-    float meterLevel = [[extraInfo objectForKey:@"meterLevel"] floatValue];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:visibleTrackNumber-1 inSection:0];
     
-    TrackTableCell *cell = (TrackTableCell *)[self.tracksTableView cellForRowAtIndexPath:indexPath];
-    
 #if 0
-    NSLog(@"Received trackVuDidChange notification, visibleTrackNumber = %d, vu level = %0.3f",visibleTrackNumber,meterLevel);
-    NSLog(@"cell = 0x%x",(unsigned int)cell);
-#endif    
-    
-    dispatch_async( dispatch_get_main_queue(), ^{
-        // running synchronously on the main thread now -- call the handler
-        cell.vuMeter.value = meterLevel;
-    });
-}
-
-- (void) updateTrackName:(NSNotification *)note
-{
-    NSDictionary *extraInfo = [note userInfo];
-    int visibleTrackNumber = [[extraInfo objectForKey:@"visibleTrackNumber"] intValue];
-    NSString *trackName = [extraInfo objectForKey:@"trackName"];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:visibleTrackNumber-1 inSection:0];
-    
-    TrackTableCell *cell = (TrackTableCell *)[self.tracksTableView cellForRowAtIndexPath:indexPath];
-    
-#if 0
-    NSLog(@"Received trackNameDidChange notification, visibleTrackNumber = %d, track name = %@",visibleTrackNumber,trackName);
-    //NSLog(@"cell = 0x%x",(unsigned int)cell);
+    NSLog(@"Received trackParamDidChange notification, visibleTrackNumber = %d",visibleTrackNumber);
 #endif
     
-    // get the track with this track name
-    Track *track = [[tracks objectAtIndex:currentRow] objectForKey:trackName];
     
-    dispatch_async( dispatch_get_main_queue(), ^{
-        // running synchronously on the main thread now -- call the handler
-        cell.trackLabel.text = trackName;
-        
-        // set the eq for each of the eqThumbsView's
-        cell.eqButton.eq = [track eq];
-        [cell.eqButton setNeedsDisplay];
-    });
+    TrackTableCell *cell = (TrackTableCell *)[self.tracksTableView cellForRowAtIndexPath:indexPath];
+    
+    // loop over each key
+    for(id key in extraInfo)
+    {
+        if([key isEqualToString:@"trackName"])
+        {
+            NSString *trackName = [extraInfo objectForKey:@"trackName"];
+            
+            // get the track with this track name
+            int bankStart = [tracks getBankStartForRow:currentRow forTrackName:trackName];
+            Track *track = [[tracks objectAtIndex:currentRow] objectForKey:[NSNumber numberWithInt:bankStart]];
+           
+            dispatch_async( dispatch_get_main_queue(), ^{
+                // running synchronously on the main thread now -- call the handler
+                cell.trackLabel.text = trackName;
+                
+                // set the eq for each of the eqThumbsView's
+                cell.eqButton.eq = [track eq];
+                [cell.eqButton setNeedsDisplay];
+            });
+        }
+        else if([key isEqualToString:@"trackVolume"])
+        {
+            float trackVolume = [[extraInfo objectForKey:@"trackVolume"] floatValue];
+            
+            dispatch_async( dispatch_get_main_queue(), ^{
+                // running synchronously on the main thread now -- call the handler
+                cell.volumeSlider.value = trackVolume;
+            });
+        }
+        else if([key isEqualToString:@"meterLevel"])
+        {
+            float meterLevel = [[extraInfo objectForKey:@"meterLevel"] floatValue];
+            
+            dispatch_async( dispatch_get_main_queue(), ^{
+                // running synchronously on the main thread now -- call the handler
+                cell.vuMeter.value = meterLevel;
+            });
+        }
+        else
+        {
+#if 0
+            NSLog(@"key = %@",key);
+#endif
+        }
+    }
 }
 
-
+-(void) updateDetailedTrackParam:(NSNotification *)note
+{
+    NSDictionary *extraInfo = [note userInfo];
+    int bankStart = [[extraInfo objectForKey:@"bankStart"] intValue];
+    NSString *eqParam = [extraInfo objectForKey:@"eqParam"];
+    int eqBand = [[extraInfo objectForKey:@"eqBand"] intValue];
+    float value = [[extraInfo objectForKey:@"value"] floatValue];
+    
+#if 0
+    NSLog(@"TracksViewController::updateDetailedTrackParam");
+    NSLog(@"bankStart = %d, eqParam = %@, eqBand = %d, value = %0.3f",bankStart,eqParam,eqBand,value);
+#endif
+    
+    Track *track = [[tracks objectAtIndex:currentRow] objectForKey:[NSNumber numberWithInt:bankStart]];
+    
+    if([eqParam isEqualToString:@"Gain"])
+    {
+        [track.eq.gainPoints replaceObjectAtIndex:eqBand-1 withObject:[NSNumber numberWithFloat:value*40 - 20]];
+    }
+    else if([eqParam isEqualToString:@"Freq"])
+    {
+        [track.eq.freqPoints replaceObjectAtIndex:eqBand-1 withObject:[NSNumber numberWithFloat:pow(10,value*3 + 1.3)]];
+    }
+    else if([eqParam isEqualToString:@"Q"])
+    {
+        [track.eq.qPoints replaceObjectAtIndex:eqBand-1 withObject:[NSNumber numberWithFloat:value*4.3 + 0.7]];
+    }
+    else if([eqParam isEqualToString:@"Type"])
+    {
+        
+    }
+    else
+    {
+        NSLog(@"TracksViewController::updateDetailedTrackParam:: eqParam = %@",eqParam);
+    }
+}
 
 #pragma mark -
 #pragma mark TracksViewControllerProtocol Implementation

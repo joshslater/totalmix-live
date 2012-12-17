@@ -10,6 +10,7 @@
 #import "Track.h"
 #import "Eq.h"
 #import "Constants.h"
+#import "NSMutableArray+Tracks.h"
 
 @implementation OSCManagerController
 
@@ -111,11 +112,23 @@
         
         for(bankStart = 0; bankStart < 30; bankStart++)
         {
+            [[tracks objectAtIndex:bus] setObject:[[Track alloc] init] forKey:[NSNumber numberWithInt:bankStart]];
             [self sendSetBankStart:bankStart];
             
             [NSThread sleepForTimeInterval:0.05];
         }
     }
+    
+    [tracks removeDuplicateEntries];
+    
+#if 0
+    NSMutableDictionary *myRowTracks = [tracks objectAtIndex:0];
+    
+    for(id key in myRowTracks)
+    {
+        NSLog(@"key %d: name = %@",[key intValue], ((Track *)[myRowTracks objectForKey:key]).name);
+    }
+#endif
     
     // go back to the beginning
     bankStart = 0;
@@ -125,6 +138,9 @@
 
 - (void)sendSetBankStart:(int)bankStartValue
 {
+    // set private bankStart variable
+    bankStart = bankStartValue;
+    
     OSCMessage *msg = [OSCMessage createWithAddress:@"/setBankStart"];
     [msg addFloat:(float)bankStartValue];
     
@@ -345,22 +361,16 @@
         // if this is a pageNum 2 update only
         if(pageNum == 2)
         {
-            // don't update the bankStart unless the track doesn't exist yet -- this makes it so stereo channels
-            // have a bankStart that is equal to the left channel
-            if(![rowTracks objectForKey:trackName])
-            {
-                [rowTracks setObject:[[Track alloc] init] forKey:trackName];
-                
-                Track *track = [rowTracks objectForKey:trackName];
-                track.bankStart = self.bankStart;
-            }
+            Track *track = [rowTracks objectForKey:[NSNumber numberWithInt:bankStart]];
+            track.name = trackName;
+            track.bankStart = bankStart;
         }
         
         // post notifcation
         NSArray *keys = [[NSArray alloc] initWithObjects:@"visibleTrackNumber", @"trackName", nil];
         NSArray *objects = [[NSArray alloc] initWithObjects:[NSNumber numberWithInt:visibleTrackNumber], trackName, nil];
         NSDictionary *extraInfo = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
-        NSNotification *note = [NSNotification notificationWithName:@"TrackNameDidChange" object:self userInfo:extraInfo];
+        NSNotification *note = [NSNotification notificationWithName:@"TrackParamDidChange" object:self userInfo:extraInfo];
         [[NSNotificationCenter defaultCenter] postNotification:note];
         
     }
@@ -382,7 +392,7 @@
         NSArray *keys = [[NSArray alloc] initWithObjects:@"visibleTrackNumber", @"trackVolume", nil];
         NSArray *objects = [[NSArray alloc] initWithObjects:[NSNumber numberWithInt:visibleTrackNumber], [NSNumber numberWithFloat:trackVolume], nil];
         NSDictionary *extraInfo = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
-        NSNotification *note = [NSNotification notificationWithName:@"TrackVolumeDidChange" object:self userInfo:extraInfo];
+        NSNotification *note = [NSNotification notificationWithName:@"TrackParamDidChange" object:self userInfo:extraInfo];
         [[NSNotificationCenter defaultCenter] postNotification:note];
         
     }
@@ -404,7 +414,29 @@
         NSArray *keys = [[NSArray alloc] initWithObjects:@"visibleTrackNumber", @"meterLevel", nil];
         NSArray *objects = [[NSArray alloc] initWithObjects:[NSNumber numberWithInt:visibleTrackNumber], [NSNumber numberWithFloat:meterLevel], nil];
         NSDictionary *extraInfo = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
-        NSNotification *note = [NSNotification notificationWithName:@"TrackVuDidChange" object:self userInfo:extraInfo];
+        NSNotification *note = [NSNotification notificationWithName:@"TrackParamDidChange" object:self userInfo:extraInfo];
+        [[NSNotificationCenter defaultCenter] postNotification:note];
+    }
+    
+    /////////// EQ //////////////
+    regex = [NSRegularExpression regularExpressionWithPattern:@"^/2/eq(\\w{1,4})(\\d)$" options:0 error:nil];
+    match = [regex firstMatchInString:address options:0 range:NSMakeRange(0, [address length])];
+    
+    if (match)
+    {
+        NSString *param = [address substringWithRange:[match rangeAtIndex:1]];
+        int eqBand = [[address substringWithRange:[match rangeAtIndex:2]] intValue];
+        float paramVal = [m.value floatValue];
+        
+#if 0
+        NSLog(@"OSC RX: /2/eq%@%d %0.3f",param,eqBand,paramVal);
+#endif
+                        
+        // post notifcation
+        NSArray *keys = [[NSArray alloc] initWithObjects:@"bankStart", @"eqParam", @"eqBand", @"value", nil];
+        NSArray *objects = [[NSArray alloc] initWithObjects:[NSNumber numberWithInt:bankStart], param, [NSNumber numberWithInt:eqBand], [NSNumber numberWithFloat:paramVal], nil];
+        NSDictionary *extraInfo = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
+        NSNotification *note = [NSNotification notificationWithName:@"DetailedTrackParamDidChange" object:self userInfo:extraInfo];
         [[NSNotificationCenter defaultCenter] postNotification:note];
     }
 
