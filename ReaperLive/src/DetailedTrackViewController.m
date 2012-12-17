@@ -50,12 +50,7 @@
 
     compView = [[CompView alloc] initWithFrame:CGRectMake(TRACKS_WIDTH, 0, TRACKS_WIDTH, DETAILED_TRACK_VIEW_HEIGHT)];
     [detailedTrackScrollView addSubview:compView];
-    
-    // initialize page 2 to be channel 0
-    [oscDelegate setPage:2];
-    [oscDelegate sendSetBankStart:0];
-    //[oscDelegate.bankStart replaceObjectAtIndex:1 withObject:[[NSNumber alloc] initWithInt:0]];
-    
+        
     /******* EQ VIEW *******/
     
     ///////////////////////////////
@@ -128,23 +123,18 @@
 #endif   
     
     // need to update the track reference every time the view will appear
-    eqViewController.trackNumber = self.track.trackNumber;
+    //eqViewController.trackNumber = self.track.trackNumber;
     eqViewController.eq = self.track.eq;
+    eqViewController.trackLabel.text = [NSString stringWithFormat:@"%d",self.track.bankStart];
     
     // set content offset
     detailedTrackScrollView.contentOffset = self.contentOffset;
     
-    
-#if 1
-    NSLog(@"setStartTrack:%d",self.track.trackNumber-1);
-#endif
-    
     // set page 2
     [oscDelegate setPage:2];
-    
-    // send osc message to set the correct start track
-    [oscDelegate setStartTrack:self.track.trackNumber-1 page:2];
-    
+        
+    // bankStart to the right track
+    [oscDelegate sendSetBankStart:track.bankStart];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -161,7 +151,10 @@
     
     // set page 1
     [oscDelegate setPage:1];
-        
+    
+    // bank start to where we started
+    [oscDelegate sendSetBankStart:self.prevBankStart];
+    
     // whenever the detailed track view controller will disappear, need to update the eq buttons for this track
     [delegate updateTrackButtons:self.selectedTrack];
 }

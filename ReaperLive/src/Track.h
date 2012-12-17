@@ -12,13 +12,11 @@
 
 @interface Track : NSObject
 
-@property int trackNumber;
+@property int bankStart;
 @property (strong, nonatomic) NSString *name;
-@property float volume;
-@property float vuLevel;
 
 @property (strong, nonatomic) Eq *eq;
 
-- (id)initWithTrackNumber:(int)trackNum;
+- (id)init;
 
 @end

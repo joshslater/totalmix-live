@@ -48,7 +48,6 @@
     // initialize tracks based on settings
     tracksViewController.nTracks = settings.nTracks;
     [tracksViewController initializeTracks];
-    tracksViewController.currentRow = 0;
     [tracksViewController refreshTracks];
     [tracksViewController refreshTrackCells];
     
@@ -64,12 +63,12 @@
     settingsViewController.oscSettingsDelegate = oscManagerController;
     tracksViewController.oscDelegate = oscManagerController;
     // pass the tracks data array to oscManagerController
-    oscManagerController.rowTracks = tracksViewController.rowTracks;
+    oscManagerController.tracks = tracksViewController.tracks;
     
     // update the outPort
     [oscManagerController updateOscIpAddress:settings.oscIpAddress inPort:settings.oscInPort outPort:settings.oscOutPort];
 
-    [oscManagerController setInitialState];
+    [oscManagerController initState];
     
     
     // refresh the osc device

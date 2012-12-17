@@ -12,14 +12,11 @@
 
 @implementation Track
 
-@synthesize trackNumber;
 @synthesize name;
-@synthesize volume;
-@synthesize vuLevel;
 
 @synthesize eq;
 
-- (id)initWithTrackNumber:(int)trackNum
+- (id)init
 {
 #if 0
     NSLog(@"Track::initWithTrackNumber");
@@ -29,7 +26,6 @@
     
     if(self)
     {
-        self.trackNumber = trackNum;
 
         eq = [[Eq alloc] init];
         

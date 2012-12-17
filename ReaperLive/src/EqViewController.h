@@ -25,6 +25,7 @@
 
 @property (nonatomic, weak) id <OSCMessagingProtocol> oscDelegate;
 @property (nonatomic, strong) EQView *eqView;
+@property (weak, nonatomic) IBOutlet UILabel *trackLabel;
 @property (weak, nonatomic) IBOutlet MHRotaryKnob *gainKnob;
 @property (weak, nonatomic) IBOutlet MHRotaryKnob *freqKnob;
 @property (weak, nonatomic) IBOutlet MHRotaryKnob *qKnob;

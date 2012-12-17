@@ -30,7 +30,7 @@ oscChangeTrackDirection_t;
 @protocol OSCMessagingProtocol <NSObject>
 
 // FIXME: I don't really think these properties should be in the protocol
-@property (nonatomic, strong) NSMutableArray *rowTracks;
+@property (nonatomic, strong) NSMutableArray *tracks;
 // keep track of the bank start value
 @property (nonatomic) NSInteger bankStart;
 
@@ -45,9 +45,9 @@ oscChangeTrackDirection_t;
 - (void)setStartTrack:(int)trackNumber page:(int)pageNum;
 - (void)sendSetBankStart:(int)bankStartValue;
 - (void)volumeFaderDidChange:(int)visibleTrackNumber toValue:(float)value;
-- (void)setBusInput;
-- (void)setBusPlayback;
-- (void)setBusOutput;
+- (void)setBusInput:(int)pageNum;
+- (void)setBusPlayback:(int)pageNum;
+- (void)setBusOutput:(int)pageNum;
 - (void)setPage:(int)pageNum;
 - (void)trackPlusMinus:(oscChangeTrackDirection_t)direction page:(int)pageNum;
 

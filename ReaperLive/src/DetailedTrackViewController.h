@@ -35,6 +35,9 @@
 @property (nonatomic) NSInteger selectedTrack;
 @property (strong, nonatomic) Track *track;
 
+// bankStart that was set before presenting detailed track view controller -- need to set this before exiting
+@property (nonatomic) int prevBankStart;
+
 - (void)closeDetailedTrackView:(id)sender;
 
 @end

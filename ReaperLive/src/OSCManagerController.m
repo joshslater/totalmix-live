@@ -13,7 +13,7 @@
 
 @implementation OSCManagerController
 
-@synthesize rowTracks;
+@synthesize tracks;
 @synthesize bankStart;
 
 #pragma mark -
@@ -90,26 +90,36 @@
 #pragma mark <OscMessagingProtocol>
 - (void)initState
 {
-    for(int bus = 0; bus < 3; bus ++)
+    // set page 2
+    [self setPage:2];
+    
+    for(int bus = 0; bus < 1; bus ++)
     {
         switch (bus) {
             case 0:
-                [self setBusInput];
+                [self setBusInput:2];
                 break;
             case 1:
-                [self setBusPlayback];
+                [self setBusPlayback:2];
                 break;
             case 2:
-                [self setBusOutput];
+                [self setBusOutput:2];
                 break;
             default:
                 break;
         }
         
-        
-        
-        
+        for(bankStart = 0; bankStart < 30; bankStart++)
+        {
+            [self sendSetBankStart:bankStart];
+            
+            [NSThread sleepForTimeInterval:0.05];
+        }
     }
+    
+    // go back to the beginning
+    bankStart = 0;
+    [self sendSetBankStart:bankStart];
 }
 
 
@@ -125,31 +135,6 @@
 #endif
 }
 
-/*
-- (void)setStartTrack:(int)trackNumber page:(int)pageNum
-{
-    // how many tracks did we move?
-    int relativeTrack = trackNumber - [[bankStart objectAtIndex:pageNum-1] intValue];
-    
-#if 0
-    NSLog(@"relativeTrack = %d",relativeTrack);
-#endif
-    
-    oscChangeTrackDirection_t direction;
-    if(relativeTrack > 0)
-        direction = OSCIncrementTrack;
-    else
-        direction = OSCDecrementTrack;
-    
-    for(int i = 0; i < ABS(relativeTrack); i++)
-    {
-        [self trackPlusMinus:direction page:pageNum];
-    }
-    
-    [bankStart replaceObjectAtIndex:pageNum-1 withObject:[[NSNumber alloc] initWithInt:trackNumber]];
-}
- */
-
 // for now, this will only happen on page 1
 - (void)volumeFaderDidChange:(int)visibleTrackNumber toValue:(float)value
 {
@@ -162,35 +147,6 @@
 #if 1
     NSLog(@"OSC TX: /1/volume%d %0.3f",visibleTrackNumber,value);
 #endif
-}
-
-- (void)sendOscAction:(oscActions_t)action
-{
-    NSInteger actionId;
-    
-    switch (action) {
-        case OSCActionRefreshDevices:
-            actionId = 41743;
-            break;
-            
-        default:
-            break;
-    }
-
-#if 0
-    NSLog(@"OSCManagerController :: sending actionId %d",actionId);
-#endif
-    
-    OSCMessage *msg = [OSCMessage createWithAddress:@"/action"];
-    [msg addInt:actionId];
-    [oscOutPort sendThisMessage:msg];
-}
-
-- (void)selectFX:(NSInteger)fxNumber
-{
-    OSCMessage *msg = [OSCMessage createWithAddress:@"/device/fx/select"];
-    [msg addInt:fxNumber];
-    [oscOutPort sendThisMessage:msg];    
 }
 
 - (void)sendCannedMsg
@@ -271,35 +227,47 @@
     [oscOutPort sendThisMessage:msg];
 }
 
-- (void)setBusInput
+- (void)setBusInput:(int)pageNum
 {
+    // update the current row
+    currentRow = 0;
+    rowTracks = [tracks objectAtIndex:currentRow];
+    
 #if 1
-    NSLog(@"oscManagerController::setBusInput");
+    NSLog(@"OSC TX: /%d/busInput", pageNum);
 #endif
-    OSCMessage *msg = [OSCMessage createWithAddress:[NSString stringWithFormat:@"/1/busInput"]];
+    OSCMessage *msg = [OSCMessage createWithAddress:[NSString stringWithFormat:@"/%d/busInput",pageNum]];
     [msg addFloat:1.0];
     
     [oscOutPort sendThisMessage:msg];
 }
 
-- (void)setBusPlayback
+- (void)setBusPlayback:(int)pageNum
 {
+    // update the current row
+    currentRow = 1;
+    rowTracks = [tracks objectAtIndex:currentRow];
+    
 #if 1
-    NSLog(@"oscManagerController::setBusPlayback");
+    NSLog(@"OSC TX: /%d/busPlayback",pageNum);
 #endif
-    OSCMessage *msg = [OSCMessage createWithAddress:[NSString stringWithFormat:@"/1/busPlayback"]];
+    OSCMessage *msg = [OSCMessage createWithAddress:[NSString stringWithFormat:@"/%d/busPlayback",pageNum]];
     [msg addFloat:1.0];
     
     [oscOutPort sendThisMessage:msg];
 }
 
-- (void)setBusOutput
+- (void)setBusOutput:(int)pageNum
 {
+    // update the current row
+    currentRow = 2;
+    rowTracks = [tracks objectAtIndex:currentRow];
+    
 #if 1
-    NSLog(@"oscManagerController::setBusOutput");
+    NSLog(@"OSC TX: /%d/busOutput",pageNum);
 #endif
     
-    OSCMessage *msg = [OSCMessage createWithAddress:[NSString stringWithFormat:@"/1/busOutput"]];
+    OSCMessage *msg = [OSCMessage createWithAddress:[NSString stringWithFormat:@"/%d/busOutput",pageNum]];
     [msg addFloat:1.0];
     
     [oscOutPort sendThisMessage:msg];
@@ -318,7 +286,7 @@
         directionString = @"-";
     }
     
-#if 1
+#if 0
     NSLog(@"/%d/track%@",pageNum,directionString);
 #endif
     
@@ -333,7 +301,7 @@
     OSCMessage *msg = [OSCMessage createWithAddress:[NSString stringWithFormat:@"/%d",pageNum]];
     [msg addFloat:1.0];
     
-#if 1
+#if 0
     NSLog(@"/%d",pageNum);
 #endif
     
@@ -360,24 +328,33 @@
     NSTextCheckingResult *match;
     
     ///////// TRACK NAME ///////////
-    regex = [NSRegularExpression regularExpressionWithPattern:@"^/1/trackname(\\d)$" options:0 error:nil];
+    regex = [NSRegularExpression regularExpressionWithPattern:@"^/(\\d)/trackname(\\d{0,1})$" options:0 error:nil];
     match = [regex firstMatchInString:address options:0 range:NSMakeRange(0, [address length])];
     
     if (match)
     {
-        int visibleTrackNumber = [[address substringWithRange:[match rangeAtIndex:1]] intValue];
-        NSString *trackName = [m.value stringValue];
-        
-#if 0
-        NSLog(@"rowTracks[%d].name = %@",trackNumber-1,((Track *)[rowTracks objectAtIndex:trackNumber-1]).name);
-        NSLog(@"oscManagerController.rowTracks = %x",(int)rowTracks);
-#endif
-        
+        int pageNum = [[address substringWithRange:[match rangeAtIndex:1]] intValue];
+        int visibleTrackNumber = [[address substringWithRange:[match rangeAtIndex:2]] intValue];
+        NSString *trackName = [m.value stringValue];        
         
 #if 1
-        NSLog(@"OSC::/1/trackname%d %@",visibleTrackNumber,trackName);
+        if(pageNum == 2)
+            NSLog(@"OSC RX: /%d/trackname%d %@",pageNum,visibleTrackNumber,trackName);
 #endif
         
+        // if this is a pageNum 2 update only
+        if(pageNum == 2)
+        {
+            // don't update the bankStart unless the track doesn't exist yet -- this makes it so stereo channels
+            // have a bankStart that is equal to the left channel
+            if(![rowTracks objectForKey:trackName])
+            {
+                [rowTracks setObject:[[Track alloc] init] forKey:trackName];
+                
+                Track *track = [rowTracks objectForKey:trackName];
+                track.bankStart = self.bankStart;
+            }
+        }
         
         // post notifcation
         NSArray *keys = [[NSArray alloc] initWithObjects:@"visibleTrackNumber", @"trackName", nil];
@@ -397,7 +374,7 @@
         int visibleTrackNumber = [[address substringWithRange:[match rangeAtIndex:1]] intValue];
         float trackVolume = [m.value floatValue];
         
-#if 1
+#if 0
         NSLog(@"OSC::/1/volume%d %0.3f",visibleTrackNumber,trackVolume);
 #endif
         
@@ -419,7 +396,7 @@
         int visibleTrackNumber = [[address substringWithRange:[match rangeAtIndex:1]] intValue];
         float meterLevel = [m.value floatValue];
         
-#if 1
+#if 0
         NSLog(@"OSC::/1/level%dLeft %0.3f",visibleTrackNumber,meterLevel);
 #endif
                 

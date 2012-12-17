@@ -165,7 +165,6 @@
     NSLog(@"EqViewController, gainPoints address = %x",(unsigned int)eq.gainPoints);
 #endif
     
-
     eqCurveView.eq = self.eq;
     eqPointsView.eq = self.eq;    
     

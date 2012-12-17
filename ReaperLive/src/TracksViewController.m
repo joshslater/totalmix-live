@@ -25,7 +25,6 @@
 #pragma mark Properties
 
 @synthesize nTracks;
-@synthesize currentRow;
 @synthesize rowTracks;
 
 @synthesize oscDelegate;
@@ -39,7 +38,7 @@
 - (void)setSelectedTrack:(NSInteger)aSelectedTrack
 {
     // set previously selected track to grey
-    TrackTableCell *cell = (TrackTableCell *)[self.tracksTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:selectedTrack-1 inSection:0]];
+    TrackTableCell *cell = (TrackTableCell *)[self.tracksTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:selectedTrack inSection:0]];
     
     cell.trackLabel.layer.backgroundColor = [UIColor lightGrayColor].CGColor;
     
@@ -48,23 +47,10 @@
     if(selectedTrack != -1)
     {
         // change the label background of the selected track
-        cell = (TrackTableCell *)[self.tracksTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:selectedTrack-1 inSection:0]];
+        cell = (TrackTableCell *)[self.tracksTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:selectedTrack inSection:0]];
         
         cell.trackLabel.layer.backgroundColor = [UIColor blackColor].CGColor;
     }
-}
-
-- (void)setCurrentRow:(NSInteger)aCurrentRow
-{
-    currentRow = aCurrentRow;
-    
-    rowTracks = [tracks objectAtIndex:aCurrentRow];
-    // update OSC's rowtracks
-    oscDelegate.rowTracks = rowTracks;
-    
-#if 0
-    NSLog(@"tracksViewController.rowTracks = %x",(int)rowTracks);
-#endif
 }
 
 #pragma mark -
@@ -101,13 +87,13 @@
 {
     for(int i = 0; i < 3; i++)
     {
-        [tracks addObject:[[NSMutableArray alloc] init]];
+        [tracks addObject:[[NSMutableDictionary alloc] init]];
     }
 }
 
 - (void)loadView
 {
-#if 0
+#if 1
     NSLog(@"TracksViewController::loadView");
 #endif
     
@@ -148,8 +134,8 @@
  
 - (void)viewDidLoad
 {
-#if 0
-    NSLog(@"In EqViewController viewDidLoad, instance %x\n", (unsigned int)self);
+#if 1
+    NSLog(@"tracksViewController::viewDidLoad, instance %x\n", (unsigned int)self);
 #endif
     
     [super viewDidLoad];
@@ -208,12 +194,9 @@
 #pragma mark -
 #pragma mark TableView Delegate/DataSource Methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-#if 1
-    NSLog(@"numberofRowsInSection:%d",[(NSNumber *)[nTracks objectAtIndex:currentRow] intValue]);
-#endif
-    
-    return [(NSNumber *)[nTracks objectAtIndex:currentRow] intValue];
+{    
+    //FIX ME
+    return 8;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -232,9 +215,6 @@
 #endif
         
         cell = (TrackTableCell *)[trackCells objectForKey:key];
-        
-        // set the volume slider, since we don't update it if it's not visible
-        cell.volumeSlider.value = [[self.rowTracks objectAtIndex:indexPath.row] volume];
     } 
     else 
     {
@@ -242,7 +222,7 @@
         NSLog(@"creating cell %d",indexPath.row);
 #endif
         
-        cell = [self createCell:((Track *)[rowTracks objectAtIndex:indexPath.row]).trackNumber];
+        cell = [self createCell];
         [trackCells setObject:cell forKey:key];        
     }
     
@@ -254,10 +234,10 @@
     return TRACK_CELL_WIDTH;
 }
 
-- (TrackTableCell *)createCell:(int)trackNumber
+- (TrackTableCell *)createCell
 {
-#if 0
-    NSLog(@"TracksViewController::createCell:%d",trackNumber);
+#if 1
+    NSLog(@"TracksViewController::createCell");
 #endif
     
     TrackTableCell *cell;
@@ -319,8 +299,6 @@
     cell.layer.borderColor = [UIColor blackColor].CGColor;
     cell.layer.borderWidth = 1.0f;
     
-    
-    cell.trackLabel.text = ((Track *)[rowTracks objectAtIndex:trackNumber-1]).name;
     // give the track label rounded corners -- need to do this workaround as just
     // setting the cornerRadius kills scroll performance
     cell.trackLabel.backgroundColor = [UIColor clearColor];
@@ -396,9 +374,9 @@
 */
     
     // set the eq for each of the eqThumbsView's
-    cell.eqButton.eq = [[rowTracks objectAtIndex:trackNumber-1] eq];
-    [cell.eqButton setNeedsDisplay];    
-    return cell; 
+//    cell.eqButton.eq = [[rowTracks objectAtIndex:trackNumber-1] eq];
+//    [cell.eqButton setNeedsDisplay];    
+    return cell;
 }
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
@@ -426,7 +404,7 @@
     NSLog(@"Gate Button Pushed for Track %d",indexPath.row);
 #endif
 
-    [self displayDetailedTrackViewControllerWithOffset:CGPointMake(0, 0)];
+    //[self displayDetailedTrackViewControllerWithOffset:CGPointMake(0, 0)];
     
 }
 
@@ -440,30 +418,29 @@
     NSLog(@"Comp Button Pushed for Track %d",indexPath.row);
 #endif
     
-    [self displayDetailedTrackViewControllerWithOffset:CGPointMake(TRACKS_WIDTH, 0)];
+    //[self displayDetailedTrackViewControllerWithOffset:CGPointMake(TRACKS_WIDTH, 0)];
 }
 
 - (IBAction)eqButtonPressed:(id)sender
 {
     NSIndexPath *indexPath = [self.tracksTableView indexPathForCell:(UITableViewCell *)[[[sender superview] superview] superview]];
     
-    self.selectedTrack = ((Track *)[self.rowTracks objectAtIndex:indexPath.row]).trackNumber;
+    // get track name from cell
+    NSString *trackName = ((TrackTableCell*)[trackCells objectForKey:[NSNumber numberWithInt:indexPath.row]]).trackLabel.text;
+    
+    self.selectedTrack = indexPath.row;
     
 #if 1
-    NSLog(@"EQ Button Pushed for Track %d",indexPath.row);
+    NSLog(@"EQ Button Pushed for Track %d, trackName = %@",indexPath.row, trackName);
 #endif
     
-    [self displayDetailedTrackViewControllerWithOffset:CGPointMake(2*TRACKS_WIDTH, 0)];
+    [self displayDetailedTrackViewController:trackName WithOffset:CGPointMake(2*TRACKS_WIDTH, 0)];
 }
 
 - (void)volumeFaderSliderAction:(UISlider *)sender
 {
     NSIndexPath *indexPath = [self.tracksTableView indexPathForCell:(UITableViewCell *)[[sender superview] superview]];
-    
-    Track *track = [self.rowTracks objectAtIndex:indexPath.row];
-    
-    track.volume = [sender value];
-        
+       
     // call the oscDelegate with the new value
     [oscDelegate volumeFaderDidChange:indexPath.row+1 toValue:[sender value]];
 
@@ -481,32 +458,23 @@
 
 - (IBAction)setInputButtonPressed:(id)sender
 {
-    // setting current row will update rowTracks
-    self.currentRow = 0;
-    [self refreshTrackCells];
-    [oscDelegate setBusInput];
-    
-    [tracksTableView reloadData];
+    currentRow = 0;
+    // page 1
+    [oscDelegate setBusInput:1];
 }
 
 - (IBAction)setPlaybackButtonPressed:(id)sender
 {
-    // setting current row will update rowTracks
-    self.currentRow = 1;
-    [self refreshTrackCells];
-    [oscDelegate setBusPlayback];
-    
-    [tracksTableView reloadData];
+    currentRow = 1;
+    // page 1
+    [oscDelegate setBusPlayback:1];
 }
 
 - (IBAction)setOutputButtonPressed:(id)sender
 {
-    // setting current row will update rowTracks
-    self.currentRow = 2;
-    [self refreshTrackCells];
-    [oscDelegate setBusOutput];
-    
-    [tracksTableView reloadData];
+    currentRow = 2;
+    // page 1
+    [oscDelegate setBusOutput:1];
 }
 
 - (IBAction)trackPlus:(id)sender
@@ -522,7 +490,7 @@
 #pragma mark -
 #pragma mark View Handling
 
-- (void)displayDetailedTrackViewControllerWithOffset:(CGPoint)offset
+- (void)displayDetailedTrackViewController:(NSString*)trackName WithOffset:(CGPoint)offset
 {    
 #if 0
     NSLog(@"TracksViewController: selectedTrack = %d",selectedTrack);
@@ -535,10 +503,21 @@
     NSLog(@"setting detailedViewController.track to %x",(unsigned int)[self.rowTracks objectAtIndex:selectedTrack-1]);
 #endif
     
-    // pass the necessary properties about the cahnnel to the detailed view controller
-    detailedTrackViewController.track = [self.rowTracks objectAtIndex:selectedTrack-1];
-    detailedTrackViewController.selectedTrack = selectedTrack;
+    // get the track with this track name
+    Track *track = [[tracks objectAtIndex:currentRow] objectForKey:trackName];
+    
+#if 1
+    NSLog(@"trackname = %@, track.bankStart = %d",trackName, track.bankStart);
+#endif
         
+    // pass the necessary properties about the cahnnel to the detailed view controller
+    detailedTrackViewController.track = track;
+    detailedTrackViewController.selectedTrack = selectedTrack;
+    
+    // set the previous bankStart
+    NSString *firstTrackName = ((TrackTableCell*)[trackCells objectForKey:[NSNumber numberWithInt:0]]).trackLabel.text;
+    detailedTrackViewController.prevBankStart = ((Track *)[[tracks objectAtIndex:currentRow] objectForKey:firstTrackName]).bankStart;
+    
     // set content offset to be TRACKS_WIDTH
     detailedTrackViewController.contentOffset = offset;
     
@@ -625,12 +604,19 @@
     
 #if 0
     NSLog(@"Received trackNameDidChange notification, visibleTrackNumber = %d, track name = %@",visibleTrackNumber,trackName);
-    NSLog(@"cell = 0x%x",(unsigned int)cell);
+    //NSLog(@"cell = 0x%x",(unsigned int)cell);
 #endif
+    
+    // get the track with this track name
+    Track *track = [[tracks objectAtIndex:currentRow] objectForKey:trackName];
     
     dispatch_async( dispatch_get_main_queue(), ^{
         // running synchronously on the main thread now -- call the handler
         cell.trackLabel.text = trackName;
+        
+        // set the eq for each of the eqThumbsView's
+        cell.eqButton.eq = [track eq];
+        [cell.eqButton setNeedsDisplay];
     });
 }
 
@@ -650,20 +636,20 @@
     {
         [[self.tracks objectAtIndex:i] removeAllObjects];
     
-        for (int j = 0; j < MAX([(NSNumber *)[nTracks objectAtIndex:i] intValue],8); j++)
+        for (int j = 0; j < 8; j++)
         {
 #if 0
             NSLog(@"refreshTracks:: i = %d, j = %d",i,j);
 #endif
             
-            [[self.tracks objectAtIndex:i] addObject: [[Track alloc] initWithTrackNumber:(j+1)]];
+            //[[self.tracks objectAtIndex:i] addObject: [[Track alloc] init]];
         }
     }
 }
 
 - (void)refreshTrackCells
 {
-#if 0
+#if 1
     NSLog(@"tracksViewController::refreshTrackCells:[%d %d %d]",[(NSNumber *)[nTracks objectAtIndex:0] intValue],[(NSNumber *)[nTracks objectAtIndex:1] intValue],[(NSNumber *)[nTracks objectAtIndex:2] intValue]);
 #endif
     
@@ -671,13 +657,14 @@
     [trackCells removeAllObjects];
         
     // initialize track cell array
-    for (int cellNum = 0; cellNum < [(NSNumber *)[nTracks objectAtIndex:self.currentRow] intValue]; cellNum++)
+    //FIXME
+    for (int cellNum = 0; cellNum < 8; cellNum++)
     {
 #if 0
         NSLog(@"creating cell %d",((Track *)[rowTracks objectAtIndex:cellNum]).trackNumber);
 #endif
         
-        TrackTableCell *cell = [self createCell:((Track *)[rowTracks objectAtIndex:cellNum]).trackNumber];
+        TrackTableCell *cell = [self createCell];
         [trackCells setObject:cell forKey:[NSNumber numberWithInt:cellNum]];
     }
 }

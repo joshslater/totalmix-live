@@ -29,6 +29,7 @@
 {
     DetailedTrackViewController *detailedTrackViewController;
     NSMutableDictionary *trackCells;
+    int currentRow;
     
     // track direction of tracksTableView scrolling
     float startScrollOffset;
@@ -44,8 +45,6 @@
 
 // number of visible tracks isn't necessarily the number of stored tracks
 @property (strong, nonatomic) NSMutableArray *nTracks;
-// current row
-@property (nonatomic) NSInteger currentRow;
 // tracks for current row
 @property (strong, nonatomic) NSMutableArray *rowTracks;
 

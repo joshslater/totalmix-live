@@ -15,6 +15,10 @@
 @interface OSCManagerController : OSCManager <OSCDelegateProtocol, OSCMessagingProtocol>
 {
     OSCOutPort *oscOutPort;
+    
+    // current row (0 - 2)
+    int currentRow;
+    NSMutableDictionary *rowTracks;
 }
 
 - (void)setInitialState;
